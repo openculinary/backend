@@ -1,0 +1,14 @@
+input, .bootstrap-tagsinput {
+  border: none;
+  border-radius: 4px;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  box-shadow: none;
+  margin: 4px;
+  padding: 8px;
+}
+
+.bootstrap-tagsinput input {
+  width: 64px;
+}
+

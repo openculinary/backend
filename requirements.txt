@@ -1,0 +1,2 @@
+flask-restful==0.3.7
+scikit-criteria==0.2.10
