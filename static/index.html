@@ -21,7 +21,7 @@
 	    <br />
 	    <ul>
 	      <li>containing ... <select multiple data-role="tagsinput" id="include"></select></li>
-	      <li>avoiding ... <select multiple data-role="tagsinput" id="exclude-ingredients"><option value="pickles">pickles</option></select></li>
+	      <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"><option value="pickles">pickles</option></select></li>
             <br />
             <br />
             <button type="button" class="btn btn-primary">Find recipes!</button>
@@ -36,19 +36,26 @@
     <script src="js/bootstrap3-typeahead.min.js"></script>
 
     <script>
-$('#include').tagsinput({
-  allowDuplicates: false,
-  freeInput: false,
-  maxTags: 5,
-  typeahead: {
-    source: function(query, process) {
-      return $.getJSON('api/ingredients.json');
-    },
-    afterSelect: function() {
-      this.$element[0].value = '';
+function bindsuggestions(element, url) {
+  $(element).tagsinput({
+    allowDuplicates: false,
+    freeInput: false,
+    maxTags: 5,
+    typeahead: {
+      source: function(query, process) {
+        return $.getJSON(url);
+      },
+      afterSelect: function() {
+        this.$element[0].value = '';
+      }
     }
-  }
-});
+  });
+}
+
+bindsuggestions('#adjectives', 'api/adjectives.json');
+bindsuggestions('#course', 'api/courses.json');
+bindsuggestions('#include', 'api/ingredients.json');
+bindsuggestions('#exclude', 'api/ingredients.json');
     </script>
   </body>
 </html>
