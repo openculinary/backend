@@ -32,23 +32,21 @@
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/typeahead.bundle.min.js"></script>
     <script src="js/bootstrap-tagsinput.min.js"></script>
+    <script src="js/bootstrap3-typeahead.min.js"></script>
 
     <script>
-var ingredients = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.whitespace,
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: {
-    url: 'api/ingredients.json'
-  }
-});
-ingredients.initialize();
-
 $('#include').tagsinput({
   allowDuplicates: false,
-  typeaheadjs: {
-    source: ingredients.ttAdapter()
+  freeInput: false,
+  maxTags: 5,
+  typeahead: {
+    source: function(query, process) {
+      return $.getJSON('api/ingredients.json');
+    },
+    afterSelect: function() {
+      this.$element[0].value = '';
+    }
   }
 });
     </script>
