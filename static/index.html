@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
     <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
     <link rel="stylesheet" href="css/reciperadar.css">
     <title>RecipeRadar</title>
@@ -30,8 +31,20 @@
       </div>
     </div>
 
+    <div class="container pt-3">
+    <table id="recipes" data-show-header="false" data-toggle="table" data-url="/recipes?q=spaghetti">
+      <thead>
+        <tr>
+          <th data-field="name">Name</th>
+          <th data-field="image" data-formatter="imageFormatter">Image</th>
+        </tr>
+      </thead>
+    </table>
+    </div>
+
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap-tagsinput.min.js"></script>
     <script src="js/bootstrap3-typeahead.min.js"></script>
 
@@ -56,6 +69,10 @@ bindsuggestions('#adjectives', 'api/adjectives.json');
 bindsuggestions('#course', 'api/courses.json');
 bindsuggestions('#include', 'api/ingredients.json');
 bindsuggestions('#exclude', 'api/ingredients.json');
+
+function imageFormatter(value) {
+  return '<img style="max-width: 256px" src="' + value + '">'
+}
     </script>
   </body>
 </html>
