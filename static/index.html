@@ -56,19 +56,21 @@ function bindsuggestions(element, url) {
     maxTags: 5,
     typeahead: {
       source: function(query, process) {
-        return $.getJSON(url);
+        if (query.length < 3) return;
+        return $.getJSON(url + '?pre=' + query);
       },
       afterSelect: function() {
         this.$element[0].value = '';
-      }
+      },
+      sorter: function (item) { return item; }
     }
   });
 }
 
 bindsuggestions('#adjectives', 'api/adjectives.json');
 bindsuggestions('#course', 'api/courses.json');
-bindsuggestions('#include', 'api/ingredients.json');
-bindsuggestions('#exclude', 'api/ingredients.json');
+bindsuggestions('#include', '/ingredients');
+bindsuggestions('#exclude', '/ingredients');
 
 function imageFormatter(value) {
   return '<img style="max-width: 256px" src="' + value + '">'
