@@ -25,14 +25,15 @@ def ingredients():
 @app.route('/recipes')
 def recipes():
     es = Elasticsearch()
-    q = request.args.get('q')
+    include = request.args.getlist('include[]')
+    include = [{'match': {'ingredients': inc}} for inc in include]
 
     results = es.search(
         index='recipes',
         body={
             'query': {
                 'bool': {
-                    'must': [{'match': {'ingredients': q}}],
+                    'must': include,
                     'filter': {'wildcard': {'image': '*'}}
                 }
             }

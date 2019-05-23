@@ -25,14 +25,14 @@
 	      <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"><option value="pickles">pickles</option></select></li>
             <br />
             <br />
-            <button type="button" class="btn btn-primary">Find recipes!</button>
+            <button id="search" type="button" class="btn btn-primary">Find recipes!</button>
           </div>
         </div>
       </div>
     </div>
 
     <div class="container pt-3">
-    <table id="recipes" data-show-header="false" data-toggle="table" data-url="/recipes?q=spaghetti">
+    <table id="recipes" data-show-header="false" data-toggle="table" class="d-none">
       <thead>
         <tr>
           <th data-field="name">Name</th>
@@ -75,6 +75,16 @@ bindsuggestions('#exclude', '/ingredients');
 function imageFormatter(value) {
   return '<img style="max-width: 256px" src="' + value + '">'
 }
+
+$('#search').on('click', function (e) {
+  var params = {
+    include: $('#include').val()
+  };
+  $('#recipes').removeClass('d-none');
+  $('#recipes').bootstrapTable('refresh', {
+    url: '/recipes?' + $.param(params)
+  });
+});
     </script>
   </body>
 </html>
