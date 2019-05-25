@@ -85,6 +85,12 @@ $('#search').on('click', function (e) {
     url: '/recipes?' + $.param(params)
   });
 });
+
+$('#recipes').on('DOMNodeInserted', function (e) {
+  $(e.target).find('img').on('error', function () {
+    $(e.target).css("display", "none");
+  });
+});
     </script>
   </body>
 </html>
