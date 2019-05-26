@@ -37,10 +37,69 @@
         <tr>
           <th data-field="name">Name</th>
           <th data-field="image" data-formatter="imageFormatter">Image</th>
+	  <th data-formatter="metadataFormatter">Metadata</th>
         </tr>
       </thead>
     </table>
     </div>
+
+<footer class="page-footer container font-small blue pt-4">
+
+  <div class="container-fluid text-center text-md-left">
+
+    <div class="row">
+
+      <div class="col-md-6 mt-md-12 mt-5">
+        <p>Find recipes and plan your culinary calendar with RecipeRadar</p>
+      </div>
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">Cuisine</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Thai</a>
+          </li>
+          <li>
+            <a href="#!">Indian</a>
+          </li>
+          <li>
+            <a href="#!">Mediterranean</a>
+          </li>
+          <li>
+            <a href="#!">Japanese</a>
+          </li>
+          <li>
+            <a href="#!">French</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">Meals</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Dinner</a>
+          </li>
+          <li>
+            <a href="#!">Breakfast</a>
+          </li>
+          <li>
+            <a href="#!">Dessert</a>
+          </li>
+          <li>
+            <a href="#!">Lunch</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="https://www.reciperadar.com">reciperadar.com</a>
+  </div>
+</footer>
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -74,6 +133,15 @@ bindsuggestions('#exclude', '/ingredients');
 
 function imageFormatter(value) {
   return '<img style="max-width: 256px" src="' + value + '">'
+}
+
+function metadataFormatter(value) {
+	return `
+<table style="font-size: 12px">
+  <tr><th>time</th><td>1hr</td></tr>
+  <tr><th>difficulty</th><td>easy</td></tr>
+  <tr><th>calories / pers</th><td>650</td></tr>
+</table>`;
 }
 
 $('#search').on('click', function (e) {
