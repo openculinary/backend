@@ -37,7 +37,7 @@
         <tr>
           <th data-field="name">Name</th>
           <th data-field="image" data-formatter="imageFormatter">Image</th>
-	  <th data-formatter="metadataFormatter">Metadata</th>
+	  <th data-field="cookTime" data-formatter="metadataFormatter">Metadata</th>
         </tr>
       </thead>
     </table>
@@ -106,6 +106,7 @@
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap-tagsinput.min.js"></script>
     <script src="js/bootstrap3-typeahead.min.js"></script>
+    <script src="js/moment.min.js"></script>
 
     <script>
 function bindsuggestions(element, url) {
@@ -136,9 +137,10 @@ function imageFormatter(value) {
 }
 
 function metadataFormatter(value) {
-	return `
+  var duration = moment.duration(value);
+  return `
 <table style="font-size: 12px">
-  <tr><th>time</th><td>1hr</td></tr>
+  <tr><th>time</th><td>` + duration.as('minutes') + ` mins</td></tr>
   <tr><th>difficulty</th><td>easy</td></tr>
   <tr><th>calories / pers</th><td>650</td></tr>
 </table>`;
