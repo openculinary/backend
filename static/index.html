@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
     <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="css/reciperadar.css">
     <title>RecipeRadar</title>
   </head>
@@ -26,6 +27,7 @@
             <br />
             <br />
             <button id="search" type="button" class="btn btn-primary">Find recipes!</button>
+
           </div>
         </div>
       </div>
@@ -42,6 +44,27 @@
       </thead>
     </table>
     </div>
+
+<!-- .modal -->
+<div class="modal fade" id="calendarize">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">When are you planning to make this meal?</div>
+      <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker" />
+	<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
+      </div>
+      <div class="modal-footer">
+        Email: <input value="jay@jp-hosting.net"></input>
+        <button type="button" class="btn btn-primary">Add to calendar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="page-footer container font-small blue pt-4">
 
@@ -107,6 +130,7 @@
     <script src="js/bootstrap-tagsinput.min.js"></script>
     <script src="js/bootstrap3-typeahead.min.js"></script>
     <script src="js/moment.min.js"></script>
+    <script src="js/tempusdominus-bootstrap-4.min.js"></script>
 
     <script>
 function bindsuggestions(element, url) {
@@ -143,7 +167,10 @@ function metadataFormatter(value) {
   <tr><th>time</th><td>` + duration.as('minutes') + ` mins</td></tr>
   <tr><th>difficulty</th><td><span class="dot" style="background-color: #bfb"></span> easy</td></tr>
   <tr><th>calories / pers</th><td><span class="dot" style="background-color: #ff8"></span> 750</td></tr>
-</table>`;
+</table>
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarize">Add to calendar</button>
+`;
 }
 
 $('#search').on('click', function (e) {
@@ -160,6 +187,11 @@ $('#recipes').on('DOMNodeInserted', function (e) {
   $(e.target).find('img').on('error', function () {
     $(e.target).css("display", "none");
   });
+});
+
+$('#datetimepicker').datetimepicker({
+  defaultDate: moment().format('YYYY-MM-DD'),
+  format: 'YYYY-MM-DD'
 });
     </script>
   </body>
