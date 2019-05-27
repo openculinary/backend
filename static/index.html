@@ -188,6 +188,7 @@ $('#recipes').on('DOMNodeInserted', function (e) {
 });
 
 $('#datetimepicker').datetimepicker({
+  minDate: moment().format('YYYY-MM-DD'),
   defaultDate: moment().format('YYYY-MM-DD'),
   format: 'YYYY-MM-DD'
 });
