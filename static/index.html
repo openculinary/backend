@@ -35,95 +35,92 @@
     </div>
 
     <div class="container pt-3">
-    <table id="recipes" data-show-header="false" data-toggle="table" class="d-none">
-      <thead>
-        <tr>
-          <th data-field="name">Name</th>
-          <th data-field="image" data-formatter="imageFormatter">Image</th>
-	  <th data-field="cookTime" data-formatter="metadataFormatter">Metadata</th>
-        </tr>
-      </thead>
-    </table>
+      <table id="recipes" data-show-header="false" data-toggle="table" class="d-none">
+        <thead>
+          <tr>
+            <th data-field="name">Name</th>
+            <th data-field="image" data-formatter="imageFormatter">Image</th>
+	    <th data-field="cookTime" data-formatter="metadataFormatter">Metadata</th>
+          </tr>
+        </thead>
+      </table>
     </div>
 
-<!-- .modal -->
-<div class="modal fade" id="calendarize">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">When are you planning to make this meal?</div>
-      <div class="input-group date" id="datetimepicker" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker" />
-	<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
-      </div>
-      <div class="modal-footer">
-        Email: <input value="jay@jp-hosting.net"></input>
-        <button type="button" class="btn btn-primary">Add to calendar</button>
+    <div class="modal fade" id="calendarize">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">When are you planning to make this meal?</div>
+          <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+            <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker" />
+	    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
+          </div>
+          <div class="modal-footer">
+            Email: <input value="jay@jp-hosting.net"></input>
+            <button type="button" class="btn btn-primary">Add to calendar</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<footer class="page-footer container font-small blue pt-4">
+    <footer class="page-footer container font-small blue pt-4">
+      <div class="container-fluid text-center text-md-left">
 
-  <div class="container-fluid text-center text-md-left">
+        <div class="row">
+          <div class="col-md-6 mt-md-12 mt-5">
+            <p>Find recipes and plan your culinary calendar with RecipeRadar</p>
+          </div>
+          <hr class="clearfix w-100 d-md-none pb-3" />
+          <div class="col-md-3 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Cuisine</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Thai</a>
+              </li>
+              <li>
+                <a href="#!">Indian</a>
+              </li>
+              <li>
+                <a href="#!">Mediterranean</a>
+              </li>
+              <li>
+                <a href="#!">Japanese</a>
+              </li>
+              <li>
+                <a href="#!">French</a>
+              </li>
+            </ul>
+          </div>
 
-    <div class="row">
+          <div class="col-md-3 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Meals</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!">Dinner</a>
+              </li>
+              <li>
+                <a href="#!">Breakfast</a>
+              </li>
+              <li>
+                <a href="#!">Dessert</a>
+              </li>
+              <li>
+                <a href="#!">Lunch</a>
+              </li>
+            </ul>
+          </div>
 
-      <div class="col-md-6 mt-md-12 mt-5">
-        <p>Find recipes and plan your culinary calendar with RecipeRadar</p>
+        </div>
       </div>
 
-      <hr class="clearfix w-100 d-md-none pb-3">
-
-      <div class="col-md-3 mb-md-0 mb-3">
-        <h5 class="text-uppercase">Cuisine</h5>
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Thai</a>
-          </li>
-          <li>
-            <a href="#!">Indian</a>
-          </li>
-          <li>
-            <a href="#!">Mediterranean</a>
-          </li>
-          <li>
-            <a href="#!">Japanese</a>
-          </li>
-          <li>
-            <a href="#!">French</a>
-          </li>
-        </ul>
+      <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a href="https://www.reciperadar.com">reciperadar.com</a>
       </div>
 
-      <div class="col-md-3 mb-md-0 mb-3">
-        <h5 class="text-uppercase">Meals</h5>
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Dinner</a>
-          </li>
-          <li>
-            <a href="#!">Breakfast</a>
-          </li>
-          <li>
-            <a href="#!">Dessert</a>
-          </li>
-          <li>
-            <a href="#!">Lunch</a>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-  <div class="footer-copyright text-center py-3">© 2019 Copyright:
-    <a href="https://www.reciperadar.com">reciperadar.com</a>
-  </div>
-</footer>
+    </footer>
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
