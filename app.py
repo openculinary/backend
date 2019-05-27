@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 
-@app.route('/ingredients')
+@app.route('/api/ingredients')
 def ingredients():
     es = Elasticsearch()
     pre = request.args.get('pre')
@@ -22,7 +22,7 @@ def ingredients():
     results.sort(key=lambda name: len(name))
     return jsonify(results)
 
-@app.route('/recipes')
+@app.route('/api/recipes')
 def recipes():
     es = Elasticsearch()
     include = request.args.getlist('include[]')
