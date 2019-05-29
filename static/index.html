@@ -39,7 +39,6 @@
         <thead>
           <tr>
             <th data-field="title" data-formatter="titleFormatter">Name</th>
-            <th data-field="image" data-formatter="imageFormatter">Image</th>
 	    <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
@@ -166,7 +165,7 @@ function imageFormatter(value, row, index) {
   $('#exclude').val().forEach(function(exclude) {
     matchHtml += '<span class="tag badge badge-info" style="background-color: maroon; float: right;">no: ' + exclude + '</span> ';
   });
-  return '<img style="max-width: 256px" src="' + value + '"><hr />' + matchHtml;
+  return matchHtml;
 }
 
 function metadataFormatter(value, row, index) {
