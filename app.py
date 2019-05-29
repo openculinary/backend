@@ -62,7 +62,7 @@ def format_recipe(doc):
         'title': title,
         'image': image,
         'time': time,
-        'url': time,
+        'url': url,
         'matches': matches
     }
 
