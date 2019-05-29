@@ -4,8 +4,7 @@ import sys
 
 es = Elasticsearch()
 
-filename = sys.argv[1]
-with open(filename, 'r') as f:
+with open('recipes.json', 'r') as f:
     fragments = []
     for line in f:
         fragments.append(line)
