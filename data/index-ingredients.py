@@ -3,6 +3,12 @@ import json
 import sys
 
 es = Elasticsearch()
+try:
+    query = {'query': {'match_all': {}}}
+    es.delete_by_query(index='ingredients', body=query)
+except:
+    print('Failed to delete existing ingredients')
+    sys.exit(1)
 
 with open('ingredients.json', 'r') as f:
     for line in f:

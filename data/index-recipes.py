@@ -3,6 +3,12 @@ import json
 import sys
 
 es = Elasticsearch()
+try:
+    query = {'query': {'match_all': {}}}
+    es.delete_by_query(index='recipes', body=query)
+except:
+    print('Failed to delete existing recipes')
+    sys.exit(1)
 
 with open('recipes.json', 'r') as f:
     fragments = []
