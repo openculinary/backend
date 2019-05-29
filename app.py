@@ -49,6 +49,7 @@ def format_recipe(doc):
     source = doc.pop('_source')
 
     title = source.pop('name')
+    image = source.pop('image')
     time = source.pop('cookTime', None)
     url = source.pop('url')
 
@@ -61,6 +62,7 @@ def format_recipe(doc):
 
     return {
         'title': title,
+        'image': image,
         'time': time,
         'url': url,
         'matches': matches
@@ -83,6 +85,7 @@ def recipes():
                 'bool': {
                     'must': include_match,
                     'must_not': exclude_match,
+                    'filter': {'wildcard': {'image': '*'}}
                 }
             },
             'highlight': {
