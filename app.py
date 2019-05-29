@@ -70,7 +70,10 @@ def format_recipe(doc):
 @app.route('/api/recipes')
 def recipes():
     include = request.args.getlist('include[]')
-    ingredient_match = [{'match_phrase': {'ingredients': inc}} for inc in include]
+    include_match = [{'match_phrase': {'ingredients': inc}} for inc in include]
+
+    exclude = request.args.getlist('exclude[]')
+    exclude_match = [{'match_phrase': {'ingredients': exc}} for exc in exclude]
 
     es = Elasticsearch()
     results = es.search(
@@ -78,7 +81,8 @@ def recipes():
         body={
             'query': {
                 'bool': {
-                    'must': ingredient_match,
+                    'must': include_match,
+                    'must_not': exclude_match,
                     'filter': {'wildcard': {'image': '*'}}
                 }
             },

@@ -181,7 +181,8 @@ function metadataFormatter(value, row, index) {
 
 $('#search').on('click', function (e) {
   var params = {
-    include: $('#include').val()
+    include: $('#include').val(),
+    exclude: $('#exclude').val()
   };
   $('#recipes').removeClass('d-none');
   $('#recipes').bootstrapTable('refresh', {
