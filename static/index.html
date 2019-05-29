@@ -19,7 +19,12 @@
 	    <h5 class="my-0 font-weight-normal"><em>RecipeRadar</em></h4>
           </div>
           <div class="card-body">
-            Show me recipes containing <select multiple data-role="tagsinput" id="include"></select> and avoiding <select multiple data-role="tagsinput" id="exclude"></select>
+		  Show me <select multiple data-role="tagsinput" id="adjectives"><option value="easy">easy</option><option value="healthy">healthy</option></select> recipes to prepare <select multiple data-role="tagsinput" id="course"><option value="lunch">lunch</option></select> for <input type="number" value="2" min="1" max="8" size="1" id="seats" /> people
+	    <br />
+	    <br />
+	    <ul>
+	      <li>containing ... <select multiple data-role="tagsinput" id="include"></select></li>
+	      <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"></select></li>
             <br />
             <br />
             <button id="search" type="button" class="btn btn-primary">Find recipes!</button>
