@@ -155,7 +155,7 @@ bindsuggestions('#include', 'api/ingredients');
 bindsuggestions('#exclude', 'api/ingredients');
 
 function imageFormatter(value, row, index) {
-  var matchHtml = 'Contains: ';
+  var matchHtml = row.matches.length ? 'Contains: ' : '';
   row.matches.forEach(function(match) {
     matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
   });
