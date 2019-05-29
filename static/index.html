@@ -38,8 +38,8 @@
       <table id="recipes" data-show-header="false" data-toggle="table" class="d-none">
         <thead>
           <tr>
-            <th data-field="title">Name</th>
-            <th data-field="image" data-field="matches" data-formatter="imageFormatter">Image</th>
+            <th data-field="title" data-formatter="titleFormatter">Name</th>
+            <th data-field="image" data-formatter="imageFormatter">Image</th>
 	    <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
@@ -154,15 +154,19 @@ bindsuggestions('#course', 'api/courses');
 bindsuggestions('#include', 'api/ingredients');
 bindsuggestions('#exclude', 'api/ingredients');
 
+function titleFormatter(value, row, index) {
+  return '<a href="' + row.url + '">' + row.title + '</a>';
+}
+
 function imageFormatter(value, row, index) {
-  var matchHtml = row.matches.length ? 'Contains: ' : '';
+  var matchHtml = '';
   row.matches.forEach(function(match) {
     matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
   });
   return '<img style="max-width: 256px" src="' + value + '"><hr />' + matchHtml;
 }
 
-function metadataFormatter(value) {
+function metadataFormatter(value, row, index) {
   var duration = moment.duration(value);
   return `
 <table style="font-size: 12px">
@@ -170,7 +174,7 @@ function metadataFormatter(value) {
   <tr><th>difficulty</th><td><span class="dot" style="background-color: #bfb"></span> easy</td></tr>
   <tr><th>calories / pers</th><td><span class="dot" style="background-color: #ff8"></span> 750</td></tr>
 </table>
-<br>
+<br />
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarize">Add to calendar</button>
 `;
 }
