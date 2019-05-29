@@ -4,10 +4,25 @@ import sys
 
 es = Elasticsearch()
 try:
-    query = {'query': {'match_all': {}}}
-    es.delete_by_query(index='recipes', body=query)
+    es.indices.delete(index='recipes')
 except:
     print('Failed to delete existing recipes')
+    sys.exit(1)
+
+
+mapping = {
+    'properties': {
+        'ingredients': {
+            'type': 'text',
+            'term_vector': 'with_positions_offsets'
+        }
+    }
+}
+try:
+    es.indices.create(index='recipes')
+    es.indices.put_mapping(index='recipes', doc_type='recipe', body=mapping)
+except:
+    print('Failed to create recipe mapping')
     sys.exit(1)
 
 with open('recipes.json', 'r') as f:

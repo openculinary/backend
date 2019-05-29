@@ -70,7 +70,7 @@ def format_recipe(doc):
 @app.route('/api/recipes')
 def recipes():
     include = request.args.getlist('include[]')
-    ingredient_match = [{'match': {'ingredients': inc}} for inc in include]
+    ingredient_match = [{'match_phrase': {'ingredients': inc}} for inc in include]
 
     es = Elasticsearch()
     results = es.search(
@@ -83,9 +83,10 @@ def recipes():
                 }
             },
             'highlight': {
+                'type': 'fvh',
                 'fields': {
                     'ingredients': {}
-                 }
+                }
             }
         }
     )
