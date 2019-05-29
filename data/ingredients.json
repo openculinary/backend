@@ -1057,15 +1057,6 @@
 {"name": "ricotta"}
 {"name": "ricotta cheese"}
 {"name": "rigatoni"}
-{"name": "ripe apricots"}
-{"name": "ripe cherries"}
-{"name": "ripe cherry tomatoes"}
-{"name": "ripe pineapple"}
-{"name": "ripe plums"}
-{"name": "ripe plum tomatoes"}
-{"name": "ripe strawberries"}
-{"name": "ripe tomatoes"}
-{"name": "ripe vine tomatoes"}
 {"name": "risotto rice"}
 {"name": "roasted cashews"}
 {"name": "roasted garlic"}
@@ -1335,6 +1326,7 @@
 {"name": "toasted sunflower seeds"}
 {"name": "toasted whole almonds"}
 {"name": "tofu"}
+{"name": "tomato"}
 {"name": "tomatoes"}
 {"name": "tomato juice"}
 {"name": "tomato ketchup"}
