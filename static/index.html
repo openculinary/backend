@@ -163,6 +163,9 @@ function imageFormatter(value, row, index) {
   row.matches.forEach(function(match) {
     matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
   });
+  $('#exclude').val().forEach(function(exclude) {
+    matchHtml += '<span class="tag badge badge-info" style="background-color: maroon; float: right;">no: ' + exclude + '</span> ';
+  });
   return '<img style="max-width: 256px" src="' + value + '"><hr />' + matchHtml;
 }
 
