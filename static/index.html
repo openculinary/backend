@@ -38,9 +38,9 @@
       <table id="recipes" data-show-header="false" data-toggle="table" class="d-none">
         <thead>
           <tr>
-            <th data-field="name">Name</th>
-            <th data-field="image" data-formatter="imageFormatter">Image</th>
-	    <th data-field="cookTime" data-formatter="metadataFormatter">Metadata</th>
+            <th data-field="title">Name</th>
+            <th data-field="image" data-field="matches" data-formatter="imageFormatter">Image</th>
+	    <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
       </table>
@@ -154,8 +154,12 @@ bindsuggestions('#course', 'api/courses');
 bindsuggestions('#include', 'api/ingredients');
 bindsuggestions('#exclude', 'api/ingredients');
 
-function imageFormatter(value) {
-  return '<img style="max-width: 256px" src="' + value + '">'
+function imageFormatter(value, row, index) {
+  var matchHtml = 'Contains: ';
+  row.matches.forEach(function(match) {
+    matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
+  });
+  return '<img style="max-width: 256px" src="' + value + '"><hr />' + matchHtml;
 }
 
 function metadataFormatter(value) {

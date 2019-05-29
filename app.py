@@ -1,3 +1,4 @@
+from bs4 import BeautifulSoup
 from elasticsearch import Elasticsearch
 from flask import Flask, jsonify, request
 app = Flask(__name__)
@@ -42,10 +43,34 @@ def ingredients():
     return jsonify(results)
 
 
+def format_recipe(doc):
+    source = doc.pop('_source')
+
+    title = source.pop('name')
+    image = source.pop('image')
+    time = source.pop('cookTime', None)
+    url = source.pop('url')
+
+    matches = []
+    highlights = doc.get('highlight', {}).get('ingredients', [])
+    for highlight in highlights:
+        bs = BeautifulSoup(highlight)
+        matches += [em.text.lower() for em in bs.findAll('em')]
+    matches = list(set(matches))
+
+    return {
+        'title': title,
+        'image': image,
+        'time': time,
+        'url': time,
+        'matches': matches
+    }
+
+
 @app.route('/api/recipes')
 def recipes():
     include = request.args.getlist('include[]')
-    include = [{'match': {'ingredients': inc}} for inc in include]
+    ingredient_match = [{'match': {'ingredients': inc}} for inc in include]
 
     es = Elasticsearch()
     results = es.search(
@@ -53,12 +78,17 @@ def recipes():
         body={
             'query': {
                 'bool': {
-                    'must': include,
+                    'must': ingredient_match,
                     'filter': {'wildcard': {'image': '*'}}
                 }
+            },
+            'highlight': {
+                'fields': {
+                    'ingredients': {}
+                 }
             }
         }
     )
     results = results['hits']['hits']
-    results = [result.pop('_source') for result in results]
+    results = [format_recipe(result) for result in results]
     return jsonify(results)
