@@ -11,14 +11,16 @@ def autosuggest(noun, prefix):
         body={
             'query': {
                 'bool': {
-                    'filter': {'wildcard': {'name': '{}*'.format(prefix)}}
+                    'should': [
+                        {'match': {'name': prefix}},
+                        {'wildcard': {'name': '{}*'.format(prefix)}},
+                    ]
                 }
             }
         }
     )
     results = results['hits']['hits']
     results = [result.pop('_source').pop('name') for result in results]
-    results.sort(key=lambda name: len(name))
     return results
 
 
