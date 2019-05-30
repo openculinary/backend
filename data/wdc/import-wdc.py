@@ -78,7 +78,13 @@ class WDCRecipeImport(object):
             self.conn.commit()
 
     def parse(self):
-        reader = csv.reader(sys.stdin, delimiter=' ', quotechar='"')
+        reader = csv.reader(
+            sys.stdin,
+            delimiter=' ',
+            quotechar='"',
+            escapechar='\\',
+            doublequote=False
+        )
 
         for line in reader:
             nquad = self._parse_nquad(line)
