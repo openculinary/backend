@@ -24,13 +24,6 @@ def autosuggest(noun, prefix):
     return results
 
 
-@app.route('/api/adjectives')
-def adjectives():
-    prefix = request.args.get('pre')
-    results = autosuggest('adjectives', prefix)
-    return jsonify(results)
-
-
 @app.route('/api/courses')
 def courses():
     prefix = request.args.get('pre')
