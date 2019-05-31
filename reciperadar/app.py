@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 from flask import Flask, jsonify, request
 
-from reciperadar.search import SearchEngine
+from reciperadar.course import Course
+from reciperadar.ingredient import Ingredient
+from reciperadar.recipe import Recipe
 
 app = Flask(__name__)
 
@@ -9,16 +11,14 @@ app = Flask(__name__)
 @app.route('/api/courses')
 def courses():
     prefix = request.args.get('pre')
-    search = SearchEngine()
-    results = search.autosuggest('courses', prefix)
+    results = Course().autosuggest(prefix)
     return jsonify(results)
 
 
 @app.route('/api/ingredients')
 def ingredients():
     prefix = request.args.get('pre')
-    search = SearchEngine()
-    results = search.autosuggest('ingredients', prefix)
+    results = Ingredient().autosuggest(prefix)
     return jsonify(results)
 
 
@@ -50,7 +50,6 @@ def format_recipe(doc):
 def recipes():
     include = request.args.getlist('include[]')
     exclude = request.args.getlist('exclude[]')
-    search = SearchEngine()
-    results = search.recipe_search(include, exclude)
+    results = Recipe().search(include, exclude)
     results = [format_recipe(result) for result in results]
     return jsonify(results)

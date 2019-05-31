@@ -1,30 +1,12 @@
-from elasticsearch import Elasticsearch
+from reciperadar.base import Searchable
 
 
-class SearchEngine(object):
+class Recipe(Searchable):
 
     def __init__(self):
-        self.es = Elasticsearch()
+        super().__init__(noun='recipes')
 
-    def autosuggest(self, noun, prefix):
-        results = self.es.search(
-            index=noun,
-            body={
-                'query': {
-                    'bool': {
-                        'should': [
-                            {'match': {'name': prefix}},
-                            {'wildcard': {'name': '{}*'.format(prefix)}},
-                        ]
-                    }
-                }
-            }
-        )
-        results = results['hits']['hits']
-        results = [result.pop('_source').pop('name') for result in results]
-        return results
-
-    def recipe_search(self, include, exclude):
+    def search(self, include, exclude):
         include = [{'match_phrase': {'ingredients': inc}} for inc in include]
         exclude = [{'match_phrase': {'ingredients': exc}} for exc in exclude]
 
