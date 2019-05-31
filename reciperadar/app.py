@@ -1,7 +1,9 @@
 from base58 import b58encode
 from datetime import datetime
 from flask import Flask, jsonify, request
+from flask_mail import Mail
 from sqlalchemy.exc import IntegrityError
+import os
 from uuid import uuid4
 from validate_email import validate_email
 
@@ -12,6 +14,14 @@ from reciperadar.recipe import Recipe
 from reciperadar.services.database import Database
 
 app = Flask(__name__)
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS=True,
+    MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
+    MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
+)
+mail = Mail(app)
 
 
 @app.route('/api/courses')
