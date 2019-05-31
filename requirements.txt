@@ -1,5 +1,0 @@
-beautifulsoup4==4.7.1
-elasticsearch==7.0.1
-flask-restful==0.3.7
-icalendar==4.0.3
-scikit-criteria==0.2.10
