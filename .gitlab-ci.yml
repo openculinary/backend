@@ -1,0 +1,8 @@
+py36:
+  image: python:3.6
+  before_script:
+    - apt-get update -q -y
+    - pip install pipenv
+    - pipenv install --dev
+  script:
+    - pipenv run pytest
