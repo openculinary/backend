@@ -7,6 +7,10 @@ class Searchable(object):
         self.es = Elasticsearch()
         self.noun = noun
 
+    @staticmethod
+    def from_doc(doc):
+        return doc['_source']
+
     def autosuggest(self, prefix):
         results = self.es.search(
             index=self.noun,
@@ -21,6 +25,8 @@ class Searchable(object):
                 }
             }
         )
-        results = results['hits']['hits']
-        results = [result.pop('_source').pop('name') for result in results]
-        return results
+
+        return [
+            self.from_doc(result)
+            for result in results['hits']['hits']
+        ]

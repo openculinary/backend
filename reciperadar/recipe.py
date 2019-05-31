@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 from reciperadar.base import Searchable
 
 
@@ -5,6 +7,30 @@ class Recipe(Searchable):
 
     def __init__(self):
         super().__init__(noun='recipes')
+
+    @staticmethod
+    def from_doc(doc):
+        source = doc.pop('_source')
+
+        title = source.pop('name')
+        image = source.pop('image')
+        time = source.pop('cookTime', None)
+        url = source.pop('url')
+
+        matches = []
+        highlights = doc.get('highlight', {}).get('ingredients', [])
+        for highlight in highlights:
+            bs = BeautifulSoup(highlight)
+            matches += [em.text.lower() for em in bs.findAll('em')]
+        matches = list(set(matches))
+
+        return {
+            'title': title,
+            'image': image,
+            'time': time,
+            'url': url,
+            'matches': matches
+        }
 
     def search(self, include, exclude):
         include = [{'match_phrase': {'ingredients': inc}} for inc in include]
@@ -28,4 +54,8 @@ class Recipe(Searchable):
                 }
             }
         )
-        return results['hits']['hits']
+
+        return [
+            self.from_doc(result)
+            for result in results['hits']['hits']
+        ]
