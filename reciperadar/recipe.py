@@ -29,15 +29,16 @@ class Recipe(Searchable):
     def search(self, include, exclude):
         include = [{'match_phrase': {'ingredients': inc}} for inc in include]
         exclude = [{'match_phrase': {'ingredients': exc}} for exc in exclude]
+        time_filter = [{'range': {'time': {'gt': 0}}}]
 
         results = self.es.search(
             index='recipes',
             body={
                 'query': {
                     'bool': {
-                        'must': include,
+                        'must': include + time_filter,
                         'must_not': exclude,
-                        'filter': {'wildcard': {'image': '*'}}
+                        'filter': {'wildcard': {'image': '*'}},
                     }
                 },
                 'highlight': {
