@@ -10,13 +10,6 @@ class Recipe(Searchable):
 
     @staticmethod
     def from_doc(doc):
-        source = doc.pop('_source')
-
-        title = source.pop('name')
-        image = source.pop('image')
-        time = source.pop('cookTime', None)
-        url = source.pop('url')
-
         matches = []
         highlights = doc.get('highlight', {}).get('ingredients', [])
         for highlight in highlights:
@@ -24,11 +17,12 @@ class Recipe(Searchable):
             matches += [em.text.lower() for em in bs.findAll('em')]
         matches = list(set(matches))
 
+        source = doc.pop('_source')
         return {
-            'title': title,
-            'image': image,
-            'time': time,
-            'url': url,
+            'name': source['name'],
+            'image': source['image'],
+            'time': source['time'],
+            'url': source['url'],
             'matches': matches
         }
 

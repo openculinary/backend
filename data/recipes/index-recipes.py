@@ -1,4 +1,5 @@
 from elasticsearch import Elasticsearch
+import isodate
 import json
 import sys
 
@@ -25,13 +26,32 @@ except:
     print('Failed to create recipe mapping')
     sys.exit(1)
 
+
+def parse_doc(doc):
+    name = doc.pop('name')
+    image = doc.pop('image', None)
+    time = doc.pop('cookTime', None)
+    url = doc.pop('url')
+
+    if time:
+        time = isodate.parse_duration(time)
+        time = int(time.total_seconds() / 60)
+
+    return doc['_id']['$oid'], {
+        'name': name,
+        'image': image,
+        'time': time,
+        'url': url,
+    }
+
+
 with open('recipes.json', 'r') as f:
     fragments = []
     for line in f:
         fragments.append(line)
         if line.startswith('}'):
             doc = json.loads(''.join(fragments))
-            id = doc.pop('_id').pop('$oid')
+            id, doc = parse_doc(doc)
             try:
                 es.index(index='recipes', doc_type='recipe', id=id, body=doc)
             except:
