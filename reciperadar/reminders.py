@@ -1,4 +1,3 @@
-from datetime import datetime
 from email.encoders import encode_base64
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -29,7 +28,7 @@ class MealReminder(object):
         event = Event()
         event.add('summary', 'Test Meeting')
         event.add('dtstart', self.start_time)
-        event.add('dtend', self.start_time + duration)
+        event.add('dtend', self.start_time + self.duration)
         event.add('uid', vText(uuid4()))
         event.add('organizer', organizer)
         event.add('attendee', attendee)
@@ -52,7 +51,7 @@ class MealReminder(object):
 
     def generate_email_attachment(self, ical, filename='invite.ics'):
         att = MIMEBase('text', 'calendar', method='REQUEST', name=filename)
-        att.set_type('text/calendar; charset=UTF-8; method=REQUEST; component=VEVENT')
+        att.set_type('text/calendar; charset=UTF-8; component=VEVENT')
         att.add_header('Content-Type', 'text/calendar')
         att.add_header('charset', 'UTF-8')
         att.add_header('component', 'VEVENT')
@@ -69,7 +68,7 @@ class MealReminder(object):
     def generate_email(self, recipient, attachment):
         message = MIMEMultipart()
         message['From'] = 'calendar@reciperadar.com'
-        message['To']  = recipient
+        message['To'] = recipient
         message['Subject'] = self.title
         message.attach(attachment)
         return message
