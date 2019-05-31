@@ -1,4 +1,7 @@
 from elasticsearch import Elasticsearch
+from sqlalchemy.ext.declarative import declarative_base
+
+Storable = declarative_base()
 
 
 class Searchable(object):
