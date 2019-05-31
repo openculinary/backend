@@ -19,11 +19,12 @@ class Recipe(Searchable):
 
         source = doc.pop('_source')
         return {
-            'name': source['name'],
             'image': source['image'],
+            'ingredients': source['ingredients'],
+            'matches': matches,
+            'name': source['name'],
             'time': source['time'],
             'url': source['url'],
-            'matches': matches
         }
 
     def search(self, include, exclude):
