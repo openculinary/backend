@@ -29,6 +29,7 @@ except:
 
 def parse_doc(doc):
     name = doc.pop('name')
+    ingredients = doc.pop('ingredients')
     image = doc.pop('image', None)
     time = doc.pop('cookTime', None)
     url = doc.pop('url')
@@ -39,6 +40,7 @@ def parse_doc(doc):
 
     return doc['_id']['$oid'], {
         'name': name,
+        'ingredients': ingredients.split('\n'),
         'image': image,
         'time': time,
         'url': url,
