@@ -14,6 +14,7 @@ from reciperadar.ingredient import Ingredient
 from reciperadar.recipe import Recipe
 from reciperadar.reminders import MealReminder
 from reciperadar.services.database import Database
+from reciperadar.services.emails import issue_verification_token
 
 app = Flask(__name__)
 app.config.update(
@@ -98,6 +99,7 @@ def register_email():
     session.add(record)
     try:
         session.commit()
+        issue_verification_token.delay(email, token)
     except IntegrityError:
         pass
     return jsonify({})
