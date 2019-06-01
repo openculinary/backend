@@ -9,6 +9,7 @@ python_version = "3.6"
 [packages]
 base58 = ">=1.0.3"
 beautifulsoup4 = ">=4.7.1"
+celery = ">=2.5.0"
 elasticsearch = ">=7.0.1"
 flask-mail = ">=0.9.1"
 flask-restful = ">=0.3.7"
