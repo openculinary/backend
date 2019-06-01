@@ -1,5 +1,6 @@
 from base58 import b58encode
-from datetime import datetime
+from datetime import datetime, timedelta
+from dateutil import parser
 from flask import Flask, jsonify, request
 from flask_mail import Mail
 from sqlalchemy.exc import IntegrityError
@@ -11,6 +12,7 @@ from reciperadar.course import Course
 from reciperadar.email import Email
 from reciperadar.ingredient import Ingredient
 from reciperadar.recipe import Recipe
+from reciperadar.reminders import MealReminder
 from reciperadar.services.database import Database
 
 app = Flask(__name__)
@@ -38,12 +40,46 @@ def ingredients():
     return jsonify([result['name'] for result in results])
 
 
-@app.route('/api/recipes')
+@app.route('/api/recipes/search')
 def recipes():
     include = request.args.getlist('include[]')
     exclude = request.args.getlist('exclude[]')
     results = Recipe().search(include, exclude)
     return jsonify(results)
+
+
+@app.route('/api/recipes/<recipe_id>/reminder', methods=['GET'])
+def recipe_reminder(recipe_id):
+    emails = request.args.getlist('email[]')
+
+    session = Database().get_session()
+    for email in emails:
+        if not validate_email(email):
+            return jsonify({'error': 'invalid_email'}), 400
+        if not session.query(Email) \
+           .filter(Email.email == email) \
+           .filter(Email.verified_at.isnot(None)) \
+           .first():
+            return jsonify({'error': 'unverified_email'}), 400
+
+    dt = request.args.get('dt')
+    dt = parser.parse(dt)
+
+    recipe = Recipe().get_by_id(recipe_id)
+    reminder = MealReminder(
+        title=recipe['name'],
+        start_time=dt,
+        duration=timedelta(minutes=recipe['time']),
+        recipients=emails
+    )
+    reminder.send()
+
+    return jsonify({
+        'title': reminder.title,
+        'start_time': reminder.start_time.isoformat(),
+        'duration': int(reminder.duration.total_seconds() / 60),
+        'emails': emails,
+    })
 
 
 @app.route('/api/emails/register')

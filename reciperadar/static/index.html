@@ -188,7 +188,7 @@ $('#search').on('click', function (e) {
   };
   $('#recipes').removeClass('d-none');
   $('#recipes').bootstrapTable('refresh', {
-    url: '/api/recipes?' + $.param(params)
+    url: '/api/recipes/search?' + $.param(params)
   });
 });
 

@@ -15,6 +15,7 @@ def future_meal_args():
         'title': 'Test Meal',
         'start_time': future_meal_dt,
         'duration': future_meal_dur,
+        'recipients': ['test@example.com']
     }
 
 
