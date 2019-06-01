@@ -38,8 +38,8 @@
       <table id="recipes" data-show-header="false" data-toggle="table" class="d-none">
         <thead>
           <tr>
-            <th data-field="name" data-formatter="nameFormatter">Name</th>
             <th data-field="image" data-formatter="imageFormatter">Image</th>
+            <th data-field="name" data-formatter="nameFormatter">Name</th>
 	    <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
@@ -154,7 +154,12 @@ bindsuggestions('#include', 'api/ingredients');
 bindsuggestions('#exclude', 'api/ingredients');
 
 function nameFormatter(value, row, index) {
-  return '<a href="' + row.url + '">' + row.name + '</a>';
+  var ingredientHtml = '<ul>';
+  row.ingredients.forEach(function(ingredient) {
+    ingredientHtml += '<li style="font-size: 14px">' + ingredient + '</li> ';
+  });
+  ingredientHtml += '</ul>'
+  return '<a href="' + row.url + '">' + row.name + '</a><br /><br />' + ingredientHtml;
 }
 
 function imageFormatter(value, row, index) {
@@ -165,7 +170,7 @@ function imageFormatter(value, row, index) {
   $('#exclude').val().forEach(function(exclude) {
     matchHtml += '<span class="tag badge badge-info" style="background-color: maroon; float: right;">no: ' + exclude + '</span> ';
   });
-  return '<img style="max-width: 256px" src="' + value + '"><hr />' + matchHtml;
+  return '<img style="max-width: 192px" src="' + value + '"><hr />' + matchHtml;
 }
 
 function metadataFormatter(value, row, index) {
