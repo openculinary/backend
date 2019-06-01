@@ -31,7 +31,7 @@ class Recipe(Searchable):
         include = [{'match_phrase': {'ingredients': inc}} for inc in include]
         exclude = [{'match_phrase': {'ingredients': exc}} for exc in exclude]
         exclude += [{'match': {'name': 'dog'}}]
-        time_filter = [{'range': {'time': {'gt': 0}}}]
+        time_filter = [{'range': {'time': {'gt': 5}}}]
 
         results = self.es.search(
             index='recipes',
