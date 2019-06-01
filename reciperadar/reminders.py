@@ -2,15 +2,14 @@ from flask_mail import Message
 from icalendar import Calendar, Event, vCalAddress, vText
 from uuid import uuid4
 
-from reciperadar.app import mail
-
 
 class MealReminder(object):
 
-    def __init__(self, title, start_time, duration):
+    def __init__(self, title, start_time, duration, recipients):
         self.title = title
         self.start_time = start_time
         self.duration = duration
+        self.recipients = recipients
 
     def create_organizer(self):
         organizer = vCalAddress('MAILTO:calendar@reciperadar.com')
@@ -23,43 +22,49 @@ class MealReminder(object):
         attendee.params['role'] = vText('REQ-PARTICIPANT')
         return attendee
 
-    def create_event(self, organizer):
+    def create_event(self):
         event = Event()
-        event.add('summary', 'Test Meeting')
+        event.add('summary', self.title)
         event.add('dtstart', self.start_time)
         event.add('dtend', self.start_time + self.duration)
         event.add('uid', vText(uuid4()))
+
+        organizer = self.create_organizer()
         event.add('organizer', organizer)
+
+        for recipient in self.recipients:
+            attendee = self.create_attendee(recipient)
+            event.add('attendee', attendee)
+
         return event
 
-    def create_calendar(self, event):
+    def create_calendar(self):
         calendar = Calendar()
         calendar.add('prodid', '-//Recipe Radar//staging.reciperadar.com//')
         calendar.add('version', '2.0')
         calendar.add('method', 'REQUEST')
+
+        event = self.create_event()
         calendar.add_component(event)
+
         return calendar
 
-    def generate_ical(self, recipients):
-        organizer = self.create_organizer()
-        event = self.create_event(organizer)
-        for recipient in recipients:
-            attendee = self.create_attendee(recipient)
-            event.add('attendee', attendee)
-        calendar = self.create_calendar(event)
-        return calendar.to_ical()
+    def send(self):
+        if not self.recipients:
+            return
 
-    def send(self, recipients):
-        msg = Message(
+        message = Message(
             subject=self.title,
             sender='calendar@reciperadar.com',
-            recipients=recipients
+            recipients=self.recipients
         )
-        ical = self.generate_ical(recipients)
-        msg.attach(
+        calendar = self.create_calendar()
+        message.attach(
             filename='invite.ics',
             content_type='text/calendar',
-            data=ical,
+            data=calendar.to_ical(),
             headers=[('method', 'REQUEST')]
         )
-        mail.send(msg)
+
+        from reciperadar.app import mail
+        mail.send(message)

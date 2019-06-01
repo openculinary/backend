@@ -14,6 +14,10 @@ class Searchable(object):
     def from_doc(doc):
         return doc['_source']
 
+    def get_by_id(self, id):
+        doc = self.es.get(index=self.noun, id=id)
+        return self.from_doc(doc)
+
     def autosuggest(self, prefix):
         results = self.es.search(
             index=self.noun,
