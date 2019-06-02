@@ -47,23 +47,25 @@
     </div>
 
     <div class="modal fade" id="calendarize">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"></h4>
-          </div>
-          <div class="modal-body">When are you planning to make this meal?</div>
-          <div class="input-group date" id="datetimepicker" data-target-input="nearest">
-            <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker" />
-	    <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
-          </div>
-          <div class="modal-footer">
-            Email: <input value="jay@jp-hosting.net"></input>
-            <button type="button" class="btn btn-primary">Add to calendar</button>
+      <form>
+        <div class="modal-dialog form-group">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Meal Calendar</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">When are you planning to make this meal?</div>
+            <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+              <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker" />
+	      <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
+            </div>
+            <div class="modal-footer">
+              Email: <input id="email" type="email" class="form-control" placeholder="you@example.com"></input>
+              <button id="reminder" type="submit" class="btn btn-primary">Add to calendar</button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
 
     <footer class="page-footer container font-small blue pt-4">
@@ -182,7 +184,7 @@ function metadataFormatter(value, row, index) {
   <tr><th>calories / pers</th><td><span class="dot" style="background-color: #ff8"></span> 750</td></tr>
 </table>
 <br />
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarize">Add to calendar</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `">Add to calendar</button>
 `;
 }
 
@@ -201,6 +203,40 @@ $('#recipes').on('DOMNodeInserted', function (e) {
   $(e.target).find('img').on('error', function () {
     $(e.target).css("display", "none");
   });
+});
+
+$('#calendarize').on('show.bs.modal', function (e) {
+  var recipeId = $(e.relatedTarget).data('recipe-id');
+  $('#calendarize').data('recipe-id', recipeId);
+});
+
+$('#reminder').on('click', function (e) {
+  var recipe_id = $('#calendarize').data('recipe-id');
+  var dt = $('#datetimepicker').datetimepicker('date').format('YYYY-MM-DD');
+  var email = $('#email').val();
+
+  var url = '/api/recipes/' + recipe_id + '/reminder'
+  var params = {
+    dt: dt,
+    email: [email]
+  };
+
+  $.post(url, params)
+    .done(function() {
+      $('#calendarize').modal('toggle');
+    })
+    .fail(function(xhr, status, error) {
+      var response = $.parseJSON(xhr.responseText);
+      if (!response) return;
+
+      if (response.error === 'unregistered_email') {
+        $.getJSON('/api/emails/register?email=' + email);
+        alert('Check your email inbox for an invitation, then try again');
+      }
+      if (response.error === 'unverified_email') {
+        alert('Check your email inbox for an invitation, then try again');
+      }
+    });
 });
 
 $('#datetimepicker').datetimepicker({

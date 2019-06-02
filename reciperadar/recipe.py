@@ -19,6 +19,7 @@ class Recipe(Searchable):
 
         source = doc.pop('_source')
         return {
+            'id': doc['_id'],
             'image': source['image'],
             'ingredients': source['ingredients'],
             'matches': matches,
