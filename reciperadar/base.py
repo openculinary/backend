@@ -19,6 +19,7 @@ class Searchable(object):
         return self.from_doc(doc)
 
     def autosuggest(self, prefix):
+        prefix = prefix.lower()
         results = self.es.search(
             index=self.noun,
             body={
