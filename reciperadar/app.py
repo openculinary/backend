@@ -55,7 +55,7 @@ def recipe_reminder(recipe_id):
 
     session = Database().get_session()
     for email in emails:
-        if not validate_email(email):
+        if not validate_email(email, check_mx=True):
             return jsonify({'error': 'invalid_email'}), 400
         if not session.query(Email) \
            .filter(Email.email == email) \
@@ -90,7 +90,7 @@ def recipe_reminder(recipe_id):
 @app.route('/api/emails/register')
 def register_email():
     email = request.args.get('email')
-    if not validate_email(email):
+    if not validate_email(email, check_mx=True):
         return jsonify({'error': 'invalid_email'}), 400
 
     token = b58encode(uuid4().bytes).decode('utf-8')
