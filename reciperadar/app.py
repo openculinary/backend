@@ -49,9 +49,9 @@ def recipes():
     return jsonify(results)
 
 
-@app.route('/api/recipes/<recipe_id>/reminder', methods=['GET'])
+@app.route('/api/recipes/<recipe_id>/reminder', methods=['POST'])
 def recipe_reminder(recipe_id):
-    emails = request.args.getlist('email[]')
+    emails = request.form.getlist('email[]')
 
     session = Database().get_session()
     for email in emails:
@@ -59,11 +59,15 @@ def recipe_reminder(recipe_id):
             return jsonify({'error': 'invalid_email'}), 400
         if not session.query(Email) \
            .filter(Email.email == email) \
+           .first():
+            return jsonify({'error': 'unregistered_email'}), 400
+        if not session.query(Email) \
+           .filter(Email.email == email) \
            .filter(Email.verified_at.isnot(None)) \
            .first():
             return jsonify({'error': 'unverified_email'}), 400
 
-    dt = request.args.get('dt')
+    dt = request.form.get('dt')
     dt = parser.parse(dt)
 
     recipe = Recipe().get_by_id(recipe_id)
