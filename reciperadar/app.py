@@ -1,10 +1,12 @@
 from base58 import b58encode
-from datetime import datetime, timedelta
+from datetime import datetime
 from dateutil import parser
 from flask import Flask, jsonify, request
 from flask_mail import Mail
 from sqlalchemy.exc import IntegrityError
 import os
+from pytz import timezone
+from pytz.exceptions import UnknownTimeZoneError
 from uuid import uuid4
 from validate_email import validate_email
 
@@ -70,12 +72,18 @@ def recipe_reminder(recipe_id):
     dt = request.form.get('dt')
     dt = parser.parse(dt)
 
+    tz = request.form.get('tz')
+    try:
+        timezone(tz)
+    except UnknownTimeZoneError:
+        return jsonify({'error': 'invalid_timezone'}), 400
+
     recipe = Recipe().get_by_id(recipe_id)
     reminder = MealReminder(
-        title=recipe['name'],
+        recipe=recipe,
+        recipients=emails,
         start_time=dt,
-        duration=timedelta(minutes=recipe['time']),
-        recipients=emails
+        timezone=tz,
     )
     reminder.send()
 

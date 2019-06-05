@@ -218,11 +218,13 @@ function sendReminder() {
 
   var recipe_id = $('#calendarize').data('recipe-id');
   var dt = $('#datetimepicker').datetimepicker('date').format('YYYY-MM-DD');
+  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   var email = $('#email').val();
 
   var url = '/api/recipes/' + recipe_id + '/reminder'
   var params = {
     dt: dt,
+    tz: tz,
     email: [email]
   };
 

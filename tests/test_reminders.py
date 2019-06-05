@@ -2,20 +2,21 @@ import pytest
 
 from datetime import datetime, timedelta
 
+from reciperadar.recipe import Recipe
 from reciperadar.reminders import MealReminder
 
 
 @pytest.fixture
-def future_meal_args():
+def future_meal_args(raw_recipe_hit):
+    recipe = Recipe.from_doc(raw_recipe_hit)
     today_dt = datetime.combine(datetime.today(), datetime.min.time())
     future_meal_dt = today_dt + timedelta(weeks=1, hours=18)
-    future_meal_dur = timedelta(hours=1, minutes=30)
 
     return {
-        'title': 'Test Meal',
+        'recipe': recipe,
+        'recipients': ['test@example.com'],
         'start_time': future_meal_dt,
-        'duration': future_meal_dur,
-        'recipients': ['test@example.com']
+        'timezone': 'Europe/London',
     }
 
 
