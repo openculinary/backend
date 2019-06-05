@@ -60,7 +60,7 @@
 	      <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
             </div>
             <div class="modal-footer">
-              Email: <input id="email" type="email" class="form-control" placeholder="you@example.com"></input>
+              Email: <input id="email" type="email" class="form-control" required placeholder="you@example.com"></input>
               <button id="reminder" type="submit" class="btn btn-primary">Add to calendar</button>
             </div>
           </div>
@@ -125,6 +125,7 @@
     </footer>
 
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-debounce-throttle.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap-tagsinput.min.js"></script>
@@ -188,7 +189,7 @@ function metadataFormatter(value, row, index) {
 `;
 }
 
-$('#search').on('click', function (e) {
+function search() {
   var params = {
     include: $('#include').val(),
     exclude: $('#exclude').val()
@@ -197,7 +198,9 @@ $('#search').on('click', function (e) {
   $('#recipes').bootstrapTable('refresh', {
     url: '/api/recipes/search?' + $.param(params)
   });
-});
+}
+
+$('#search').click($.throttle(1000, true, search));
 
 $('#recipes').on('DOMNodeInserted', function (e) {
   $(e.target).find('img').on('error', function () {
@@ -210,7 +213,9 @@ $('#calendarize').on('show.bs.modal', function (e) {
   $('#calendarize').data('recipe-id', recipeId);
 });
 
-$('#reminder').on('click', function (e) {
+function sendReminder() {
+  if (!$('#email')[0].checkValidity()) return;
+
   var recipe_id = $('#calendarize').data('recipe-id');
   var dt = $('#datetimepicker').datetimepicker('date').format('YYYY-MM-DD');
   var email = $('#email').val();
@@ -229,6 +234,11 @@ $('#reminder').on('click', function (e) {
       var response = $.parseJSON(xhr.responseText);
       if (!response) return;
 
+      if (response.error === 'invalid_email') {
+        var email = $('#email')[0];
+        email.setCustomValidity('That email address seems invalid to us - please check and try again');
+        email.reportValidity();
+      }
       if (response.error === 'unregistered_email') {
         $.getJSON('/api/emails/register?email=' + email);
         alert('Check your email inbox for an invitation, then try again');
@@ -237,7 +247,11 @@ $('#reminder').on('click', function (e) {
         alert('Check your email inbox for an invitation, then try again');
       }
     });
-});
+}
+
+$('#calendarize form').submit(function(e) { e.preventDefault(); });
+$('#email').keyup(function(e) { $(this)[0].setCustomValidity(''); });
+$('#reminder').click($.throttle(2500, true, sendReminder));
 
 $('#datetimepicker').datetimepicker({
   minDate: moment().format('YYYY-MM-DD'),
