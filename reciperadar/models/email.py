@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import Column, DateTime, String
 
-from reciperadar.base import Storable
+from reciperadar.models.base import Storable
 
 
 class Email(Storable):

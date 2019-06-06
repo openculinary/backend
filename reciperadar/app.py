@@ -4,17 +4,20 @@ from dateutil import parser
 from flask import Flask, jsonify, request
 from flask_mail import Mail
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.sql.expression import func
 import os
 from pytz import timezone
 from pytz.exceptions import UnknownTimeZoneError
 from uuid import uuid4
 from validate_email import validate_email
 
-from reciperadar.course import Course
-from reciperadar.email import Email
-from reciperadar.ingredient import Ingredient
-from reciperadar.recipe import Recipe
-from reciperadar.reminders import MealReminder
+from reciperadar.models.course import Course
+from reciperadar.models.email import Email
+from reciperadar.models.ingredient import Ingredient
+from reciperadar.models.recipe import Recipe
+from reciperadar.models.reminder import Reminder
+from reciperadar.models.reminder_attendee import ReminderAttendee
+from reciperadar.services.calendar import get_calendar_api
 from reciperadar.services.database import Database
 from reciperadar.services.emails import issue_verification_token
 
@@ -79,19 +82,18 @@ def recipe_reminder(recipe_id):
         return jsonify({'error': 'invalid_timezone'}), 400
 
     recipe = Recipe().get_by_id(recipe_id)
-    reminder = MealReminder(
+    reminder = Reminder.from_scheduled_recipe(
         recipe=recipe,
-        recipients=emails,
         start_time=dt,
         timezone=tz,
     )
-    reminder.send()
+    reminder.send(emails)
 
     return jsonify({
-        'title': reminder.title,
+        'title': reminder.summary,
         'start_time': reminder.start_time.isoformat(),
-        'duration': int(reminder.duration.total_seconds() / 60),
-        'emails': emails,
+        'end_time': reminder.end_time.isoformat(),
+        'recipients': emails,
     })
 
 
@@ -127,3 +129,30 @@ def verify_email():
         email.verified_at = datetime.utcnow()
         session.commit()
     return jsonify({'token': token})
+
+
+@app.route('/webhooks/calendar', methods=['POST'])
+def calendar_webhooks():
+    session = Database().get_session()
+    updated_min = session.query(func.max(Reminder.updated)).scalar()
+
+    calendar = get_calendar_api()
+    events = calendar.events().list(
+        calendarId='primary',
+        updatedMin=updated_min.isoformat() + 'Z'
+    ).execute()
+
+    for event in events['items']:
+        reminder = Reminder.from_webhook(event)
+        session.query(ReminderAttendee).filter(
+            ReminderAttendee.reminder_id == reminder.id
+        ).delete()
+        session.query(Reminder).filter(
+            Reminder.id == reminder.id
+        ).delete()
+
+        session.add(reminder)
+        session.flush()
+        session.add_all(reminder.attendees)
+    session.commit()
+    return jsonify({})

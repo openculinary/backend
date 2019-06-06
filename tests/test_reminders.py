@@ -2,8 +2,8 @@ import pytest
 
 from datetime import datetime, timedelta
 
-from reciperadar.recipe import Recipe
-from reciperadar.reminders import MealReminder
+from reciperadar.models.recipe import Recipe
+from reciperadar.models.reminder import Reminder
 
 
 @pytest.fixture
@@ -14,11 +14,10 @@ def future_meal_args(raw_recipe_hit):
 
     return {
         'recipe': recipe,
-        'recipients': ['test@example.com'],
         'start_time': future_meal_dt,
         'timezone': 'Europe/London',
     }
 
 
-def test_construct_mealreminder(future_meal_args):
-    MealReminder(**future_meal_args)
+def test_construct_reminder_from_recipe(future_meal_args):
+    Reminder.from_scheduled_recipe(**future_meal_args)
