@@ -8,6 +8,7 @@ from sqlalchemy.sql.expression import func
 import os
 from pytz import timezone
 from pytz.exceptions import UnknownTimeZoneError
+from urllib.parse import unquote
 from uuid import uuid4
 from validate_email import validate_email
 
@@ -60,6 +61,7 @@ def recipe_reminder(recipe_id):
 
     session = Database().get_session()
     for email in emails:
+        email = unquote(email)
         if not validate_email(email, check_mx=True):
             return jsonify({'error': 'invalid_email'}), 400
         if not session.query(Email) \
@@ -97,9 +99,11 @@ def recipe_reminder(recipe_id):
     })
 
 
-@app.route('/api/emails/register')
+@app.route('/api/emails/register', methods=['POST'])
 def register_email():
-    email = request.args.get('email')
+    email = request.form.get('email')
+    email = unquote(email)
+
     if not validate_email(email, check_mx=True):
         return jsonify({'error': 'invalid_email'}), 400
 

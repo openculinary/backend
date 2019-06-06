@@ -225,7 +225,7 @@ function sendReminder() {
   var params = {
     dt: dt,
     tz: tz,
-    email: [email]
+    email: [encodeURIComponent(email)]
   };
 
   $.post(url, params)
@@ -237,12 +237,12 @@ function sendReminder() {
       if (!response) return;
 
       if (response.error === 'invalid_email') {
-        var email = $('#email')[0];
-        email.setCustomValidity('That email address seems invalid to us - please check and try again');
-        email.reportValidity();
+        var emailControl = $('#email')[0];
+        emailControl.setCustomValidity('That email address seems invalid to us - please check and try again');
+        emailControl.reportValidity();
       }
       if (response.error === 'unregistered_email') {
-        $.getJSON('/api/emails/register?email=' + email);
+	$.post('/api/emails/register', {email: encodeURIComponent(email)});
         alert('Check your email inbox for an invitation, then try again');
       }
       if (response.error === 'unverified_email') {
