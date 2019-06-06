@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-from reciperadar.base import Searchable
+from reciperadar.models.base import Searchable
 
 
 class Recipe(Searchable):
