@@ -1,9 +1,23 @@
 from datetime import timedelta
-from sqlalchemy import Column, DateTime, String
+from sqlalchemy import Column, DateTime, ForeignKey, String
+from sqlalchemy.orm import relationship
 
 from reciperadar.models.base import Storable
-from reciperadar.models.reminder_attendee import ReminderAttendee as Attendee
 from reciperadar.services.calendar import get_calendar_api
+
+
+class ReminderAttendee(Storable):
+    __tablename__ = 'reminder_attendees'
+
+    fk = ForeignKey('reminders.id', ondelete='cascade')
+    reminder_id = Column(String, fk, primary_key=True)
+    email = Column(String, primary_key=True)
+
+    @staticmethod
+    def from_webhook(data):
+        return ReminderAttendee(
+            email=data['email']
+        )
 
 
 class Reminder(Storable):
@@ -17,6 +31,11 @@ class Reminder(Storable):
     start_time = Column(DateTime)
     end_time = Column(DateTime)
     timezone = Column(String)
+    attendees = relationship(
+        'ReminderAttendee',
+        backref='reminder',
+        passive_deletes='all'
+    )
 
     @staticmethod
     def from_scheduled_recipe(recipe, start_time, timezone):
@@ -31,18 +50,17 @@ class Reminder(Storable):
 
     @staticmethod
     def from_webhook(data):
-        reminder = Reminder(
+        return Reminder(
             id=data['id'],
             updated=data['updated'],
             summary=data['summary'],
             start_time=data['start']['dateTime'],
             end_time=data['start']['dateTime'],
+            attendees=[
+                ReminderAttendee.from_webhook(attendee)
+                for attendee in data['attendees']
+            ]
         )
-        reminder.attendees = []
-        for attendee in data['attendees']:
-            attendee = Attendee.from_webhook(reminder.id, attendee)
-            reminder.attendees.append(attendee)
-        return reminder
 
     def _create_calendar_event(self, recipients):
         return {
