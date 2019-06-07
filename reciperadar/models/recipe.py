@@ -5,8 +5,9 @@ from reciperadar.models.base import Searchable
 
 class Recipe(Searchable):
 
-    def __init__(self):
-        super().__init__(noun='recipes')
+    @property
+    def noun(self):
+        return 'recipes'
 
     @staticmethod
     def from_doc(doc):

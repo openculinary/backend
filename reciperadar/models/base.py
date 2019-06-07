@@ -1,14 +1,18 @@
+from abc import ABC, abstractproperty
 from elasticsearch import Elasticsearch
 from sqlalchemy.ext.declarative import declarative_base
 
 Storable = declarative_base()
 
 
-class Searchable(object):
+class Searchable(ABC):
 
-    def __init__(self, noun):
+    def __init__(self):
         self.es = Elasticsearch()
-        self.noun = noun
+
+    @abstractproperty
+    def noun(self):
+        pass
 
     @staticmethod
     def from_doc(doc):
