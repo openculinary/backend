@@ -10,7 +10,6 @@ from reciperadar.app import app
 from reciperadar.models.email import Email
 from reciperadar.models.recipe import Recipe
 from reciperadar.models.reminder import Reminder
-from reciperadar.models.reminder_attendee import ReminderAttendee
 from reciperadar.services.calendar import get_calendar_api
 from reciperadar.services.database import Database
 
@@ -63,24 +62,18 @@ def recipe_reminder(recipe_id):
 def calendar_webhooks():
     session = Database().get_session()
     updated_min = session.query(func.max(Reminder.updated)).scalar()
+    if updated_min:
+        updated_min = updated_min.isoformat() + 'Z'
 
     calendar = get_calendar_api()
     events = calendar.events().list(
         calendarId='primary',
-        updatedMin=updated_min.isoformat() + 'Z'
+        updatedMin=updated_min
     ).execute()
 
     for event in events['items']:
         reminder = Reminder.from_webhook(event)
-        session.query(ReminderAttendee).filter(
-            ReminderAttendee.reminder_id == reminder.id
-        ).delete()
-        session.query(Reminder).filter(
-            Reminder.id == reminder.id
-        ).delete()
-
+        session.query(Reminder).filter_by(id=reminder.id).delete()
         session.add(reminder)
-        session.flush()
-        session.add_all(reminder.attendees)
     session.commit()
     return jsonify({})
