@@ -5,7 +5,8 @@ from sqlalchemy.ext.declarative import declarative_base
 Storable = declarative_base()
 
 
-class Searchable(ABC):
+class Searchable(object):
+    __metaclass__ = ABC
 
     def __init__(self):
         self.es = Elasticsearch()
