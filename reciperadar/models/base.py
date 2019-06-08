@@ -21,8 +21,11 @@ class Storable(object):
 class Searchable(object):
     __metaclass__ = ABC
 
-    def __init__(self):
-        self.es = Elasticsearch()
+    @property
+    def es(self):
+        if not hasattr(self, '_es'):
+            self._es = Elasticsearch()
+        return self._es
 
     @abstractproperty
     def noun(self):
