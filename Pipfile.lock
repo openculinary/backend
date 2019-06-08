@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2d4dc602a6a9056914a5edf8cbd909e3455c49bff47808529beef71bbb37a7ce"
+            "sha256": "31df3a37531d8e7364fe59137ab1300b8654896a2d57149d215d679f8f7dcca1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -29,6 +29,13 @@
                 "sha256:bb167645c79f7a438f9dfab6161af9bed75508c645b1f07d1158240841d22673"
             ],
             "version": "==6.0.0"
+        },
+        "attrs": {
+            "hashes": [
+                "sha256:69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79",
+                "sha256:f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"
+            ],
+            "version": "==19.1.0"
         },
         "base58": {
             "hashes": [
@@ -97,6 +104,13 @@
             ],
             "version": "==1.0.3"
         },
+        "flask-jsonschema": {
+            "hashes": [
+                "sha256:5e68cad58a04034eb3789f67b47fae28dd28767681502c1006029996506e8511"
+            ],
+            "index": "pypi",
+            "version": "==0.1.1"
+        },
         "flask-mail": {
             "hashes": [
                 "sha256:22e5eb9a940bf407bcf30410ecc3708f3c56cc44b29c34e1726fe85006935f41"
@@ -136,10 +150,10 @@
         },
         "httplib2": {
             "hashes": [
-                "sha256:23914b5487dfe8ef09db6656d6d63afb0cf3054ad9ebc50868ddc8e166b5f8e8",
-                "sha256:a18121c7c72a56689efbf1aef990139ad940fee1e64c6f2458831736cd593600"
+                "sha256:158fbd0ffbba536829d664bf3f32c4f45df41f8f791663665162dfaf21ffd075",
+                "sha256:d1146939d270f1f1eb8cbf8f5aa72ff37d897faccca448582bb1e180aeb4c6b2"
             ],
-            "version": "==0.12.3"
+            "version": "==0.13.0"
         },
         "itsdangerous": {
             "hashes": [
@@ -155,12 +169,19 @@
             ],
             "version": "==2.10.1"
         },
+        "jsonschema": {
+            "hashes": [
+                "sha256:0c0a81564f181de3212efa2d17de1910f8732fa1b71c42266d983cd74304e20d",
+                "sha256:a5f6559964a3851f59040d3b961de5e68e70971afb88ba519d27e6a039efff1a"
+            ],
+            "version": "==3.0.1"
+        },
         "kombu": {
             "hashes": [
-                "sha256:14997e6d76d36f2b296f57e37fd1d388e4e0159edea8368a8c6f4620a355a722",
-                "sha256:27345bb569eb6bb583bca27dfc0ef181ca6c59c40c6e203cecaa0aeca84360be"
+                "sha256:056a31cc95b10ca4eb0d4ebcba714007b1db1c6c45c8e2d139fe91933481b00b",
+                "sha256:af5b0f892b081f49d95c772a241fb7687f4cc3e42c94328f118dffb1f4e161e5"
             ],
-            "version": "==4.6.0"
+            "version": "==4.6.1"
         },
         "markupsafe": {
             "hashes": [
@@ -194,6 +215,13 @@
                 "sha256:e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7"
             ],
             "version": "==1.1.1"
+        },
+        "murmurhash3": {
+            "hashes": [
+                "sha256:f53387d1425a165427b55f1938355e5c05beecbcf180ef1738bd892082f6bfbd"
+            ],
+            "index": "pypi",
+            "version": "==2.3.5"
         },
         "oauth2client": {
             "hashes": [
@@ -240,6 +268,12 @@
                 "sha256:f309b6c94724aeaf7ca583feb1cc70430e10d7551de5e36edfc1ae6909bcfb3c"
             ],
             "version": "==0.2.5"
+        },
+        "pyrsistent": {
+            "hashes": [
+                "sha256:16692ee739d42cf5e39cef8d27649a8c1fdb7aa99887098f1460057c5eb75c3a"
+            ],
+            "version": "==0.15.2"
         },
         "python-dateutil": {
             "hashes": [
@@ -298,6 +332,14 @@
                 "sha256:dbe59173209418ae49d485b87d1681aefa36252ee85884c31346debd19463232"
             ],
             "version": "==1.25.3"
+        },
+        "urltools": {
+            "hashes": [
+                "sha256:148c4c134cdf7e4dde0f65f3fd7acf89b06e6b797f8c85d131ab1f2ec0e02249",
+                "sha256:97e6e0775a9f2e6ac74fea1e6b38bebc58b30ddb61494146ec96d831116d08a9"
+            ],
+            "index": "pypi",
+            "version": "==0.3.2"
         },
         "validate-email": {
             "hashes": [

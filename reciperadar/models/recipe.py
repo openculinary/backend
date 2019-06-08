@@ -1,13 +1,63 @@
+from base58 import b58encode
 from bs4 import BeautifulSoup
+import mmh3
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
+from urltools import normalize
 
-from reciperadar.models.base import Searchable
+from reciperadar.models.base import Searchable, Storable
 
 
-class Recipe(Searchable):
+class RecipeIngredient(Storable):
+    __tablename__ = 'recipe_ingredients'
+
+    fk = ForeignKey('recipes.id', ondelete='cascade')
+    recipe_id = Column(String, fk, primary_key=True)
+    id = Column(String, primary_key=True)
+    ingredient = Column(String)
+
+    def from_ingredient(ingredient):
+        ingredient_id = b58encode(mmh3.hash_bytes(ingredient)).decode('utf-8')
+        return RecipeIngredient(
+            id=ingredient_id,
+            ingredient=ingredient
+        )
+
+
+class Recipe(Storable, Searchable):
+    __tablename__ = 'recipes'
+
+    id = Column(String, primary_key=True)
+    title = Column(String)
+    url = Column(String)
+    image = Column(String)
+    time = Column(Integer)
+    ingredients = relationship(
+        'RecipeIngredient',
+        backref='recipe',
+        passive_deletes='all'
+    )
 
     @property
     def noun(self):
         return 'recipes'
+
+    @staticmethod
+    def from_json(data):
+        url = normalize(data['url'])
+        recipe_id = b58encode(mmh3.hash_bytes(url)).decode('utf-8')
+
+        return Recipe(
+            id=recipe_id,
+            title=data['title'],
+            url=url,
+            image=data.get('image'),
+            ingredients=[
+                RecipeIngredient.from_ingredient(ingredient)
+                for ingredient in data['ingredients']
+            ],
+            time=data['time'],
+        )
 
     @staticmethod
     def from_doc(doc):
@@ -28,6 +78,14 @@ class Recipe(Searchable):
             'time': source['time'],
             'url': source['url'],
         }
+
+    def to_json(self):
+        data = super().to_json()
+        data['ingredients'] = [
+            ingredient.to_json()
+            for ingredient in self.ingredients
+        ]
+        return data
 
     def search(self, include, exclude):
         include = [{'match_phrase': {'ingredients': inc}} for inc in include]
