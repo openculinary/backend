@@ -1,0 +1,18 @@
+{
+  "ingest": {
+    "type": "object",
+    "properties": {
+      "title": {},
+      "url": {},
+      "image": {},
+      "ingredients": {
+        "type": "array",
+	"items": {
+	  "type": "string"
+        }
+      },
+      "time": {}
+    },
+    "required": ["title", "url", "ingredients", "time"]
+  }
+}

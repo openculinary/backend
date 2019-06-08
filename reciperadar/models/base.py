@@ -2,7 +2,20 @@ from abc import ABC, abstractproperty
 from elasticsearch import Elasticsearch
 from sqlalchemy.ext.declarative import declarative_base
 
-Storable = declarative_base()
+
+def decl_base(cls):
+    return declarative_base(cls=cls)
+
+
+@decl_base
+class Storable(object):
+
+    def to_json(self):
+        return {
+            c.name: getattr(self, c.name)
+            for c in self.__table__.columns
+            if not c.foreign_keys
+        }
 
 
 class Searchable(object):
