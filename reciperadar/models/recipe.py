@@ -20,7 +20,17 @@ class RecipeIngredient(Storable):
     quantity = Column(Float)
     units = Column(String)
 
+    @staticmethod
     def from_ingredient(ingredient):
+        ingredient_id = b58encode(mmh3.hash_bytes(ingredient)).decode('utf-8')
+        return RecipeIngredient(
+            id=ingredient_id,
+            ingredient=ingredient
+        )
+
+    @staticmethod
+    def from_doc(doc):
+        ingredient = doc['ingredient']
         ingredient_id = b58encode(mmh3.hash_bytes(ingredient)).decode('utf-8')
         return RecipeIngredient(
             id=ingredient_id,
@@ -64,7 +74,7 @@ class Recipe(Storable, Searchable):
         )
 
     @staticmethod
-    def from_doc(doc):
+    def matches(doc):
         matches = []
         highlights = []
         if 'inner_hits' in doc:
@@ -74,23 +84,27 @@ class Recipe(Storable, Searchable):
         for highlight in highlights:
             bs = BeautifulSoup(highlight)
             matches += [em.text.lower() for em in bs.findAll('em')]
-        matches = list(set(matches))
+        return {'matches': list(set(matches))}
 
+    @staticmethod
+    def from_doc(doc):
         source = doc.pop('_source')
-        return {
-            'id': doc['_id'],
-            'image': source['image'],
-            'ingredients': source['ingredients'],
-            'matches': matches,
-            'title': source['title'],
-            'time': source['time'],
-            'url': source['url'],
-        }
+        return Recipe(
+            id=doc['_id'],
+            title=source['title'],
+            url=source['url'],
+            image=source['image'],
+            ingredients=[
+                RecipeIngredient.from_doc(ingredient)
+                for ingredient in source['ingredients']
+            ],
+            time=source['time']
+        )
 
-    def to_json(self):
-        data = super().to_json()
+    def to_dict(self):
+        data = super().to_dict()
         data['ingredients'] = [
-            ingredient.to_json()
+            ingredient.to_dict()
             for ingredient in self.ingredients
         ]
         return data
@@ -131,6 +145,6 @@ class Recipe(Storable, Searchable):
         )
 
         return [
-            self.from_doc(result)
+            {**self.from_doc(result).to_dict(), **self.matches(result)}
             for result in results['hits']['hits']
         ]

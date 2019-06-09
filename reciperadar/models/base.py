@@ -10,7 +10,7 @@ def decl_base(cls):
 @decl_base
 class Storable(object):
 
-    def to_json(self):
+    def to_dict(self):
         return {
             c.name: getattr(self, c.name)
             for c in self.__table__.columns
@@ -43,7 +43,7 @@ class Searchable(object):
         return self.from_doc(doc)
 
     def index(self, secondary=True):
-        doc = self.to_json()
+        doc = self.to_dict()
         index = self.noun
         if secondary:
             index += '-secondary'
