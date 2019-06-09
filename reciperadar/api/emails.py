@@ -33,6 +33,7 @@ def register_email():
         issue_verification_token.delay(email, token)
     except IntegrityError:
         pass
+    session.close()
     return jsonify({})
 
 
@@ -45,4 +46,5 @@ def verify_email():
     if email:
         email.verified_at = datetime.utcnow()
         session.commit()
+    session.close()
     return jsonify({'token': token})

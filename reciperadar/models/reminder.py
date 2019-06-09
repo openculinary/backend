@@ -39,9 +39,13 @@ class Reminder(Storable):
 
     @staticmethod
     def from_scheduled_recipe(recipe, start_time, timezone):
+        description = '\n'.join([
+            ingredient['ingredient']
+            for ingredient in recipe['ingredients']
+        ])
         return Reminder(
-            summary=recipe['name'],
-            description='\n'.join(recipe['ingredients']),
+            summary=recipe['title'],
+            description=description,
             location=recipe['url'],
             start_time=start_time,
             end_time=start_time + timedelta(minutes=recipe['time']),

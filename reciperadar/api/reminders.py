@@ -32,6 +32,7 @@ def recipe_reminder(recipe_id):
            .filter(Email.verified_at.isnot(None)) \
            .first():
             return jsonify({'error': 'unverified_email'}), 400
+    session.close()
 
     dt = request.form.get('dt')
     dt = parser.parse(dt)
@@ -42,7 +43,7 @@ def recipe_reminder(recipe_id):
     except UnknownTimeZoneError:
         return jsonify({'error': 'invalid_timezone'}), 400
 
-    recipe = Recipe().get_by_id(recipe_id)
+    recipe = Recipe().get_by_id(recipe_id, secondary=True)
     reminder = Reminder.from_scheduled_recipe(
         recipe=recipe,
         start_time=dt,
@@ -76,4 +77,5 @@ def calendar_webhooks():
         session.query(Reminder).filter_by(id=reminder.id).delete()
         session.add(reminder)
     session.commit()
+    session.close()
     return jsonify({})

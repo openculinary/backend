@@ -39,7 +39,7 @@
         <thead>
           <tr>
             <th data-field="image" data-formatter="imageFormatter">Image</th>
-            <th data-field="name" data-formatter="nameFormatter">Name</th>
+            <th data-field="title" data-formatter="titleFormatter">Name</th>
 	    <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
@@ -156,13 +156,13 @@ bindsuggestions('#course', 'api/courses');
 bindsuggestions('#include', 'api/ingredients');
 bindsuggestions('#exclude', 'api/ingredients');
 
-function nameFormatter(value, row, index) {
+function titleFormatter(value, row, index) {
   var ingredientHtml = '<ul>';
   row.ingredients.forEach(function(ingredient) {
-    ingredientHtml += '<li style="font-size: 14px">' + ingredient + '</li> ';
+    ingredientHtml += '<li style="font-size: 14px">' + ingredient.ingredient + '</li> ';
   });
   ingredientHtml += '</ul>'
-  return '<a href="' + row.url + '">' + row.name + '</a><br /><br />' + ingredientHtml;
+  return '<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
 }
 
 function imageFormatter(value, row, index) {
