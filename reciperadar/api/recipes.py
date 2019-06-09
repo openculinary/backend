@@ -2,6 +2,7 @@ from flask import jsonify, request
 
 from reciperadar.app import app, jsonschema
 from reciperadar.models.recipe import Recipe
+from reciperadar.services.background.recipes import process_recipe
 from reciperadar.services.database import Database
 
 
@@ -16,4 +17,5 @@ def recipe_ingest():
     session.add(recipe)
     session.commit()
 
+    process_recipe.delay(recipe.id)
     return jsonify(recipe.to_json())
