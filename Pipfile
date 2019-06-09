@@ -23,6 +23,7 @@ py3dns = ">=3.2.0"
 python-dateutil = ">=2.8.0"
 requests = ">=2.22.0"
 sqlalchemy = ">=1.3.4"
+tldextract = ">=2.2.1"
 urltools = ">=0.3.2"
 validate-email = ">=1.3"
 

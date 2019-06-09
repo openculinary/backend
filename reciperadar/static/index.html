@@ -162,7 +162,7 @@ function titleFormatter(value, row, index) {
     ingredientHtml += '<li style="font-size: 14px">' + ingredient.ingredient + '</li> ';
   });
   ingredientHtml += '</ul>'
-  return '<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
+  return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" />&nbsp;&nbsp;<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
 }
 
 function imageFormatter(value, row, index) {
