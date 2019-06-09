@@ -5,7 +5,7 @@ from reciperadar.models.recipe import Recipe
 from reciperadar.services.database import Database
 
 
-@app.route('/redirect/<recipe_id>')
+@app.route('/redirect/recipe/<recipe_id>')
 def recipe_redirect(recipe_id):
     session = Database().get_session()
     recipe = session.query(Recipe).get(recipe_id)
