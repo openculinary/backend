@@ -18,4 +18,7 @@ def recipe_ingest():
     session.commit()
 
     process_recipe.delay(recipe.id)
-    return jsonify(recipe.to_json())
+    response = recipe.to_json()
+
+    session.close()
+    return jsonify(response)

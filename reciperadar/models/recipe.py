@@ -58,7 +58,7 @@ class Recipe(Storable, Searchable):
             image=data.get('image'),
             ingredients=[
                 RecipeIngredient.from_ingredient(ingredient)
-                for ingredient in data['ingredients']
+                for ingredient in set(data['ingredients'])
             ],
             time=data['time'],
         )
@@ -66,7 +66,11 @@ class Recipe(Storable, Searchable):
     @staticmethod
     def from_doc(doc):
         matches = []
-        highlights = doc.get('highlight', {}).get('ingredients', [])
+        highlights = []
+        if 'inner_hits' in doc:
+            for inner_hit in doc['inner_hits']['ingredients']['hits']['hits']:
+                highlights += inner_hit.get('highlight', {}) \
+                              .get('ingredients.ingredient', [])
         for highlight in highlights:
             bs = BeautifulSoup(highlight)
             matches += [em.text.lower() for em in bs.findAll('em')]
@@ -78,7 +82,7 @@ class Recipe(Storable, Searchable):
             'image': source['image'],
             'ingredients': source['ingredients'],
             'matches': matches,
-            'name': source['name'],
+            'title': source['title'],
             'time': source['time'],
             'url': source['url'],
         }
@@ -91,28 +95,38 @@ class Recipe(Storable, Searchable):
         ]
         return data
 
-    def search(self, include, exclude):
-        include = [{'match_phrase': {'ingredients': inc}} for inc in include]
-        exclude = [{'match_phrase': {'ingredients': exc}} for exc in exclude]
-        exclude += [{'match': {'name': 'dog'}}]
-        time_filter = [{'range': {'time': {'gt': 5}}}]
+    def search(self, include, exclude, secondary=False):
+        index = self.noun
+        if secondary:
+            index += '-secondary'
+
+        match_field = 'ingredients.ingredient'
+        include = [{'match_phrase': {match_field: inc}} for inc in include]
+        exclude = [{'match_phrase': {match_field: exc}} for exc in exclude]
+        highlight = {'type': 'fvh', 'fields': {match_field: {}}}
 
         results = self.es.search(
-            index='recipes',
+            index=index,
             body={
-                'query': {
+                'query': {'bool': {'must': [{
+                    'nested': {
+                        'path': 'ingredients',
+                        'query': {
+                            'bool': {
+                                'must': include,
+                                'must_not': exclude,
+                            }
+                        },
+                        'inner_hits': {'highlight': highlight}
+                    }
+                }, {
                     'bool': {
-                        'must': include + time_filter,
-                        'must_not': exclude,
-                        'filter': {'wildcard': {'image': '*'}},
+                        'filter': [
+                            {'range': {'time': {'gte': 5}}},
+                            {'wildcard': {'image': '*'}},
+                        ]
                     }
-                },
-                'highlight': {
-                    'type': 'fvh',
-                    'fields': {
-                        'ingredients': {}
-                    }
-                }
+                }]}}
             }
         )
 

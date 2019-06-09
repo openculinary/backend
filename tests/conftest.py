@@ -9,13 +9,14 @@ def raw_recipe_hit():
         "_id": "random-id",
         "_score": 10.04635,
         "_source": {
-            "name": "Test Recipe",
+            "title": "Test Recipe",
             "ingredients": [
-                "1 unit of test ingredient one",
-                "two units of test ingredient two"
+                {"ingredient": "1 unit of test ingredient one"},
+                {"ingredient": "two units of test ingredient two"}
             ],
             "image": None,
             "time": 30,
             "url": "http://www.example.com/recipes/test"
-        }
+        },
+        "inner_hits": {"ingredients": {"hits": {"hits": []}}}
     }
