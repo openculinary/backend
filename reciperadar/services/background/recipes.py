@@ -1,3 +1,5 @@
+import io
+from PIL import Image
 import os
 import requests
 
@@ -38,3 +40,11 @@ def process_recipe(recipe_id):
 
     for ingredient in recipe.ingredients:
         process_ingredient.delay(recipe.id, ingredient.id)
+
+    if recipe.image:
+        image = requests.get(recipe.image)
+        if image.status_code == 200:
+            path = 'reciperadar/static/images/recipes/{}'.format(recipe_id[:2])
+            os.makedirs(path, exist_ok=True)
+            image = Image.open(io.BytesIO(image.content))
+            image.save('{}/{}.webp'.format(path, recipe_id), 'webp')
