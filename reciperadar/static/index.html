@@ -202,12 +202,6 @@ function search() {
 
 $('#search').click($.throttle(1000, true, search));
 
-$('#recipes').on('DOMNodeInserted', function (e) {
-  $(e.target).find('img').on('error', function () {
-    $(e.target).css("display", "none");
-  });
-});
-
 $('#calendarize').on('show.bs.modal', function (e) {
   var recipeId = $(e.relatedTarget).data('recipe-id');
   $('#calendarize').data('recipe-id', recipeId);
