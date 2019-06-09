@@ -113,7 +113,7 @@ class Recipe(Storable, Searchable):
                         'path': 'ingredients',
                         'query': {
                             'bool': {
-                                'must': include,
+                                'should': include,
                                 'must_not': exclude,
                             }
                         },
