@@ -13,6 +13,7 @@ app.config.update(
     MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
     MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
 )
+app.url_map.strict_slashes = False
 jsonschema = JsonSchema(app)
 mail = Mail(app)
 
@@ -24,5 +25,6 @@ def on_validation_error(e):
 
 import reciperadar.api.emails
 import reciperadar.api.recipes
+import reciperadar.api.redirects
 import reciperadar.api.reminders
 import reciperadar.api.search
