@@ -1,7 +1,7 @@
 from base58 import b58encode
 from bs4 import BeautifulSoup
 import mmh3
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 from urltools import normalize
 
@@ -15,6 +15,10 @@ class RecipeIngredient(Storable):
     recipe_id = Column(String, fk, primary_key=True)
     id = Column(String, primary_key=True)
     ingredient = Column(String)
+
+    product = Column(String)
+    quantity = Column(Float)
+    units = Column(String)
 
     def from_ingredient(ingredient):
         ingredient_id = b58encode(mmh3.hash_bytes(ingredient)).decode('utf-8')

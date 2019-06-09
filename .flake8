@@ -1,3 +1,4 @@
 [flake8]
 per-file-ignores=
     reciperadar/app.py:E402,F401
+    reciperadar/services/background/worker.py:F401

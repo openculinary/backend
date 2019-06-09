@@ -1,7 +1,6 @@
-from celery import Celery
 from flask_mail import Message
 
-celery = Celery('emails', broker='pyamqp://guest@localhost//')
+from reciperadar.services.background.broker import celery
 
 
 @celery.task
