@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import mmh3
 from sqlalchemy import Column, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+import tldextract
 from urltools import normalize
 
 from reciperadar.models.base import Searchable, Storable
@@ -102,11 +103,14 @@ class Recipe(Storable, Searchable):
         )
 
     def to_dict(self):
+        url_info = tldextract.extract(self.url)
+
         data = super().to_dict()
         data['ingredients'] = [
             ingredient.to_dict()
             for ingredient in self.ingredients
         ]
+        data['domain'] = '{}.{}'.format(url_info.domain, url_info.suffix)
         return data
 
     def search(self, include, exclude, secondary=False):
