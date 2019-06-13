@@ -119,8 +119,15 @@ class Recipe(Storable, Searchable):
         return [{
             'nested': {
                 'path': 'ingredients',
-                'query': {'match_phrase': {'ingredients.ingredient': inc}},
-                'inner_hits': {'highlight': highlight, 'name': inc}
+                'query': {
+                    'constant_score': {
+                        'filter': {
+                            'match_phrase': {'ingredients.ingredient': inc}
+                        }
+                    }
+                },
+                'inner_hits': {'highlight': highlight, 'name': inc},
+                'score_mode': 'max'
             }
         } for inc in include]
 
