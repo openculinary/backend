@@ -43,10 +43,11 @@ class Reminder(Storable):
             ingredient.ingredient
             for ingredient in recipe.ingredients
         ])
+        base_uri = 'https://staging.reciperadar.com'
         return Reminder(
             summary=recipe.title,
             description=description,
-            location=recipe.url,
+            location='{}/redirect/recipe/{}'.format(base_uri, recipe.id),
             start_time=start_time,
             end_time=start_time + timedelta(minutes=recipe.time),
             timezone=timezone

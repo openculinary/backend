@@ -78,9 +78,9 @@ class Recipe(Storable, Searchable):
     def matches(doc):
         matches = []
         highlights = []
-        if 'inner_hits' in doc:
-            for inner_hit in doc['inner_hits']['ingredients']['hits']['hits']:
-                highlights += inner_hit.get('highlight', {}) \
+        for item in doc.get('inner_hits', {}).values():
+            for hit in item['hits']['hits']:
+                highlights += hit.get('highlight', {}) \
                               .get('ingredients.ingredient', [])
         for highlight in highlights:
             bs = BeautifulSoup(highlight)
@@ -113,38 +113,48 @@ class Recipe(Storable, Searchable):
         data['domain'] = '{}.{}'.format(url_info.domain, url_info.suffix)
         return data
 
+    @staticmethod
+    def _generate_include_clause(include):
+        highlight = {'type': 'fvh', 'fields': {'ingredients.ingredient': {}}}
+        return [{
+            'nested': {
+                'path': 'ingredients',
+                'query': {'match_phrase': {'ingredients.ingredient': inc}},
+                'inner_hits': {'highlight': highlight, 'name': inc}
+            }
+        } for inc in include]
+
+    @staticmethod
+    def _generate_exclude_clause(exclude):
+        return [{
+            'nested': {
+                'path': 'ingredients',
+                'query': {'match_phrase': {'ingredients.ingredient': exc}}
+            }
+        } for exc in exclude]
+
     def search(self, include, exclude, secondary=False):
         index = self.noun
         if secondary:
             index += '-secondary'
 
-        match_field = 'ingredients.ingredient'
-        include = [{'match_phrase': {match_field: inc}} for inc in include]
-        exclude = [{'match_phrase': {match_field: exc}} for exc in exclude]
-        highlight = {'type': 'fvh', 'fields': {match_field: {}}}
+        include = self._generate_include_clause(include)
+        exclude = self._generate_exclude_clause(exclude)
 
         results = self.es.search(
             index=index,
             body={
-                'query': {'bool': {'must': [{
-                    'nested': {
-                        'path': 'ingredients',
-                        'query': {
-                            'bool': {
-                                'should': include,
-                                'must_not': exclude,
-                            }
-                        },
-                        'inner_hits': {'highlight': highlight}
-                    }
-                }, {
+                'query': {
                     'bool': {
+                        'should': include,
+                        'must_not': exclude,
                         'filter': [
                             {'range': {'time': {'gte': 5}}},
                             {'wildcard': {'image': '*'}},
-                        ]
+                        ],
+                        'minimum_should_match': 1 if include else 0
                     }
-                }]}}
+                }
             }
         )
 
