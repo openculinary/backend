@@ -22,6 +22,7 @@ mapping = {
             'properties': {
                 'ingredient': {
                     'type': 'text',
+                    'norms': False,
                     'term_vector': 'with_positions_offsets'
                 }
             }

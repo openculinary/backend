@@ -130,6 +130,7 @@
     <script src="js/bootstrap-table.min.js"></script>
     <script src="js/bootstrap-tagsinput.min.js"></script>
     <script src="js/bootstrap3-typeahead.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
     <script src="js/moment.min.js"></script>
     <script src="js/tempusdominus-bootstrap-4.min.js"></script>
 
@@ -159,7 +160,7 @@ bindsuggestions('#exclude', 'api/ingredients');
 function titleFormatter(value, row, index) {
   var ingredientHtml = '<ul>';
   row.ingredients.forEach(function(ingredient) {
-    ingredientHtml += '<li style="font-size: 14px">' + ingredient.ingredient + '</li> ';
+    ingredientHtml += '<li style="font-size: 13px">' + ingredient.ingredient + '</li> ';
   });
   ingredientHtml += '</ul>'
   return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" />&nbsp;&nbsp;<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
@@ -180,12 +181,17 @@ function metadataFormatter(value, row, index) {
   var duration = moment.duration(row.time, 'minutes');
   return `
 <table style="font-size: 12px">
+  <tr>
+    <th colspan="2">
+      <button type="button" class="btn btn-outline-success"data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" /></button>
+	  <button type="button" class="btn btn-outline-warning"><a href="mailto:?subject=` + row.title + `&body=` + row.url + `"><img src="images/icons/mail.svg" /></a></button>
+      <button type="button" class="btn btn-outline-primary" data-clipboard-text="` + row.url + `"><img src="images/icons/link.svg" /></button>
+    </th>
+  </tr>
   <tr><th>time</th><td>` + duration.as('minutes') + ` mins</td></tr>
   <tr><th>difficulty</th><td><span class="dot" style="background-color: #bfb"></span> easy</td></tr>
   <tr><th>calories / pers</th><td><span class="dot" style="background-color: #ff8"></span> 750</td></tr>
 </table>
-<br />
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `">Add to calendar</button>
 `;
 }
 
@@ -199,6 +205,9 @@ function search() {
     url: '/api/recipes/search?' + $.param(params)
   });
 }
+$('#recipes').on('load-success.bs.table', function() {
+  new ClipboardJS('#recipes .btn-outline-primary');
+});
 
 $('#search').click($.throttle(1000, true, search));
 
