@@ -139,7 +139,7 @@ function bindsuggestions(element, url) {
   $(element).tagsinput({
     allowDuplicates: false,
     freeInput: false,
-    maxTags: 5,
+    maxTags: 20,
     typeahead: {
       source: function(query, process) {
         if (query.length < 3) return true;
