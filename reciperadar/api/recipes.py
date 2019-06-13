@@ -10,7 +10,7 @@ from reciperadar.services.database import Database
 @jsonschema.validate('recipes', 'ingest')
 def recipe_ingest():
     data = request.get_json()
-    recipe = Recipe.from_json(data)
+    recipe = Recipe.from_dict(data)
 
     session = Database().get_session()
     session.query(Recipe).filter_by(id=recipe.id).delete()

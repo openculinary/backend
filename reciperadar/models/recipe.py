@@ -58,7 +58,7 @@ class Recipe(Storable, Searchable):
         return 'recipes'
 
     @staticmethod
-    def from_json(data):
+    def from_dict(data):
         url = normalize(data['url'])
         recipe_id = b58encode(mmh3.hash_bytes(url)).decode('utf-8')
 
@@ -70,6 +70,7 @@ class Recipe(Storable, Searchable):
             ingredients=[
                 RecipeIngredient.from_ingredient(ingredient)
                 for ingredient in set(data['ingredients'])
+                if ingredient.strip()
             ],
             time=data['time'],
         )
@@ -98,6 +99,7 @@ class Recipe(Storable, Searchable):
             ingredients=[
                 RecipeIngredient.from_doc(ingredient)
                 for ingredient in source['ingredients']
+                if ingredient['ingredient'].strip()
             ],
             time=source['time']
         )
