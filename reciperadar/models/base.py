@@ -62,14 +62,20 @@ class Searchable(object):
                     'bool': {
                         'should': [
                             {'match': {'name': prefix}},
-                            {'wildcard': {'name': '{}*'.format(prefix)}},
+                            {'prefix': {'name': {'value': prefix}}},
                         ]
                     }
-                }
+                },
+                'size': 25
             }
         )
-
-        return [
+        results = [
             self.from_doc(result)
             for result in results['hits']['hits']
         ]
+        results.sort(key=lambda r: (
+            r['name'] != prefix,  # exact matches first
+            not r['name'].startswith(prefix),  # prefix matches next
+            len(r['name'])),  # sort remaining matches by length
+        )
+        return results[:10]
