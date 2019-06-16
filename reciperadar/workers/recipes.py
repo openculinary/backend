@@ -5,8 +5,8 @@ import os
 import requests
 
 from reciperadar.models.recipe import Recipe, RecipeIngredient
-from reciperadar.services.background.broker import celery
 from reciperadar.services.database import Database
+from reciperadar.workers.broker import celery
 
 
 @celery.task
