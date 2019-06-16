@@ -1,6 +1,6 @@
 from flask_mail import Message
 
-from reciperadar.services.background.broker import celery
+from reciperadar.workers.broker import celery
 
 
 @celery.task
