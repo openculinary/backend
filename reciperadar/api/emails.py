@@ -8,8 +8,8 @@ from validate_email import validate_email
 
 from reciperadar.app import app
 from reciperadar.models.email import Email
-from reciperadar.services.background.emails import issue_verification_token
 from reciperadar.services.database import Database
+from reciperadar.workers.emails import issue_verification_token
 
 
 @app.route('/api/emails/register', methods=['POST'])
