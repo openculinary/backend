@@ -116,7 +116,7 @@ class Recipe(Storable, Searchable):
         return data
 
     @staticmethod
-    def _generate_include_clause(include):
+    def _generate_should_clause(include):
         highlight = {'type': 'fvh', 'fields': {'ingredients.ingredient': {}}}
         return [{
             'nested': {
@@ -134,8 +134,20 @@ class Recipe(Storable, Searchable):
         } for inc in include]
 
     @staticmethod
-    def _generate_exclude_clause(exclude):
+    def _generate_must_not_clause(include, exclude):
         return [{
+            'nested': {
+                'path': 'ingredients',
+                'query': {
+                    'match_phrase': {
+                        'ingredients.ingredient': {
+                            'query': '{} stock'.format(inc),
+                            'slop': 3
+                        }
+                    }
+                }
+            }
+        } for inc in include] + [{
             'nested': {
                 'path': 'ingredients',
                 'query': {'match_phrase': {'ingredients.ingredient': exc}}
@@ -147,21 +159,21 @@ class Recipe(Storable, Searchable):
         if secondary:
             index += '-secondary'
 
-        include = self._generate_include_clause(include)
-        exclude = self._generate_exclude_clause(exclude)
+        should_clause = self._generate_should_clause(include)
+        must_not_clause = self._generate_must_not_clause(include, exclude)
 
         results = self.es.search(
             index=index,
             body={
                 'query': {
                     'bool': {
-                        'should': include,
-                        'must_not': exclude,
+                        'should': should_clause,
+                        'must_not': must_not_clause,
                         'filter': [
                             {'range': {'time': {'gte': 5}}},
                             {'wildcard': {'image': '*'}},
                         ],
-                        'minimum_should_match': 1 if include else 0
+                        'minimum_should_match': 1 if should_clause else 0
                     }
                 }
             }
