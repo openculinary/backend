@@ -17,23 +17,23 @@
       <div class="card-deck mb-3">
         <div class="card mb-1 box-shadow">
           <div class="card-header">
-	    <h5 class="my-0 font-weight-normal">
-	      <a href="/" style="text-decoration: none"><em>RecipeRadar</em></a></em>
+            <h5 class="my-0 font-weight-normal">
+              <a href="/" style="text-decoration: none"><em>RecipeRadar</em></a></em>
             </h5>
           </div>
           <div class="card-body">
             <form id="search-form">
               Show me recipes to prepare
-	      <br />
-	      <br />
-	      <ul>
-	        <li>containing ... <select multiple data-role="tagsinput" id="include"></select></li>
-	        <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"></select></li>
-	      </ul>
+              <br />
+              <br />
+              <ul>
+                <li>containing ... <select multiple data-role="tagsinput" id="include"></select></li>
+                <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"></select></li>
+              </ul>
               <br />
               <br />
               <button id="search" type="button" class="btn btn-primary">Find recipes!</button>
-	    </form>
+            </form>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
           <tr>
             <th data-field="image" data-formatter="imageFormatter">Image</th>
             <th data-field="title" data-formatter="titleFormatter">Name</th>
-	    <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
+            <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
       </table>
@@ -62,7 +62,7 @@
             <div class="modal-body">When are you planning to make this meal?</div>
             <div class="input-group date" id="datetimepicker" data-target-input="nearest">
               <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker" />
-	      <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
+              <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
             </div>
             <div class="modal-footer">
               Email: <input id="email" type="email" class="form-control" required placeholder="you@example.com"></input>
@@ -193,7 +193,7 @@ function metadataFormatter(value, row, index) {
   <tr>
     <th colspan="2">
       <button type="button" class="btn btn-outline-success"data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" /></button>
-	  <button type="button" class="btn btn-outline-warning"><a href="mailto:?subject=` + row.title + `&body=` + row.url + `"><img src="images/icons/mail.svg" /></a></button>
+      <button type="button" class="btn btn-outline-warning"><a href="mailto:?subject=` + row.title + `&body=` + row.url + `"><img src="images/icons/mail.svg" /></a></button>
       <button type="button" class="btn btn-outline-primary" data-clipboard-text="` + row.url + `"><img src="images/icons/link.svg" /></button>
     </th>
   </tr>
@@ -255,7 +255,7 @@ function sendReminder() {
         emailControl.reportValidity();
       }
       if (response.error === 'unregistered_email') {
-	$.post('/api/emails/register', {email: encodeURIComponent(email)});
+        $.post('/api/emails/register', {email: encodeURIComponent(email)});
         alert('Check your email inbox for an invitation, then try again');
       }
       if (response.error === 'unverified_email') {
