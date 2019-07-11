@@ -19,16 +19,18 @@
 	    <h5 class="my-0 font-weight-normal"><em>RecipeRadar</em></h4>
           </div>
           <div class="card-body">
-		  Show me recipes to prepare
-	    <br />
-	    <br />
-	    <ul>
-	      <li>containing ... <select multiple data-role="tagsinput" id="include"></select></li>
-	      <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"></select></li>
-            <br />
-            <br />
-            <button id="search" type="button" class="btn btn-primary">Find recipes!</button>
-
+            <form id="search-form">
+              Show me recipes to prepare
+	      <br />
+	      <br />
+	      <ul>
+	        <li>containing ... <select multiple data-role="tagsinput" id="include"></select></li>
+	        <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"></select></li>
+	      </ul>
+              <br />
+              <br />
+              <button id="search" type="button" class="btn btn-primary">Find recipes!</button>
+	    </form>
           </div>
         </div>
       </div>
@@ -152,6 +154,9 @@ function bindsuggestions(element, url) {
       },
       sorter: function (item) { return item; }
     }
+  });
+  $('#search-form input').on('keypress', function (e) {
+    if (e.keyCode == 13) $('#search').trigger('click');
   });
 }
 
