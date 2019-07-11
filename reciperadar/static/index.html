@@ -275,7 +275,7 @@ function storeState(action) {
       state[fragment] = data.join(',');
     }
   })
-  $.bbq.pushState(state);
+  $.bbq.pushState(state, 2); // merge mode 2: completely replace fragment state
 }
 
 function applyState(element, data) {
