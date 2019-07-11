@@ -19,7 +19,7 @@
 	    <h5 class="my-0 font-weight-normal"><em>RecipeRadar</em></h4>
           </div>
           <div class="card-body">
-		  Show me recipes to prepare <select multiple data-role="tagsinput" id="course"><option value="lunch">lunch</option></select>
+		  Show me recipes to prepare
 	    <br />
 	    <br />
 	    <ul>
@@ -154,7 +154,6 @@ function bindsuggestions(element, url) {
   });
 }
 
-bindsuggestions('#course', 'api/courses');
 bindsuggestions('#include', 'api/ingredients');
 bindsuggestions('#exclude', 'api/ingredients');
 
