@@ -135,7 +135,9 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def _generate_must_not_clause(include, exclude):
-        return [{
+        return [
+            {'prefix': {'url': 'www.recipage.com'}},
+        ] + [{
             'nested': {
                 'path': 'ingredients',
                 'query': {
