@@ -18,3 +18,7 @@ input, .bootstrap-tagsinput {
   border-radius: 50%;
   display: inline-block;
 }
+
+body a {
+  color: #05d;
+}

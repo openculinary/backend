@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="Find recipes and plan your culinary calendar with RecipeRadar" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#07f" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="data:;base64,=">
+    <link rel="manifest" href="reciperadar.webmanifest">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
     <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
@@ -27,12 +29,20 @@
               <br />
               <br />
               <ul>
-                <li>containing ... <select multiple data-role="tagsinput" id="include"></select></li>
-                <li>avoiding ... <select multiple data-role="tagsinput" id="exclude"></select></li>
+                <li>
+                  <label>containing ...
+                    <select multiple data-role="tagsinput" id="include"></select>
+                  </label>
+                </li>
+                <li>
+                  <label>avoiding ...
+                    <select multiple data-role="tagsinput" id="exclude"></select></li>
+                  </label>
+                </li>
               </ul>
               <br />
               <br />
-              <button id="search" type="button" class="btn btn-primary">Find recipes!</button>
+              <button id="search" class="btn btn-primary">Find recipes!</button>
             </form>
           </div>
         </div>
@@ -57,7 +67,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Meal Calendar</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <button class="close" aria-label="Dismiss calendar planner" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">When are you planning to make this meal?</div>
             <div class="input-group date" id="datetimepicker" data-target-input="nearest">
@@ -172,7 +182,7 @@ function titleFormatter(value, row, index) {
     ingredientHtml += '<li style="font-size: 13px">' + ingredient.ingredient + '</li> ';
   });
   ingredientHtml += '</ul>'
-  return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" />&nbsp;&nbsp;<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
+  return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" alt="" />&nbsp;&nbsp;<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
 }
 
 function imageFormatter(value, row, index) {
@@ -183,7 +193,7 @@ function imageFormatter(value, row, index) {
   $('#exclude').val().forEach(function(exclude) {
     matchHtml += '<span class="tag badge badge-info" style="background-color: maroon; float: right;">no: ' + exclude + '</span> ';
   });
-  return '<img style="max-width: 192px" src="' + value + '"><hr />' + matchHtml;
+  return '<img style="max-width: 192px" src="' + value + '" alt="' + row.title + '"><hr />' + matchHtml;
 }
 
 function metadataFormatter(value, row, index) {
@@ -192,9 +202,9 @@ function metadataFormatter(value, row, index) {
 <table style="font-size: 12px">
   <tr>
     <th colspan="2">
-      <button type="button" class="btn btn-outline-success"data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" /></button>
-      <button type="button" class="btn btn-outline-warning"><a href="mailto:?subject=` + row.title + `&body=` + row.url + `"><img src="images/icons/mail.svg" /></a></button>
-      <button type="button" class="btn btn-outline-primary" data-clipboard-text="` + row.url + `"><img src="images/icons/link.svg" /></button>
+      <button class="btn btn-outline-success" aria-label="Add to calendar" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" alt="" /></button>
+      <button class="btn btn-outline-warning" aria-label="Share by email"><a href="mailto:?subject=` + row.title + `&body=` + row.url + `" aria-label="Share by email"><img src="images/icons/mail.svg" alt="" /></a></button>
+      <button class="btn btn-outline-primary" aria-label="Copy to clipboard" data-clipboard-text="` + row.url + `"><img src="images/icons/link.svg" alt="" /></button>
     </th>
   </tr>
   <tr><th>time</th><td>` + duration.as('minutes') + ` mins</td></tr>
