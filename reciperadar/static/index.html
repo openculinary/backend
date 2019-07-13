@@ -175,10 +175,14 @@ function bindsuggestions(element, url) {
 bindsuggestions('#include', 'api/ingredients');
 bindsuggestions('#exclude', 'api/ingredients');
 
+function toggleIngredientState(element) {
+  element.toggleClass('strikethrough');
+}
+
 function titleFormatter(value, row, index) {
   var ingredientHtml = '<ul>';
   row.ingredients.forEach(function(ingredient) {
-    ingredientHtml += '<li style="font-size: 13px">' + ingredient.ingredient + '</li> ';
+  ingredientHtml += '<li style="font-size: 13px"><div onclick="toggleIngredientState($(this))">' + ingredient.ingredient + '</div></li> ';
   });
   ingredientHtml += '</ul>'
   return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" alt="" />&nbsp;&nbsp;<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;

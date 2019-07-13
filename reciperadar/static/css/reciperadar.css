@@ -22,3 +22,7 @@ input, .bootstrap-tagsinput {
 body a {
   color: #05d;
 }
+
+.strikethrough {
+  text-decoration: line-through;
+}
