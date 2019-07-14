@@ -49,8 +49,18 @@
     </div>
 
     <div class="container pt-3">
-      <table id="recipes" data-show-header="false" data-toggle="table" class="d-none">
-        <thead>
+      <table
+        id="recipes"
+        class="d-none"
+        data-data-field="results"
+        data-total-field="total"
+        data-pagination="true"
+        data-pagination-loop="false"
+        data-pagination-v-align="both"
+        data-smart=display="true"
+        data-side-pagination="server"
+        data-toggle="table">
+        <thead class="d-none">
           <tr>
             <th data-field="image" data-formatter="imageFormatter">Image</th>
             <th data-field="title" data-formatter="titleFormatter">Name</th>

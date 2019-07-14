@@ -23,6 +23,10 @@ body a {
   color: #05d;
 }
 
+div.pagination-detail {
+  display: none;
+}
+
 .strikethrough {
   text-decoration: line-through;
 }
