@@ -157,10 +157,14 @@ class Recipe(Storable, Searchable):
             }
         } for exc in exclude]
 
-    def search(self, include, exclude, secondary=False):
+    def search(self, include, exclude, offset, limit, secondary=False):
         index = self.noun
         if secondary:
             index += '-secondary'
+
+        offset = max(0, offset)
+        limit = max(1, limit)
+        limit = min(25, limit)
 
         should_clause = self._generate_should_clause(include)
         must_not_clause = self._generate_must_not_clause(include, exclude)
@@ -168,6 +172,8 @@ class Recipe(Storable, Searchable):
         results = self.es.search(
             index=index,
             body={
+                'from': offset,
+                'size': limit,
                 'query': {
                     'bool': {
                         'should': should_clause,
@@ -182,7 +188,10 @@ class Recipe(Storable, Searchable):
             }
         )
 
-        return [
-            {**self.from_doc(result).to_dict(), **self.matches(result)}
-            for result in results['hits']['hits']
-        ]
+        return {
+            'total': results['hits']['total'],
+            'results': [
+                {**self.from_doc(result).to_dict(), **self.matches(result)}
+                for result in results['hits']['hits']
+            ]
+        }
