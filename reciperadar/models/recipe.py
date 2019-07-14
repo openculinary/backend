@@ -76,7 +76,7 @@ class Recipe(Storable, Searchable):
         )
 
     @staticmethod
-    def matches(doc):
+    def matches(doc, includes):
         matches = []
         highlights = []
         for item in doc.get('inner_hits', {}).values():
@@ -86,7 +86,7 @@ class Recipe(Storable, Searchable):
         for highlight in highlights:
             bs = BeautifulSoup(highlight)
             matches += [em.text.lower() for em in bs.findAll('em')]
-        return {'matches': list(set(matches))}
+        return {'matches': [inc for inc in includes if inc in matches]}
 
     @staticmethod
     def from_doc(doc):
@@ -191,7 +191,7 @@ class Recipe(Storable, Searchable):
         return {
             'total': results['hits']['total'],
             'results': [
-                {**self.from_doc(result).to_dict(), **self.matches(result)}
+                {**self.from_doc(result).to_dict(), **self.matches(result, include)}
                 for result in results['hits']['hits']
             ]
         }
