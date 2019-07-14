@@ -123,6 +123,7 @@ class Recipe(Storable, Searchable):
                 'path': 'ingredients',
                 'query': {
                     'constant_score': {
+                        'boost': 1.0 / idx,
                         'filter': {
                             'match_phrase': {'ingredients.ingredient': inc}
                         }
@@ -131,7 +132,7 @@ class Recipe(Storable, Searchable):
                 'inner_hits': {'highlight': highlight, 'name': inc},
                 'score_mode': 'max'
             }
-        } for inc in include]
+        } for idx, inc in enumerate(include, start=1)]
 
     @staticmethod
     def _generate_must_not_clause(include, exclude):
