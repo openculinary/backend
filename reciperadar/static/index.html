@@ -236,6 +236,7 @@ function search() {
   $('#recipes').bootstrapTable('refresh', {
     url: '/api/recipes/search?' + $.param(params)
   });
+  $('#recipes').bootstrapTable('selectPage', 1);
   storeState('search');
 }
 $('#recipes').on('load-success.bs.table', function() {
