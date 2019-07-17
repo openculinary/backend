@@ -161,11 +161,12 @@
     <script src="js/tempusdominus-bootstrap-4.min.js"></script>
 
     <script>
-function bindsuggestions(element, url) {
+function bindsuggestions(element, url, tagClass) {
   $(element).tagsinput({
     allowDuplicates: false,
     freeInput: false,
     maxTags: 20,
+    tagClass: tagClass,
     typeahead: {
       source: function(query, process) {
         if (query.length < 3) return true;
@@ -182,8 +183,8 @@ function bindsuggestions(element, url) {
   });
 }
 
-bindsuggestions('#include', 'api/ingredients');
-bindsuggestions('#exclude', 'api/ingredients');
+bindsuggestions('#include', 'api/ingredients', 'tag badge badge-info');
+bindsuggestions('#exclude', 'api/ingredients', 'tag badge badge-info badge-exclude');
 
 function toggleIngredientState(element) {
   element.toggleClass('strikethrough');
@@ -204,7 +205,7 @@ function imageFormatter(value, row, index) {
     matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
   });
   $('#exclude').val().forEach(function(exclude) {
-    matchHtml += '<span class="tag badge badge-info" style="background-color: maroon; float: right;">no: ' + exclude + '</span> ';
+    matchHtml += '<span class="tag badge badge-info badge-exclude" style="float: right;">no: ' + exclude + '</span> ';
   });
   return '<img style="max-width: 192px" src="' + value + '" alt="' + row.title + '"><hr />' + matchHtml;
 }

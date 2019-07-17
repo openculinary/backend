@@ -12,6 +12,10 @@ input, .bootstrap-tagsinput {
   width: 64px;
 }
 
+.badge-exclude {
+  background-color: maroon;
+}
+
 .dot {
   height: 12px;
   width: 12px;
