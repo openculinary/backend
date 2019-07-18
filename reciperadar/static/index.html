@@ -323,8 +323,8 @@ function applyState(element, data) {
 }
 
 function restoreState() {
-  applyState('#include', $.bbq.getState('include'));
-  applyState('#exclude', $.bbq.getState('exclude'));
+  applyState('#include', $.bbq.getState('include', true));
+  applyState('#exclude', $.bbq.getState('exclude', true));
 
   var action = $.bbq.getState('action');
   if (!action) $('#recipes').addClass('d-none');
