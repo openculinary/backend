@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
     <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="css/tablesaw.stackonly.css">
     <link rel="stylesheet" href="css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="css/reciperadar.css">
     <title>RecipeRadar</title>
@@ -51,7 +52,8 @@
     <div class="container pt-3">
       <table
         id="recipes"
-        class="d-none"
+        class="d-none tablesaw tablesaw-stack"
+	data-tablesaw-mode="stack"
         data-data-field="results"
         data-total-field="total"
         data-pagination="true"
@@ -158,6 +160,7 @@
     <script src="js/bootstrap3-typeahead.min.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/moment.min.js"></script>
+    <script src="js/tablesaw.stackonly.jquery.js"></script>
     <script src="js/tempusdominus-bootstrap-4.min.js"></script>
 
     <script>
