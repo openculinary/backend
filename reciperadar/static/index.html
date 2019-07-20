@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="data:;base64,=">
     <link rel="manifest" href="reciperadar.webmanifest">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-table.min.css">
-    <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
-    <link rel="stylesheet" href="css/tablesaw.stackonly.css">
-    <link rel="stylesheet" href="css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap-table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="vendors/bootstrap-tagsinput/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="vendors/tablesaw/tablesaw.stackonly.css">
+    <link rel="stylesheet" href="vendors/tempusdominus/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="css/reciperadar.css">
     <title>RecipeRadar</title>
   </head>
@@ -25,7 +25,7 @@
             </h5>
           </div>
           <div class="card-body">
-            <form id="search-form">
+            <form id="search-form" onsubmit="return false">
               Show me recipes to prepare
               <br />
               <br />
@@ -49,11 +49,11 @@
       </div>
     </div>
 
-    <div class="container pt-3">
+    <div id="recipes-container" class="container pt-3 d-none">
       <table
         id="recipes"
-        class="d-none tablesaw tablesaw-stack"
-	data-tablesaw-mode="stack"
+        class="tablesaw tablesaw-stack"
+        data-tablesaw-mode="stack"
         data-data-field="results"
         data-total-field="total"
         data-pagination="true"
@@ -64,9 +64,9 @@
         data-toggle="table">
         <thead class="d-none">
           <tr>
-            <th data-field="image" data-formatter="imageFormatter">Image</th>
-            <th data-field="title" data-formatter="titleFormatter">Name</th>
-            <th data-field="time" data-formatter="metadataFormatter">Metadata</th>
+            <th class="align-top" data-field="image" data-formatter="imageFormatter">Image</th>
+            <th class="align-top" data-field="title" data-formatter="titleFormatter">Name</th>
+            <th class="align-top" data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
       </table>
@@ -150,189 +150,22 @@
 
     </footer>
 
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/jquery-1.8.3-browser-deprecated.js"></script>
-    <script src="js/jquery.ba-bbq.min.js"></script>
-    <script src="js/jquery-debounce-throttle.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/bootstrap-table.min.js"></script>
-    <script src="js/bootstrap-tagsinput.min.js"></script>
-    <script src="js/bootstrap3-typeahead.min.js"></script>
-    <script src="js/clipboard.min.js"></script>
-    <script src="js/moment.min.js"></script>
-    <script src="js/tablesaw.stackonly.jquery.js"></script>
-    <script src="js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <script>
-function bindsuggestions(element, url, tagClass) {
-  $(element).tagsinput({
-    allowDuplicates: false,
-    freeInput: false,
-    maxTags: 20,
-    tagClass: tagClass,
-    typeahead: {
-      source: function(query, process) {
-        if (query.length < 3) return true;
-        return $.getJSON(url + '?pre=' + query);
-      },
-      afterSelect: function() {
-        this.$element[0].value = '';
-      },
-      sorter: function (item) { return item; }
-    }
-  });
-  $('#search-form input').on('keypress', function (e) {
-    if (e.keyCode == 13) $('#search').trigger('click');
-  });
-}
-
-bindsuggestions('#include', 'api/ingredients', 'tag badge badge-info');
-bindsuggestions('#exclude', 'api/ingredients', 'tag badge badge-info badge-exclude');
-
-function toggleIngredientState(element) {
-  element.toggleClass('strikethrough');
-}
-
-function titleFormatter(value, row, index) {
-  var ingredientHtml = '<ul>';
-  row.ingredients.forEach(function(ingredient) {
-  ingredientHtml += '<li style="font-size: 13px"><div onclick="toggleIngredientState($(this))">' + ingredient.ingredient + '</div></li> ';
-  });
-  ingredientHtml += '</ul>'
-  return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" alt="" />&nbsp;&nbsp;<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
-}
-
-function imageFormatter(value, row, index) {
-  var matchHtml = '';
-  row.matches.forEach(function(match) {
-    matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
-  });
-  $('#exclude').val().forEach(function(exclude) {
-    matchHtml += '<span class="tag badge badge-info badge-exclude" style="float: right;">no: ' + exclude + '</span> ';
-  });
-  return '<img style="max-width: 192px" src="' + value + '" alt="' + row.title + '"><hr />' + matchHtml;
-}
-
-function metadataFormatter(value, row, index) {
-  var duration = moment.duration(row.time, 'minutes');
-  return `
-<table style="font-size: 12px">
-  <tr>
-    <th colspan="2">
-      <button class="btn btn-outline-success" aria-label="Add to calendar" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" alt="" /></button>
-      <button class="btn btn-outline-warning" aria-label="Share by email"><a href="mailto:?subject=` + row.title + `&body=` + row.url + `" aria-label="Share by email"><img src="images/icons/mail.svg" alt="" /></a></button>
-      <button class="btn btn-outline-primary" aria-label="Copy to clipboard" data-clipboard-text="` + row.url + `"><img src="images/icons/link.svg" alt="" /></button>
-    </th>
-  </tr>
-  <tr><th>time</th><td>` + duration.as('minutes') + ` mins</td></tr>
-  <tr><th>difficulty</th><td><span class="dot" style="background-color: #bfb"></span> easy</td></tr>
-  <tr><th>calories / pers</th><td><span class="dot" style="background-color: #ff8"></span> 750</td></tr>
-</table>
-`;
-}
-
-function search() {
-  var params = {
-    include: $('#include').val(),
-    exclude: $('#exclude').val()
-  };
-  $('#recipes').removeClass('d-none');
-  $('#recipes').bootstrapTable('refresh', {
-    url: '/api/recipes/search?' + $.param(params)
-  });
-  $('#recipes').bootstrapTable('selectPage', 1);
-  storeState('search');
-}
-$('#recipes').on('load-success.bs.table', function() {
-  new ClipboardJS('#recipes .btn-outline-primary');
-});
-
-$('#search').click($.throttle(1000, true, search));
-
-$('#calendarize').on('show.bs.modal', function (e) {
-  var recipeId = $(e.relatedTarget).data('recipe-id');
-  $('#calendarize').data('recipe-id', recipeId);
-});
-
-function sendReminder() {
-  if (!$('#email')[0].checkValidity()) return;
-
-  var recipe_id = $('#calendarize').data('recipe-id');
-  var dt = $('#datetimepicker').datetimepicker('date').format('YYYY-MM-DD');
-  var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  var email = $('#email').val();
-
-  var url = '/api/recipes/' + recipe_id + '/reminder'
-  var params = {
-    dt: dt,
-    tz: tz,
-    email: [encodeURIComponent(email)]
-  };
-
-  $.post(url, params)
-    .done(function() {
-      $('#calendarize').modal('toggle');
-    })
-    .fail(function(xhr, status, error) {
-      var response = $.parseJSON(xhr.responseText);
-      if (!response) return;
-
-      if (response.error === 'invalid_email') {
-        var emailControl = $('#email')[0];
-        emailControl.setCustomValidity('That email address seems invalid to us - please check and try again');
-        emailControl.reportValidity();
-      }
-      if (response.error === 'unregistered_email') {
-        $.post('/api/emails/register', {email: encodeURIComponent(email)});
-        alert('Check your email inbox for an invitation, then try again');
-      }
-      if (response.error === 'unverified_email') {
-        alert('Check your email inbox for an invitation, then try again');
-      }
-    });
-}
-
-$('#calendarize form').submit(function(e) { e.preventDefault(); });
-$('#email').keyup(function(e) { $(this)[0].setCustomValidity(''); });
-$('#reminder').click($.throttle(2500, true, sendReminder));
-
-$('#datetimepicker').datetimepicker({
-  minDate: moment().format('YYYY-MM-DD'),
-  defaultDate: moment().format('YYYY-MM-DD'),
-  format: 'YYYY-MM-DD'
-});
-
-function storeState(action) {
-  var state = {'action': action};
-  ['#include', '#exclude'].forEach(function (element) {
-    var fragment = element.replace('#', '');
-    var data = $(element).val();
-    if (data.length > 0) {
-      state[fragment] = data.join(',');
-    }
-  })
-  $.bbq.pushState(state, 2); // merge mode 2: completely replace fragment state
-}
-
-function applyState(element, data) {
-  $(element).tagsinput('removeAll');
-  if (!data) return;
-  data.split(',').forEach(function(tag) {
-    $(element).tagsinput('add', tag);
-  });
-}
-
-function restoreState() {
-  applyState('#include', $.bbq.getState('include', true));
-  applyState('#exclude', $.bbq.getState('exclude', true));
-
-  var action = $.bbq.getState('action');
-  if (!action) $('#recipes').addClass('d-none');
-  if (action == 'search') $('#search').trigger('click');
-}
-
-$(window).bind('hashchange', restoreState);
-$(document).ready(restoreState);
-    </script>
+    <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
+    <script src="vendors/jquery/jquery-1.8.3-browser-deprecated.js"></script>
+    <script src="vendors/jquery-bbq/jquery.ba-bbq.min.js"></script>
+    <script src="vendors/jquery-bbq/jquery-debounce-throttle.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="vendors/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="vendors/bootstrap-typeahead/bootstrap3-typeahead.min.js"></script>
+    <script src="vendors/clipboard/clipboard.min.js"></script>
+    <script src="vendors/moment/moment.min.js"></script>
+    <script src="vendors/tablesaw/tablesaw.stackonly.jquery.js"></script>
+    <script src="vendors/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="js/autosuggest.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/reminders.js"></script>
+    <script src="js/shopping-list.js"></script>
   </body>
 </html>
