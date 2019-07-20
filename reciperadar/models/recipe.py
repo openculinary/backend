@@ -162,7 +162,6 @@ class Recipe(Storable, Searchable):
         if secondary:
             index += '-secondary'
 
-        es_result_limit = 10000
         offset = max(0, offset)
         limit = max(1, limit)
         limit = min(25, limit)
@@ -190,7 +189,7 @@ class Recipe(Storable, Searchable):
         )
 
         return {
-            'total': min(results['hits']['total'], es_result_limit - limit),
+            'total': min(results['hits']['total'], 50 * limit),
             'results': [
                 {**self.from_doc(result).to_dict(), **self.matches(result, include)}
                 for result in results['hits']['hits']
