@@ -8,11 +8,19 @@
       "ingredients": {
         "type": "array",
 	"items": {
-	  "type": "string"
+	  "type": "object",
+          "properties": {
+            "ingredient": {},
+            "quantity": {},
+            "units": {},
+            "product": {},
+            "verb": {}
+          }
         }
       },
+      "servings": {},
       "time": {}
     },
-    "required": ["title", "url", "ingredients", "time"]
+    "required": ["title", "url", "ingredients", "servings", "time"]
   }
 }
