@@ -9,7 +9,7 @@ from urltools import normalize
 from reciperadar.models.base import Searchable, Storable
 
 
-class RecipeIngredient(Storable):
+class RecipeIngredient(Storable, Searchable):
     __tablename__ = 'recipe_ingredients'
 
     fk = ForeignKey('recipes.id', ondelete='cascade')
@@ -20,22 +20,61 @@ class RecipeIngredient(Storable):
     product = Column(String)
     quantity = Column(Float)
     units = Column(String)
+    verb = Column(String)
 
-    @staticmethod
-    def from_ingredient(ingredient):
-        ingredient_id = b58encode(mmh3.hash_bytes(ingredient)).decode('utf-8')
-        return RecipeIngredient(
-            id=ingredient_id,
-            ingredient=ingredient
-        )
+    @property
+    def noun(self):
+        return 'recipes'
 
     @staticmethod
     def from_doc(doc):
-        ingredient = doc['ingredient']
-        ingredient_id = b58encode(mmh3.hash_bytes(ingredient)).decode('utf-8')
+        ingredient = doc['ingredient'].strip()
+        product = doc.get('product')
+        quantity = doc.get('quantity')
+        units = doc.get('units')
+        verb = doc.get('verb')
+        id_string = '{}/{}'.format(ingredient, verb or 'undefined')
+
+        ingredient_id = b58encode(mmh3.hash_bytes(id_string)).decode('utf-8')
         return RecipeIngredient(
             id=ingredient_id,
-            ingredient=ingredient
+            ingredient=ingredient,
+            product=product,
+            quantity=quantity,
+            units=units,
+            verb=verb
+        )
+
+    def index(self, secondary=True):
+        index = self.noun
+        if secondary:
+            index += '-secondary'
+
+        self.es.update(
+            index=index,
+            id=self.recipe_id,
+            body={
+                'script': {
+                    'lang': 'painless',
+                    'source': '''
+                        for (int i = 0; i < ctx._source.ingredients.size(); i++) {
+                          if (ctx._source.ingredients[i].id == params.recipe_id) {
+                            ctx._source.ingredients[i].product = params.product;
+                            ctx._source.ingredients[i].quantity = params.quantity;
+                            ctx._source.ingredients[i].units = params.units;
+                            ctx._source.ingredients[i].verb = params.verb;
+                          }
+                        }
+                    ''',
+                    'params': {
+                        'recipe_id': self.recipe_id,
+                        'product': self.product,
+                        'quantity': self.quantity,
+                        'units': self.units,
+                        'verb': self.verb,
+                    }
+                }
+            }
         )
 
 
@@ -47,6 +86,7 @@ class Recipe(Storable, Searchable):
     url = Column(String)
     image = Column(String)
     time = Column(Integer)
+    servings = Column(Integer)
     ingredients = relationship(
         'RecipeIngredient',
         backref='recipe',
@@ -61,17 +101,25 @@ class Recipe(Storable, Searchable):
     def from_dict(data):
         url = normalize(data['url'])
         recipe_id = b58encode(mmh3.hash_bytes(url)).decode('utf-8')
+        
+        # Parse and de-duplicate ingredients
+        ingredients=[
+            RecipeIngredient.from_doc(ingredient)
+            for ingredient in data['ingredients']
+            if ingredient['ingredient'].strip()
+        ]
+        ingredients = {
+            ingredient.id: ingredient
+            for ingredient in ingredients
+        }
 
         return Recipe(
             id=recipe_id,
             title=data['title'],
             url=url,
             image=data.get('image'),
-            ingredients=[
-                RecipeIngredient.from_ingredient(ingredient)
-                for ingredient in set(data['ingredients'])
-                if ingredient.strip()
-            ],
+            ingredients=list(ingredients.values()),
+            servings=data['servings'],
             time=data['time'],
         )
 
@@ -101,6 +149,7 @@ class Recipe(Storable, Searchable):
                 for ingredient in source['ingredients']
                 if ingredient['ingredient'].strip()
             ],
+            servings=source.get('servings'),
             time=source['time']
         )
 
