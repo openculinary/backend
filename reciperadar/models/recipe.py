@@ -234,7 +234,7 @@ class Recipe(Storable, Searchable):
         )
 
         return {
-            'total': min(results['hits']['total'], 50 * limit),
+            'total': min(results['hits']['total']['value'], 50 * limit),
             'results': [
                 {
                     **self.from_doc(result).to_dict(),
