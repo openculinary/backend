@@ -1,13 +1,11 @@
-from elasticsearch.exceptions import ConflictError
 from fractions import Fraction
 import io
 from PIL import Image
 import os
 import requests
-from time import sleep
 from unicodedata import numeric
 
-from reciperadar.models.recipe import Recipe, RecipeIngredient
+from reciperadar.models.recipe import Recipe
 from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 

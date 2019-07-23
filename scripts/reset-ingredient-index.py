@@ -1,4 +1,5 @@
 from elasticsearch import Elasticsearch
+from elasticsearch.exceptions import NotFoundError
 import json
 import sys
 
@@ -9,7 +10,7 @@ try:
     es.indices.delete(index=index)
 except NotFoundError:
     pass
-except:
+except Exception:
     print('Failed to delete existing ingredients')
     sys.exit(1)
 
@@ -27,10 +28,15 @@ except Exception as e:
     print('Failed to create ingredient index: {}'.format(e))
     sys.exit(1)
 
-with open('data/ingredients/ingredients.json', 'r') as f:
+with open('scripts/data/ingredients.json', 'r') as f:
     for line in f:
         doc = json.loads(line)
         try:
-            es.index(index='ingredients', doc_type='ingredient', body=doc)
-        except:
+            es.index(index=index, body=doc)
+        except Exception:
             print('Failed to index ingredient={}'.format(doc['name']))
+
+try:
+    es.indices.refresh(index=index)
+except Exception:
+    print('Failed to refresh ingredients index')
