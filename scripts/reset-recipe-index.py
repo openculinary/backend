@@ -1,11 +1,9 @@
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import NotFoundError
-import isodate
-import json
 import sys
 
 es = Elasticsearch()
-index = 'recipes-secondary'
+index = 'recipes'
 
 try:
     es.indices.delete(index=index)
@@ -24,14 +22,27 @@ mapping = {
                     'type': 'text',
                     'norms': False,
                     'term_vector': 'with_positions_offsets'
+                },
+                'product': {
+                    'type': 'text',
+                    'norms': False,
+                    'term_vector': 'with_positions_offsets'
                 }
             }
         }
     }
 }
+settings = {
+    'index': {
+        'number_of_replicas': 0,
+        'refresh_interval': '300s',
+    }
+}
+
 try:
     es.indices.create(index=index)
-    es.indices.put_mapping(index=index, doc_type='recipe', body=mapping)
-except:
-    print('Failed to create recipe mapping')
+    es.indices.put_mapping(index=index, doc_type='_doc', body=mapping)
+    es.indices.put_settings(index=index, body=settings)
+except Exception as e:
+    print('Failed to create recipe index: {}'.format(e))
     sys.exit(1)

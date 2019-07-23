@@ -26,5 +26,5 @@ def recipes():
     exclude = request.args.getlist('exclude[]')
     offset = request.args.get('offset', type=int, default=0)
     limit = request.args.get('limit', type=int, default=10)
-    results = Recipe().search(include, exclude, offset, limit, secondary=True)
+    results = Recipe().search(include, exclude, offset, limit)
     return jsonify(results)

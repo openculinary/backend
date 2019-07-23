@@ -12,68 +12,37 @@ from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 
 
-@celery.task
-def index_ingredient(recipe_id, ingredient_id, attempt=1):
-    if attempt > 3:
-        print(f'Failed to index {recipe_id} {ingredient_id}')
-        return
+def process_ingredients(recipe):
+    ingredients_by_desc = {}
+    for ingredient in recipe.ingredients:
+        ingredients_by_desc[ingredient.ingredient] = ingredient
 
-    session = Database().get_session()
-    key = (recipe_id, ingredient_id)
-    ingredient = session.query(RecipeIngredient).get(key)
-    if not ingredient:
-        return
-
-    try:
-        ingredient.index()
-    except ConflictError:
-        sleep(attempt)
-        index_ingredient.delay(recipe_id, ingredient_id, attempt + 1)
-    session.close()
-
-
-@celery.task
-def process_ingredient(recipe_id, ingredient_id):
-    session = Database().get_session()
-    key = (recipe_id, ingredient_id)
-    ingredient = session.query(RecipeIngredient).get(key)
-    if not ingredient:
-        session.close()
-        return
-
-    ingredient_parser_uri = os.environ['INGREDIENT_PARSER_URI']
-    parsed_ingredient = requests.get(
-        url='{}/parse'.format(ingredient_parser_uri),
-        params={'ingredient': ingredient.ingredient}
+    tagger_uri = os.environ['INGREDIENT_PARSER_URI']
+    parsed_ingredients = requests.get(
+        url='{}/parse'.format(tagger_uri),
+        params={'ingredients[]': [i.ingredient for i in recipe.ingredients]}
     ).json()
 
-    updated = False
-    if 'name' in parsed_ingredient:
-        ingredient.product = parsed_ingredient['name']
-        updated = True
-    if 'qty' in parsed_ingredient:
-        ingredient.quantity = 0
-        fragments = parsed_ingredient['qty'].split()
-        for fragment in fragments:
-            if len(fragment) == 1:
-                fragment = numeric(fragment)
-            elif fragment[-1].isdigit():
-                fragment = float(fragment)
-            else:
-                fragment = float(fragment[i:-1]) + numeric(fragment[-1])
-            ingredient.quantity += fragment
-        updated = True
-    if 'unit' in parsed_ingredient:
-        ingredient.units = parsed_ingredient['unit']
-        updated = True
-    if ingredient.verb is not None:
-        updated = True
-
-    if updated:
-        index_ingredient.delay(recipe_id, ingredient_id)
-
-    session.commit()
-    session.close()
+    for parsed_ingredient in parsed_ingredients:
+        input_desc = parsed_ingredient['input']
+        ingredient = ingredients_by_desc.get(input_desc)
+        if ingredient is None:
+            continue
+        if 'name' in parsed_ingredient:
+            ingredient.product = parsed_ingredient['name']
+        if 'qty' in parsed_ingredient:
+            ingredient.quantity = 0
+            fragments = parsed_ingredient['qty'].split()
+            for fragment in fragments:
+                if len(fragment) == 1:
+                    fragment = numeric(fragment)
+                elif fragment[-1].isdigit():
+                    fragment = Fraction(fragment)
+                else:
+                    fragment = Fraction(fragment[:-1]) + numeric(fragment[-1])
+                ingredient.quantity += float(fragment)
+        if 'unit' in parsed_ingredient:
+            ingredient.units = parsed_ingredient['unit']
 
 
 @celery.task
@@ -83,9 +52,13 @@ def index_recipe(recipe_id):
     if not recipe:
         return
 
-    recipe.index()
-    for ingredient in recipe.ingredients:
-        process_ingredient.delay(recipe.id, ingredient.id)
+    process_ingredients(recipe)
+    if all([ingredient.product for ingredient in recipe.ingredients]):
+        recipe.index()
+        print(f'Indexed {recipe.id}')
+
+    session.add(recipe)
+    session.commit()
     session.close()
 
 

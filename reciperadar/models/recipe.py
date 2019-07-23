@@ -9,7 +9,7 @@ from urltools import normalize
 from reciperadar.models.base import Searchable, Storable
 
 
-class RecipeIngredient(Storable, Searchable):
+class RecipeIngredient(Storable):
     __tablename__ = 'recipe_ingredients'
 
     fk = ForeignKey('recipes.id', ondelete='cascade')
@@ -21,10 +21,6 @@ class RecipeIngredient(Storable, Searchable):
     quantity = Column(Float)
     units = Column(String)
     verb = Column(String)
-
-    @property
-    def noun(self):
-        return 'recipes'
 
     @staticmethod
     def from_doc(doc):
@@ -45,37 +41,27 @@ class RecipeIngredient(Storable, Searchable):
             verb=verb
         )
 
-    def index(self, secondary=True):
-        index = self.noun
-        if secondary:
-            index += '-secondary'
-
-        self.es.update(
-            index=index,
-            id=self.recipe_id,
-            body={
-                'script': {
-                    'lang': 'painless',
-                    'source': '''
-                        for (int i = 0; i < ctx._source.ingredients.size(); i++) {
-                          if (ctx._source.ingredients[i].id == params.recipe_id) {
-                            ctx._source.ingredients[i].product = params.product;
-                            ctx._source.ingredients[i].quantity = params.quantity;
-                            ctx._source.ingredients[i].units = params.units;
-                            ctx._source.ingredients[i].verb = params.verb;
-                          }
-                        }
-                    ''',
-                    'params': {
-                        'recipe_id': self.recipe_id,
-                        'product': self.product,
-                        'quantity': self.quantity,
-                        'units': self.units,
-                        'verb': self.verb,
-                    }
+    def generate_update_script(self):
+        return {
+            'lang': 'painless',
+            'source': '''
+              for (int i = 0; i < ctx._source.ingredients.size(); i++) {
+                if (ctx._source.ingredients[i].id == params.ingredient_id) {
+                  ctx._source.ingredients[i].product = params.product;
+                  ctx._source.ingredients[i].quantity = params.quantity;
+                  ctx._source.ingredients[i].units = params.units;
+                  ctx._source.ingredients[i].verb = params.verb;
+                  break;
                 }
+              }''',
+            'params': {
+                'ingredient_id': self.id,
+                'product': self.product,
+                'quantity': self.quantity,
+                'units': self.units,
+                'verb': self.verb,
             }
-        )
+        }
 
 
 class Recipe(Storable, Searchable):
@@ -123,6 +109,22 @@ class Recipe(Storable, Searchable):
             time=data['time'],
         )
 
+    def generate_action_metadata(self):
+        return {
+            '_index': self.noun,
+            '_type': '_doc',
+            '_id': self.id
+        }
+
+    def index(self):
+        items = []
+        items.append({'index': self.generate_action_metadata()})
+        items.append(self.to_dict())
+        for ingredient in self.ingredients:
+            items.append({'update': self.generate_action_metadata()})
+            items.append({'script': ingredient.generate_update_script()})
+        self.es.bulk(items)
+
     @staticmethod
     def matches(doc, includes):
         matches = []
@@ -130,7 +132,7 @@ class Recipe(Storable, Searchable):
         for item in doc.get('inner_hits', {}).values():
             for hit in item['hits']['hits']:
                 highlights += hit.get('highlight', {}) \
-                              .get('ingredients.ingredient', [])
+                              .get('ingredients.product', [])
         for highlight in highlights:
             bs = BeautifulSoup(highlight)
             matches += [em.text.lower() for em in bs.findAll('em')]
@@ -166,7 +168,7 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def _generate_should_clause(include):
-        highlight = {'type': 'fvh', 'fields': {'ingredients.ingredient': {}}}
+        highlight = {'type': 'fvh', 'fields': {'ingredients.product': {}}}
         return [{
             'nested': {
                 'path': 'ingredients',
@@ -174,7 +176,7 @@ class Recipe(Storable, Searchable):
                     'constant_score': {
                         'boost': 1.0 / idx,
                         'filter': {
-                            'match_phrase': {'ingredients.ingredient': inc}
+                            'match_phrase': {'ingredients.product': inc}
                         }
                     }
                 },
@@ -185,9 +187,7 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def _generate_must_not_clause(include, exclude):
-        return [
-            {'prefix': {'url': 'www.recipage.com'}},
-        ] + [{
+        return [{
             'nested': {
                 'path': 'ingredients',
                 'query': {
@@ -202,15 +202,11 @@ class Recipe(Storable, Searchable):
         } for inc in include] + [{
             'nested': {
                 'path': 'ingredients',
-                'query': {'match_phrase': {'ingredients.ingredient': exc}}
+                'query': {'match_phrase': {'ingredients.product': exc}}
             }
         } for exc in exclude]
 
-    def search(self, include, exclude, offset, limit, secondary=False):
-        index = self.noun
-        if secondary:
-            index += '-secondary'
-
+    def search(self, include, exclude, offset, limit):
         offset = max(0, offset)
         limit = max(1, limit)
         limit = min(25, limit)
@@ -219,7 +215,7 @@ class Recipe(Storable, Searchable):
         must_not_clause = self._generate_must_not_clause(include, exclude)
 
         results = self.es.search(
-            index=index,
+            index=self.noun,
             body={
                 'from': offset,
                 'size': limit,
