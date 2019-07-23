@@ -1,8 +1,9 @@
-py36:
-  image: python:3.6
+py37:
+  image: python:3.7
   before_script:
     - apt-get update -q -y
     - pip install pipenv
     - pipenv install --dev
   script:
+    - pipenv run flake8
     - pipenv run pytest

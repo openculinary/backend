@@ -9,7 +9,7 @@ try:
     es.indices.delete(index=index)
 except NotFoundError:
     pass
-except:
+except Exception:
     print('Failed to delete existing recipes')
     sys.exit(1)
 
@@ -41,7 +41,7 @@ settings = {
 
 try:
     es.indices.create(index=index)
-    es.indices.put_mapping(index=index, doc_type='_doc', body=mapping)
+    es.indices.put_mapping(index=index, body=mapping)
     es.indices.put_settings(index=index, body=settings)
 except Exception as e:
     print('Failed to create recipe index: {}'.format(e))

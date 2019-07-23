@@ -87,9 +87,9 @@ class Recipe(Storable, Searchable):
     def from_dict(data):
         url = normalize(data['url'])
         recipe_id = b58encode(mmh3.hash_bytes(url)).decode('utf-8')
-        
+
         # Parse and de-duplicate ingredients
-        ingredients=[
+        ingredients = [
             RecipeIngredient.from_doc(ingredient)
             for ingredient in data['ingredients']
             if ingredient['ingredient'].strip()
@@ -236,7 +236,10 @@ class Recipe(Storable, Searchable):
         return {
             'total': min(results['hits']['total'], 50 * limit),
             'results': [
-                {**self.from_doc(result).to_dict(), **self.matches(result, include)}
+                {
+                    **self.from_doc(result).to_dict(),
+                    **self.matches(result, include)
+                }
                 for result in results['hits']['hits']
             ]
         }
