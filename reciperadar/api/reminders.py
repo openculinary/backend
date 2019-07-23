@@ -43,7 +43,7 @@ def recipe_reminder(recipe_id):
     except UnknownTimeZoneError:
         return jsonify({'error': 'invalid_timezone'}), 400
 
-    recipe = Recipe().get_by_id(recipe_id, secondary=True)
+    recipe = Recipe().get_by_id(recipe_id)
     reminder = Reminder.from_scheduled_recipe(
         recipe=recipe,
         start_time=dt,

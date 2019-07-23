@@ -35,28 +35,19 @@ class Searchable(object):
     def from_doc(doc):
         return doc['_source']
 
-    def get_by_id(self, id, secondary=False):
-        index = self.noun
-        if secondary:
-            index += '-secondary'
-        doc = self.es.get(index=index, id=id)
+    def get_by_id(self, id):
+        doc = self.es.get(index=self.noun, id=id)
         return self.from_doc(doc)
 
-    def index(self, secondary=True):
+    def index(self):
         doc = self.to_dict()
-        index = self.noun
-        if secondary:
-            index += '-secondary'
         doc_type = self.noun[:-1]
-        self.es.index(index=index, doc_type=doc_type, id=self.id, body=doc)
+        self.es.index(index=self.noun, doc_type=doc_type, id=self.id, body=doc)
 
-    def autosuggest(self, prefix, secondary=False):
-        index = self.noun
-        if secondary:
-            index += '-secondary'
+    def autosuggest(self, prefix):
         prefix = prefix.lower()
         results = self.es.search(
-            index=index,
+            index=self.noun,
             body={
                 'query': {
                     'bool': {
