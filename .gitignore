@@ -1,5 +1,6 @@
 *.pyc
 *.swp
+*.lock
 venv
 __pycache__
 credentials
