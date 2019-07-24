@@ -3,9 +3,11 @@
 ## Install dependencies
 
 ```
-apt install \
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo apt install \
   elasticsearch-oss \
   libpq-dev \
+  nginx \
   pipenv \
   postgresql \
   rabbitmq-server
@@ -13,8 +15,8 @@ apt install \
 
 ## Initialize the database
 ```
-createuser <user>
-createdb <user>
+sudo -u postgres createuser <user>
+sudo -u postgres createdb <user>
 python -m reciperadar.services.database
 ```
 
