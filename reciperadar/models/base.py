@@ -1,5 +1,6 @@
 from abc import ABC, abstractproperty
 from elasticsearch import Elasticsearch
+from elasticsearch.exceptions import NotFoundError
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -36,7 +37,10 @@ class Searchable(object):
         return doc['_source']
 
     def get_by_id(self, id):
-        doc = self.es.get(index=self.noun, id=id)
+        try:
+            doc = self.es.get(index=self.noun, id=id)
+        except NotFoundError:
+            return None
         return self.from_doc(doc)
 
     def index(self):
