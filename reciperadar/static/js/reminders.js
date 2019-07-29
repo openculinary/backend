@@ -1,3 +1,7 @@
+function confirmVerified() {
+  alert('Thank you!  Your email address has been verified.');
+}
+
 function sendReminder() {
   if (!$('#email')[0].checkValidity()) return;
 

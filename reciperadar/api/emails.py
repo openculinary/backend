@@ -1,6 +1,6 @@
 from base58 import b58encode
 from datetime import datetime
-from flask import jsonify, request
+from flask import abort, jsonify, redirect, request
 from sqlalchemy.exc import IntegrityError
 from urllib.parse import unquote
 from uuid import uuid4
@@ -43,8 +43,10 @@ def verify_email():
 
     session = Database().get_session()
     email = session.query(Email).filter(Email.token == token).first()
-    if email:
+    if not email:
+        return abort(404)
+    if not email.verified_at:
         email.verified_at = datetime.utcnow()
         session.commit()
     session.close()
-    return jsonify({'token': token})
+    return redirect('/#action=verified', code=301)
