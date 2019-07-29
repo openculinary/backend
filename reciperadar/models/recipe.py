@@ -134,7 +134,7 @@ class Recipe(Storable, Searchable):
                 highlights += hit.get('highlight', {}) \
                               .get('ingredients.product', [])
         for highlight in highlights:
-            bs = BeautifulSoup(highlight)
+            bs = BeautifulSoup(highlight, features='html.parser')
             matches += [em.text.lower() for em in bs.findAll('em')]
         return {'matches': [inc for inc in includes if inc in matches]}
 
