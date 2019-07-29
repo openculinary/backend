@@ -59,7 +59,7 @@ def recipe_reminder(recipe_id):
     })
 
 
-@app.route('/webhooks/calendar', methods=['POST'])
+@app.route('/api/webhooks/calendar', methods=['POST'])
 def calendar_webhooks():
     session = Database().get_session()
     updated_min = session.query(func.max(Reminder.updated)).scalar()
