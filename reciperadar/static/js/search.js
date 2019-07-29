@@ -77,23 +77,3 @@ $('#calendarize').on('show.bs.modal', function (e) {
   var recipeId = $(e.relatedTarget).data('recipe-id');
   $('#calendarize').data('recipe-id', recipeId);
 });
-
-function loadTags(element, data) {
-  $(element).tagsinput('removeAll');
-  if (!data) return;
-  data.split(',').forEach(function(tag) {
-    $(element).tagsinput('add', tag);
-  });
-}
-
-function loadState() {
-  loadTags('#include', $.bbq.getState('include'));
-  loadTags('#exclude', $.bbq.getState('exclude'));
-
-  var action = $.bbq.getState('action');
-  if (!action) $('#recipes-container').addClass('d-none');
-  if (action == 'search') executeSearch();
-}
-
-$(window).on('hashchange', loadState);
-$(loadState);
