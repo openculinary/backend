@@ -14,6 +14,7 @@ function loadState() {
   if (!action) $('#recipes-container').addClass('d-none');
   if (action == 'search') executeSearch();
   if (action == 'verified') confirmVerified();
+  if (action == 'view') executeView();
 }
 
 $(window).on('hashchange', loadState);

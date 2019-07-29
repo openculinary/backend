@@ -4,14 +4,16 @@ function titleFormatter(value, row, index) {
   ingredientHtml += '<li style="font-size: 13px"><div onclick="toggleIngredientState($(this))">' + ingredient.ingredient + '</div></li> ';
   });
   ingredientHtml += '</ul>'
-  return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" alt="" />&nbsp;&nbsp;<a href="' + row.url + '">' + row.title + '</a><br /><br />' + ingredientHtml;
+  return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" alt="" />&nbsp;&nbsp;<a href="' + row.src + '">' + row.title + '</a><br /><br />' + ingredientHtml;
 }
 
 function imageFormatter(value, row, index) {
   var matchHtml = '<div style="width: 192px">';
-  row.matches.forEach(function(match) {
-    matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
-  });
+  if (row.matches) {
+    row.matches.forEach(function(match) {
+      matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
+    });
+  }
   $('#exclude').val().forEach(function(exclude) {
     matchHtml += '<span class="tag badge badge-info badge-exclude">no: ' + exclude + '</span> ';
   });
@@ -26,8 +28,8 @@ function metadataFormatter(value, row, index) {
     <th colspan="2">
       <span style="white-space: nowrap">
         <button class="btn btn-outline-success" aria-label="Add to calendar" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" alt="" /></button>
-        <button class="btn btn-outline-warning" aria-label="Share by email"><a href="mailto:?subject=` + row.title + `&body=` + row.url + `" aria-label="Share by email"><img src="images/icons/mail.svg" alt="" /></a></button>
-        <button class="btn btn-outline-primary" aria-label="Copy to clipboard" data-clipboard-text="` + row.url + `"><img src="images/icons/link.svg" alt="" /></button>
+        <button class="btn btn-outline-warning" aria-label="Share by email"><a href="mailto:?subject=` + row.title + `&body=` + encodeURIComponent(window.location.origin + row.url) + `" aria-label="Share by email"><img src="images/icons/mail.svg" alt="" /></a></button>
+        <button class="btn btn-outline-primary" aria-label="Copy to clipboard" data-clipboard-text="` + window.location.origin + row.url + `"><img src="images/icons/link.svg" alt="" /></button>
       </span>
     </th>
   </tr>
@@ -48,6 +50,7 @@ function pushSearch() {
   // bbq merge mode 2: completely replace fragment state
   $.bbq.pushState(state, 2);
 }
+$('#search').click($.throttle(1000, true, pushSearch));
 
 function executeSearch() {
   var params = {
@@ -60,7 +63,14 @@ function executeSearch() {
     pageNumber: $.bbq.getState('page') || 1
   });
 }
-$('#search').click($.throttle(1000, true, pushSearch));
+
+function executeView() {
+  var id = $.bbq.getState('id');
+  $('#recipes-container').removeClass('d-none');
+  $('#recipes').bootstrapTable('refresh', {
+    url: '/api/recipes/' + encodeURIComponent(id) + '/view'
+  });
+}
 
 $('#recipes').on('page-change.bs.table', function(e, number, size) {
   $(window).off('hashchange').promise().then(function () {;

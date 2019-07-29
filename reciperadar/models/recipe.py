@@ -164,6 +164,8 @@ class Recipe(Storable, Searchable):
             for ingredient in self.ingredients
         ]
         data['domain'] = '{}.{}'.format(url_info.domain, url_info.suffix)
+        data['src'] = data.pop('url')
+        data['url'] = f'/#action=view&id={self.id}'
         return data
 
     @staticmethod

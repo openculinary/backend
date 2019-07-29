@@ -31,3 +31,4 @@ import reciperadar.api.recipes
 import reciperadar.api.redirects
 import reciperadar.api.reminders
 import reciperadar.api.search
+import reciperadar.api.view

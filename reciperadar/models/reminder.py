@@ -47,7 +47,7 @@ class Reminder(Storable):
         return Reminder(
             summary=recipe.title,
             description=description,
-            location='{}/api/redirect/recipe/{}'.format(base_uri, recipe.id),
+            location=f'{base_uri}/#action=view&id={recipe.id}',
             start_time=start_time,
             end_time=start_time + timedelta(minutes=recipe.time),
             timezone=timezone
