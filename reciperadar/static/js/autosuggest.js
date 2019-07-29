@@ -3,7 +3,7 @@ function bindIngredientInput(element, tagClass) {
     allowDuplicates: false,
     freeInput: false,
     maxTags: 20,
-    tagClass: 'tag badge badge-info' + (tagClass ? ' ' + tagClass : ''),
+    tagClass: 'badge badge-info' + (tagClass ? ' ' + tagClass : ''),
     typeahead: {
       source: function(query, process) {
         if (query.length < 3) return true;
