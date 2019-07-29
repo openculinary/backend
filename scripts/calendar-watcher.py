@@ -8,7 +8,7 @@ class CalendarWatcher(object):
         delivery = {
             'id': 'default',
             'type': 'webhook',
-            'address': 'https://staging.reciperadar.com/webhooks/calendar',
+            'address': 'https://staging.reciperadar.com/api/webhooks/calendar',
         }
         channel = calendar.events().watch(
             calendarId='calendar@reciperadar.com',
