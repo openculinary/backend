@@ -1,6 +1,6 @@
 from flask import jsonify, request
 
-from reciperadar.app import app
+from reciperadar import app
 from reciperadar.models.ingredient import Ingredient
 from reciperadar.models.recipe import Recipe
 

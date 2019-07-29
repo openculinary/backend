@@ -6,7 +6,7 @@ from urllib.parse import unquote
 from uuid import uuid4
 from validate_email import validate_email
 
-from reciperadar.app import app
+from reciperadar import app
 from reciperadar.models.email import Email
 from reciperadar.services.database import Database
 from reciperadar.workers.emails import issue_verification_token

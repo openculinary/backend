@@ -1,6 +1,6 @@
 from flask import abort, redirect
 
-from reciperadar.app import app
+from reciperadar import app
 from reciperadar.models.recipe import Recipe
 from reciperadar.services.database import Database
 

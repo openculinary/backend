@@ -5,7 +5,7 @@ from reciperadar.workers.broker import celery
 
 @celery.task
 def issue_verification_token(email, token):
-    from reciperadar.app import app, mail
+    from reciperadar import app, mail
     with app.app_context():
         message = Message(
             subject='Welcome to RecipeRadar!',
