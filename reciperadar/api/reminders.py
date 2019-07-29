@@ -6,7 +6,7 @@ from pytz.exceptions import UnknownTimeZoneError
 from urllib.parse import unquote
 from validate_email import validate_email
 
-from reciperadar.app import app
+from reciperadar import app
 from reciperadar.models.email import Email
 from reciperadar.models.recipe import Recipe
 from reciperadar.models.reminder import Reminder

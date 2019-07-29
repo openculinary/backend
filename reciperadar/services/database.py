@@ -16,7 +16,7 @@ class Database(object):
 
 
 def create_schema():
-    import reciperadar.app  # noqa
+    import reciperadar  # noqa
     from reciperadar.models.base import Storable
 
     db = Database()
