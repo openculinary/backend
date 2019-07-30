@@ -85,9 +85,13 @@ def process_recipe(recipe_id):
 
     try:
         save_recipe_image(recipe)
-        session.commit()
     except Exception:
-        pass
+        session.close()
+        return
+    if not recipe.image:
+        session.close()
+        return
 
-    index_recipe.delay(recipe_id)
+    session.commit()
     session.close()
+    index_recipe.delay(recipe_id)
