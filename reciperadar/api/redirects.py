@@ -12,4 +12,4 @@ def recipe_redirect(recipe_id):
     if not recipe:
         return abort(404)
     session.close()
-    return redirect(recipe.url, code=301)
+    return redirect(recipe.src, code=301)

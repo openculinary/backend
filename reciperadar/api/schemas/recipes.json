@@ -3,7 +3,7 @@
     "type": "object",
     "properties": {
       "title": {},
-      "url": {},
+      "src": {},
       "image": {},
       "ingredients": {
         "type": "array",
@@ -21,6 +21,6 @@
       "servings": {},
       "time": {}
     },
-    "required": ["title", "url", "ingredients", "servings", "time"]
+    "required": ["title", "src", "ingredients", "servings", "time"]
   }
 }

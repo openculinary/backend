@@ -69,7 +69,7 @@ class Recipe(Storable, Searchable):
 
     id = Column(String, primary_key=True)
     title = Column(String)
-    url = Column(String)
+    src = Column(String)
     image = Column(String)
     time = Column(Integer)
     servings = Column(Integer)
@@ -85,8 +85,8 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def from_dict(data):
-        url = normalize(data['url'])
-        recipe_id = b58encode(mmh3.hash_bytes(url)).decode('utf-8')
+        src = normalize(data['src'])
+        recipe_id = b58encode(mmh3.hash_bytes(src)).decode('utf-8')
 
         # Parse and de-duplicate ingredients
         ingredients = [
@@ -102,7 +102,7 @@ class Recipe(Storable, Searchable):
         return Recipe(
             id=recipe_id,
             title=data['title'],
-            url=url,
+            src=src,
             image=data.get('image'),
             ingredients=list(ingredients.values()),
             servings=data['servings'],
@@ -144,7 +144,7 @@ class Recipe(Storable, Searchable):
         return Recipe(
             id=doc['_id'],
             title=source['title'],
-            url=source['url'],
+            src=source['src'],
             image=source['image'],
             ingredients=[
                 RecipeIngredient.from_doc(ingredient)
@@ -156,15 +156,13 @@ class Recipe(Storable, Searchable):
         )
 
     def to_dict(self):
-        url_info = tldextract.extract(self.url)
-
         data = super().to_dict()
         data['ingredients'] = [
             ingredient.to_dict()
             for ingredient in self.ingredients
         ]
-        data['domain'] = '{}.{}'.format(url_info.domain, url_info.suffix)
-        data['src'] = data.pop('url')
+        src_info = tldextract.extract(self.src)
+        data['domain'] = '{}.{}'.format(src_info.domain, src_info.suffix)
         data['url'] = f'/#action=view&id={self.id}'
         return data
 
