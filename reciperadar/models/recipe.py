@@ -154,7 +154,7 @@ class Recipe(Storable, Searchable):
     def index(self):
         items = []
         items.append({'index': self.generate_action_metadata()})
-        items.append(self.to_dict())
+        items.append(self.to_doc())
         for ingredient in self.ingredients:
             items.append({'update': self.generate_action_metadata()})
             items.append({'script': ingredient.generate_update_script()})
@@ -205,6 +205,14 @@ class Recipe(Storable, Searchable):
             'domain': '{}.{}'.format(src_info.domain, src_info.suffix),
             'url': self.url,
         }
+
+    def to_doc(self):
+         data = super().to_doc()
+         data['ingredients'] = [
+             ingredient.to_doc()
+             for ingredient in self.ingredients
+         ]
+         return data
 
     @staticmethod
     def _generate_should_clause(include):

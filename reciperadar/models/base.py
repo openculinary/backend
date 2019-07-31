@@ -12,6 +12,11 @@ def decl_base(cls):
 class Storable(object):
 
     def to_dict(self):
+        # Return the doc representation by default
+        return self.to_doc()
+
+    def to_doc(self):
+        # Index all database fields by default
         return {
             c.name: getattr(self, c.name)
             for c in self.__table__.columns
@@ -44,6 +49,6 @@ class Searchable(object):
         return self.from_doc(doc)
 
     def index(self):
-        doc = self.to_dict()
+        doc = self.to_doc()
         doc_type = self.noun[:-1]
         self.es.index(index=self.noun, doc_type=doc_type, id=self.id, body=doc)
