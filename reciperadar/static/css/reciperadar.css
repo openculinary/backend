@@ -31,6 +31,17 @@ div.pagination-detail {
   display: none;
 }
 
-.strikethrough {
-  text-decoration: line-through;
+span.matched {
+  font-size: 100%;
+  color: white;
+  background-color: #17a2b8;
+}
+
+span.required {
+  font-size: 100%;
+}
+
+span.purchased {
+  color: white;
+  background-color: lime;
 }

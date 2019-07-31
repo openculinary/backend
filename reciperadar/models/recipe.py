@@ -21,16 +21,27 @@ class RecipeIngredient(Storable):
     quantity = Column(Float)
     units = Column(String)
     verb = Column(String)
+    state = None
+
+    STATE_MATCHED = 'matched'
+    STATE_REQUIRED = 'required'
 
     @staticmethod
-    def from_doc(doc):
+    def from_doc(doc, matches=None):
         ingredient = doc['ingredient'].strip()
         product = doc.get('product')
         quantity = doc.get('quantity')
         units = doc.get('units')
         verb = doc.get('verb')
-        id_string = '{}/{}'.format(ingredient, verb or 'undefined')
 
+        matches = matches or []
+        states = {
+            True: RecipeIngredient.STATE_MATCHED,
+            False: RecipeIngredient.STATE_REQUIRED,
+        }
+        state = states[product in matches]
+
+        id_string = '{}/{}'.format(ingredient, verb or 'undefined')
         ingredient_id = b58encode(mmh3.hash_bytes(id_string)).decode('utf-8')
         return RecipeIngredient(
             id=ingredient_id,
@@ -38,8 +49,28 @@ class RecipeIngredient(Storable):
             product=product,
             quantity=quantity,
             units=units,
-            verb=verb
+            verb=verb,
+            state=state
         )
+
+    def to_dict(self):
+        if self.product and self.product in self.ingredient:
+            tokens = self.ingredient.split(self.product, 1)
+            tokens = [{
+                'type': 'text',
+                'value': token,
+            } for token in tokens if token]
+            tokens.insert(1, {
+                'type': 'product',
+                'value': self.product,
+                'state': self.state,
+            })
+        else:
+            tokens = [{
+                'type': 'text',
+                'value': self.ingredient,
+            }]
+        return {'tokens': tokens}
 
     def generate_update_script(self):
         return {
@@ -82,6 +113,10 @@ class Recipe(Storable, Searchable):
     @property
     def noun(self):
         return 'recipes'
+
+    @property
+    def url(self):
+        return f'/#action=view&id={self.id}'
 
     @staticmethod
     def from_dict(data):
@@ -127,19 +162,19 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def matches(doc, includes):
-        matches = []
         highlights = []
         for item in doc.get('inner_hits', {}).values():
             for hit in item['hits']['hits']:
                 highlights += hit.get('highlight', {}) \
                               .get('ingredients.product', [])
+        matches = []
         for highlight in highlights:
             bs = BeautifulSoup(highlight, features='html.parser')
             matches += [em.text.lower() for em in bs.findAll('em')]
-        return {'matches': [inc for inc in includes if inc in matches]}
+        return matches
 
     @staticmethod
-    def from_doc(doc):
+    def from_doc(doc, matches=None):
         source = doc.pop('_source')
         return Recipe(
             id=doc['_id'],
@@ -147,7 +182,7 @@ class Recipe(Storable, Searchable):
             src=source['src'],
             image=source['image'],
             ingredients=[
-                RecipeIngredient.from_doc(ingredient)
+                RecipeIngredient.from_doc(ingredient, matches)
                 for ingredient in source['ingredients']
                 if ingredient['ingredient'].strip()
             ],
@@ -156,19 +191,24 @@ class Recipe(Storable, Searchable):
         )
 
     def to_dict(self):
-        data = super().to_dict()
-        data['ingredients'] = [
-            ingredient.to_dict()
-            for ingredient in self.ingredients
-        ]
         src_info = tldextract.extract(self.src)
-        data['domain'] = '{}.{}'.format(src_info.domain, src_info.suffix)
-        data['url'] = f'/#action=view&id={self.id}'
-        return data
+        return {
+            'id': self.id,
+            'title': self.title,
+            'time': self.time,
+            'image': self.image,
+            'ingredients': [
+                ingredient.to_dict()
+                for ingredient in self.ingredients
+            ],
+            'src': self.src,
+            'domain': '{}.{}'.format(src_info.domain, src_info.suffix),
+            'url': self.url,
+        }
 
     @staticmethod
     def _generate_should_clause(include):
-        highlight = {'type': 'fvh', 'fields': {'ingredients.product': {}}}
+        highlight = {'fields': {'ingredients.product': {}}}
         return [{
             'nested': {
                 'path': 'ingredients',
@@ -188,18 +228,6 @@ class Recipe(Storable, Searchable):
     @staticmethod
     def _generate_must_not_clause(include, exclude):
         return [{
-            'nested': {
-                'path': 'ingredients',
-                'query': {
-                    'match_phrase': {
-                        'ingredients.ingredient': {
-                            'query': '{} stock'.format(inc),
-                            'slop': 3
-                        }
-                    }
-                }
-            }
-        } for inc in include] + [{
             'nested': {
                 'path': 'ingredients',
                 'query': {'match_phrase': {'ingredients.product': exc}}
@@ -233,13 +261,13 @@ class Recipe(Storable, Searchable):
             }
         )
 
+        recipes = []
+        for result in results['hits']['hits']:
+            matches = self.matches(result, include)
+            recipe = Recipe.from_doc(result, matches)
+            recipes.append(recipe.to_dict())
+
         return {
             'total': min(results['hits']['total']['value'], 50 * limit),
-            'results': [
-                {
-                    **self.from_doc(result).to_dict(),
-                    **self.matches(result, include)
-                }
-                for result in results['hits']['hits']
-            ]
+            'results': recipes
         }

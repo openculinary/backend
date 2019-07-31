@@ -1,23 +1,29 @@
+function renderText(token) {
+  return token.value;
+}
+
+function renderProduct(token) {
+  return '<span class="tag badge ' + token.state + '" onclick="toggleIngredientState($(this))">' + token.value + '</span>'
+}
+
 function titleFormatter(value, row, index) {
   var ingredientHtml = '<ul>';
   row.ingredients.forEach(function(ingredient) {
-  ingredientHtml += '<li style="font-size: 13px"><div onclick="toggleIngredientState($(this))">' + ingredient.ingredient + '</div></li> ';
+    ingredientHtml += '<li style="font-size: 13px">';
+    ingredient.tokens.forEach(function(token) {
+      switch (token.type) {
+        case 'text': ingredientHtml += renderText(token); break;
+        case 'product': ingredientHtml += renderProduct(token); break;
+      }
+    });
+    ingredientHtml += '</li>';
   });
   ingredientHtml += '</ul>'
   return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" alt="" />&nbsp;&nbsp;<a href="' + row.src + '">' + row.title + '</a><br /><br />' + ingredientHtml;
 }
 
 function imageFormatter(value, row, index) {
-  var matchHtml = '<div style="width: 192px">';
-  if (row.matches) {
-    row.matches.forEach(function(match) {
-      matchHtml += '<span class="tag badge badge-info">' + match + '</span> ';
-    });
-  }
-  $('#exclude').val().forEach(function(exclude) {
-    matchHtml += '<span class="tag badge badge-info badge-exclude">no: ' + exclude + '</span> ';
-  });
-  return '</div><img style="max-width: 192px" src="' + value + '" alt="' + row.title + '"><hr />' + matchHtml;
+  return '<img style="max-width: 192px" src="' + value + '" alt="' + row.title + '">';
 }
 
 function metadataFormatter(value, row, index) {

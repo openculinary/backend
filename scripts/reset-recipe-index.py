@@ -24,9 +24,7 @@ mapping = {
                     'term_vector': 'with_positions_offsets'
                 },
                 'product': {
-                    'type': 'text',
-                    'norms': False,
-                    'term_vector': 'with_positions_offsets'
+                    'type': 'keyword'
                 }
             }
         }
