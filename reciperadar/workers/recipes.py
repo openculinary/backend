@@ -13,13 +13,11 @@ from reciperadar.workers.broker import celery
 def process_ingredients(recipe):
     ingredients_by_desc = {}
     for ingredient in recipe.ingredients:
-        ingredients_by_desc[ingredient.ingredient] = ingredient
+        ingredients_by_desc[ingredient.ingredient.lower()] = ingredient
 
-    tagger_uri = os.environ['INGREDIENT_PARSER_URI']
-    parsed_ingredients = requests.get(
-        url='{}/parse'.format(tagger_uri),
-        params={'ingredients[]': [i.ingredient for i in recipe.ingredients]}
-    ).json()
+    url = '{}/parse'.format(os.environ['INGREDIENT_PARSER_URI'])
+    qs = {'ingredients[]': ingredients_by_desc.keys()}
+    parsed_ingredients = requests.get(url=url, params=qs).json()
 
     for parsed_ingredient in parsed_ingredients:
         input_desc = parsed_ingredient['input']

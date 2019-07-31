@@ -1,3 +1,3 @@
 function toggleIngredientState(element) {
-  element.toggleClass('strikethrough');
+  element.toggleClass('purchased');
 }

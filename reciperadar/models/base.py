@@ -47,30 +47,3 @@ class Searchable(object):
         doc = self.to_dict()
         doc_type = self.noun[:-1]
         self.es.index(index=self.noun, doc_type=doc_type, id=self.id, body=doc)
-
-    def autosuggest(self, prefix):
-        prefix = prefix.lower()
-        results = self.es.search(
-            index=self.noun,
-            body={
-                'query': {
-                    'bool': {
-                        'should': [
-                            {'match': {'name': prefix}},
-                            {'prefix': {'name': {'value': prefix}}},
-                        ]
-                    }
-                },
-                'size': 25
-            }
-        )
-        results = [
-            self.from_doc(result)
-            for result in results['hits']['hits']
-        ]
-        results.sort(key=lambda r: (
-            r['name'] != prefix,  # exact matches first
-            not r['name'].startswith(prefix),  # prefix matches next
-            len(r['name'])),  # sort remaining matches by length
-        )
-        return results[:10]
