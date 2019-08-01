@@ -10,7 +10,7 @@
 	"items": {
 	  "type": "object",
           "properties": {
-            "ingredient": {},
+            "description": {},
             "quantity": {},
             "units": {},
             "product": {},
