@@ -18,13 +18,18 @@ mapping = {
         'ingredients': {
             'type': 'nested',
             'properties': {
-                'ingredient': {
+                'description': {
                     'type': 'text',
                     'norms': False,
                     'term_vector': 'with_positions_offsets'
                 },
                 'product': {
-                    'type': 'keyword'
+                    'properties': {
+                        'raw': {'type': 'keyword'},
+                        'is_plural': {'type': 'boolean'},
+                        'singular': {'type': 'keyword'},
+                        'plural': {'type': 'keyword'},
+                    }
                 }
             }
         }

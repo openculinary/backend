@@ -5,7 +5,7 @@ import os
 import requests
 from unicodedata import numeric
 
-from reciperadar.models.recipe import Recipe
+from reciperadar.models.recipe import Recipe, IngredientProduct
 from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 
@@ -13,7 +13,7 @@ from reciperadar.workers.broker import celery
 def process_ingredients(recipe):
     ingredients_by_desc = {}
     for ingredient in recipe.ingredients:
-        ingredients_by_desc[ingredient.ingredient.lower()] = ingredient
+        ingredients_by_desc[ingredient.description.lower()] = ingredient
 
     url = '{}/parse'.format(os.environ['INGREDIENT_PARSER_URI'])
     qs = {'ingredients[]': ingredients_by_desc.keys()}
@@ -25,7 +25,8 @@ def process_ingredients(recipe):
         if ingredient is None:
             continue
         if 'name' in parsed_ingredient:
-            ingredient.product = parsed_ingredient['name']
+            product_doc = {'raw': parsed_ingredient['name']}
+            ingredient.product = IngredientProduct.from_doc(product_doc)
         if 'qty' in parsed_ingredient:
             ingredient.quantity = 0
             fragments = parsed_ingredient['qty'].split()

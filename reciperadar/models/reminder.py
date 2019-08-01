@@ -40,7 +40,7 @@ class Reminder(Storable):
     @staticmethod
     def from_scheduled_recipe(recipe, start_time, timezone):
         description = '\n'.join([
-            ingredient.ingredient
+            ingredient.description
             for ingredient in recipe.ingredients
         ])
         base_uri = 'https://staging.reciperadar.com'
