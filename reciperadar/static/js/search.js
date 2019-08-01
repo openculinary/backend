@@ -63,11 +63,11 @@ function executeSearch() {
     include: $('#include').val(),
     exclude: $('#exclude').val()
   };
-  $('#recipes-container').removeClass('d-none');
   $('#recipes').bootstrapTable('refresh', {
     url: '/api/recipes/search?' + $.param(params),
-    pageNumber: $.bbq.getState('page') || 1
+    pageNumber: Number($.bbq.getState('page') || 1)
   });
+  $('#recipes-container').removeClass('d-none');
 }
 
 function executeView() {
