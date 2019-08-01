@@ -265,6 +265,14 @@ class Recipe(Storable, Searchable):
         } for idx, inc in enumerate(include, start=1)]
 
     @staticmethod
+    def _generate_relevance_sort():
+        return [{'_score': 'desc'}]
+
+    @staticmethod
+    def _generate_duration_sort():
+        return [{'time': 'asc'}]
+
+    @staticmethod
     def _generate_must_not_clause(include, exclude):
         return [{
             'nested': {
@@ -281,13 +289,20 @@ class Recipe(Storable, Searchable):
             }
         } for exc in exclude]
 
-    def search(self, include, exclude, offset, limit):
+    def search(self, include, exclude, offset, limit, sort):
         offset = max(0, offset)
         limit = max(1, limit)
         limit = min(25, limit)
 
         should_clause = self._generate_should_clause(include)
         must_not_clause = self._generate_must_not_clause(include, exclude)
+
+        sort = sort or 'relevance'
+        sort_clauses = {
+            'relevance': Recipe._generate_relevance_sort,
+            'duration': Recipe._generate_duration_sort,
+        }
+        sort_clause = sort_clauses[sort]()
 
         results = self.es.search(
             index=self.noun,
@@ -303,7 +318,8 @@ class Recipe(Storable, Searchable):
                         ],
                         'minimum_should_match': 1 if should_clause else 0
                     }
-                }
+                },
+                'sort': sort_clause
             }
         )
 

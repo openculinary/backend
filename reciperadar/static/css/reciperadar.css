@@ -27,10 +27,6 @@ body a {
   color: #05d;
 }
 
-div.pagination-detail {
-  display: none;
-}
-
 span.matched {
   font-size: 100%;
   color: white;

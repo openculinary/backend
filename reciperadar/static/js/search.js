@@ -63,6 +63,8 @@ function executeSearch() {
     include: $('#include').val(),
     exclude: $('#exclude').val()
   };
+  var sortChoice = $.bbq.getState('sort');
+  if (sortChoice) params['sort'] = sortChoice;
   $('#recipes').bootstrapTable('refresh', {
     url: '/api/recipes/search?' + $.param(params),
     pageNumber: Number($.bbq.getState('page') || 1)
@@ -88,6 +90,32 @@ $('#recipes').on('page-change.bs.table', function(e, number, size) {
 });
 $('#recipes').on('load-success.bs.table', function() {
   new ClipboardJS('#recipes .btn-outline-primary');
+});
+$('#recipes').on('load-success.bs.table', function() {
+  var sortOptions = [
+    {val: 'relevance', text: 'most ingredients found'},
+    {val: 'duration', text: 'shortest time to make'},
+  ];
+  var sortChoice = $.bbq.getState('sort') || sortOptions[0].val;
+
+  var sortSelect = $('<select>');
+  $(sortOptions).each(function() {
+    var sortOption = $('<option>');
+    sortOption.text(this.text);
+    sortOption.attr('value', this.val);
+    if (sortChoice === this.val) sortOption.attr('selected', 'selected');
+    sortSelect.append(sortOption);
+  });
+  sortSelect.on('change', function() {
+    $.bbq.pushState({'sort': this.value});
+  });
+
+  var sortPrompt = $('<span>').text('Order by ');
+  sortSelect.appendTo(sortPrompt);
+
+  var paginationDetail = $('#recipes-container div.pagination-detail');
+  paginationDetail.empty();
+  sortPrompt.appendTo(paginationDetail);
 });
 $('#calendarize').on('show.bs.modal', function (e) {
   var recipeId = $(e.relatedTarget).data('recipe-id');
