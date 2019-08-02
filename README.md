@@ -7,7 +7,6 @@ wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add
 sudo apt install \
   elasticsearch-oss \
   libpq-dev \
-  nginx \
   pipenv \
   postgresql \
   rabbitmq-server
@@ -23,6 +22,5 @@ python -m reciperadar.services.database
 ## Initialize the search indices
 ```
 pipenv shell
-python scripts/reset-ingredient-index.py
 python scripts/reset-recipe-index.py
 ```
