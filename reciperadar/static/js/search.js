@@ -53,6 +53,8 @@ function pushSearch() {
       state[fragment] = data.join(',');
     }
   })
+  var sortChoice = $.bbq.getState('sort');
+  if (sortChoice) state['sort'] = sortChoice;
   // bbq merge mode 2: completely replace fragment state
   $.bbq.pushState(state, 2);
 }
@@ -93,7 +95,8 @@ $('#recipes').on('load-success.bs.table', function() {
 });
 $('#recipes').on('load-success.bs.table', function() {
   var sortOptions = [
-    {val: 'relevance', text: 'most ingredients found'},
+    {val: 'relevance', text: 'most relevant'},
+    {val: 'ingredients', text: 'fewest extras required'},
     {val: 'duration', text: 'shortest time to make'},
   ];
   var sortChoice = $.bbq.getState('sort') || sortOptions[0].val;

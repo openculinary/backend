@@ -27,6 +27,14 @@ body a {
   color: #05d;
 }
 
+#recipes-container span.pagination-info {
+  display: none;
+}
+
+#recipes-container span.page-list {
+  display: none;
+}
+
 span.matched {
   font-size: 100%;
   color: white;

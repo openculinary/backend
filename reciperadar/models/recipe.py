@@ -232,52 +232,58 @@ class Recipe(Storable, Searchable):
             ingredient.to_doc()
             for ingredient in self.ingredients
         ]
+        data['ingredient_count'] = len(self.ingredients)
         return data
 
     @staticmethod
-    def _generate_should_clause(include):
+    def _generate_must_clause(include):
+        if not include:
+            return {'match_all': {}}
+
         highlight = {
             'fields': {
                 'ingredients.product.singular': {},
                 'ingredients.product.plural': {},
             }
         }
-        return [{
+        return {
+            # sum the cumulative score of all ingredients which match the query
             'nested': {
                 'path': 'ingredients',
+                'score_mode': 'sum',
                 'query': {
+                    # return a constant score for each ingredient which matches
                     'constant_score': {
-                        'boost': 1.0 / idx,
+                        'boost': 1,
                         'filter': {
-                            'multi_match': {
-                                'query': inc,
-                                'fields': [
-                                    'ingredients.product.singular',
-                                    'ingredients.product.plural',
-                                ]
+                            'bool': {
+                                'should': [{
+                                    # match on singular or plural product names
+                                    'multi_match': {
+                                        'query': inc,
+                                        'fields': [
+                                            'ingredients.product.singular',
+                                            'ingredients.product.plural',
+                                        ]
+                                    }
+                                } for inc in include]
                             }
                         }
                     }
                 },
-                'inner_hits': {'highlight': highlight, 'name': inc},
-                'score_mode': 'max'
+                # apply highlighting to matched product names
+                'inner_hits': {'highlight': highlight, 'size': 25}
             }
-        } for idx, inc in enumerate(include, start=1)]
-
-    @staticmethod
-    def _generate_relevance_sort():
-        return [{'_score': 'desc'}]
-
-    @staticmethod
-    def _generate_duration_sort():
-        return [{'time': 'asc'}]
+        }
 
     @staticmethod
     def _generate_must_not_clause(include, exclude):
+        # match any ingredients in the exclude list
         return [{
             'nested': {
                 'path': 'ingredients',
                 'query': {
+                    # match on singular or plural product names
                     'multi_match': {
                         'query': exc,
                         'fields': [
@@ -289,37 +295,72 @@ class Recipe(Storable, Searchable):
             }
         } for exc in exclude]
 
+    @staticmethod
+    def _generate_sort_params(include, sort):
+        # don't score relevance searches if no query ingredients are provided
+        if sort == 'relevance' and not include:
+            return {'script': '0', 'order': 'desc'}
+
+        preamble = '''
+            def inv_score = 1 / (_score + 1);
+            def ingredient_count = doc.ingredient_count.value;
+        '''
+        sort_configs = {
+            # rank: number of ingredient matches
+            # tiebreak: percentage of recipe matched
+            'relevance': {
+                'script': f'{preamble} _score + (_score / ingredient_count)',
+                'order': 'desc'
+            },
+
+            # rank: number of missing ingredients
+            # tiebreak: number of ingredient matches
+            'ingredients': {
+                'script': f'{preamble} ingredient_count - _score + inv_score',
+                'order': 'asc'
+            },
+
+            # rank: preparation time
+            # tiebreak: number of ingredient matches
+            'duration': {
+                'script': f'{preamble} doc.time.value + inv_score',
+                'order': 'asc'
+            },
+        }
+        return sort_configs[sort]
+
     def search(self, include, exclude, offset, limit, sort):
         offset = max(0, offset)
         limit = max(1, limit)
         limit = min(25, limit)
-
-        should_clause = self._generate_should_clause(include)
-        must_not_clause = self._generate_must_not_clause(include, exclude)
-
         sort = sort or 'relevance'
-        sort_clauses = {
-            'relevance': Recipe._generate_relevance_sort,
-            'duration': Recipe._generate_duration_sort,
+
+        must_clause = self._generate_must_clause(include)
+        must_not_clause = self._generate_must_not_clause(include, exclude)
+        sort_params = self._generate_sort_params(include, sort)
+
+        query = {
+            'function_score': {
+                'boost_mode': 'replace',
+                'query': {
+                    'bool': {
+                        'must': must_clause,
+                        'must_not': must_not_clause,
+                        'filter': [{'range': {'time': {'gte': 5}}}]
+                    }
+                },
+                'script_score': {'script': {'source': sort_params['script']}}
+            }
         }
-        sort_clause = sort_clauses[sort]()
+        sort = [{'_score': sort_params['order']}]
 
         results = self.es.search(
             index=self.noun,
             body={
                 'from': offset,
                 'size': limit,
-                'query': {
-                    'bool': {
-                        'should': should_clause,
-                        'must_not': must_not_clause,
-                        'filter': [
-                            {'range': {'time': {'gte': 5}}}
-                        ],
-                        'minimum_should_match': 1 if should_clause else 0
-                    }
-                },
-                'sort': sort_clause
+                'query': query,
+                'sort': sort,
             }
         )
 
