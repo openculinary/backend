@@ -108,6 +108,9 @@ class RecipeIngredient(Storable):
         )
 
     def to_dict(self):
+        self.description = self.description.lower()
+        self.description = self.description.replace('i ', 'I ')
+
         if self.product and self.product.raw in self.description:
             tokens = self.description.split(self.product.raw, 1)
             tokens = [{
