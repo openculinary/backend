@@ -49,3 +49,20 @@ span.purchased {
   color: white;
   background-color: lime;
 }
+
+#recipes-container table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+#recipes-container tr {
+  outline: thin solid silver;
+}
+
+#recipes-container td {
+  border: none;
+}
+
+#recipes-container th {
+  border: none;
+}

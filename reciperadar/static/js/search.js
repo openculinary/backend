@@ -30,7 +30,7 @@ function metadataFormatter(value, row, index) {
   var duration = moment.duration(row.time, 'minutes');
   return `
 <table style="font-size: 12px">
-  <tr>
+  <tr style="outline: none">
     <th colspan="2">
       <span style="white-space: nowrap">
         <button class="btn btn-outline-success" aria-label="Add to calendar" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" alt="" /></button>
@@ -39,7 +39,10 @@ function metadataFormatter(value, row, index) {
       </span>
     </th>
   </tr>
-  <tr><th>time</th><td>` + duration.as('minutes') + ` mins</td></tr>
+  <tr style="outline: none">
+    <th>time</th>
+    <td>` + duration.as('minutes') + ` mins</td>
+  </tr>
 </table>
 `;
 }
