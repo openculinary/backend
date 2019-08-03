@@ -50,9 +50,17 @@ span.purchased {
   background-color: lime;
 }
 
+div.fixed-table-body {
+  padding: 1px;
+}
+
 #recipes-container table {
   border-collapse: separate;
   border-spacing: 0 1em;
+}
+
+#recipes-container tr:hover {
+  background-color: inherit;
 }
 
 #recipes-container tr {
@@ -65,4 +73,21 @@ span.purchased {
 
 #recipes-container th {
   border: none;
+}
+
+#recipes-container table.metadata {
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+#recipes-container table.metadata tr {
+  outline: none;
+}
+
+#recipes-container table.metadata th {
+  padding: 0;
+}
+
+#recipes-container table.metadata span {
+  white-space: nowrap;
 }

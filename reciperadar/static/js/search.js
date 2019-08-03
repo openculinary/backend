@@ -29,17 +29,17 @@ function imageFormatter(value, row, index) {
 function metadataFormatter(value, row, index) {
   var duration = moment.duration(row.time, 'minutes');
   return `
-<table style="font-size: 12px">
-  <tr style="outline: none">
+<table class="metadata">
+  <tr>
     <th colspan="2">
-      <span style="white-space: nowrap">
+      <span>
         <button class="btn btn-outline-success" aria-label="Add to calendar" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" alt="" /></button>
         <button class="btn btn-outline-warning" aria-label="Share by email"><a href="mailto:?subject=` + row.title + `&body=` + encodeURIComponent(window.location.origin + row.url) + `" aria-label="Share by email"><img src="images/icons/mail.svg" alt="" /></a></button>
         <button class="btn btn-outline-primary" aria-label="Copy to clipboard" data-clipboard-text="` + window.location.origin + row.url + `"><img src="images/icons/link.svg" alt="" /></button>
       </span>
     </th>
   </tr>
-  <tr style="outline: none">
+  <tr>
     <th>time</th>
     <td>` + duration.as('minutes') + ` mins</td>
   </tr>
