@@ -40,7 +40,7 @@ function metadataFormatter(value, row, index) {
     </th>
   </tr>
   <tr>
-    <th>time</th>
+    <td><strong>time</strong></td>
     <td>` + duration.as('minutes') + ` mins</td>
   </tr>
 </table>

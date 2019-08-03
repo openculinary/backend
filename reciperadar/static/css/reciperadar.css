@@ -64,7 +64,7 @@ div.fixed-table-body {
 }
 
 #recipes-container tr {
-  outline: thin solid silver;
+  outline: thin solid rgba(0, 0, 0, 0.125);
 }
 
 #recipes-container td {
