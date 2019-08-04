@@ -16,8 +16,8 @@ def ingredients():
 def recipes():
     include = request.args.getlist('include[]')
     exclude = request.args.getlist('exclude[]')
-    offset = request.args.get('offset', type=int, default=0)
-    limit = request.args.get('limit', type=int, default=10)
+    offset = min(request.args.get('offset', type=int, default=0), (50 * 10) - 10)
+    limit = min(request.args.get('limit', type=int, default=10), 10)
     sort = request.args.get('sort')
     results = Recipe().search(include, exclude, offset, limit, sort)
     return jsonify(results)
