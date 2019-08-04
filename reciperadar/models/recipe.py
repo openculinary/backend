@@ -239,7 +239,7 @@ class Recipe(Storable, Searchable):
         return data
 
     @staticmethod
-    def _generate_must_clause(include):
+    def _generate_should_clause(include):
         if not include:
             return {'match_all': {}}
 
@@ -276,7 +276,7 @@ class Recipe(Storable, Searchable):
         } for inc in include]
 
     @staticmethod
-    def _generate_must_not_clause(include, exclude):
+    def _generate_should_not_clause(include, exclude):
         # match any ingredients in the exclude list
         return [{
             'nested': {
@@ -338,8 +338,8 @@ class Recipe(Storable, Searchable):
         limit = min(25, limit)
         sort = sort or 'relevance'
 
-        must_clause = self._generate_must_clause(include)
-        must_not_clause = self._generate_must_not_clause(include, exclude)
+        should_clause = self._generate_should_clause(include)
+        must_not_clause = self._generate_should_not_clause(include, exclude)
         sort_params = self._generate_sort_params(include, sort)
 
         query = {
@@ -347,9 +347,10 @@ class Recipe(Storable, Searchable):
                 'boost_mode': 'replace',
                 'query': {
                     'bool': {
-                        'must': must_clause,
+                        'should': should_clause,
                         'must_not': must_not_clause,
-                        'filter': [{'range': {'time': {'gte': 5}}}]
+                        'filter': [{'range': {'time': {'gte': 5}}}],
+                        'minimum_should_match': '1<75%'
                     }
                 },
                 'script_score': {'script': {'source': sort_params['script']}}
