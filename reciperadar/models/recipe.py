@@ -317,14 +317,14 @@ class Recipe(Storable, Searchable):
             },
 
             # rank: number of missing ingredients
-            # tiebreak: number of ingredient matches
+            # tiebreak: percentage of recipe matched
             'ingredients': {
                 'script': f'{preamble} missing_count + present_ratio',
                 'order': 'asc'
             },
 
             # rank: preparation time
-            # tiebreak: number of missing ingredients
+            # tiebreak: percentage of missing ingredients
             'duration': {
                 'script': f'{preamble} doc.time.value + missing_ratio',
                 'order': 'asc'
