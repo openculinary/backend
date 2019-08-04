@@ -89,6 +89,8 @@ $('#recipes').on('page-change.bs.table', function(e, number, size) {
   $(window).off('hashchange').promise().then(function () {;
     if (number > 1) $.bbq.pushState({'page': number});
     else $.bbq.removeState('page');
+    var scrollTop = $("#recipes-container").offset().top;
+    $('html, body').animate({scrollTop: scrollTop}, 500);
   }).promise().then(function() {
     $(window).on('hashchange', loadState);
   });
