@@ -249,35 +249,31 @@ class Recipe(Storable, Searchable):
                 'ingredients.product.plural': {},
             }
         }
-        return {
-            # sum the cumulative score of all ingredients which match the query
+        return [{
+            # sum the score of query ingredients found in the recipe
             'nested': {
                 'path': 'ingredients',
                 'score_mode': 'sum',
                 'query': {
-                    # return a constant score for each ingredient which matches
+                    # return a constant score for each ingredient match
                     'constant_score': {
                         'boost': 1,
                         'filter': {
-                            'bool': {
-                                'should': [{
-                                    # match on singular or plural product names
-                                    'multi_match': {
-                                        'query': inc,
-                                        'fields': [
-                                            'ingredients.product.singular',
-                                            'ingredients.product.plural',
-                                        ]
-                                    }
-                                } for inc in include]
+                            # match on singular or plural product names
+                            'multi_match': {
+                                'query': inc,
+                                'fields': [
+                                    'ingredients.product.singular',
+                                    'ingredients.product.plural',
+                                ]
                             }
                         }
                     }
                 },
                 # apply highlighting to matched product names
-                'inner_hits': {'highlight': highlight, 'size': 25}
+                'inner_hits': {'name': inc, 'highlight': highlight, 'size': 25}
             }
-        }
+        } for inc in include]
 
     @staticmethod
     def _generate_must_not_clause(include, exclude):
