@@ -303,26 +303,30 @@ class Recipe(Storable, Searchable):
         preamble = '''
             def inv_score = 1 / (_score + 1);
             def ingredient_count = doc.ingredient_count.value;
+            def missing_count = ingredient_count - _score;
+
+            def missing_ratio = missing_count / ingredient_count;
+            def present_ratio = _score / ingredient_count;
         '''
         sort_configs = {
             # rank: number of ingredient matches
             # tiebreak: percentage of recipe matched
             'relevance': {
-                'script': f'{preamble} _score + (_score / ingredient_count)',
+                'script': f'{preamble} _score + present_ratio',
                 'order': 'desc'
             },
 
             # rank: number of missing ingredients
             # tiebreak: number of ingredient matches
             'ingredients': {
-                'script': f'{preamble} ingredient_count - _score + inv_score',
+                'script': f'{preamble} missing_count + present_ratio',
                 'order': 'asc'
             },
 
             # rank: preparation time
-            # tiebreak: number of ingredient matches
+            # tiebreak: number of missing ingredients
             'duration': {
-                'script': f'{preamble} doc.time.value + inv_score',
+                'script': f'{preamble} doc.time.value + missing_ratio',
                 'order': 'asc'
             },
         }
