@@ -111,7 +111,7 @@ $('#recipes').on('load-success.bs.table', function() {
   ];
   var sortChoice = $.bbq.getState('sort') || sortOptions[0].val;
 
-  var sortSelect = $('<select>');
+  var sortSelect = $('<select>').attr('aria-label', 'Recipe sort selection');
   $(sortOptions).each(function() {
     var sortOption = $('<option>');
     sortOption.text(this.text);
