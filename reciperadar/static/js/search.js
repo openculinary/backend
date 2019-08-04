@@ -47,6 +47,11 @@ function metadataFormatter(value, row, index) {
 `;
 }
 
+function scrollToSearchResults() {
+  var scrollTop = $("#recipes-container").offset().top;
+  $('html, body').animate({scrollTop: scrollTop}, 500);
+}
+
 function pushSearch() {
   var state = {'action': 'search'};
   ['#include', '#exclude'].forEach(function (element) {
@@ -75,6 +80,7 @@ function executeSearch() {
     pageNumber: Number($.bbq.getState('page') || 1)
   });
   $('#recipes-container').removeClass('d-none');
+  scrollToSearchResults();
 }
 
 function executeView() {
@@ -89,8 +95,7 @@ $('#recipes').on('page-change.bs.table', function(e, number, size) {
   $(window).off('hashchange').promise().then(function () {;
     if (number > 1) $.bbq.pushState({'page': number});
     else $.bbq.removeState('page');
-    var scrollTop = $("#recipes-container").offset().top;
-    $('html, body').animate({scrollTop: scrollTop}, 500);
+    scrollToSearchResults();
   }).promise().then(function() {
     $(window).on('hashchange', loadState);
   });
