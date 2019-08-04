@@ -115,12 +115,12 @@ $('#recipes').on('load-success.bs.table', function() {
     sortSelect.append(sortOption);
   });
   sortSelect.on('change', function() {
-    $(window).off('hashchange').promise().then(function () {;
+    var sort = this.value;
+    $(window).off('hashchange').promise().then(function () {
       $.bbq.removeState('page');
-      $.bbq.pushState({'sort': this.value});
-      loadState();
-    }).promise().then(function() {
-      $(window).on('hashchange', loadState);
+      $(window).on('hashchange', loadState).promise().then(function () {
+        $.bbq.pushState({'sort': sort});
+      });
     });
   });
 
