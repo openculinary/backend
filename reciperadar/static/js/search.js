@@ -113,7 +113,13 @@ $('#recipes').on('load-success.bs.table', function() {
     sortSelect.append(sortOption);
   });
   sortSelect.on('change', function() {
-    $.bbq.pushState({'sort': this.value});
+    $(window).off('hashchange').promise().then(function () {;
+      $.bbq.removeState('page');
+      $.bbq.pushState({'sort': this.value});
+      loadState();
+    }).promise().then(function() {
+      $(window).on('hashchange', loadState);
+    });
   });
 
   var sortPrompt = $('<span>').text('Order by ');
