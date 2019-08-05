@@ -12,8 +12,33 @@ input, .bootstrap-tagsinput {
   width: 64px;
 }
 
-.badge-exclude {
-  background-color: maroon;
+span.tag.badge {
+  color: black;
+  font-size: 13px;
+}
+
+span.tag.badge-info {
+  background-color: #b0b0ff;
+}
+
+span.tag.badge-exclude {
+  background-color: #ffb0b0;
+}
+
+span.tag.matched {
+  background-color: #b0b0ff;
+}
+
+span.tag.required {
+  background:color: #f0f0f0;
+}
+
+span.tag.shopping-list {
+  background-color: #b0ffb0;
+}
+
+span.shopping-list.purchased {
+  background-color: white;
 }
 
 .dot {
@@ -37,27 +62,6 @@ body a {
 
 #recipes-container li.page-item a {
   z-index: 0;
-}
-
-span.matched {
-  font-size: 13px;
-  color: white;
-  background-color: #17a2b8;
-}
-
-span.required {
-  font-size: 13px;
-}
-
-span.shopping-list {
-  font-size: 13px;
-  color: white;
-  background-color: olive;
-}
-
-span.shopping-list.purchased {
-  color: white;
-  background-color: lime;
 }
 
 div.fixed-table-body {
