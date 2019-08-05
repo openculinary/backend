@@ -151,3 +151,20 @@ div.fixed-table-body {
   overflow-x: auto;
   overflow-y: auto;
 }
+
+/* accessibility overrides: contrast workarounds for Bootstrap */
+button.btn-primary {
+  /* bootstrap: background-color: #007bff; */
+  background-color: #0069d9;
+}
+
+button.btn-primary:hover {
+  /* bootstrap: background-color: #0069d9; */
+  background-color: #0057b7;
+}
+
+li.page-item a {
+  /* bootstrap: color: #007bff; */
+  color: #0069d9;
+}
+/* end accessibility overrides */
