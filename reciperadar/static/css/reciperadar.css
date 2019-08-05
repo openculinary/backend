@@ -35,17 +35,27 @@ body a {
   display: none;
 }
 
+#recipes-container li.page-item a {
+  z-index: 0;
+}
+
 span.matched {
-  font-size: 100%;
+  font-size: 13px;
   color: white;
   background-color: #17a2b8;
 }
 
 span.required {
-  font-size: 100%;
+  font-size: 13px;
 }
 
-span.purchased {
+span.shopping-list {
+  font-size: 13px;
+  color: white;
+  background-color: olive;
+}
+
+span.shopping-list.purchased {
   color: white;
   background-color: lime;
 }
@@ -90,4 +100,54 @@ div.fixed-table-body {
 
 #recipes-container table.metadata span {
   white-space: nowrap;
+}
+
+#sidebar {
+  position: fixed;
+  top: 1rem;
+  right: 8px;
+  height: calc(100vh - 1rem);
+}
+
+#shopping-list-toggle {
+  padding: 4px;
+}
+
+#shopping-list-card {
+  display: block;
+
+  position: fixed;
+  right: -300px;
+  height: 100%;
+  width: 300px;
+
+  animation: slide-right 0.4s;
+}
+
+@keyframes slide-right {
+  from { right: 8px; }
+  to { right: -300px; }
+}
+
+#shopping-list-card.active {
+  display: block;
+
+  position: fixed;
+  right: 8px;
+  height: 100%;
+  width: 300px;
+
+  animation: slide-left 0.4s;
+}
+
+@keyframes slide-left {
+  from { right: -300px; }
+  to { right: 8px; }
+}
+
+#shopping-list-content {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
 }

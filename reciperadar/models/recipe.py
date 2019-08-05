@@ -121,6 +121,8 @@ class RecipeIngredient(Storable):
                 'type': 'product',
                 'value': self.product.raw,
                 'state': self.product.state,
+                'singular': self.product.singular,
+                'plural': self.product.plural,
             })
         else:
             tokens = [{

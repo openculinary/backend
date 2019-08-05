@@ -66,7 +66,6 @@
           <tr>
             <th class="align-top" data-field="image" data-formatter="imageFormatter">Image</th>
             <th class="align-top" data-field="title" data-formatter="titleFormatter">Name</th>
-            <th class="align-top" data-field="time" data-formatter="metadataFormatter">Metadata</th>
           </tr>
         </thead>
       </table>
@@ -100,10 +99,26 @@
       </div>
     </footer>
 
+    <div id="sidebar">
+      <div class="card">
+        <button id="shopping-list-toggle" class="btn btn-default" aria-label="Toggle shopping list display">
+          <img src="images/icons/list.svg" alt="" />
+	</button>
+      </div>
+      <div id="shopping-list-card" class="card card-body">
+        <div>Shopping List</div>
+	<br />
+	<div id="shopping-list-content">
+	  <ul id="shopping-list" />
+        </div>
+      </div>
+    </div>
+
     <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
     <script src="vendors/jquery/jquery-1.8.3-browser-deprecated.js"></script>
     <script src="vendors/jquery-bbq/jquery.ba-bbq.min.js"></script>
     <script src="vendors/jquery-bbq/jquery-debounce-throttle.min.js"></script>
+    <script src="vendors/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="vendors/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
