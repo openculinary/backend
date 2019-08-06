@@ -96,6 +96,10 @@ div.fixed-table-body {
   padding-bottom: 0.5rem;
 }
 
+#sidebar {
+  position: fixed;
+}
+
 #sidebar button.pullout {
   position: fixed;
   right: 10px;
@@ -106,9 +110,8 @@ div.fixed-table-body {
   display: block;
   position: fixed;
   top: 1rem;
-
-  width: 300px;
   height: calc(100vh - 2rem);
+  width: 300px;
 
   right: -280px;
   animation: slide-right 0.4s;
