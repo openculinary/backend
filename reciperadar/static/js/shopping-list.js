@@ -35,6 +35,8 @@ function renderShoppingList() {
   if (Object.keys(shoppingList.recipes).length) {
     $('#sidebar').removeClass('d-none');
     $('#shopping-list-card').addClass('active');
+  } else {
+    $('#shopping-list-card').removeClass('active');
   }
 
   var recipeListHtml = $('<ul />');
@@ -97,6 +99,7 @@ function addToShoppingList(element) {
     }
     shoppingList.products[product.singular].recipes[recipe.id] = {};
   });
+
   storeShoppingList(shoppingList);
   renderShoppingList();
 }
@@ -108,17 +111,15 @@ function removeFromShoppingList() {
   delete shoppingList.recipes[recipeId];
 
   var productsToRemove = [];
-  $.each(shoppingList.products, function(product) {
-    var product = shoppingList.products[product];
+  $.each(shoppingList.products, function(productId) {
+    var product = shoppingList.products[productId];
     delete product.recipes[recipeId];
-    if (!Object.keys(product.recipes).length) productsToRemove.push(product.singular);
+    if (!Object.keys(product.recipes).length) productsToRemove.push(productId);
   });
-  productsToRemove.forEach(function(product) {
-    delete shoppingList.products[product];
+
+  productsToRemove.forEach(function(productId) {
+    delete shoppingList.products[productId];
   });
-  if (!Object.keys(shoppingList.recipes).length) {
-    $('#shopping-list-card').removeClass('active');
-  }
 
   storeShoppingList(shoppingList);
   renderShoppingList();
@@ -128,7 +129,13 @@ function toggleIngredientState() {
   var shoppingList = loadShoppingList();
   var productId = $(this).data('product-id');
   var product = shoppingList.products[productId];
-  product.state = product.state == 'shopping-list' ? 'purchased' : 'shopping-list';
+
+  var transitions = {
+    'shopping-list': 'purchased',
+    'purchased': 'shopping-list'
+  };
+  product.state = transitions[product.state];
+
   storeShoppingList(shoppingList);
   renderShoppingList();
 }

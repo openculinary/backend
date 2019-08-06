@@ -37,21 +37,12 @@ function imageFormatter(value, row, index) {
     });
   });
   return `
-<img style="max-width: 192px" src="` + value + `" alt="` + row.title + `">
-<br />
-<table class="metadata">
-  <tr>
-    <td><strong>time</strong></td>
-    <td>` + duration.as('minutes') + ` mins</td>
-  </tr>
-  <tr>
-    <th colspan="2">
-      <span>
-        <button class="btn btn-outline-primary" style="font-size: 12px; width: 192px" data-recipe-id="` + row.id + `" data-recipe-title="` + row.title + `" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addToShoppingList($(this))">Add to shopping list</button>
-      </span>
-    </th>
-  </tr>
-</table>
+<div class="metadata">
+<img src="` + value + `" alt="` + row.title + `">
+<span><strong>time</strong></span>
+<span>` + duration.as('minutes') + ` mins</span>
+<button class="btn btn-outline-primary" style="font-size: 12px; width: 192px" data-recipe-id="` + row.id + `" data-recipe-title="` + row.title + `" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addToShoppingList($(this))">Add to shopping list</button>
+</div>
 `;
 }
 
@@ -108,9 +99,7 @@ $('#recipes').on('page-change.bs.table', function(e, number, size) {
     $(window).on('hashchange', loadState);
   });
 });
-$('#recipes').on('load-success.bs.table', function() {
-  new ClipboardJS('#recipes .btn-outline-primary');
-});
+
 $('#recipes').on('load-success.bs.table', function() {
   var sortOptions = [
     {val: 'relevance', text: 'most relevant'},
@@ -143,8 +132,4 @@ $('#recipes').on('load-success.bs.table', function() {
   var paginationDetail = $('#recipes-container div.pagination-detail');
   paginationDetail.empty();
   sortPrompt.appendTo(paginationDetail);
-});
-$('#calendarize').on('show.bs.modal', function (e) {
-  var recipeId = $(e.relatedTarget).data('recipe-id');
-  $('#calendarize').data('recipe-id', recipeId);
 });

@@ -16,6 +16,7 @@
     <title>RecipeRadar</title>
   </head>
   <body>
+
     <div class="container pt-3">
       <div class="card-deck mb-3">
         <div class="card mb-1 box-shadow">
@@ -26,22 +27,21 @@
           </div>
           <div class="card-body">
             <form id="search-form" onsubmit="return false">
-              Show me recipes to prepare
-              <br />
-              <br />
-              <ul>
-                <li>
-                  <label>containing ...
-                    <select multiple data-role="tagsinput" id="include"></select>
-                  </label>
-                </li>
-                <li>
-                  <label>avoiding ...
-                    <select multiple data-role="tagsinput" id="exclude"></select></li>
-                  </label>
-                </li>
-              </ul>
-              <br />
+              <div>Show me recipes to prepare</div>
+              <div class="prompt">
+                <span><span class="positive">&plus;</span> containing ...</span>
+                <label>
+                  <span class="d-none">Ingredients to include</span>
+                  <select multiple data-role="tagsinput" id="include"></select>
+                </label>
+              </div>
+              <div class="prompt">
+                <span><span class="negative">&mdash;</span> avoiding ...</span>
+		<label>
+                  <span class="d-none">Ingredients to exclude</span>
+                  <select multiple data-role="tagsinput" id="exclude"></select>
+                </label>
+              </div>
               <button id="search" class="btn btn-primary">Find recipes!</button>
             </form>
           </div>
@@ -64,33 +64,11 @@
         data-toggle="table">
         <thead class="d-none">
           <tr>
-            <th class="align-top image" data-field="image" data-formatter="imageFormatter">Image</th>
+            <th class="align-top" data-field="image" data-formatter="imageFormatter">Image</th>
             <th class="align-top" data-field="title" data-formatter="titleFormatter">Name</th>
           </tr>
         </thead>
       </table>
-    </div>
-
-    <div class="modal fade" id="calendarize">
-      <form>
-        <div class="modal-dialog form-group">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Meal Calendar</h4>
-              <button class="close" aria-label="Dismiss calendar planner" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">When are you planning to make this meal?</div>
-            <div class="input-group date" id="datetimepicker" data-target-input="nearest">
-              <input type="text" class="form-control datetimepicker-input" data-toggle="datetimepicker" data-target="#datetimepicker" />
-              <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"></div>
-            </div>
-            <div class="modal-footer">
-              Email: <input id="email" type="email" class="form-control" required placeholder="you@example.com"></input>
-              <button id="reminder" type="submit" class="btn btn-primary">Add to calendar</button>
-            </div>
-          </div>
-        </div>
-      </form>
     </div>
 
     <footer class="page-footer container font-small blue pt-4">
@@ -105,10 +83,8 @@
       </div>
       <div id="shopping-list-card" class="card card-body active">
         <div class="title">Shopping List</div>
-	<button class="btn btn-light close" aria-label="Close shopping list">x</button>
-	<br />
-	<br />
-	<div class="content">
+        <button class="btn btn-light close" aria-label="Close shopping list">x</button>
+        <div class="content">
           <div id="shopping-list-recipes"></div>
           <div id="shopping-list-products"></div>
         </div>
@@ -130,8 +106,6 @@
     <script src="vendors/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
     <script src="js/autosuggest.js"></script>
     <script src="js/search.js"></script>
-    <script src="js/calendar.js"></script>
-    <script src="js/reminders.js"></script>
     <script src="js/shopping-list.js"></script>
     <script src="js/state.js"></script>
   </body>

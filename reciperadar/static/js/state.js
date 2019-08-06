@@ -11,10 +11,11 @@ function loadState() {
   loadTags('#exclude', $.bbq.getState('exclude'));
 
   var action = $.bbq.getState('action');
-  if (!action) $('#recipes-container').addClass('d-none');
-  if (action == 'search') executeSearch();
-  if (action == 'verified') confirmVerified();
-  if (action == 'view') executeView();
+  switch (action) {
+    case 'search': executeSearch(); break;
+    case 'view': executeView(); break;
+    default: $('#recipes-container').addClass('d-none');
+  }
 }
 
 $(window).on('hashchange', loadState);
