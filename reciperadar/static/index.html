@@ -64,7 +64,7 @@
         data-toggle="table">
         <thead class="d-none">
           <tr>
-            <th class="align-top" data-field="image" data-formatter="imageFormatter">Image</th>
+            <th class="align-top image" data-field="image" data-formatter="imageFormatter">Image</th>
             <th class="align-top" data-field="title" data-formatter="titleFormatter">Name</th>
           </tr>
         </thead>
@@ -99,17 +99,18 @@
       </div>
     </footer>
 
-    <div id="sidebar">
+    <div id="sidebar" class="d-none">
       <div class="card">
-        <button id="shopping-list-toggle" class="btn btn-default" aria-label="Toggle shopping list display">
-          <img src="images/icons/list.svg" alt="" />
-	</button>
+        <button class="btn btn-default pullout" aria-label="Toggle shopping list">&lt;&lt;</button>
       </div>
-      <div id="shopping-list-card" class="card card-body">
-        <div>Shopping List</div>
+      <div id="shopping-list-card" class="card card-body active">
+        <div class="title">Shopping List</div>
+	<button class="btn btn-light close" aria-label="Close shopping list">x</button>
 	<br />
-	<div id="shopping-list-content">
-	  <ul id="shopping-list" />
+	<br />
+	<div class="content">
+          <div id="shopping-list-recipes"></div>
+          <div id="shopping-list-products"></div>
         </div>
       </div>
     </div>
