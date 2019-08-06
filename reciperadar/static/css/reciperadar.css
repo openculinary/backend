@@ -24,7 +24,7 @@ span.tag.badge-info {
   background-color: #b0b0ff;
 }
 
-#search-form li:not(:first-child) span.tag.badge-info {
+span.negative + label span.tag.badge-info {
   background-color: #ffb0b0;
 }
 
