@@ -39,21 +39,17 @@ function imageFormatter(value, row, index) {
   return `
 <img style="max-width: 192px" src="` + value + `" alt="` + row.title + `">
 <br />
-<br />
 <table class="metadata">
-  <tr>
-    <th colspan="2">
-      <span>
-        <button class="btn btn-outline-success" aria-label="Add to calendar" data-toggle="modal" data-target="#calendarize" data-recipe-id="` + row.id + `"><img src="images/icons/calendar.svg" alt="" /></button>
-        <button class="btn btn-outline-warning" aria-label="Share by email"><a href="mailto:?subject=` + row.title + `&body=` + encodeURIComponent(window.location.origin + row.url) + `" aria-label="Share by email"><img src="images/icons/mail.svg" alt="" /></a></button>
-        <button class="btn btn-outline-primary" aria-label="Copy to clipboard" data-clipboard-text="` + window.location.origin + row.url + `"><img src="images/icons/link.svg" alt="" /></button>
-        <button class="btn btn-outline-info" aria-label="Add to shopping list" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addToShoppingList($(this))"><img src="images/icons/list.svg" alt="" /></button>
-      </span>
-    </th>
-  </tr>
   <tr>
     <td><strong>time</strong></td>
     <td>` + duration.as('minutes') + ` mins</td>
+  </tr>
+  <tr>
+    <th colspan="2">
+      <span>
+        <button class="btn btn-outline-primary" style="font-size: 12px; width: 192px" data-recipe-id="` + row.id + `" data-recipe-title="` + row.title + `" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addToShoppingList($(this))">Add to shopping list</button>
+      </span>
+    </th>
   </tr>
 </table>
 `;

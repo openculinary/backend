@@ -37,7 +37,7 @@ span.tag.shopping-list {
   background-color: #b0ffb0;
 }
 
-span.shopping-list.purchased {
+span.tag.purchased {
   background-color: white;
 }
 
@@ -89,6 +89,10 @@ div.fixed-table-body {
   border: none;
 }
 
+#recipes-container th.image, td.image {
+  width: 200px;
+}
+
 #recipes-container table.metadata {
   border-collapse: collapse;
   font-size: 12px;
@@ -106,23 +110,19 @@ div.fixed-table-body {
   white-space: nowrap;
 }
 
-#sidebar {
+#sidebar button.pullout {
   position: fixed;
-  top: 1rem;
-  right: 8px;
-  height: calc(100vh - 1rem);
-}
-
-#shopping-list-toggle {
-  padding: 4px;
+  right: 10px;
+  top: 45%;
 }
 
 #shopping-list-card {
   display: block;
-
   position: fixed;
-  right: -300px;
-  height: 100%;
+  top: 1rem;
+  height: calc(100vh - 2rem);
+
+  right: -280px;
   width: 300px;
 
   animation: slide-right 0.4s;
@@ -130,30 +130,60 @@ div.fixed-table-body {
 
 @keyframes slide-right {
   from { right: 8px; }
-  to { right: -300px; }
+  to { right: -280px; }
 }
 
 #shopping-list-card.active {
-  display: block;
-
-  position: fixed;
   right: 8px;
-  height: 100%;
   width: 300px;
 
   animation: slide-left 0.4s;
 }
 
 @keyframes slide-left {
-  from { right: -300px; }
+  from { right: -280px; }
   to { right: 8px; }
 }
 
-#shopping-list-content {
-  width: 100%;
-  height: 100%;
+#sidebar div.content {
+  height: calc(100% - 2rem);
   overflow-x: auto;
   overflow-y: auto;
+}
+
+#sidebar div.title {
+  float: left;
+}
+
+#sidebar button.close {
+  float: right;
+  right: 10px;
+}
+
+#shopping-list-recipes {
+  padding: 4px;
+  font-size: 13px;
+}
+
+#shopping-list-recipes ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#shopping-list-recipes a.remove {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 0.5em;
+}
+
+#shopping-list-products {
+  white-space: nowrap;
+}
+
+#shopping-list-products ul {
+  padding-left: 22px;
 }
 
 /* accessibility overrides: contrast workarounds for Bootstrap */
