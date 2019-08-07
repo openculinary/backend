@@ -39,6 +39,9 @@ function imageFormatter(value, row, index) {
   return `
 <div class="metadata">
 <img src="` + value + `" alt="` + row.title + `">
+<span><strong>serves</strong></span>
+<span>` + row.servings + `</span>
+<br />
 <span><strong>time</strong></span>
 <span>` + duration.as('minutes') + ` mins</span>
 <button class="btn btn-outline-primary" style="font-size: 12px; width: 192px" data-recipe-id="` + row.id + `" data-recipe-title="` + row.title + `" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addToShoppingList($(this))">Add to shopping list</button>
