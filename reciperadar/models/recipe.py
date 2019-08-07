@@ -226,6 +226,7 @@ class Recipe(Storable, Searchable):
                 ingredient.to_dict()
                 for ingredient in self.ingredients
             ],
+            'servings': self.servings,
             'src': self.src,
             'domain': '{}.{}'.format(src_info.domain, src_info.suffix),
             'url': self.url,
