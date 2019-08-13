@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="vendors/bootstrap-table/bootstrap-table.min.css">
     <link rel="stylesheet" href="vendors/bootstrap-tagsinput/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="vendors/tablesaw/tablesaw.stackonly.css">
     <link rel="stylesheet" href="vendors/tempusdominus/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="css/reciperadar.css">
@@ -29,18 +30,16 @@
             <form id="search-form" onsubmit="return false">
               <div>Show me recipes to prepare</div>
               <div class="prompt">
+              <label>
                 <span class="positive">&plus;</span> containing ...
-                <label>
-                  <span class="d-none">Ingredients to include</span>
-                  <select multiple data-role="tagsinput" id="include"></select>
-                </label>
+                <select id="include" multiple data-role="tagsinput"></select>
+              </label>
               </div>
               <div class="prompt">
-                <span class="negative">&mdash;</span> avoiding ...
-                <label>
-                  <span class="d-none">Ingredients to exclude</span>
-                  <select multiple data-role="tagsinput" id="exclude"></select>
-                </label>
+              <label>
+                <span class="negative">&minus;</span> avoiding ...
+                <select id="exclude" multiple data-role="tagsinput"></select>
+              </label>
               </div>
               <button id="search" class="btn btn-primary">Find recipes!</button>
             </form>
@@ -49,7 +48,7 @@
       </div>
     </div>
 
-    <div id="recipes-container" class="container pt-3 d-none">
+    <div id="recipes-container" class="container d-none">
       <table
         id="recipes"
         class="tablesaw tablesaw-stack"
@@ -77,20 +76,43 @@
       </div>
     </footer>
 
-    <div id="sidebar" class="d-none">
-      <div class="card">
-        <button class="btn btn-default pullout" aria-label="Toggle shopping list">&lt;&lt;</button>
-      </div>
-      <div id="shopping-list-card" class="card card-body active">
+    <div id="shopping-list" class="card-deck card d-none">
+      <button class="btn btn-outline-dark toggle" aria-label="Toggle shopping list"></button>
+      <div class="card-header">
         <div class="title">Shopping List</div>
-        <button class="btn btn-light close" aria-label="Close shopping list">x</button>
-        <div class="content">
-          <div id="shopping-list-recipes"></div>
-          <div id="shopping-list-products"></div>
-        </div>
+      </div>
+      <div class="card-body">
+        <div id="shopping-list-hints">Hint: Tap on ingredients to mark them as found</div>
+        <div id="shopping-list-products"></div>
+        <div id="shopping-list-recipes"></div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#calendarize">Send to calendar</button>
       </div>
     </div>
 
+    <div id="calendarize" class="modal fade">
+      <form>
+        <div class="modal-dialog form-group">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Create reminder</h4>
+              <button class="close" aria-label="Dismiss calendar planner" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>When would you like a calendar reminder containing this shopping list?</p>
+              <div class="input-group date" id="datetimepicker" />
+            </div>
+            <div class="modal-footer">
+              Email: <input id="email" type="email" class="form-control" required placeholder="you@example.com"></input>
+              <button id="reminder" type="submit" class="btn btn-primary">Add to calendar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="vendors/ajv/ajv.min.js"></script>
     <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
     <script src="vendors/jquery/jquery-1.8.3-browser-deprecated.js"></script>
     <script src="vendors/jquery-bbq/jquery.ba-bbq.min.js"></script>
@@ -102,9 +124,13 @@
     <script src="vendors/bootstrap-typeahead/bootstrap3-typeahead.min.js"></script>
     <script src="vendors/clipboard/clipboard.min.js"></script>
     <script src="vendors/moment/moment.min.js"></script>
+    <script src="vendors/pako/pako.min.js"></script>
     <script src="vendors/tablesaw/tablesaw.stackonly.jquery.js"></script>
     <script src="vendors/tempusdominus/tempusdominus-bootstrap-4.min.js"></script>
     <script src="js/autosuggest.js"></script>
+    <script src="js/base58.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/reminders.js"></script>
     <script src="js/search.js"></script>
     <script src="js/shopping-list.js"></script>
     <script src="js/state.js"></script>

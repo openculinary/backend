@@ -136,3 +136,11 @@ $('#recipes').on('load-success.bs.table', function() {
   paginationDetail.empty();
   sortPrompt.appendTo(paginationDetail);
 });
+
+$('#recipes').on('post-body.bs.table', function(data) {
+  if ($('#recipes-container').hasClass('d-none')) return;
+  var data = $('#recipes').bootstrapTable('getData');
+  data.forEach(function (row) {
+    updateRecipeState(row.id);
+  });
+});

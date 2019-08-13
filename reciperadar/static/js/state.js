@@ -13,6 +13,8 @@ function loadState() {
   var action = $.bbq.getState('action');
   switch (action) {
     case 'search': executeSearch(); break;
+    case 'shopping-list': restoreShoppingList(); break;
+    case 'verified': confirmVerified(); break;
     case 'view': executeView(); break;
     default: $('#recipes-container').addClass('d-none');
   }

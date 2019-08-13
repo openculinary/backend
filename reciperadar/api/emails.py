@@ -30,7 +30,11 @@ def register_email():
     session.add(record)
     try:
         session.commit()
-        issue_verification_token.delay(email, token)
+        issue_verification_token.delay(
+            base_uri=request.url_root,
+            email=email,
+            token=token
+        )
     except IntegrityError:
         pass
     session.close()
