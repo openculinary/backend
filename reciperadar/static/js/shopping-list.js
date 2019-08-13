@@ -145,6 +145,8 @@ function updateRecipeState(recipeId) {
   var addButton = $('button[data-recipe-id="' + recipeId + '"]');
   var isInShoppingList = recipeId in shoppingList.recipes;
   addButton.prop('disabled', isInShoppingList);
+  addButton.toggleClass('btn-outline-primary', !isInShoppingList);
+  addButton.toggleClass('btn-outline-secondary', isInShoppingList);
 }
 
 function toggleIngredientState() {
