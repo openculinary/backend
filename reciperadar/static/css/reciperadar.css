@@ -24,8 +24,8 @@ span.tag.badge-info {
   background-color: #b0b0ff;
 }
 
-span.negative + label span.tag.badge-info {
-  background-color: #ffb0b0;
+span.negative + div.bootstrap-tagsinput span.tag.badge-info {
+  background-color: #ff5050;
 }
 
 span.tag.matched {
@@ -96,59 +96,68 @@ div.fixed-table-body {
   padding-bottom: 0.5rem;
 }
 
-#sidebar {
-  position: fixed;
-}
-
-#sidebar button.pullout {
-  position: fixed;
-  right: 10px;
-  top: 45%;
-}
-
-#shopping-list-card {
+#shopping-list {
   display: block;
   position: fixed;
-  top: 1rem;
-  height: calc(100vh - 2rem);
+  top: 2rem;
+  height: calc(100vh - 4rem);
   width: 300px;
 
-  right: -280px;
-  animation: slide-right 0.4s;
+  right: -260px;
+  /*animation: slide-right 0.4s;*/
 }
 
 @keyframes slide-right {
   from { right: 8px; }
-  to { right: -280px; }
+  to { right: -260px; }
 }
 
-#shopping-list-card.active {
+#shopping-list.active {
   right: 8px;
-  animation: slide-left 0.4s;
+  /*animation: slide-left 0.4s;*/
 }
 
 @keyframes slide-left {
-  from { right: -280px; }
+  from { right: -260px; }
   to { right: 8px; }
 }
 
-#sidebar div.content {
-  clear: both;
-  margin-top: 2.5rem;
+#shopping-list button.toggle {
+  position: fixed;
+  margin-left: -18px;
+  top: calc((100vh - 4rem) / 2);
 
-  height: calc(100% - 2rem);
-  overflow-x: auto;
-  overflow-y: auto;
+  color: inherit;
+  background-color: inherit;
+  border-color: inherit;
+}
+#shopping-list button.toggle::before { content: '\000AB'; }
+#shopping-list.active button.toggle::before { content: '\000BB'; }
+
+#shopping-list .card-header {
+  top: 0;
+  width: 300px;
+  height: 3rem;
+}
+
+#shopping-list .card-body {
+  top: 3rem;
+  height: calc(100vh - 4rem - 3rem - 4rem);
+
+  overflow: auto;
   white-space: nowrap;
 }
 
-#sidebar div.title {
-  float: left;
+#shopping-list .card-footer {
+  width: 300px;
+  height: 4rem;
+  text-align: center;
 }
 
-#sidebar button.close {
-  float: right;
-  right: 10px;
+#shopping-list-hints {
+  font-size: 11px;
+  color: dimgray;
+  padding-bottom: 1rem;
 }
 
 #shopping-list-recipes {
@@ -201,3 +210,10 @@ li.page-item a {
   color: #0069d9;
 }
 /* end accessibility overrides */
+
+/* remove hover for disabled datetimepicker elements */
+div.bootstrap-datetimepicker-widget .deactivated:hover {
+  background-color: inherit !important;
+  cursor: inherit !important;
+}
+/* end datetimepicker hover removal */

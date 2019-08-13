@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_jsonschema import JsonSchema, ValidationError
 from flask_mail import Mail
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 import os
 
@@ -17,6 +18,7 @@ app.config.update(
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 )
 app.url_map.strict_slashes = False
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 jsonschema = JsonSchema(app)
 mail = Mail(app)
 

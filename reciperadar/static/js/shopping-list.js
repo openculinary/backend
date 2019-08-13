@@ -1,20 +1,32 @@
 $(function() {
-  $('#sidebar button.pullout').click(function () {
-    $('#shopping-list-card').toggleClass('active');
-  });
-  $('#sidebar button.close').click(function () {
-    $('#shopping-list-card').removeClass('active');
+  $('#shopping-list button.toggle').click(function () {
+    $('#shopping-list').toggleClass('active');
+    $(this).blur();
   });
 
-  $('#shopping-list-card').swipe({
-    swipe: function(event, direction, distance, duration, fingers, fingerData) {
-      if (direction === 'left') $('#shopping-list-card').addClass('active');
-      if (direction === 'right') $('#shopping-list-card').removeClass('active');
-    }
+  $('#shopping-list').swipe({
+    swipeLeft: function() { $('#shopping-list').addClass('active'); },
+    swipeRight: function() { $('#shopping-list').removeClass('active'); }
   });
 
   renderShoppingList();
 });
+
+function restoreShoppingList() {
+  $.getJSON('api/shopping-list/json.schema', function(schema) {
+    var ajv = new Ajv({removeAdditional: true, useDefaults: true});
+    var validate = ajv.compile(schema.reminder);
+    var data = $.bbq.getState('shopping-list');
+    data = base58.decode(data);
+    data = pako.inflate(data);
+    data = String.fromCharCode.apply(null, data);
+    var shoppingList = JSON.parse(data);
+
+    if (!validate(shoppingList)) return;
+    storeShoppingList(shoppingList);
+    renderShoppingList();
+  });
+}
 
 function loadShoppingList() {
   var shoppingListJSON = window.localStorage.getItem('shoppingList');
@@ -32,21 +44,22 @@ function storeShoppingList(shoppingList) {
 
 function renderShoppingList() {
   var shoppingList = loadShoppingList();
-  if (Object.keys(shoppingList.recipes).length) {
-    $('#sidebar').removeClass('d-none');
-    $('#shopping-list-card').addClass('active');
+  if (Object.keys(shoppingList.products).length) {
+    $('#shopping-list').removeClass('d-none');
+    $('#shopping-list').addClass('active');
+    $('button[data-target="#calendarize"]').prop('disabled', false);
   } else {
-    $('#shopping-list-card').removeClass('active');
+    $('#shopping-list').removeClass('active');
+    $('button[data-target="#calendarize"]').prop('disabled', true);
   }
 
   var recipeListHtml = $('<ul />');
   $.each(shoppingList.recipes, function(recipe) {
     var recipe = shoppingList.recipes[recipe];
     var remove = $('<a />', {
-      'class': 'remove',
+      'class': 'remove fa fa-trash-alt',
       'click': removeFromShoppingList,
       'data-recipe-id': recipe.id,
-      'text': 'x'
     });
     var title = $('<span />', {
       'class': 'recipe',
@@ -101,6 +114,7 @@ function addToShoppingList(element) {
   });
 
   storeShoppingList(shoppingList);
+  updateRecipeState(recipe.id);
   renderShoppingList();
 }
 
@@ -122,7 +136,15 @@ function removeFromShoppingList() {
   });
 
   storeShoppingList(shoppingList);
+  updateRecipeState(recipeId);
   renderShoppingList();
+}
+
+function updateRecipeState(recipeId) {
+  var shoppingList = loadShoppingList();
+  var addButton = $('button[data-recipe-id="' + recipeId + '"]');
+  var isInShoppingList = recipeId in shoppingList.recipes;
+  addButton.prop('disabled', isInShoppingList);
 }
 
 function toggleIngredientState() {
