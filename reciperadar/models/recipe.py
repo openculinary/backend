@@ -1,6 +1,7 @@
 from base58 import b58encode
 from bs4 import BeautifulSoup
 import inflect
+import mmh3
 from sqlalchemy import (
     Boolean,
     Column,
@@ -173,7 +174,7 @@ class Recipe(Storable, Searchable):
             for ingredient in ingredients
         }
 
-        recipe_id = b58encode(uuid4().bytes).decode('utf-8')
+        recipe_id = b58encode(mmh3.hash_bytes(data['src'])).decode('utf-8')
         return Recipe(
             id=recipe_id,
             title=data['title'],
