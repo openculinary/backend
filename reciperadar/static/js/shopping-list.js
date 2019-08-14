@@ -106,7 +106,7 @@ function addToShoppingList(element) {
         raw: product.raw,
         singular: product.singular,
         plural: product.plural,
-        state: 'shopping-list',
+        state: product.state,
         recipes: {}
       }
     }
@@ -155,8 +155,9 @@ function toggleIngredientState() {
   var product = shoppingList.products[productId];
 
   var transitions = {
-    'shopping-list': 'purchased',
-    'purchased': 'shopping-list'
+    'available': 'purchased',
+    'required': 'purchased',
+    'purchased': 'required'
   };
   product.state = transitions[product.state];
 

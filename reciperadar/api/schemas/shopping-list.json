@@ -31,7 +31,7 @@
           "raw": {"type": "string"},
           "singular": {"type": "string"},
           "plural": {"type": "string"},
-          "state": {"type": "string", "default": "shopping-list"},
+          "state": {"type": "string", "default": "required"},
           "recipes": {"type": "object", "default": {}}
         },
         "required": ["raw", "singular", "plural"]
