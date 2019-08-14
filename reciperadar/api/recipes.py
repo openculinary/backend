@@ -14,7 +14,6 @@ def recipe_ingest():
     recipe = Recipe.from_dict(data)
 
     session = Database().get_session()
-    session.query(RecipeIngredient).filter_by(recipe_id=recipe.id).delete()
     session.query(Recipe).filter_by(id=recipe.id).delete()
     session.add(recipe)
     session.commit()
