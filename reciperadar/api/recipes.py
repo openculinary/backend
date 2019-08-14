@@ -2,7 +2,7 @@ from flask import jsonify, request
 from flask_jsonschema import validate
 
 from reciperadar import app
-from reciperadar.models.recipe import Recipe, RecipeIngredient
+from reciperadar.models.recipe import Recipe
 from reciperadar.services.database import Database
 from reciperadar.workers.recipes import process_recipe
 
