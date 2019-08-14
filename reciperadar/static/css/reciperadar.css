@@ -28,7 +28,7 @@ span.negative + div.bootstrap-tagsinput span.tag.badge-info {
   background-color: #ff5050;
 }
 
-span.tag.matched {
+span.tag.available {
   background-color: #b0b0ff;
 }
 
@@ -36,11 +36,11 @@ span.tag.required {
   background:color: #f0f0f0;
 }
 
-span.tag.shopping-list {
+#shopping-list span.tag.required {
   background-color: #b0ffb0;
 }
 
-span.tag.purchased {
+#shopping-list span.tag.purchased {
   background-color: white;
 }
 

@@ -27,11 +27,12 @@ function imageFormatter(value, row, index) {
   var productsToAdd = [];
   row.ingredients.forEach(function(ingredient) {
     ingredient.tokens.forEach(function(token) {
-      if (token.type == 'product' && token.state == 'required') {
+      if (token.type == 'product') {
         productsToAdd.push({
           raw: token.value,
           singular: token.singular,
-          plural: token.plural
+          plural: token.plural,
+          state: token.state
 	});
       }
     });

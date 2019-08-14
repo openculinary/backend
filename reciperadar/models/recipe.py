@@ -29,7 +29,7 @@ class IngredientProduct(Storable):
     singular = Column(String)
     plural = Column(String)
 
-    STATE_MATCHED = 'matched'
+    STATE_AVAILABLE = 'available'
     STATE_REQUIRED = 'required'
 
     state = None
@@ -50,7 +50,7 @@ class IngredientProduct(Storable):
 
         matches = matches or []
         states = {
-            True: IngredientProduct.STATE_MATCHED,
+            True: IngredientProduct.STATE_AVAILABLE,
             False: IngredientProduct.STATE_REQUIRED,
         }
         state = states[singular in matches or plural in matches]
