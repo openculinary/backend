@@ -222,7 +222,7 @@ class Recipe(Storable, Searchable):
             'id': self.id,
             'title': self.title,
             'time': self.time,
-            'image': self.image,
+            'image': f'images/recipes/{self.id[:2]}/{self.id}.webp',
             'ingredients': [
                 ingredient.to_dict()
                 for ingredient in self.ingredients
