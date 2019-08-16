@@ -29,6 +29,7 @@ def on_validation_error(e):
 
 
 import reciperadar.api.emails
+import reciperadar.api.feedback
 import reciperadar.api.recipes
 import reciperadar.api.redirects
 import reciperadar.api.reminders
