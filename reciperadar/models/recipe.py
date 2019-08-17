@@ -192,7 +192,6 @@ class Recipe(Storable, Searchable):
             for hit in item['hits']['hits']:
                 highlight = hit.get('highlight', {})
                 highlights += highlight.get('ingredients.product.singular', [])
-                highlights += highlight.get('ingredients.product.plural', [])
         matches = []
         for highlight in highlights:
             bs = BeautifulSoup(highlight, features='html.parser')
@@ -250,7 +249,6 @@ class Recipe(Storable, Searchable):
         highlight = {
             'fields': {
                 'ingredients.product.singular': {},
-                'ingredients.product.plural': {},
             }
         }
         return [{
@@ -263,13 +261,9 @@ class Recipe(Storable, Searchable):
                     'constant_score': {
                         'boost': 1,
                         'filter': {
-                            # match on singular or plural product names
-                            'multi_match': {
-                                'query': inc,
-                                'fields': [
-                                    'ingredients.product.singular',
-                                    'ingredients.product.plural',
-                                ]
+                            # match on the singular product name
+                            'match': {
+                                'ingredients.product.singular': inc
                             }
                         }
                     }
@@ -291,7 +285,6 @@ class Recipe(Storable, Searchable):
                         'query': exc,
                         'fields': [
                             'ingredients.product.singular',
-                            'ingredients.product.plural',
                         ]
                     }
                 }

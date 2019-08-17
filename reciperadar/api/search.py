@@ -9,7 +9,7 @@ from reciperadar.models.recipe import Recipe
 def ingredients():
     prefix = request.args.get('pre')
     results = Ingredient().autosuggest(prefix)
-    return jsonify([result['name'] for result in results])
+    return jsonify(results)
 
 
 @app.route('/api/recipes/search')

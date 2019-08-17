@@ -71,11 +71,14 @@ class Ingredient(Searchable):
             plural_wins = plural_count > total_count - plural_count
 
             suggestion_doc = plural_docs[0] if plural_wins else result
-            suggestions.append({'name': suggestion_doc['key']})
+            suggestions.append({
+                'raw': suggestion_doc['key'],
+                'singular': result['key']
+            })
 
         suggestions.sort(key=lambda s: (
-            s['name'] != prefix,  # exact matches first
-            not s['name'].startswith(prefix),  # prefix matches next
-            len(s['name'])),  # sort remaining matches by length
+            s['raw'] != prefix,  # exact matches first
+            not s['raw'].startswith(prefix),  # prefix matches next
+            len(s['raw'])),  # sort remaining matches by length
         )
         return suggestions

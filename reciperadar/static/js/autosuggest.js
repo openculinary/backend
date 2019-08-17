@@ -2,6 +2,8 @@ function bindIngredientInput(element) {
   $(element).tagsinput({
     allowDuplicates: false,
     freeInput: false,
+    itemText: 'raw',
+    itemValue: 'singular',
     maxTags: 20,
     tagClass: 'badge badge-info',
     typeahead: {

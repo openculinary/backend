@@ -45,7 +45,7 @@ function imageFormatter(value, row, index) {
 <br />
 <span><strong>time</strong></span>
 <span>` + duration.as('minutes') + ` mins</span>
-<button class="btn btn-outline-primary" style="font-size: 12px; width: 192px" data-recipe-id="` + row.id + `" data-recipe-title="` + row.title + `" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addToShoppingList($(this))">Add to shopping list</button>
+<button class="btn btn-outline-primary" style="font-size: 12px; width: 192px" data-recipe-id="` + row.id + `" data-recipe-title="` + row.title + `" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addRecipeToShoppingList($(this))">Add to shopping list</button>
 </div>
 `;
 }
