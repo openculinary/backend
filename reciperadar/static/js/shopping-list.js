@@ -187,7 +187,9 @@ function removeRecipeFromShoppingList() {
 
   $.each(shoppingList.products, function(productId) {
     var product = shoppingList.products[productId];
-    removeProductFromShoppingList(shoppingList, product, recipeId);
+    if (recipeId in product.recipes) {
+      removeProductFromShoppingList(shoppingList, product, recipeId);
+    }
   });
 
   storeShoppingList(shoppingList);
