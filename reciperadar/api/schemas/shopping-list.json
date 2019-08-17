@@ -34,7 +34,7 @@
           "state": {"type": "string", "default": "required"},
           "recipes": {"type": "object", "default": {}}
         },
-        "required": ["raw", "singular", "plural"]
+        "required": ["raw", "singular"]
       }
     }
   }

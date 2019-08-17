@@ -1,8 +1,14 @@
 function loadTags(element, data) {
-  $(element).tagsinput('removeAll');
   if (!data) return;
-  data.split(',').forEach(function(tag) {
-    $(element).tagsinput('add', tag);
+  var tags = $(element).val();
+  var terms = data.split(',');
+  tags.forEach(function(tag) {
+    if (terms.indexOf(tag) >= 0) return;
+    $(element).tagsinput('remove', tag);
+  });
+  terms.forEach(function(term) {
+    if (tags.indexOf(term) >= 0) return;
+    $(element).tagsinput('add', {raw: term, singular: term});
   });
 }
 
