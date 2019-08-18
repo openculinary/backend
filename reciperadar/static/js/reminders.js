@@ -22,7 +22,7 @@ function sendReminder() {
     data: shoppingList
   })
     .done(function() {
-      $('#calendarize').modal('toggle');
+      $('#reminder').modal('toggle');
     })
     .fail(function(xhr, status, error) {
       var response = $.parseJSON(xhr.responseText);
@@ -43,4 +43,4 @@ function sendReminder() {
     });
 }
 $('#email').keyup(function(e) { $(this)[0].setCustomValidity(''); });
-$('#reminder').click($.throttle(2500, true, sendReminder));
+$('#reminder button').click($.throttle(2500, true, sendReminder));

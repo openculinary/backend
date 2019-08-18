@@ -12,9 +12,21 @@ function loadTags(element, data) {
   });
 }
 
+function loadPage(pageId) {
+  $('body > div.container[id]').hide();
+  $('body > div.container[id="' + pageId + '"]').show();
+
+  $('header a').removeClass('active');
+  $('header a[href="#' + pageId + '"]').addClass('active');
+}
+
 function loadState() {
   loadTags('#include', $.bbq.getState('include'));
   loadTags('#exclude', $.bbq.getState('exclude'));
+
+  $('body > div.container[id]').each(function() {
+    if (this.id in $.bbq.getState()) loadPage(this.id);
+  });
 
   var action = $.bbq.getState('action');
   switch (action) {
@@ -22,8 +34,8 @@ function loadState() {
     case 'shopping-list': restoreShoppingList(); break;
     case 'verified': confirmVerified(); break;
     case 'view': executeView(); break;
-    default: $('#recipes-container').addClass('d-none');
   }
+  renderShoppingList();
 }
 
 $(window).on('hashchange', loadState);
