@@ -27,8 +27,8 @@ function bindShoppingListInput(element) {
     storeShoppingList(shoppingList);
 
     var filter = 'span.tag.badge:contains("' + product.raw + '")';
-    $('#shopping-list div.products').off('click', filter);
-    $('#shopping-list div.products').on('click', filter, function () {
+    $('#shopping-list .products').off('click', filter);
+    $('#shopping-list .products').on('click', filter, function () {
       // Workaround: filter ':contains' may return non-exact matches
       // i.e. contains('celery') -> ['celery', 'celery root', ...]
       if ($(this).text() != product.raw) return;
@@ -106,7 +106,7 @@ function renderShoppingList() {
     title.appendTo(item);
     item.appendTo(recipeListHtml);
   });
-  var recipesHtml = $('#shopping-list div.recipes').empty();
+  var recipesHtml = $('#shopping-list .recipes').empty();
   recipeListHtml.appendTo(recipesHtml);
 
   var shoppingListInput = $('#shopping-list-entry');
@@ -137,18 +137,18 @@ function addProductToShoppingList(shoppingList, product, recipeId) {
   shoppingList.products[product.singular].recipes[recipeId] = {};
 }
 
-function addRecipeToShoppingList(element) {
-  var shoppingList = loadShoppingList();
-
+function addRecipeToShoppingList() {
   var recipe = {
-    id: element.data('recipe-id'),
-    title: element.data('recipe-title')
+    id: $(this).data('recipe-id'),
+    title: $(this).data('recipe-title')
   };
+
+  var shoppingList = loadShoppingList();
   if (!(recipe.id in shoppingList.recipes)) {
     shoppingList.recipes[recipe.id] = recipe;
   }
 
-  var products = element.data('products');
+  var products = $(this).data('products');
   products.forEach(function(product) {
     if (product.state == 'required') {
       addProductToShoppingList(shoppingList, product, recipe.id);

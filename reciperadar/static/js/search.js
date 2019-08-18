@@ -1,3 +1,11 @@
+function renderToken(token) {
+  switch (token.type) {
+    case 'text': return renderText(token);
+    case 'product': return renderProduct(token);
+    default: return '';
+  }
+}
+
 function renderText(token) {
   return token.value;
 }
@@ -6,23 +14,18 @@ function renderProduct(token) {
   return '<span class="tag badge ' + token.state + '">' + token.value + '</span>'
 }
 
-function titleFormatter(value, row, index) {
-  var ingredientHtml = '<ul>';
-  row.ingredients.forEach(function(ingredient) {
-    ingredientHtml += '<li style="font-size: 13px">';
-    ingredient.tokens.forEach(function(token) {
-      switch (token.type) {
-        case 'text': ingredientHtml += renderText(token); break;
-        case 'product': ingredientHtml += renderProduct(token); break;
-      }
-    });
-    ingredientHtml += '</li>';
+function contentFormatter(value, row, index) {
+  var content = $('<div />');
+  $('<img />', {'src': 'images/domains/' + row.domain + '.ico', 'alt': ''}).appendTo(content);
+  $('<a />', {'href': row.src, 'text': row.title}).appendTo(content);
+  var ul = $('<ul />').appendTo(content);
+  $.each(row.ingredients, function() {
+    $('<li />', {'html': this.tokens.map(renderToken).join('')}).appendTo(ul);
   });
-  ingredientHtml += '</ul>'
-  return '<img style="max-width: 24px" src="images/domains/' + row.domain + '.ico" alt="" />&nbsp;&nbsp;<a href="' + row.src + '">' + row.title + '</a><br /><br />' + ingredientHtml;
+  return content.html();
 }
 
-function imageFormatter(value, row, index) {
+function metadataFormatter(value, row, index) {
   var duration = moment.duration(row.time, 'minutes');
   var productsToAdd = [];
   row.ingredients.forEach(function(ingredient) {
@@ -37,21 +40,26 @@ function imageFormatter(value, row, index) {
       }
     });
   });
-  return `
-<div class="metadata">
-<img src="` + value + `" alt="` + row.title + `">
-<span><strong>serves</strong></span>
-<span>` + row.servings + `</span>
-<br />
-<span><strong>time</strong></span>
-<span>` + duration.as('minutes') + ` mins</span>
-<button class="btn btn-outline-primary" style="font-size: 12px; width: 192px" data-recipe-id="` + row.id + `" data-recipe-title="` + row.title + `" data-products='` + JSON.stringify(productsToAdd) + `' onclick="addRecipeToShoppingList($(this))">Add to shopping list</button>
-</div>
-`;
+
+  var metadata = $('<div />');
+  $('<img />', {'src': row.image, 'alt': row.title}).appendTo(metadata);
+  $('<span />', {'html': '<strong>serves</strong>'}).appendTo(metadata);
+  $('<span />', {'text': row.servings}).appendTo(metadata);
+  $('<br />').appendTo(metadata);
+  $('<span />', {'html': '<strong>time</strong>'}).appendTo(metadata);
+  $('<span />', {'text': duration.as('minutes') + ' mins'}).appendTo(metadata);
+  $('<button />', {
+    'class': 'btn btn-outline-primary',
+    'text': 'Add to shopping list',
+    'data-recipe-id': row.id,
+    'data-recipe-title': row.title,
+    'data-products': JSON.stringify(productsToAdd),
+  }).appendTo(metadata)
+  return metadata.html();
 }
 
 function scrollToSearchResults() {
-  var scrollTop = $('#search div.results').offset().top - $('header').height() - 32;
+  var scrollTop = $('#search .results').offset().top - $('header').height() - 32;
   $('html, body').animate({scrollTop: scrollTop}, 500);
 }
 
@@ -78,23 +86,23 @@ function executeSearch() {
   };
   var sortChoice = $.bbq.getState('sort');
   if (sortChoice) params['sort'] = sortChoice;
-  $('#search div.results table').bootstrapTable('refresh', {
+  $('#search .results table').bootstrapTable('refresh', {
     url: '/api/recipes/search?' + $.param(params),
     pageNumber: Number($.bbq.getState('page') || 1)
   });
-  $('#search div.results').show();
+  $('#search .results').show();
   scrollToSearchResults();
 }
 
 function executeView() {
   var id = $.bbq.getState('id');
-  $('#search div.results').show();
-  $('#search div.results table').bootstrapTable('refresh', {
+  $('#search .results').show();
+  $('#search .results table').bootstrapTable('refresh', {
     url: '/api/recipes/' + encodeURIComponent(id) + '/view'
   });
 }
 
-$('#search div.results table').on('page-change.bs.table', function(e, number, size) {
+$('#search .results table').on('page-change.bs.table', function(e, number, size) {
   $(window).off('hashchange').promise().then(function () {;
     if (number > 1) $.bbq.pushState({'page': number});
     else $.bbq.removeState('page');
@@ -104,7 +112,7 @@ $('#search div.results table').on('page-change.bs.table', function(e, number, si
   });
 });
 
-$('#search div.results table').on('load-success.bs.table', function() {
+$('#search .results table').on('load-success.bs.table', function() {
   var sortOptions = [
     {val: 'relevance', text: 'most relevant'},
     {val: 'ingredients', text: 'fewest extras required'},
@@ -133,12 +141,14 @@ $('#search div.results table').on('load-success.bs.table', function() {
   var sortPrompt = $('<span>').text('Order by ');
   sortSelect.appendTo(sortPrompt);
 
-  var paginationDetail = $('#search div.results div.pagination-detail');
+  var paginationDetail = $('#search .results div.pagination-detail');
   paginationDetail.empty();
   sortPrompt.appendTo(paginationDetail);
+
+  $(this).find('.metadata button').on('click', addRecipeToShoppingList);
 });
 
-$('#search div.results table').on('post-body.bs.table', function(data) {
+$('#search .results table').on('post-body.bs.table', function(data) {
   var data = $(this).bootstrapTable('getData');
   if (!Array.isArray(data)) return;
   data.forEach(function (row) {

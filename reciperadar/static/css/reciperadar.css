@@ -60,14 +60,14 @@ span.tag.required {
   background:color: #f0f0f0;
 }
 
-#shopping-list div.hints {
+#shopping-list .hints {
   font-size: 11px;
   color: dimgray;
   padding-bottom: 1rem;
 }
 
-#shopping-list div.products span.prompt,
-#shopping-list div.products label {
+#shopping-list .products span.prompt,
+#shopping-list .products label {
   display: inline;
   vertical-align: bottom;
 }
@@ -95,18 +95,18 @@ span.tag.required {
   background-color: white;
 }
 
-#shopping-list div.recipes {
+#shopping-list .recipes {
   margin-top: 1rem;
   padding: 4px;
   font-size: 13px;
 }
 
-#shopping-list div.recipes ul {
+#shopping-list .recipes ul {
   list-style: none;
   padding-left: 0;
 }
 
-#shopping-list div.recipes a.remove {
+#shopping-list .recipes a.remove {
   color: red;
   cursor: pointer;
   font-weight: bold;
@@ -114,56 +114,72 @@ span.tag.required {
   margin-right: 0.5em;
 }
 
-#search div.results span.pagination-info {
+#search .results a {
+  font-size: 1rem;
+}
+#search .results button,
+#search .results td {
+  font-size: 12px;
+}
+
+#search .results span.pagination-info {
   display: none;
 }
 
-#search div.results span.page-list {
+#search .results span.page-list {
   display: none;
 }
 
-#search div.results li.page-item a {
+#search .results li.page-item a {
   z-index: 0;
 }
 
-div.fixed-table-body {
+#search .results .fixed-table-body {
   padding: 1px;
 }
 
-#search div.results table {
+#search .results table {
   border-collapse: separate;
   border-spacing: 0 1em;
 }
 
-#search div.results tr:hover {
+#search .results tr:hover {
   background-color: inherit;
 }
 
-#search div.results tr {
+#search .results tr {
   outline: thin solid rgba(0, 0, 0, 0.125);
 }
 
-#search div.results th, #search div.results td {
+#search .results th,
+#search .results td {
   border: none;
 }
 
-#search div.results th:first-child, #search div.results td:first-child {
+#search .results th:first-child,
+#search .results td:first-child {
   width: 200px;
 }
 
-#search div.results .metadata {
-  font-size: 12px;
-}
-
-#search div.results .metadata img {
+#search .results .metadata img {
   max-width: 192px;
 }
 
-#search div.results .metadata span {
+#search .results .metadata span {
   display: inline-block;
   margin-left: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+#search .results .metadata button {
+  width: 192px
+}
+
+#search .results .content img {
+  width: 24px;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* accessibility overrides: contrast workarounds for Bootstrap */
