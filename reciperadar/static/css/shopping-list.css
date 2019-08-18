@@ -1,0 +1,53 @@
+#shopping-list .hints {
+  font-size: 11px;
+  color: dimgray;
+  padding-bottom: 1rem;
+}
+
+#shopping-list .products span.prompt,
+#shopping-list .products label {
+  display: inline;
+  vertical-align: bottom;
+}
+
+#shopping-list .bootstrap-tagsinput input {
+  width: 128px;
+}
+
+#shopping-list span.tag.badge {
+  display: block;
+  text-align: left;
+}
+
+#shopping-list span.tag.badge span[data-role="remove"] {
+  position: relative;
+  float: right;
+  left: 20px;
+}
+
+#shopping-list span.tag.required {
+  background-color: #b0ffb0;
+}
+
+#shopping-list span.tag.purchased {
+  background-color: white;
+}
+
+#shopping-list .recipes {
+  margin-top: 1rem;
+  padding: 4px;
+  font-size: 13px;
+}
+
+#shopping-list .recipes ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#shopping-list .recipes a.remove {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 0.5em;
+}

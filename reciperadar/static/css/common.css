@@ -1,0 +1,90 @@
+header {
+  background-color: #006;
+}
+
+header span.notification {
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: white;
+
+  padding: 1px 3px;
+  font-size: 10px;
+
+  position: relative;
+  top: -0.8rem;
+  right: -0.2rem;
+}
+
+.bootstrap-tagsinput {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+.bootstrap-tagsinput input {
+  width: 64px;
+}
+
+span.tag.badge {
+  color: black;
+  font-size: 13px;
+}
+span.tag.badge span[data-role="remove"]::after {
+  color: red;
+  content: '\00D7';
+}
+span.tag.badge.fixed span[data-role="remove"]::after {
+  display: none;
+}
+
+span.tag.badge-info {
+  background-color: #b0b0ff;
+}
+
+span.negative + div.bootstrap-tagsinput span.tag.badge-info {
+  background-color: #ff5050;
+}
+
+span.tag.available {
+  background-color: #b0b0ff;
+}
+
+span.tag.required {
+  background:color: #f0f0f0;
+}
+
+/* accessibility overrides: contrast workarounds for Bootstrap */
+body a {
+  /* bootstrap: color: #007bff; */
+  color: #05d;
+}
+
+button.btn-primary {
+  /* bootstrap: background-color: #007bff; */
+  background-color: #0069d9;
+}
+
+button.btn-primary:hover {
+  /* bootstrap: background-color: #0069d9; */
+  background-color: #0057b7;
+}
+
+button.btn-outline-primary {
+  /* bootstrap: color: #007bff; */
+  color: #0069d9;
+  /* bootstrap: border-color: #007bff; */
+  border-color: #0069d9;
+}
+
+li.page-item a {
+  /* bootstrap: color: #007bff; */
+  color: #0069d9;
+}
+/* end accessibility overrides */
+
+/* remove hover for disabled datetimepicker elements */
+div.bootstrap-datetimepicker-widget .deactivated:hover {
+  background-color: inherit !important;
+  cursor: inherit !important;
+}
+/* end datetimepicker hover removal */
