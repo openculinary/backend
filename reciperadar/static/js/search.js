@@ -51,7 +51,7 @@ function imageFormatter(value, row, index) {
 }
 
 function scrollToSearchResults() {
-  var scrollTop = $("#recipes-container").offset().top;
+  var scrollTop = $('#search div.results').offset().top - $('header').height() - 32;
   $('html, body').animate({scrollTop: scrollTop}, 500);
 }
 
@@ -69,7 +69,7 @@ function pushSearch() {
   // bbq merge mode 2: completely replace fragment state
   $.bbq.pushState(state, 2);
 }
-$('#search').click($.throttle(1000, true, pushSearch));
+$('#search button').click($.throttle(1000, true, pushSearch));
 
 function executeSearch() {
   var params = {
@@ -78,23 +78,23 @@ function executeSearch() {
   };
   var sortChoice = $.bbq.getState('sort');
   if (sortChoice) params['sort'] = sortChoice;
-  $('#recipes').bootstrapTable('refresh', {
+  $('#search div.results table').bootstrapTable('refresh', {
     url: '/api/recipes/search?' + $.param(params),
     pageNumber: Number($.bbq.getState('page') || 1)
   });
-  $('#recipes-container').removeClass('d-none');
+  $('#search div.results').show();
   scrollToSearchResults();
 }
 
 function executeView() {
   var id = $.bbq.getState('id');
-  $('#recipes-container').removeClass('d-none');
-  $('#recipes').bootstrapTable('refresh', {
+  $('#search div.results').show();
+  $('#search div.results table').bootstrapTable('refresh', {
     url: '/api/recipes/' + encodeURIComponent(id) + '/view'
   });
 }
 
-$('#recipes').on('page-change.bs.table', function(e, number, size) {
+$('#search div.results table').on('page-change.bs.table', function(e, number, size) {
   $(window).off('hashchange').promise().then(function () {;
     if (number > 1) $.bbq.pushState({'page': number});
     else $.bbq.removeState('page');
@@ -104,7 +104,7 @@ $('#recipes').on('page-change.bs.table', function(e, number, size) {
   });
 });
 
-$('#recipes').on('load-success.bs.table', function() {
+$('#search div.results table').on('load-success.bs.table', function() {
   var sortOptions = [
     {val: 'relevance', text: 'most relevant'},
     {val: 'ingredients', text: 'fewest extras required'},
@@ -133,14 +133,14 @@ $('#recipes').on('load-success.bs.table', function() {
   var sortPrompt = $('<span>').text('Order by ');
   sortSelect.appendTo(sortPrompt);
 
-  var paginationDetail = $('#recipes-container div.pagination-detail');
+  var paginationDetail = $('#search div.results div.pagination-detail');
   paginationDetail.empty();
   sortPrompt.appendTo(paginationDetail);
 });
 
-$('#recipes').on('post-body.bs.table', function(data) {
-  if ($('#recipes-container').hasClass('d-none')) return;
-  var data = $('#recipes').bootstrapTable('getData');
+$('#search div.results table').on('post-body.bs.table', function(data) {
+  var data = $(this).bootstrapTable('getData');
+  if (!Array.isArray(data)) return;
   data.forEach(function (row) {
     updateRecipeState(row.id);
   });

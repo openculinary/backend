@@ -19,118 +19,117 @@
   </head>
   <body>
 
-    <div class="container pt-3">
-      <div class="card-deck mb-3">
-        <div class="card mb-1 box-shadow">
-          <div class="card-header">
-            <h5 class="my-0 font-weight-normal">
-              <a href="/" style="text-decoration: none"><em>RecipeRadar</em></a></em>
-            </h5>
-          </div>
-          <div class="card-body">
-            <form id="search-form" onsubmit="return false">
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row sticky-top">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="#search">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#shopping-list">Shopping List<span class="notification collapse" /></a>
+        </li>
+      </ul>
+    </header>
+
+    <div id="search" class="container pt-3">
+      <div class="card-deck mb-4">
+        <div class="card">
+          <form onsubmit="return false">
+            <div class="card-body">
               <div>Show me recipes to prepare</div>
               <div class="prompt">
-              <label>
-                <span class="positive">&plus;</span> containing ...
-                <select id="include" multiple data-role="tagsinput"></select>
-              </label>
+                <label>
+                  <span class="positive">&plus;</span> containing ...
+                  <select id="include" multiple data-role="tagsinput"></select>
+                </label>
               </div>
               <div class="prompt">
-              <label>
-                <span class="negative">&minus;</span> avoiding ...
-                <select id="exclude" multiple data-role="tagsinput"></select>
-              </label>
+                <label>
+                  <span class="negative">&minus;</span> avoiding ...
+                  <select id="exclude" multiple data-role="tagsinput"></select>
+                </label>
               </div>
-              <button id="search" class="btn btn-primary">Find recipes!</button>
-            </form>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary">Find recipes!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="results collapse">
+        <table
+          class="tablesaw tablesaw-stack"
+          data-tablesaw-mode="stack"
+          data-data-field="results"
+          data-total-field="total"
+          data-pagination="true"
+          data-pagination-loop="false"
+          data-pagination-v-align="both"
+          data-smart=display="true"
+          data-side-pagination="server"
+          data-toggle="table">
+          <thead class="d-none">
+            <tr>
+              <th class="align-top" data-field="image" data-formatter="imageFormatter">Image</th>
+              <th class="align-top" data-field="title" data-formatter="titleFormatter">Name</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+
+    <div id="shopping-list" class="container pt-3 collapse">
+      <div class="card-deck mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="hints">Hint: Tap on ingredients to mark them as found</div>
+            <div class="products">
+              <span class="prompt">&plus;
+                <label>add
+                  <select id="shopping-list-entry" multiple data-role="tagsinput"></select>
+                </label>
+              </span>
+            </div>
+            <div class="recipes"></div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#reminder">Send to calendar</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="recipes-container" class="container d-none">
-      <table
-        id="recipes"
-        class="tablesaw tablesaw-stack"
-        data-tablesaw-mode="stack"
-        data-data-field="results"
-        data-total-field="total"
-        data-pagination="true"
-        data-pagination-loop="false"
-        data-pagination-v-align="both"
-        data-smart=display="true"
-        data-side-pagination="server"
-        data-toggle="table">
-        <thead class="d-none">
-          <tr>
-            <th class="align-top" data-field="image" data-formatter="imageFormatter">Image</th>
-            <th class="align-top" data-field="title" data-formatter="titleFormatter">Name</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-
-    <footer class="page-footer container font-small blue pt-4">
-      <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <a href="https://www.reciperadar.com">reciperadar.com</a>
-      </div>
+    <footer>
+      <div class="text-center py-4">© 2019 Copyright: <a href="/">reciperadar.com</a></div>
     </footer>
 
-    <div id="shopping-list" class="card-deck card d-none">
-      <button class="btn btn-outline-dark toggle" aria-label="Toggle shopping list"></button>
-      <div class="card-header">
-        <div class="title">Shopping List</div>
-      </div>
-      <div class="card-body">
-        <div id="shopping-list-hints">Hint: Tap on ingredients to mark them as found</div>
-        <div id="shopping-list-products"></div>
-        <div id="shopping-list-input">
-          <span class="prompt">&plus;
-            <label>add
-              <select id="shopping-list-add" multiple data-role="tagsinput"></select>
-            </label>
-          </span>
-        </div>
-        <div id="shopping-list-recipes"></div>
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#calendarize">Send to calendar</button>
-      </div>
-    </div>
-
-    <div id="calendarize" class="modal fade">
-      <form>
-        <div class="modal-dialog form-group">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Create reminder</h4>
-              <button class="close" aria-label="Dismiss calendar planner" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-              <p>When would you like a calendar reminder containing this shopping list?</p>
-              <div class="input-group date" id="datetimepicker" />
-            </div>
-            <div class="modal-footer">
-              Email: <input id="email" type="email" class="form-control" required placeholder="you@example.com"></input>
-              <button id="reminder" type="submit" class="btn btn-primary">Add to calendar</button>
-            </div>
+    <form id="reminder" class="modal fade">
+      <div class="modal-dialog form-group">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Create reminder</h4>
+            <button class="close" aria-label="Dismiss calendar planner" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>When would you like a calendar reminder containing this shopping list?</p>
+            <div class="input-group date" id="datetimepicker" />
+          </div>
+          <div class="modal-footer">
+            Email: <input id="email" type="email" class="form-control" required placeholder="you@example.com"></input>
+            <button class="btn btn-primary">Add to calendar</button>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
 
     <script src="vendors/ajv/ajv.min.js"></script>
     <script src="vendors/jquery/jquery-3.4.1.min.js"></script>
     <script src="vendors/jquery/jquery-1.8.3-browser-deprecated.js"></script>
     <script src="vendors/jquery-bbq/jquery.ba-bbq.min.js"></script>
     <script src="vendors/jquery-bbq/jquery-debounce-throttle.min.js"></script>
-    <script src="vendors/jquery-touchswipe/jquery.touchSwipe.min.js"></script>
     <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="vendors/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="vendors/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
     <script src="vendors/bootstrap-typeahead/bootstrap3-typeahead.min.js"></script>
-    <script src="vendors/clipboard/clipboard.min.js"></script>
     <script src="vendors/feedback/feedback.min.js"></script>
     <script src="vendors/moment/moment.min.js"></script>
     <script src="vendors/pako/pako.min.js"></script>

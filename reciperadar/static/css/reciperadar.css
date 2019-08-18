@@ -1,9 +1,26 @@
-#search-form div.prompt {
-  margin: 1rem;
+header {
+  background-color: #006;
+}
+
+header span.notification {
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: white;
+
+  padding: 1px 3px;
+  font-size: 10px;
+
+  position: relative;
+  top: -0.8rem;
+  right: -0.2rem;
+}
+
+#search div.prompt {
+  margin-top: 1rem;
   margin-left: 2rem;
 }
-#search-form div.prompt span.positive { color: green; }
-#search-form div.prompt span.negative { color: maroon; }
+#search div.prompt span.positive { color: green; }
+#search div.prompt span.negative { color: maroon; }
 
 .bootstrap-tagsinput {
   border: none;
@@ -43,6 +60,33 @@ span.tag.required {
   background:color: #f0f0f0;
 }
 
+#shopping-list div.hints {
+  font-size: 11px;
+  color: dimgray;
+  padding-bottom: 1rem;
+}
+
+#shopping-list div.products span.prompt,
+#shopping-list div.products label {
+  display: inline;
+  vertical-align: bottom;
+}
+
+#shopping-list .bootstrap-tagsinput input {
+  width: 128px;
+}
+
+#shopping-list span.tag.badge {
+  display: block;
+  text-align: left;
+}
+
+#shopping-list span.tag.badge span[data-role="remove"] {
+  position: relative;
+  float: right;
+  left: 20px;
+}
+
 #shopping-list span.tag.required {
   background-color: #b0ffb0;
 }
@@ -51,154 +95,18 @@ span.tag.required {
   background-color: white;
 }
 
-#shopping-list-input .bootstrap-tagsinput input {
-  width: 128px;
-}
-
-#shopping-list-input span.tag.badge {
-  display: block;
-  text-align: left;
-}
-
-#shopping-list-input span.tag.badge span[data-role="remove"] {
-  position: relative;
-  float: right;
-  left: 20px;
-}
-
-#shopping-list-input span.prompt, #shopping-list-input label {
-  display: inline;
-  vertical-align: bottom;
-}
-
-#recipes-container span.pagination-info {
-  display: none;
-}
-
-#recipes-container span.page-list {
-  display: none;
-}
-
-#recipes-container li.page-item a {
-  z-index: 0;
-}
-
-div.fixed-table-body {
-  padding: 1px;
-}
-
-#recipes-container table {
-  border-collapse: separate;
-  border-spacing: 0 1em;
-}
-
-#recipes-container tr:hover {
-  background-color: inherit;
-}
-
-#recipes-container tr {
-  outline: thin solid rgba(0, 0, 0, 0.125);
-}
-
-#recipes-container th, #recipes-container td {
-  border: none;
-}
-
-#recipes-container th:first-child, #recipes-container td:first-child {
-  width: 200px;
-}
-
-#recipes-container .metadata {
-  font-size: 12px;
-}
-
-#recipes-container .metadata img {
-  max-width: 192px;
-}
-
-#recipes-container .metadata span {
-  display: inline-block;
-  margin-left: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-#shopping-list {
-  display: block;
-  position: fixed;
-  top: 2rem;
-  height: calc(100vh - 4rem);
-  width: 300px;
-
-  right: -260px;
-  /*animation: slide-right 0.4s;*/
-}
-
-@keyframes slide-right {
-  from { right: 8px; }
-  to { right: -260px; }
-}
-
-#shopping-list.active {
-  right: 8px;
-  /*animation: slide-left 0.4s;*/
-}
-
-@keyframes slide-left {
-  from { right: -260px; }
-  to { right: 8px; }
-}
-
-#shopping-list button.toggle {
-  position: fixed;
-  margin-left: -18px;
-  top: calc((100vh - 4rem) / 2);
-
-  color: inherit;
-  background-color: inherit;
-  border-color: inherit;
-}
-#shopping-list button.toggle::before { content: '\000AB'; }
-#shopping-list.active button.toggle::before { content: '\000BB'; }
-
-#shopping-list .card-header {
-  top: 0;
-  width: 300px;
-  height: 3rem;
-}
-
-#shopping-list .card-body {
-  top: 3rem;
-  height: calc(100vh - 4rem - 3rem - 4rem);
-
-  overflow: auto;
-  white-space: nowrap;
-}
-
-#shopping-list .card-footer {
-  width: 300px;
-  height: 4rem;
-  text-align: center;
-}
-
-#shopping-list-hints {
-  font-size: 11px;
-  color: dimgray;
-  padding-bottom: 1rem;
-}
-
-#shopping-list-recipes {
+#shopping-list div.recipes {
   margin-top: 1rem;
   padding: 4px;
   font-size: 13px;
 }
 
-#shopping-list-recipes ul {
+#shopping-list div.recipes ul {
   list-style: none;
   padding-left: 0;
 }
 
-#shopping-list-recipes a.remove {
+#shopping-list div.recipes a.remove {
   color: red;
   cursor: pointer;
   font-weight: bold;
@@ -206,8 +114,56 @@ div.fixed-table-body {
   margin-right: 0.5em;
 }
 
-#shopping-list-products ul {
-  padding-left: 22px;
+#search div.results span.pagination-info {
+  display: none;
+}
+
+#search div.results span.page-list {
+  display: none;
+}
+
+#search div.results li.page-item a {
+  z-index: 0;
+}
+
+div.fixed-table-body {
+  padding: 1px;
+}
+
+#search div.results table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+#search div.results tr:hover {
+  background-color: inherit;
+}
+
+#search div.results tr {
+  outline: thin solid rgba(0, 0, 0, 0.125);
+}
+
+#search div.results th, #search div.results td {
+  border: none;
+}
+
+#search div.results th:first-child, #search div.results td:first-child {
+  width: 200px;
+}
+
+#search div.results .metadata {
+  font-size: 12px;
+}
+
+#search div.results .metadata img {
+  max-width: 192px;
+}
+
+#search div.results .metadata span {
+  display: inline-block;
+  margin-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 /* accessibility overrides: contrast workarounds for Bootstrap */

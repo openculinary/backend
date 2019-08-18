@@ -27,8 +27,8 @@ function bindShoppingListInput(element) {
     storeShoppingList(shoppingList);
 
     var filter = 'span.tag.badge:contains("' + product.raw + '")';
-    $('#shopping-list-input').off('click', filter);
-    $('#shopping-list-input').on('click', filter, function () {
+    $('#shopping-list div.products').off('click', filter);
+    $('#shopping-list div.products').on('click', filter, function () {
       // Workaround: filter ':contains' may return non-exact matches
       // i.e. contains('celery') -> ['celery', 'celery root', ...]
       if ($(this).text() != product.raw) return;
@@ -48,36 +48,24 @@ function bindShoppingListInput(element) {
     storeShoppingList(shoppingList);
   });
 }
-bindShoppingListInput('#shopping-list-add');
-
-$(function() {
-  $('#shopping-list button.toggle').click(function () {
-    $('#shopping-list').toggleClass('active');
-    $(this).blur();
-  });
-
-  $('#shopping-list').swipe({
-    swipeLeft: function() { $('#shopping-list').addClass('active'); },
-    swipeRight: function() { $('#shopping-list').removeClass('active'); }
-  });
-
-  renderShoppingList();
-});
+bindShoppingListInput('#shopping-list-entry');
 
 function restoreShoppingList() {
-  $.getJSON('api/shopping-list/json.schema', function(schema) {
-    var ajv = new Ajv({removeAdditional: true, useDefaults: true});
-    var validate = ajv.compile(schema.reminder);
-    var data = $.bbq.getState('shopping-list');
-    data = base58.decode(data);
-    data = pako.inflate(data);
-    data = String.fromCharCode.apply(null, data);
-    var shoppingList = JSON.parse(data);
+  var data = $.bbq.getState('shopping-list');
+  if (data) {
+    $.getJSON('api/shopping-list/json.schema', function(schema) {
+      var ajv = new Ajv({removeAdditional: true, useDefaults: true});
+      var validate = ajv.compile(schema.reminder);
+      data = base58.decode(data);
+      data = pako.inflate(data);
+      data = String.fromCharCode.apply(null, data);
+      var shoppingList = JSON.parse(data);
 
-    if (!validate(shoppingList)) return;
-    storeShoppingList(shoppingList);
-    renderShoppingList();
-  });
+      if (!validate(shoppingList)) return;
+      storeShoppingList(shoppingList);
+      renderShoppingList();
+    });
+  }
 }
 
 function loadShoppingList() {
@@ -96,14 +84,9 @@ function storeShoppingList(shoppingList) {
 
 function renderShoppingList() {
   var shoppingList = loadShoppingList();
-  if (Object.keys(shoppingList.products).length) {
-    $('#shopping-list').removeClass('d-none');
-    $('#shopping-list').addClass('active');
-    $('button[data-target="#calendarize"]').prop('disabled', false);
-  } else {
-    $('#shopping-list').removeClass('active');
-    $('button[data-target="#calendarize"]').prop('disabled', true);
-  }
+  var shoppingListEmpty = Object.keys(shoppingList.products).length == 0;
+  $('button[data-target="#reminder').prop('disabled', shoppingListEmpty);
+  $('header span.notification').toggle(!shoppingListEmpty);
 
   var recipeListHtml = $('<ul />');
   $.each(shoppingList.recipes, function(recipeId) {
@@ -123,16 +106,20 @@ function renderShoppingList() {
     title.appendTo(item);
     item.appendTo(recipeListHtml);
   });
-  var recipesHtml = $('#shopping-list-recipes').empty();
+  var recipesHtml = $('#shopping-list div.recipes').empty();
   recipeListHtml.appendTo(recipesHtml);
 
-  var shoppingListInput = $('#shopping-list-add');
+  var shoppingListInput = $('#shopping-list-entry');
   shoppingListInput.tagsinput('removeAll');
 
+  var total = 0, found = 0;
   $.each(shoppingList.products, function(productId) {
     var product = shoppingList.products[productId];
     shoppingListInput.tagsinput('add', product);
+    total += 1;
+    found += product.state === 'required' ? 0 : 1;
   });
+  $('header span.notification').text(found + '/' + total);
 }
 
 function addProductToShoppingList(shoppingList, product, recipeId) {

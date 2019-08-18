@@ -27,4 +27,4 @@ $('#datetimepicker th[class^=picker]').addClass('deactivated');
 $('#datetimepicker span[class^=timepicker]').removeAttr('data-action');
 $('#datetimepicker span[class^=timepicker]').addClass('deactivated');
 
-$('#calendarize form').submit(function(e) { e.preventDefault(); });
+$('#reminder').submit(function(e) { e.preventDefault(); });
