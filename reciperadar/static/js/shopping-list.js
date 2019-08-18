@@ -1,15 +1,8 @@
 function bindShoppingListInput(element) {
   $(element).tagsinput({
-    allowDuplicates: false,
     freeInput: false,
     itemText: 'raw',
     itemValue: 'singular',
-    maxTags: 100,
-    tagClass: function(item) {
-      var state = item.state || 'required';
-      if (Object.keys(item.recipes || {}).length) state += ' fixed';
-      return 'badge badge-info ' + state;
-    },
     typeahead: {
       minLength: 3,
       source: function(query) {
@@ -20,32 +13,19 @@ function bindShoppingListInput(element) {
       }
     }
   });
-  $(element).on('itemAdded', function(event) {
+  $(element).on('beforeItemAdd', function(event) {
+    event.cancel = true;
+
     var shoppingList = loadShoppingList();
     var product = event.item;
+    if (product.singular in shoppingList.products) return;
+
     addProductToShoppingList(shoppingList, product);
     storeShoppingList(shoppingList);
+    populateNotifications(shoppingList);
 
-    var filter = 'span.tag.badge:contains("' + product.raw + '")';
-    $('#shopping-list .products').off('click', filter);
-    $('#shopping-list .products').on('click', filter, function () {
-      // Workaround: filter ':contains' may return non-exact matches
-      // i.e. contains('celery') -> ['celery', 'celery root', ...]
-      if ($(this).text() != product.raw) return;
-      toggleProductState(product.singular);
-    });
-  });
-  $(element).on('beforeItemRemove', function(event) {
-    var shoppingList = loadShoppingList();
-    var product = shoppingList.products[event.item.singular];
-    event.cancel = Object.keys(product.recipes).length;
-    return;
-  });
-  $(element).on('itemRemoved', function(event) {
-    var shoppingList = loadShoppingList();
-    var product = shoppingList.products[event.item.singular];
-    removeProductFromShoppingList(shoppingList, product);
-    storeShoppingList(shoppingList);
+    var productsHtml = $('#shopping-list .products');
+    productElement(product).appendTo(productsHtml);
   });
 }
 bindShoppingListInput('#shopping-list-entry');
@@ -82,44 +62,84 @@ function storeShoppingList(shoppingList) {
   window.localStorage.setItem('shoppingList', shoppingListJSON);
 }
 
-function renderShoppingList() {
-  var shoppingList = loadShoppingList();
-  var shoppingListEmpty = Object.keys(shoppingList.products).length == 0;
-  $('button[data-target="#reminder').prop('disabled', shoppingListEmpty);
-  $('header span.notification').toggle(!shoppingListEmpty);
-
-  var recipeListHtml = $('<ul />');
-  $.each(shoppingList.recipes, function(recipeId) {
-    var recipe = shoppingList.recipes[recipeId];
-    var remove = $('<a />', {
-      'class': 'remove fa fa-trash-alt',
-      'click': removeRecipeFromShoppingList,
-      'data-recipe-id': recipe.id,
-    });
-    var title = $('<span />', {
-      'class': 'recipe',
-      'text': recipe.title
-    });
-    var item = $('<li />');
-
-    remove.appendTo(item);
-    title.appendTo(item);
-    item.appendTo(recipeListHtml);
+function recipeElement(recipe) {
+  var remove = $('<a />', {
+    'class': 'remove fa fa-trash-alt',
+    'click': removeRecipeFromShoppingList,
+    'data-recipe-id': recipe.id,
   });
-  var recipesHtml = $('#shopping-list .recipes').empty();
-  recipeListHtml.appendTo(recipesHtml);
+  var title = $('<span />', {
+    'class': 'recipe',
+    'text': recipe.title
+  });
+  var item = $('<div />');
 
-  var shoppingListInput = $('#shopping-list-entry');
-  shoppingListInput.tagsinput('removeAll');
+  remove.appendTo(item);
+  title.appendTo(item);
+  return item;
+}
+
+function productElement(product) {
+  var label = $('<label />', {
+    'click': function() {
+      toggleProductState(product.singular);
+    }
+  });
+  $('<input />', {
+    'type': 'checkbox',
+    'name': 'products[]',
+    'value': product.singular,
+    'checked': product.state === 'purchased'
+  }).appendTo(label);
+  $('<span />', {'text': product.raw}).appendTo(label);
+  if (Object.keys(product.recipes || {}).length === 0) {
+    $('<span />', {
+      'data-role': 'remove',
+      'click': function() {
+        var shoppingList = loadShoppingList();
+        removeProductFromShoppingList(shoppingList, product);
+        storeShoppingList(shoppingList);
+        populateNotifications(shoppingList);
+        $(this).parent().remove();
+      }
+    }).appendTo(label);
+  }
+  return label;
+}
+
+function populateNotifications(shoppingList) {
+  var shoppingListEmpty = Object.keys(shoppingList.products).length == 0;
+  $('header span.notification').toggle(!shoppingListEmpty);
+  if (shoppingListEmpty) return;
 
   var total = 0, found = 0;
   $.each(shoppingList.products, function(productId) {
     var product = shoppingList.products[productId];
-    shoppingListInput.tagsinput('add', product);
     total += 1;
     found += product.state === 'required' ? 0 : 1;
   });
   $('header span.notification').text(found + '/' + total);
+}
+
+function renderShoppingList() {
+  var shoppingList = loadShoppingList();
+  var shoppingListEmpty = Object.keys(shoppingList.products).length == 0;
+  $('button[data-target="#reminder').prop('disabled', shoppingListEmpty);
+
+  var recipesHtml = $('#shopping-list .recipes').empty();
+  $.each(shoppingList.recipes, function(recipeId) {
+    var recipe = shoppingList.recipes[recipeId];
+    recipeElement(recipe).appendTo(recipesHtml);
+  });
+
+  var productsHtml = $('#shopping-list .products').empty();
+  $.each(shoppingList.products, function(productId) {
+    var product = shoppingList.products[productId];
+    addProductToShoppingList(shoppingList, product);
+    productElement(product).appendTo(productsHtml);
+  });
+
+  populateNotifications(shoppingList);
 }
 
 function addProductToShoppingList(shoppingList, product, recipeId) {
@@ -128,7 +148,7 @@ function addProductToShoppingList(shoppingList, product, recipeId) {
       raw: product.raw,
       singular: product.singular,
       plural: product.plural,
-      state: product.state,
+      state: product.state || 'required',
       recipes: {}
     }
   }
@@ -144,12 +164,11 @@ function addRecipeToShoppingList() {
   };
 
   var shoppingList = loadShoppingList();
-  if (!(recipe.id in shoppingList.recipes)) {
-    shoppingList.recipes[recipe.id] = recipe;
-  }
+  shoppingList.recipes[recipe.id] = recipe;
 
   var products = $(this).data('products');
-  products.forEach(function(product) {
+  $.each(products, function(productId) {
+    var product = products[productId];
     if (product.state == 'required') {
       addProductToShoppingList(shoppingList, product, recipe.id);
     }
@@ -167,9 +186,9 @@ function removeProductFromShoppingList(shoppingList, product, recipeId) {
 }
 
 function removeRecipeFromShoppingList() {
-  var shoppingList = loadShoppingList();
-
   var recipeId = $(this).data('recipe-id');
+
+  var shoppingList = loadShoppingList();
   delete shoppingList.recipes[recipeId];
 
   $.each(shoppingList.products, function(productId) {
