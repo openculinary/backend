@@ -426,8 +426,9 @@ window.Feedback.Form.prototype.data = function() {
 window.Feedback.Form.prototype.review = function(dom) {
     this.elements.forEach(function(item) {
         if (item.element.value.length > 0) {
-            dom.appendChild(element('label', item.label + ': '));
-            dom.appendChild(document.createTextNode(item.element.value ) );
+            dom.appendChild(element('label', 'Feedback:'));
+            dom.appendChild(document.createTextNode(' '));
+            dom.appendChild(document.createTextNode(item.element.value ));
             dom.appendChild(document.createElement('hr'));
         }
     })
