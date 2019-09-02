@@ -159,7 +159,6 @@ getLang = function() {
         lang = navigator.language;
     }
 
-    console.log('language = ' + lang);
     if (lang) {
         return lang.replace('-','_');
     }
