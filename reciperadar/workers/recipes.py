@@ -25,9 +25,13 @@ def process_ingredients(recipe):
         if ingredient is None:
             continue
         if 'name' in parsed_ingredient:
-            product_doc = {'raw': parsed_ingredient['name']}
+            product_doc = {
+                'parser': parsed_ingredient['name_parser'],
+                'raw': parsed_ingredient['name'],
+            }
             ingredient.product = IngredientProduct.from_doc(product_doc)
         if 'qty' in parsed_ingredient:
+            ingredient.quantity_parser = parsed_ingredient['qty_parser']
             ingredient.quantity = 0
             fragments = parsed_ingredient['qty'].split()
             for fragment in fragments:
@@ -39,6 +43,7 @@ def process_ingredients(recipe):
                     fragment = Fraction(fragment[:-1]) + numeric(fragment[-1])
                 ingredient.quantity += float(fragment)
         if 'unit' in parsed_ingredient:
+            ingredient.units_parser = parsed_ingredient['unit_parser']
             ingredient.units = parsed_ingredient['unit']
 
 
@@ -66,7 +71,7 @@ def save_recipe_image(recipe):
     dir_path = 'reciperadar/static/images/recipes/{}'.format(recipe.id[:2])
     img_path = '{}/{}.webp'.format(dir_path, recipe.id)
     if not os.path.exists(img_path):
-        image = requests.get(recipe.image)
+        image = requests.get(recipe.image, timeout=0.25)
         image.raise_for_status()
         os.makedirs(dir_path, exist_ok=True)
         image = Image.open(io.BytesIO(image.content))
@@ -84,7 +89,8 @@ def process_recipe(recipe_id):
 
     try:
         save_recipe_image(recipe)
-    except Exception:
+    except Exception as e:
+        print(e)
         session.close()
         return
     if not recipe.image:

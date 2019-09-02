@@ -1,5 +1,4 @@
 from base58 import b58encode
-from bs4 import BeautifulSoup
 import inflect
 import mmh3
 from sqlalchemy import (
@@ -21,9 +20,10 @@ class IngredientProduct(Storable):
     __tablename__ = 'ingredient_products'
 
     fk = ForeignKey('recipe_ingredients.id', ondelete='cascade')
-    ingredient_id = Column(String, fk)
+    ingredient_id = Column(String, fk, index=True)
 
     id = Column(String, primary_key=True)
+    parser = Column(String)
     raw = Column(String)
     is_plural = Column(Boolean)
     singular = Column(String)
@@ -38,6 +38,7 @@ class IngredientProduct(Storable):
 
     @staticmethod
     def from_doc(doc, matches=None):
+        parser = doc.get('parser')
         raw = doc.get('raw')
         is_plural = doc.get('is_plural')
         singular = doc.get('singular')
@@ -58,6 +59,7 @@ class IngredientProduct(Storable):
         product_id = b58encode(uuid4().bytes).decode('utf-8')
         return IngredientProduct(
             id=product_id,
+            parser=parser,
             raw=raw,
             is_plural=is_plural,
             singular=singular,
@@ -70,7 +72,7 @@ class RecipeIngredient(Storable):
     __tablename__ = 'recipe_ingredients'
 
     fk = ForeignKey('recipes.id', ondelete='cascade')
-    recipe_id = Column(String, fk)
+    recipe_id = Column(String, fk, index=True)
 
     id = Column(String, primary_key=True)
     description = Column(String)
@@ -82,7 +84,9 @@ class RecipeIngredient(Storable):
     )
 
     quantity = Column(Float)
+    quantity_parser = Column(String)
     units = Column(String)
+    units_parser = Column(String)
     verb = Column(String)
 
     inflector = inflect.engine()
@@ -110,7 +114,8 @@ class RecipeIngredient(Storable):
 
     def to_dict(self):
         self.description = self.description.lower()
-        self.description = self.description.replace('i ', 'I ')
+        self.description = self.description.replace('(i ', '(I ')
+        self.description = self.description.replace(' i ', ' I ')
 
         if self.product and self.product.raw in self.description:
             tokens = self.description.split(self.product.raw, 1)
@@ -161,6 +166,15 @@ class Recipe(Storable, Searchable):
     def url(self):
         return f'/#action=view&id={self.id}'
 
+    @property
+    def products(self):
+        products = {}
+        for ingredient in self.ingredients:
+            if ingredient.product.singular not in products:
+                products[ingredient.product.singular] = ingredient
+            # TODO: Aggregate amount, quantity into a RecipeIngredient
+        return products.values()
+
     @staticmethod
     def from_dict(data):
         # Parse and de-duplicate ingredients
@@ -187,16 +201,11 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def matches(doc, includes):
-        highlights = []
-        for item in doc.get('inner_hits', {}).values():
-            for hit in item['hits']['hits']:
-                highlight = hit.get('highlight', {})
-                highlights += highlight.get('ingredients.product.singular', [])
-        matches = []
-        for highlight in highlights:
-            bs = BeautifulSoup(highlight, features='html.parser')
-            matches += [em.text.lower() for em in bs.findAll('em')]
-        return matches
+        products = [
+            product['singular']
+            for product in doc['_source']['products']
+        ]
+        return list(set(includes) & set(products))
 
     @staticmethod
     def from_doc(doc, matches=None):
@@ -232,13 +241,27 @@ class Recipe(Storable, Searchable):
             'url': self.url,
         }
 
-    def to_doc(self):
-        data = super().to_doc()
-        data['ingredients'] = [
+    def _ingredients_to_doc(self):
+        return [
             ingredient.to_doc()
             for ingredient in self.ingredients
         ]
-        data['ingredient_count'] = len(self.ingredients)
+
+    def _products_to_doc(self):
+        results = []
+        for product in self.products:
+            results.append({
+                'singular': product.product.singular,
+                'units': product.units,
+                'quantity': product.quantity,
+            })
+        return results
+
+    def to_doc(self):
+        data = super().to_doc()
+        data['ingredients'] = self._ingredients_to_doc()
+        data['products'] = self._products_to_doc()
+        data['product_count'] = len(self.products)
         return data
 
     @staticmethod
@@ -246,30 +269,16 @@ class Recipe(Storable, Searchable):
         if not include:
             return {'match_all': {}}
 
-        highlight = {
-            'fields': {
-                'ingredients.product.singular': {},
-            }
-        }
         return [{
             # sum the score of query ingredients found in the recipe
-            'nested': {
-                'path': 'ingredients',
-                'score_mode': 'sum',
-                'query': {
-                    # return a constant score for each ingredient match
-                    'constant_score': {
-                        'boost': 1,
-                        'filter': {
-                            # match on the singular product name
-                            'match': {
-                                'ingredients.product.singular': inc
-                            }
-                        }
+            'constant_score': {
+                'boost': 1,
+                'filter': {
+                    # match on the singular product name
+                    'match': {
+                        'products.singular': inc
                     }
-                },
-                # apply highlighting to matched product names
-                'inner_hits': {'name': inc, 'highlight': highlight, 'size': 25}
+                }
             }
         } for inc in include]
 
@@ -277,17 +286,9 @@ class Recipe(Storable, Searchable):
     def _generate_should_not_clause(include, exclude):
         # match any ingredients in the exclude list
         return [{
-            'nested': {
-                'path': 'ingredients',
-                'query': {
-                    # match on singular or plural product names
-                    'multi_match': {
-                        'query': exc,
-                        'fields': [
-                            'ingredients.product.singular',
-                        ]
-                    }
-                }
+            # match on the singular product name
+            'match': {
+                'products.singular': exc
             }
         } for exc in exclude]
 
@@ -299,11 +300,11 @@ class Recipe(Storable, Searchable):
 
         preamble = '''
             def inv_score = 1 / (_score + 1);
-            def ingredient_count = doc.ingredient_count.value;
-            def missing_count = ingredient_count - _score;
+            def product_count = doc.product_count.value;
+            def missing_count = product_count - _score;
 
-            def missing_ratio = missing_count / ingredient_count;
-            def present_ratio = _score / ingredient_count;
+            def missing_ratio = missing_count / product_count;
+            def present_ratio = _score / product_count;
         '''
         sort_configs = {
             # rank: number of ingredient matches
