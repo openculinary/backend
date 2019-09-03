@@ -79,6 +79,32 @@ function recipeElement(recipe) {
   return item;
 }
 
+function aggregateUnitQuantities(product) {
+  var unitQuantities = {};
+  $.each(product.recipes, function(recipeId) {
+    product.recipes[recipeId].amounts.forEach(function (amount) {
+      if (!amount.units) amount.units = '';
+      if (!(amount.units in unitQuantities)) unitQuantities[amount.units] = 0;
+      unitQuantities[amount.units] += amount.quantity;
+    });
+  });
+  $.each(unitQuantities, function(unit) {
+    if (unitQuantities[unit] === 0) delete unitQuantities[unit];
+  });
+  return unitQuantities;
+}
+
+function renderProductText(product) {
+  var unitQuantities = aggregateUnitQuantities(product);
+  var productText = '';
+  $.each(unitQuantities, function(unit) {
+    if (productText) productText += ' + ';
+    productText += float2rat(unitQuantities[unit]) + ' ' + unit;
+  });
+  productText += ' ' + product.raw;
+  return productText;
+}
+
 function productElement(product) {
   var label = $('<label />', {
     'click': function() {
@@ -91,7 +117,10 @@ function productElement(product) {
     'value': product.singular,
     'checked': product.state === 'purchased'
   }).appendTo(label);
-  $('<span />', {'text': product.raw}).appendTo(label);
+
+  var productText = renderProductText(product);
+  $('<span />', {'text': productText}).appendTo(label);
+
   if (Object.keys(product.recipes || {}).length === 0) {
     $('<span />', {
       'data-role': 'remove',
@@ -154,7 +183,14 @@ function addProductToShoppingList(shoppingList, product, recipeId) {
   }
 
   if (!recipeId) return;
-  shoppingList.products[product.singular].recipes[recipeId] = {};
+  var productRecipes = shoppingList.products[product.singular].recipes;
+  if (!(recipeId in productRecipes)) {
+    productRecipes[recipeId] = {amounts: []};
+  }
+  productRecipes[recipeId].amounts.push({
+    quantity: product.quantity,
+    units: product.units
+  });
 }
 
 function addRecipeToShoppingList() {
