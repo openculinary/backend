@@ -113,6 +113,9 @@ class RecipeIngredient(Storable):
         )
 
     def to_dict(self):
+        if not self.product:
+            return None
+
         tokens = []
         if self.quantity:
             tokens.append({
@@ -174,12 +177,10 @@ class Recipe(Storable, Searchable):
 
     @property
     def products(self):
-        products = {}
+        products = set()
         for ingredient in self.ingredients:
-            if ingredient.product.singular not in products:
-                products[ingredient.product.singular] = ingredient
-            # TODO: Aggregate amount, quantity into a RecipeIngredient
-        return products.values()
+            products.add(ingredient.product.singular)
+        return list(products)
 
     @staticmethod
     def from_dict(data):
@@ -207,11 +208,11 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def matches(doc, includes):
-        products = [
-            product['singular']
-            for product in doc['_source']['products']
+        return [
+            content['derived_from']
+            for content in doc['_source']['contents']
+            if content['product'] in set(includes)
         ]
-        return list(set(includes) & set(products))
 
     @staticmethod
     def from_doc(doc, matches=None):
@@ -247,26 +248,40 @@ class Recipe(Storable, Searchable):
             'url': self.url,
         }
 
+    @property
+    def contents(self):
+        expansions = {
+            'bacon': 'meat',
+            'beef': 'meat',
+            'chicken': 'meat',
+            'pork': 'meat',
+        }
+
+        results = {}
+        for product in self.products:
+            results[product] = product
+            for key in expansions:
+                if key in product:
+                    results[key] = product
+                    results[expansions[key]] = product
+                    break
+
+        return [{
+            'product': expansion,
+            'derived_from': product
+        } for expansion, product in results.items()]
+
     def _ingredients_to_doc(self):
         return [
             ingredient.to_doc()
             for ingredient in self.ingredients
         ]
 
-    def _products_to_doc(self):
-        results = []
-        for product in self.products:
-            results.append({
-                'singular': product.product.singular,
-                'units': product.units,
-                'quantity': product.quantity,
-            })
-        return results
-
     def to_doc(self):
         data = super().to_doc()
         data['ingredients'] = self._ingredients_to_doc()
-        data['products'] = self._products_to_doc()
+        data['contents'] = self.contents
+        data['products'] = self.products
         data['product_count'] = len(self.products)
         return data
 
@@ -275,28 +290,18 @@ class Recipe(Storable, Searchable):
         if not include:
             return {'match_all': {}}
 
+        # sum the score of query ingredients found in the recipe
         return [{
-            # sum the score of query ingredients found in the recipe
             'constant_score': {
                 'boost': 1,
-                'filter': {
-                    # match on the singular product name
-                    'match': {
-                        'products.singular': inc
-                    }
-                }
+                'filter': {'match': {'contents.product': inc}}
             }
         } for inc in include]
 
     @staticmethod
     def _generate_should_not_clause(include, exclude):
         # match any ingredients in the exclude list
-        return [{
-            # match on the singular product name
-            'match': {
-                'products.singular': exc
-            }
-        } for exc in exclude]
+        return [{'match': {'contents.product': exc}} for exc in exclude]
 
     @staticmethod
     def _generate_sort_params(include, sort):
