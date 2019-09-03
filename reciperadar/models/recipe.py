@@ -158,6 +158,7 @@ class Recipe(Storable, Searchable):
     id = Column(String, primary_key=True)
     title = Column(String)
     src = Column(String)
+    domain = Column(String)
     image = Column(String)
     time = Column(Integer)
     servings = Column(Integer)
@@ -195,11 +196,14 @@ class Recipe(Storable, Searchable):
             for ingredient in ingredients
         }
 
+        src_info = tldextract.extract(data['src'])
+
         recipe_id = b58encode(mmh3.hash_bytes(data['src'])).decode('utf-8')
         return Recipe(
             id=recipe_id,
             title=data['title'],
             src=data['src'],
+            domain=f'{src_info.domain}.{src_info.suffix}',
             image=data.get('image'),
             ingredients=list(ingredients.values()),
             servings=data['servings'],
@@ -232,7 +236,6 @@ class Recipe(Storable, Searchable):
         )
 
     def to_dict(self):
-        src_info = tldextract.extract(self.src)
         return {
             'id': self.id,
             'title': self.title,
@@ -244,7 +247,7 @@ class Recipe(Storable, Searchable):
             ],
             'servings': self.servings,
             'src': self.src,
-            'domain': '{}.{}'.format(src_info.domain, src_info.suffix),
+            'domain': self.domain,
             'url': self.url,
         }
 
