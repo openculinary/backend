@@ -2,16 +2,28 @@ function renderToken(token) {
   switch (token.type) {
     case 'text': return renderText(token);
     case 'product': return renderProduct(token);
+    case 'quantity': return renderQuantity(token);
+    case 'units': return renderUnits(token);
     default: return '';
   }
 }
 
 function renderText(token) {
+  if (!token.value) return '';
   return token.value;
 }
 
 function renderProduct(token) {
   return '<span class="tag badge ' + token.state + '">' + token.value + '</span>'
+}
+
+function renderQuantity(token) {
+  if (!token.value) return '';
+  return float2rat(token.value);
+}
+
+function renderUnits(token) {
+  return renderText(token);
 }
 
 function contentFormatter(value, row, index) {
@@ -29,15 +41,20 @@ function metadataFormatter(value, row, index) {
   var duration = moment.duration(row.time, 'minutes');
   var productsToAdd = [];
   row.ingredients.forEach(function(ingredient) {
+    var productToken, quantityToken, unitsToken;
     ingredient.tokens.forEach(function(token) {
-      if (token.type == 'product') {
-        productsToAdd.push({
-          raw: token.value,
-          singular: token.singular,
-          plural: token.plural,
-          state: token.state
-	});
-      }
+      if (token.type == 'product') productToken = token;
+      if (token.type == 'quantity') quantityToken = token;
+      if (token.type == 'units') unitsToken = token;
+    });
+
+    productsToAdd.push({
+      raw: productToken.value,
+      singular: productToken.singular,
+      plural: productToken.plural,
+      state: productToken.state,
+      quantity: quantityToken ? quantityToken.value : null,
+      units: unitsToken ? unitsToken.value : null
     });
   });
 

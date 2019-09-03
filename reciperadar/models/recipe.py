@@ -113,28 +113,34 @@ class RecipeIngredient(Storable):
         )
 
     def to_dict(self):
-        self.description = self.description.lower()
-        self.description = self.description.replace('(i ', '(I ')
-        self.description = self.description.replace(' i ', ' I ')
-
-        if self.product and self.product.raw in self.description:
-            tokens = self.description.split(self.product.raw, 1)
-            tokens = [{
-                'type': 'text',
-                'value': token,
-            } for token in tokens if token]
-            tokens.insert(1, {
-                'type': 'product',
-                'value': self.product.raw,
-                'state': self.product.state,
-                'singular': self.product.singular,
-                'plural': self.product.plural,
+        tokens = []
+        if self.quantity:
+            tokens.append({
+                'type': 'quantity',
+                'value': self.quantity,
             })
-        else:
-            tokens = [{
+            tokens.append({
                 'type': 'text',
-                'value': self.description,
-            }]
+                'value': ' ',
+            })
+
+        if self.units:
+            tokens.append({
+                'type': 'units',
+                'value': self.units,
+            })
+            tokens.append({
+                'type': 'text',
+                'value': ' ',
+            })
+
+        tokens.append({
+            'type': 'product',
+            'value': self.product.raw,
+            'state': self.product.state,
+            'singular': self.product.singular,
+            'plural': self.product.plural,
+        })
         return {'tokens': tokens}
 
     def to_doc(self):
