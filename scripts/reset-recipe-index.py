@@ -28,9 +28,11 @@ mapping = {
                 }
             }
         },
-        'products': {
+        'products': {'type': 'keyword'},
+        'contents': {
             'properties': {
-                'singular': {'type': 'keyword'}
+                'product': {'type': 'keyword'},
+                'derived_from': {'type': 'keyword'}
             }
         }
     }

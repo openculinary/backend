@@ -115,7 +115,7 @@ function productElement(product) {
     'type': 'checkbox',
     'name': 'products[]',
     'value': product.singular,
-    'checked': product.state === 'purchased'
+    'checked': ['available', 'purchased'].includes(product.state)
   }).appendTo(label);
 
   var productText = renderProductText(product);
@@ -205,9 +205,7 @@ function addRecipeToShoppingList() {
   var products = $(this).data('products');
   $.each(products, function(productId) {
     var product = products[productId];
-    if (product.state == 'required') {
-      addProductToShoppingList(shoppingList, product, recipe.id);
-    }
+    addProductToShoppingList(shoppingList, product, recipe.id);
   });
 
   storeShoppingList(shoppingList);
