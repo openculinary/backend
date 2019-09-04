@@ -225,6 +225,7 @@ class Recipe(Storable, Searchable):
             id=doc['_id'],
             title=source['title'],
             src=source['src'],
+            domain=source['domain'],
             image=source['image'],
             ingredients=[
                 RecipeIngredient.from_doc(ingredient, matches)
