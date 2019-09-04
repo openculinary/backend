@@ -16,7 +16,8 @@ def raw_recipe_hit():
             ],
             "image": None,
             "time": 30,
-            "src": "http://www.example.com/recipes/test"
+            "src": "http://www.example.com/recipes/test",
+            "domain": "example.com"
         },
         "inner_hits": {"ingredients": {"hits": {"hits": []}}}
     }
