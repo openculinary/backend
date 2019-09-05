@@ -152,6 +152,32 @@ class RecipeIngredient(Storable):
         return data
 
 
+class RecipeDirection(Storable):
+    __tablename__ = 'recipe_directions'
+
+    fk = ForeignKey('recipes.id', ondelete='cascade')
+    recipe_id = Column(String, fk, index=True)
+
+    id = Column(String, primary_key=True)
+    description = Column(String)
+
+    @staticmethod
+    def from_doc(doc, matches=None):
+        description = doc['description'].strip()
+
+        direction_id = b58encode(uuid4().bytes).decode('utf-8')
+        return RecipeDirection(
+            id=direction_id,
+            description=description
+        )
+
+    def to_dict(self):
+        return [{
+            'type': 'text',
+            'value': self.description
+        }]
+
+
 class Recipe(Storable, Searchable):
     __tablename__ = 'recipes'
 
@@ -164,6 +190,11 @@ class Recipe(Storable, Searchable):
     servings = Column(Integer)
     ingredients = relationship(
         'RecipeIngredient',
+        backref='recipe',
+        passive_deletes='all'
+    )
+    directions = relationship(
+        'RecipeDirection',
         backref='recipe',
         passive_deletes='all'
     )
@@ -196,6 +227,13 @@ class Recipe(Storable, Searchable):
             for ingredient in ingredients
         }
 
+        # Parse directions
+        directions = [
+            RecipeDirection.from_doc(direction)
+            for direction in data.get('directions') or []
+            if direction['description'].strip()
+        ]
+
         src_info = tldextract.extract(data['src'])
 
         recipe_id = b58encode(mmh3.hash_bytes(data['src'])).decode('utf-8')
@@ -206,6 +244,7 @@ class Recipe(Storable, Searchable):
             domain=f'{src_info.domain}.{src_info.suffix}',
             image=data.get('image'),
             ingredients=list(ingredients.values()),
+            directions=directions,
             servings=data['servings'],
             time=data['time'],
         )
@@ -232,6 +271,11 @@ class Recipe(Storable, Searchable):
                 for ingredient in source['ingredients']
                 if ingredient['description'].strip()
             ],
+            directions=[
+                RecipeDirection.from_doc(direction)
+                for direction in source.get('directions') or []
+                if direction['description'].strip()
+            ],
             servings=source.get('servings'),
             time=source['time']
         )
@@ -245,6 +289,10 @@ class Recipe(Storable, Searchable):
             'ingredients': [
                 ingredient.to_dict()
                 for ingredient in self.ingredients
+            ],
+            'directions': [
+                direction.to_dict()
+                for direction in self.directions
             ],
             'servings': self.servings,
             'src': self.src,
@@ -275,15 +323,16 @@ class Recipe(Storable, Searchable):
             'derived_from': product
         } for expansion, product in results.items()]
 
-    def _ingredients_to_doc(self):
-        return [
+    def to_doc(self):
+        data = super().to_doc()
+        data['directions'] = [
+            direction.to_doc()
+            for direction in self.directions
+        ]
+        data['ingredients'] = [
             ingredient.to_doc()
             for ingredient in self.ingredients
         ]
-
-    def to_doc(self):
-        data = super().to_doc()
-        data['ingredients'] = self._ingredients_to_doc()
         data['contents'] = self.contents
         data['products'] = self.products
         data['product_count'] = len(self.products)
