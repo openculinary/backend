@@ -5,10 +5,19 @@
       "title": {},
       "src": {},
       "image": {},
+      "directions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "description": {}
+          }
+        }
+      },
       "ingredients": {
         "type": "array",
-	"items": {
-	  "type": "object",
+        "items": {
+          "type": "object",
           "properties": {
             "description": {},
             "quantity": {},
