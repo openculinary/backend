@@ -4,6 +4,7 @@ import mmh3
 from sqlalchemy import (
     Boolean,
     Column,
+    DateTime,
     Float,
     ForeignKey,
     Integer,
@@ -200,6 +201,8 @@ class Recipe(Storable, Searchable):
         backref='recipe',
         passive_deletes='all'
     )
+
+    indexed_at = Column(DateTime)
 
     @property
     def noun(self):

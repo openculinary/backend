@@ -1,9 +1,11 @@
+from datetime import datetime, timedelta
 import io
 from PIL import Image
 import os
 import requests
 
 from reciperadar.models.recipe import Recipe
+from reciperadar.models.url import RecipeURL
 from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 
@@ -16,7 +18,10 @@ def index_recipe(recipe_id):
         print('Could not find recipe to index')
         return
     recipe.index()
+    recipe.indexed_at = datetime.utcnow()
     print(f'Indexed {recipe.id}')
+
+    session.commit()
     session.close()
 
 
@@ -60,8 +65,30 @@ def process_recipe(recipe_id):
     index_recipe.delay(recipe_id)
 
 
+thresholds = {
+    200: timedelta(days=28),
+    404: timedelta(days=28),
+    429: timedelta(hours=1),
+    500: timedelta(days=2),
+    501: timedelta(days=28),
+}
+
+
 @celery.task(queue='crawl_recipe')
 def crawl_recipe(url, image_url):
+    session = Database().get_session()
+    recipe_url = session.query(RecipeURL).filter(RecipeURL.url == url).first()
+
+    if not recipe_url:
+        recipe_url = RecipeURL(url=url)
+
+    if recipe_url.crawled_at:
+        threshold = thresholds.get(recipe_url.crawl_status, timedelta(days=1))
+        if (recipe_url.crawled_at + threshold) > datetime.utcnow():
+            print(f'* Skipping recently crawled url={url}')
+            session.close()
+            return
+
     crawler_url = 'http://localhost:6000'
     crawler_data = {
         'url': url,
@@ -69,22 +96,37 @@ def crawl_recipe(url, image_url):
     }
     crawler_response = requests.post(url=crawler_url, data=crawler_data)
 
+    recipe_url.crawled_at = datetime.utcnow()
+    recipe_url.crawl_status = crawler_response.status_code
+    session.add(recipe_url)
+    session.commit()
+
     if crawler_response.status_code == 429:
         print(f'* Crawler rate-limit exceeded for url={url}')
+        session.close()
         return
 
     if crawler_response.status_code == 501:
         print(f'* Website not supported for url={url}')
+        session.close()
         return
 
     if crawler_response.status_code >= 500:
         print(f'* Scraper failure for url={url}')
+        session.close()
         return
 
     recipe = Recipe.from_doc(crawler_response.json())
+
+    # TODO: The crawler should return this status code
+    if not recipe.ingredients and not recipe.time:
+        recipe_url.crawl_status = 404
+        session.commit()
+        session.close()
+        return
+
     process_recipe.delay(recipe.id)
 
-    session = Database().get_session()
     session.query(Recipe).filter_by(id=recipe.id).delete()
     session.add(recipe)
     session.commit()
