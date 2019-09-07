@@ -1,7 +1,7 @@
 function bindShoppingListInput(element) {
   $(element).tagsinput({
     freeInput: false,
-    itemText: 'raw',
+    itemText: 'product',
     itemValue: 'singular',
     typeahead: {
       minLength: 3,
@@ -101,7 +101,7 @@ function renderProductText(product) {
     if (productText) productText += ' + ';
     productText += float2rat(unitQuantities[unit]) + ' ' + unit;
   });
-  productText += ' ' + product.raw;
+  productText += ' ' + product.product;
   return productText;
 }
 
@@ -174,7 +174,7 @@ function renderShoppingList() {
 function addProductToShoppingList(shoppingList, product, recipeId) {
   if (!(product.singular in shoppingList.products)) {
     shoppingList.products[product.singular] = {
-      raw: product.raw,
+      product: product.product,
       singular: product.singular,
       plural: product.plural,
       state: product.state || 'required',

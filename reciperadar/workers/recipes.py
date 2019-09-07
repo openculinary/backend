@@ -1,66 +1,22 @@
-from fractions import Fraction
 import io
 from PIL import Image
 import os
 import requests
-from unicodedata import numeric
 
-from reciperadar.models.recipe import Recipe, IngredientProduct
+from reciperadar.models.recipe import Recipe
 from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 
 
-def process_ingredients(recipe):
-    ingredients_by_desc = {}
-    for ingredient in recipe.ingredients:
-        ingredients_by_desc[ingredient.description.lower()] = ingredient
-
-    url = '{}/parse'.format(os.environ['INGREDIENT_PARSER_URI'])
-    qs = {'ingredients[]': ingredients_by_desc.keys()}
-    parsed_ingredients = requests.get(url=url, params=qs).json()
-
-    for parsed_ingredient in parsed_ingredients:
-        input_desc = parsed_ingredient['input']
-        ingredient = ingredients_by_desc.get(input_desc)
-        if ingredient is None:
-            continue
-        if 'name' in parsed_ingredient:
-            product_doc = {
-                'parser': parsed_ingredient['name_parser'],
-                'raw': parsed_ingredient['name'],
-            }
-            ingredient.product = IngredientProduct.from_doc(product_doc)
-        if 'qty' in parsed_ingredient:
-            ingredient.quantity_parser = parsed_ingredient['qty_parser']
-            ingredient.quantity = 0
-            fragments = parsed_ingredient['qty'].split()
-            for fragment in fragments:
-                if len(fragment) == 1:
-                    fragment = numeric(fragment)
-                elif fragment[-1].isdigit():
-                    fragment = Fraction(fragment)
-                else:
-                    fragment = Fraction(fragment[:-1]) + numeric(fragment[-1])
-                ingredient.quantity += float(fragment)
-        if 'unit' in parsed_ingredient:
-            ingredient.units_parser = parsed_ingredient['unit_parser']
-            ingredient.units = parsed_ingredient['unit']
-
-
-@celery.task
+@celery.task(queue='index_recipe')
 def index_recipe(recipe_id):
     session = Database().get_session()
     recipe = session.query(Recipe).get(recipe_id)
     if not recipe:
+        print('Could not find recipe to index')
         return
-
-    process_ingredients(recipe)
-    if all([ingredient.product for ingredient in recipe.ingredients]):
-        recipe.index()
-        print(f'Indexed {recipe.id}')
-
-    session.add(recipe)
-    session.commit()
+    recipe.index()
+    print(f'Indexed {recipe.id}')
     session.close()
 
 
@@ -79,12 +35,13 @@ def save_recipe_image(recipe):
         recipe.image = img_path.replace('reciperadar/static/', '')
 
 
-@celery.task
+@celery.task(queue='process_recipe')
 def process_recipe(recipe_id):
     session = Database().get_session()
     recipe = session.query(Recipe).get(recipe_id)
     if not recipe:
         session.close()
+        print('Could not find recipe to process')
         return
 
     try:
@@ -95,8 +52,40 @@ def process_recipe(recipe_id):
         return
     if not recipe.image:
         session.close()
+        print(f'No recipe image to index for recipe {recipe.id}')
         return
 
     session.commit()
     session.close()
     index_recipe.delay(recipe_id)
+
+
+@celery.task(queue='crawl_recipe')
+def crawl_recipe(url, image_url):
+    crawler_url = 'http://localhost:6000'
+    crawler_data = {
+        'url': url,
+        'image_url': image_url
+    }
+    crawler_response = requests.post(url=crawler_url, data=crawler_data)
+
+    if crawler_response.status_code == 429:
+        print(f'* Crawler rate-limit exceeded for url={url}')
+        return
+
+    if crawler_response.status_code == 501:
+        print(f'* Website not supported for url={url}')
+        return
+
+    if crawler_response.status_code >= 500:
+        print(f'* Scraper failure for url={url}')
+        return
+
+    recipe = Recipe.from_doc(crawler_response.json())
+    process_recipe.delay(recipe.id)
+
+    session = Database().get_session()
+    session.query(Recipe).filter_by(id=recipe.id).delete()
+    session.add(recipe)
+    session.commit()
+    session.close()

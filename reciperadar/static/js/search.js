@@ -49,7 +49,7 @@ function metadataFormatter(value, row, index) {
     });
 
     productsToAdd.push({
-      raw: productToken.value,
+      product: productToken.value,
       singular: productToken.singular,
       plural: productToken.plural,
       state: productToken.state,

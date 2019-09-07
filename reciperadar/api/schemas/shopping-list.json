@@ -28,13 +28,13 @@
       "product": {
         "type": "object",
         "properties": {
-          "raw": {"type": "string"},
+          "product": {"type": "string"},
           "singular": {"type": "string"},
           "plural": {"type": "string"},
           "state": {"type": "string", "default": "required"},
           "recipes": {"type": "object", "default": {}}
         },
-        "required": ["raw", "singular"]
+        "required": ["product", "singular"]
       }
     }
   }

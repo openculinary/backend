@@ -23,8 +23,8 @@ class IngredientProduct(Storable):
     ingredient_id = Column(String, fk, index=True)
 
     id = Column(String, primary_key=True)
-    parser = Column(String)
-    raw = Column(String)
+    product = Column(String)
+    product_parser = Column(String)
     is_plural = Column(Boolean)
     singular = Column(String)
     plural = Column(String)
@@ -38,16 +38,18 @@ class IngredientProduct(Storable):
 
     @staticmethod
     def from_doc(doc, matches=None):
-        parser = doc.get('parser')
-        raw = doc.get('raw')
+        product = doc.get('product')
+        product_parser = doc.get('product_parser')
+
         is_plural = doc.get('is_plural')
         singular = doc.get('singular')
         plural = doc.get('plural')
 
         if not singular or not plural:
-            singular = IngredientProduct.inflector.singular_noun(raw) or raw
+            singular = IngredientProduct.inflector.singular_noun(product)
+            singular = singular or product
             plural = IngredientProduct.inflector.plural_noun(singular)
-            is_plural = raw == plural
+            is_plural = product == plural
 
         matches = matches or []
         states = {
@@ -59,8 +61,8 @@ class IngredientProduct(Storable):
         product_id = b58encode(uuid4().bytes).decode('utf-8')
         return IngredientProduct(
             id=product_id,
-            parser=parser,
-            raw=raw,
+            product=product,
+            product_parser=product_parser,
             is_plural=is_plural,
             singular=singular,
             plural=plural,
@@ -139,7 +141,7 @@ class RecipeIngredient(Storable):
 
         tokens.append({
             'type': 'product',
-            'value': self.product.raw,
+            'value': self.product.product,
             'state': self.product.state,
             'singular': self.product.singular,
             'plural': self.product.plural,
@@ -259,25 +261,27 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def from_doc(doc, matches=None):
-        source = doc.pop('_source')
+        # TODO: Don't recalculate these values unnecessarily
+        src_info = tldextract.extract(doc['src'])
+        recipe_id = b58encode(mmh3.hash_bytes(doc['src'])).decode('utf-8')
         return Recipe(
-            id=doc['_id'],
-            title=source['title'],
-            src=source['src'],
-            domain=source['domain'],
-            image=source['image'],
+            id=recipe_id,
+            title=doc['title'],
+            src=doc['src'],
+            domain=f'{src_info.domain}.{src_info.suffix}',
+            image=doc['image'],
             ingredients=[
                 RecipeIngredient.from_doc(ingredient, matches)
-                for ingredient in source['ingredients']
+                for ingredient in doc['ingredients']
                 if ingredient['description'].strip()
             ],
             directions=[
                 RecipeDirection.from_doc(direction)
-                for direction in source.get('directions') or []
+                for direction in doc.get('directions') or []
                 if direction['description'].strip()
             ],
-            servings=source.get('servings'),
-            time=source['time']
+            servings=doc['servings'],
+            time=doc['time']
         )
 
     def to_dict(self):
@@ -433,7 +437,7 @@ class Recipe(Storable, Searchable):
         recipes = []
         for result in results['hits']['hits']:
             matches = self.matches(result, include)
-            recipe = Recipe.from_doc(result, matches)
+            recipe = Recipe.from_doc(result['_source'], matches)
             recipes.append(recipe.to_dict())
 
         return {

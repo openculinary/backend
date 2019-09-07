@@ -13,7 +13,7 @@ def future_shopping_list_args(raw_recipe_hit):
     return {
         'shopping_list': {
             'products': {'example': {
-                'raw': 'example',
+                'product': 'example',
                 'singular': 'example',
                 'plural': 'examples',
             }}

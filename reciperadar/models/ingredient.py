@@ -20,8 +20,8 @@ class Ingredient(Searchable):
                   'filter': {
                     'bool': {
                       'should': [
-                        {'match': {'ingredients.product.raw': prefix}},
-                        {'prefix': {'ingredients.product.raw': prefix}}
+                        {'match': {'ingredients.product.product': prefix}},
+                        {'prefix': {'ingredients.product.product': prefix}}
                       ]
                     }
                   },
@@ -72,13 +72,13 @@ class Ingredient(Searchable):
 
             suggestion_doc = plural_docs[0] if plural_wins else result
             suggestions.append({
-                'raw': suggestion_doc['key'],
+                'product': suggestion_doc['key'],
                 'singular': result['key']
             })
 
         suggestions.sort(key=lambda s: (
-            s['raw'] != prefix,  # exact matches first
-            not s['raw'].startswith(prefix),  # prefix matches next
-            len(s['raw'])),  # sort remaining matches by length
+            s['product'] != prefix,  # exact matches first
+            not s['product'].startswith(prefix),  # prefix matches next
+            len(s['product'])),  # sort remaining matches by length
         )
         return suggestions

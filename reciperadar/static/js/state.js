@@ -8,7 +8,7 @@ function loadTags(element, data) {
   });
   terms.forEach(function(term) {
     if (tags.indexOf(term) >= 0) return;
-    $(element).tagsinput('add', {raw: term, singular: term});
+    $(element).tagsinput('add', {product: term, singular: term});
   });
 }
 
