@@ -1,25 +1,13 @@
 from flask import jsonify, request
-from flask_jsonschema import validate
 
 from reciperadar import app
-from reciperadar.models.recipe import Recipe
-from reciperadar.services.database import Database
-from reciperadar.workers.recipes import process_recipe
+from reciperadar.workers.recipes import crawl_recipe
 
 
-@app.route('/api/recipes/ingest', methods=['POST'])
-@validate('recipes', 'ingest')
-def recipe_ingest():
-    data = request.get_json()
-    recipe = Recipe.from_dict(data)
+@app.route('/api/recipes/crawl', methods=['POST'])
+def recipe_crawl():
+    url = request.form.get('url')
+    image_url = request.form.get('image_url')
 
-    session = Database().get_session()
-    session.query(Recipe).filter_by(id=recipe.id).delete()
-    session.add(recipe)
-    session.commit()
-
-    process_recipe.delay(recipe.id)
-    response = recipe.to_dict()
-
-    session.close()
-    return jsonify(response)
+    crawl_recipe.delay(url, image_url)
+    return jsonify({})
