@@ -1,7 +1,95 @@
-from reciperadar.models.base import Searchable
+from sqlalchemy import (
+    Column,
+    Float,
+    ForeignKey,
+    String,
+)
+from sqlalchemy.orm import relationship
+
+from reciperadar.models.base import Searchable, Storable
+from reciperadar.models.recipes.product import IngredientProduct
 
 
-class Ingredient(Searchable):
+class RecipeIngredient(Storable, Searchable):
+    __tablename__ = 'recipe_ingredients'
+
+    fk = ForeignKey('recipes.id', ondelete='cascade')
+    recipe_id = Column(String, fk, index=True)
+
+    id = Column(String, primary_key=True)
+    description = Column(String)
+    product = relationship(
+        'IngredientProduct',
+        backref='recipe_ingredient',
+        uselist=False,
+        passive_deletes='all'
+    )
+
+    quantity = Column(Float)
+    quantity_parser = Column(String)
+    units = Column(String)
+    units_parser = Column(String)
+    verb = Column(String)
+
+    @staticmethod
+    def from_doc(doc, matches=None):
+        description = doc['description'].strip()
+        product = doc.get('product')
+        quantity = doc.get('quantity')
+        units = doc.get('units')
+        verb = doc.get('verb')
+
+        if product:
+            product = IngredientProduct.from_doc(product, matches)
+
+        ingredient_id = doc.get('id') or RecipeIngredient.generate_id()
+        return RecipeIngredient(
+            id=ingredient_id,
+            description=description,
+            product=product,
+            quantity=quantity,
+            units=units,
+            verb=verb
+        )
+
+    def to_dict(self):
+        if not self.product:
+            return None
+
+        tokens = []
+        if self.quantity:
+            tokens.append({
+                'type': 'quantity',
+                'value': self.quantity,
+            })
+            tokens.append({
+                'type': 'text',
+                'value': ' ',
+            })
+
+        if self.units:
+            tokens.append({
+                'type': 'units',
+                'value': self.units,
+            })
+            tokens.append({
+                'type': 'text',
+                'value': ' ',
+            })
+
+        tokens.append({
+            'type': 'product',
+            'value': self.product.product,
+            'state': self.product.state,
+            'singular': self.product.singular,
+            'plural': self.product.plural,
+        })
+        return {'tokens': tokens}
+
+    def to_doc(self):
+        data = super().to_doc()
+        data['product'] = self.product.to_doc()
+        return data
 
     @property
     def noun(self):

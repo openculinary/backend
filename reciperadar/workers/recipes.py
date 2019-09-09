@@ -4,7 +4,7 @@ from PIL import Image
 import os
 import requests
 
-from reciperadar.models.recipe import Recipe
+from reciperadar.models.recipes import Recipe
 from reciperadar.models.url import RecipeURL
 from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
