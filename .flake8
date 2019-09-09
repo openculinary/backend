@@ -1,4 +1,3 @@
 [flake8]
 per-file-ignores=
-    reciperadar/__init__.py:E402,F401
-    reciperadar/workers/worker.py:F401
+    reciperadar/ __init__.py:E402,F401

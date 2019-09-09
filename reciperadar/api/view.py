@@ -1,7 +1,7 @@
 from flask import abort, jsonify
 
 from reciperadar import app
-from reciperadar.models.recipe import Recipe
+from reciperadar.models.recipes import Recipe
 
 
 @app.route('/api/recipes/<recipe_id>/view')
