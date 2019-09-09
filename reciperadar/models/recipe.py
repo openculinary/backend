@@ -175,10 +175,10 @@ class RecipeDirection(Storable):
         )
 
     def to_dict(self):
-        return [{
+        return {'tokens': [{
             'type': 'text',
             'value': self.description
-        }]
+        }]}
 
 
 class Recipe(Storable, Searchable):
