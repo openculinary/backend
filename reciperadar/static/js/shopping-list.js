@@ -239,7 +239,7 @@ function removeRecipeFromShoppingList() {
 
 function updateRecipeState(recipeId) {
   var shoppingList = loadShoppingList();
-  var addButton = $('button[data-recipe-id="' + recipeId + '"]');
+  var addButton = $('button[data-recipe-id="' + recipeId + '"].add-to-shopping-list');
   var isInShoppingList = recipeId in shoppingList.recipes;
   addButton.prop('disabled', isInShoppingList);
   addButton.toggleClass('btn-outline-primary', !isInShoppingList);

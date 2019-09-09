@@ -64,11 +64,16 @@
 }
 
 #search .results .metadata button {
-  width: 192px
+  width: 192px;
+  margin-bottom: 4px;
 }
 
 #search .results .content img {
   width: 24px;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+#search .results .content ul {
+  margin-top: 0.75rem;
 }

@@ -29,16 +29,25 @@ function renderUnits(token) {
 function contentFormatter(value, row, index) {
   var content = $('<div />');
   $('<img />', {'src': 'images/domains/' + row.domain + '.ico', 'alt': ''}).appendTo(content);
-  $('<a />', {'href': row.src, 'text': row.title}).appendTo(content);
-  var ul = $('<ul />').appendTo(content);
+  $('<a />', {'href': row.src, 'text': row.title, 'target': '_blank'}).appendTo(content);
+  var ingredients = $('<ul />', {
+    'class': 'ingredients',
+    'data-recipe-id': row.id
+  }).appendTo(content);
   $.each(row.ingredients, function() {
-    $('<li />', {'html': this.tokens.map(renderToken).join('')}).appendTo(ul);
+    $('<li />', {'html': this.tokens.map(renderToken).join('')}).appendTo(ingredients);
+  });
+  var directions = $('<ul />', {
+    'class': 'directions collapse',
+    'data-recipe-id': row.id
+  }).appendTo(content);
+  $.each(row.directions, function() {
+    $('<li />', {'html': this.tokens.map(renderToken).join('')}).appendTo(directions);
   });
   return content.html();
 }
 
 function metadataFormatter(value, row, index) {
-  var duration = moment.duration(row.time, 'minutes');
   var productsToAdd = [];
   row.ingredients.forEach(function(ingredient) {
     var productToken, quantityToken, unitsToken;
@@ -58,6 +67,7 @@ function metadataFormatter(value, row, index) {
     });
   });
 
+  var duration = moment.duration(row.time, 'minutes');
   var metadata = $('<div />');
   $('<img />', {'src': row.image, 'alt': row.title}).appendTo(metadata);
   $('<span />', {'html': '<strong>serves</strong>'}).appendTo(metadata);
@@ -66,13 +76,25 @@ function metadataFormatter(value, row, index) {
   $('<span />', {'html': '<strong>time</strong>'}).appendTo(metadata);
   $('<span />', {'text': duration.as('minutes') + ' mins'}).appendTo(metadata);
   $('<button />', {
-    'class': 'btn btn-outline-primary',
+    'class': 'btn btn-outline-primary toggle-directions',
+    'text': 'View instructions',
+    'data-recipe-id': row.id,
+  }).appendTo(metadata);
+  $('<button />', {
+    'class': 'btn btn-outline-primary add-to-shopping-list',
     'text': 'Add to shopping list',
     'data-recipe-id': row.id,
     'data-recipe-title': row.title,
     'data-products': JSON.stringify(productsToAdd),
-  }).appendTo(metadata)
+  }).appendTo(metadata);
   return metadata.html();
+}
+
+function toggleDirections() {
+  var recipeId = $(this).data('recipe-id');
+  $('#search .results ul.ingredients[data-recipe-id="' + recipeId + '"]').toggleClass('collapse');
+  $('#search .results ul.directions[data-recipe-id="' + recipeId + '"]').toggleClass('collapse');
+  $(this).text($(this).text() === 'View instructions' ? 'View ingredients' : 'View instructions');
 }
 
 function scrollToSearchResults() {
@@ -162,7 +184,8 @@ $('#search .results table').on('load-success.bs.table', function() {
   paginationDetail.empty();
   sortPrompt.appendTo(paginationDetail);
 
-  $(this).find('.metadata button').on('click', addRecipeToShoppingList);
+  $(this).find('.metadata button.add-to-shopping-list').on('click', addRecipeToShoppingList);
+  $(this).find('.metadata button.toggle-directions').on('click', toggleDirections);
 });
 
 $('#search .results table').on('post-body.bs.table', function(data) {
