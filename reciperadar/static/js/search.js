@@ -29,7 +29,12 @@ function renderUnits(token) {
 function contentFormatter(value, row, index) {
   var content = $('<div />');
   $('<img />', {'src': 'images/domains/' + row.domain + '.ico', 'alt': ''}).appendTo(content);
-  $('<a />', {'href': row.src, 'text': row.title, 'target': '_blank'}).appendTo(content);
+  $('<a />', {
+    'href': row.src,
+    'text': row.title,
+    'target': '_blank',
+    'rel': 'noreferrer'
+  }).appendTo(content);
   var ingredients = $('<ul />', {
     'class': 'ingredients',
     'data-recipe-id': row.id
