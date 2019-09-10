@@ -21,11 +21,9 @@ function bindShoppingListInput(element) {
     if (product.singular in shoppingList.products) return;
 
     addProductToShoppingList(shoppingList, product);
-    storeShoppingList(shoppingList);
-    populateNotifications(shoppingList);
 
-    var productsHtml = $('#shopping-list .products');
-    productElement(product).appendTo(productsHtml);
+    storeShoppingList(shoppingList);
+    renderShoppingList(shoppingList);
   });
 }
 bindShoppingListInput('#shopping-list-entry');
@@ -43,7 +41,7 @@ function restoreShoppingList() {
 
       if (!validate(shoppingList)) return;
       storeShoppingList(shoppingList);
-      renderShoppingList();
+      renderShoppingList(shoppingList);
     });
   }
 }
@@ -105,6 +103,13 @@ function renderProductText(product) {
   return productText;
 }
 
+function categoryElement(category) {
+  category = category || 'Other';
+  var fieldset = $('<fieldset />', {'class': category.toLowerCase()});
+  $('<legend />', {'text': category}).appendTo(fieldset);
+  return fieldset;
+}
+
 function productElement(product) {
   var label = $('<label />', {
     'click': function() {
@@ -127,9 +132,9 @@ function productElement(product) {
       'click': function() {
         var shoppingList = loadShoppingList();
         removeProductFromShoppingList(shoppingList, product);
+
         storeShoppingList(shoppingList);
-        populateNotifications(shoppingList);
-        $(this).parent().remove();
+        renderShoppingList(shoppingList);
       }
     }).appendTo(label);
   }
@@ -150,11 +155,26 @@ function populateNotifications(shoppingList) {
   $('header span.notification').text(found + '/' + total);
 }
 
-function renderShoppingList() {
-  var shoppingList = loadShoppingList();
+function updateReminderState(shoppingList) {
   var shoppingListEmpty = Object.keys(shoppingList.products).length == 0;
   $('button[data-target="#reminder').prop('disabled', shoppingListEmpty);
+}
 
+function getProductsByCategory(shoppingList) {
+  var categoriesByProduct = {};
+  $.each(shoppingList.products, function(productId) {
+    categoriesByProduct[productId] = shoppingList.products[productId].category;
+  });
+  var productsByCategory = {};
+  $.each(categoriesByProduct, function(productId) {
+    var category = categoriesByProduct[productId];
+    if (!(category in productsByCategory)) productsByCategory[category] = [];
+    productsByCategory[category].push(productId);
+  });
+  return productsByCategory;
+}
+
+function renderShoppingList(shoppingList) {
   var recipesHtml = $('#shopping-list .recipes').empty();
   $.each(shoppingList.recipes, function(recipeId) {
     var recipe = shoppingList.recipes[recipeId];
@@ -162,19 +182,29 @@ function renderShoppingList() {
   });
 
   var productsHtml = $('#shopping-list .products').empty();
-  $.each(shoppingList.products, function(productId) {
-    var product = shoppingList.products[productId];
-    addProductToShoppingList(shoppingList, product);
-    productElement(product).appendTo(productsHtml);
+  var finalCategoryGroup = null;
+  var productsByCategory = getProductsByCategory(shoppingList);
+  $.each(productsByCategory, function(category) {
+    if (category === 'null') category = null;
+    var categoryGroup = categoryElement(category);
+    productsByCategory[category].forEach(function(productId) {
+      var product = shoppingList.products[productId];
+      productElement(product).appendTo(categoryGroup);
+    });
+    if (category) categoryGroup.appendTo(productsHtml);
+    else finalCategoryGroup = categoryGroup;
   });
+  if (finalCategoryGroup) finalCategoryGroup.appendTo(productsHtml);
 
   populateNotifications(shoppingList);
+  updateReminderState(shoppingList);
 }
 
 function addProductToShoppingList(shoppingList, product, recipeId) {
   if (!(product.singular in shoppingList.products)) {
     shoppingList.products[product.singular] = {
       product: product.product,
+      category: product.category,
       singular: product.singular,
       plural: product.plural,
       state: product.state || 'required',
@@ -207,10 +237,10 @@ function addRecipeToShoppingList() {
     var product = products[productId];
     addProductToShoppingList(shoppingList, product, recipe.id);
   });
+  updateRecipeState(recipe.id, shoppingList);
 
   storeShoppingList(shoppingList);
-  updateRecipeState(recipe.id);
-  renderShoppingList();
+  renderShoppingList(shoppingList);
 }
 
 function removeProductFromShoppingList(shoppingList, product, recipeId) {
@@ -231,14 +261,13 @@ function removeRecipeFromShoppingList() {
       removeProductFromShoppingList(shoppingList, product, recipeId);
     }
   });
+  updateRecipeState(recipeId, shoppingList);
 
   storeShoppingList(shoppingList);
-  updateRecipeState(recipeId);
-  renderShoppingList();
+  renderShoppingList(shoppingList);
 }
 
-function updateRecipeState(recipeId) {
-  var shoppingList = loadShoppingList();
+function updateRecipeState(recipeId, shoppingList) {
   var addButton = $('button[data-recipe-id="' + recipeId + '"].add-to-shopping-list');
   var isInShoppingList = recipeId in shoppingList.recipes;
   addButton.prop('disabled', isInShoppingList);
@@ -259,5 +288,10 @@ function toggleProductState(productId) {
   product.state = transitions[product.state];
 
   storeShoppingList(shoppingList);
-  renderShoppingList();
+  renderShoppingList(shoppingList);
 }
+
+$(function () {
+  var shoppingList = loadShoppingList();
+  renderShoppingList(shoppingList);
+});

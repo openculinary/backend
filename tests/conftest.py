@@ -11,8 +11,14 @@ def raw_recipe_hit():
         "_source": {
             "title": "Test Recipe",
             "ingredients": [
-                {"description": "1 unit of test ingredient one"},
-                {"description": "two units of test ingredient two"}
+                {
+                    "description": "1 unit of test ingredient one",
+                    "product": {"product": "one"}
+                },
+                {
+                    "description": "two units of test ingredient two",
+                    "product": {"product": "two"}
+                }
             ],
             "image": None,
             "time": 30,

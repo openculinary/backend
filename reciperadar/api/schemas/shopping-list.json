@@ -29,6 +29,7 @@
         "type": "object",
         "properties": {
           "product": {"type": "string"},
+          "category": {"type": "string"},
           "singular": {"type": "string"},
           "plural": {"type": "string"},
           "state": {"type": "string", "default": "required"},
