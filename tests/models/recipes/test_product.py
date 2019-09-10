@@ -2,14 +2,20 @@ from reciperadar.models.recipes import IngredientProduct
 
 
 def test_chicken_contents():
-    product = IngredientProduct(product='chicken')
+    product = IngredientProduct(
+        product='chicken',
+        singular='chicken'
+    )
 
     assert 'chicken' in product.contents
     assert 'meat' in product.contents
 
 
 def test_chicken_breast_contents():
-    product = IngredientProduct(product='chicken breast')
+    product = IngredientProduct(
+        product='chicken breast',
+        singular='chicken breast'
+    )
 
     assert 'chicken breast' in product.contents
     assert 'chicken' in product.contents
@@ -17,7 +23,10 @@ def test_chicken_breast_contents():
 
 
 def test_chicken_broth_contents():
-    product = IngredientProduct(product='chicken broth')
+    product = IngredientProduct(
+        product='chicken broth',
+        singular='chicken broth'
+    )
 
     assert 'chicken broth' in product.contents
     assert 'chicken' not in product.contents

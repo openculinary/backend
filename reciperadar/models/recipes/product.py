@@ -144,7 +144,7 @@ class IngredientProduct(Storable):
             'fruit_and_veg': ['green tomato'],
         }
 
-        contents = {self.product}
+        contents = {self.singular}
         for content in content_graph:
             if content in self.product:
                 excluded = False
