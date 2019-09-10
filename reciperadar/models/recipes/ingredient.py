@@ -32,30 +32,18 @@ class RecipeIngredient(Storable, Searchable):
     verb = Column(String)
 
     @staticmethod
-    def from_doc(doc, matches=None):
-        description = doc['description'].strip()
-        product = doc.get('product')
-        quantity = doc.get('quantity')
-        units = doc.get('units')
-        verb = doc.get('verb')
-
-        if product:
-            product = IngredientProduct.from_doc(product, matches)
-
+    def from_doc(doc):
         ingredient_id = doc.get('id') or RecipeIngredient.generate_id()
         return RecipeIngredient(
             id=ingredient_id,
-            description=description,
-            product=product,
-            quantity=quantity,
-            units=units,
-            verb=verb
+            description=doc['description'].strip(),
+            product=IngredientProduct.from_doc(doc['product']),
+            quantity=doc.get('quantity'),
+            units=doc.get('units'),
+            verb=doc.get('verb')
         )
 
-    def to_dict(self):
-        if not self.product:
-            return None
-
+    def to_dict(self, include=None):
         tokens = []
         if self.quantity:
             tokens.append({
@@ -66,7 +54,6 @@ class RecipeIngredient(Storable, Searchable):
                 'type': 'text',
                 'value': ' ',
             })
-
         if self.units:
             tokens.append({
                 'type': 'units',
@@ -76,14 +63,7 @@ class RecipeIngredient(Storable, Searchable):
                 'type': 'text',
                 'value': ' ',
             })
-
-        tokens.append({
-            'type': 'product',
-            'value': self.product.product,
-            'state': self.product.state,
-            'singular': self.product.singular,
-            'plural': self.product.plural,
-        })
+        tokens.append(self.product.to_dict(include))
         return {'tokens': tokens}
 
     def to_doc(self):
@@ -159,14 +139,18 @@ class RecipeIngredient(Storable, Searchable):
             plural_wins = plural_count > total_count - plural_count
 
             suggestion_doc = plural_docs[0] if plural_wins else result
-            suggestions.append({
-                'product': suggestion_doc['key'],
-                'singular': result['key']
-            })
+            suggestions.append(IngredientProduct(
+                product=suggestion_doc['key'],
+                singular=result['key']
+            ))
 
         suggestions.sort(key=lambda s: (
-            s['product'] != prefix,  # exact matches first
-            not s['product'].startswith(prefix),  # prefix matches next
-            len(s['product'])),  # sort remaining matches by length
+            s.product != prefix,  # exact matches first
+            not s.product.startswith(prefix),  # prefix matches next
+            len(s.product)),  # sort remaining matches by length
         )
-        return suggestions
+        return [{
+            'product': suggestion.product,
+            'category': suggestion.category,
+            'singular': suggestion.singular
+        } for suggestion in suggestions]

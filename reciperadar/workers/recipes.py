@@ -101,6 +101,11 @@ def crawl_recipe(url, image_url):
     session.add(recipe_url)
     session.commit()
 
+    if crawler_response.status_code == 404:
+        print(f'* Crawler did not find a complete recipe for url={url}')
+        session.close()
+        return
+
     if crawler_response.status_code == 429:
         print(f'* Crawler rate-limit exceeded for url={url}')
         session.close()
@@ -117,14 +122,6 @@ def crawl_recipe(url, image_url):
         return
 
     recipe = Recipe.from_doc(crawler_response.json())
-
-    # TODO: The crawler should return this status code
-    if not recipe.ingredients and not recipe.time:
-        recipe_url.crawl_status = 404
-        session.commit()
-        session.close()
-        return
-
     process_recipe.delay(recipe.id)
 
     session.query(Recipe).filter_by(id=recipe.id).delete()

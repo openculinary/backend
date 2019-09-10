@@ -64,6 +64,7 @@ function metadataFormatter(value, row, index) {
 
     productsToAdd.push({
       product: productToken.value,
+      category: productToken.category,
       singular: productToken.singular,
       plural: productToken.plural,
       state: productToken.state,
@@ -196,7 +197,9 @@ $('#search .results table').on('load-success.bs.table', function() {
 $('#search .results table').on('post-body.bs.table', function(data) {
   var data = $(this).bootstrapTable('getData');
   if (!Array.isArray(data)) return;
+
+  var shoppingList = loadShoppingList();
   data.forEach(function (row) {
-    updateRecipeState(row.id);
+    updateRecipeState(row.id, shoppingList);
   });
 });

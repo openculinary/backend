@@ -1,5 +1,4 @@
-from base58 import b58encode
-import mmh3
+from mmh3 import hash_bytes
 from sqlalchemy import (
     Column,
     DateTime,
@@ -7,11 +6,11 @@ from sqlalchemy import (
     String,
 )
 from sqlalchemy.orm import relationship
-import tldextract
 
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
+from reciperadar.models.recipes.product import IngredientProduct
 
 
 class Recipe(Storable, Searchable):
@@ -47,67 +46,26 @@ class Recipe(Storable, Searchable):
 
     @property
     def products(self):
-        products = set()
-        for ingredient in self.ingredients:
-            products.add(ingredient.product.singular)
-        return list(products)
-
-    @staticmethod
-    def from_dict(data):
-        # Parse and de-duplicate ingredients
-        ingredients = [
-            RecipeIngredient.from_doc(ingredient)
-            for ingredient in data['ingredients']
-            if ingredient['description'].strip()
-        ]
-        ingredients = {
-            ingredient.id: ingredient
-            for ingredient in ingredients
+        products_by_id = {
+            ingredient.product.singular: IngredientProduct(
+                product=ingredient.product.product,
+                singular=ingredient.product.singular,
+            )
+            for ingredient in self.ingredients
         }
-
-        # Parse directions
-        directions = [
-            RecipeDirection.from_doc(direction)
-            for direction in data.get('directions') or []
-            if direction['description'].strip()
-        ]
-
-        src_info = tldextract.extract(data['src'])
-
-        recipe_id = b58encode(mmh3.hash_bytes(data['src'])).decode('utf-8')
-        return Recipe(
-            id=recipe_id,
-            title=data['title'],
-            src=data['src'],
-            domain=f'{src_info.domain}.{src_info.suffix}',
-            image=data.get('image'),
-            ingredients=list(ingredients.values()),
-            directions=directions,
-            servings=data['servings'],
-            time=data['time'],
-        )
+        return list(products_by_id.values())
 
     @staticmethod
-    def matches(doc, includes):
-        return [
-            content['derived_from']
-            for content in doc['_source']['contents']
-            if content['product'] in set(includes)
-        ]
-
-    @staticmethod
-    def from_doc(doc, matches=None):
-        # TODO: Don't recalculate these values unnecessarily
-        src_info = tldextract.extract(doc['src'])
-        recipe_id = b58encode(mmh3.hash_bytes(doc['src'])).decode('utf-8')
+    def from_doc(doc):
+        recipe_id = doc.get('id') or Recipe.generate_id(hash_bytes(doc['src']))
         return Recipe(
             id=recipe_id,
             title=doc['title'],
             src=doc['src'],
-            domain=f'{src_info.domain}.{src_info.suffix}',
+            domain=doc['domain'],
             image=doc['image'],
             ingredients=[
-                RecipeIngredient.from_doc(ingredient, matches)
+                RecipeIngredient.from_doc(ingredient)
                 for ingredient in doc['ingredients']
                 if ingredient['description'].strip()
             ],
@@ -120,14 +78,14 @@ class Recipe(Storable, Searchable):
             time=doc['time']
         )
 
-    def to_dict(self):
+    def to_dict(self, include=None):
         return {
             'id': self.id,
             'title': self.title,
             'time': self.time,
             'image': f'images/recipes/{self.id[:2]}/{self.id}.webp',
             'ingredients': [
-                ingredient.to_dict()
+                ingredient.to_dict(include)
                 for ingredient in self.ingredients
             ],
             'directions': [
@@ -142,26 +100,10 @@ class Recipe(Storable, Searchable):
 
     @property
     def contents(self):
-        expansions = {
-            'bacon': 'meat',
-            'beef': 'meat',
-            'chicken': 'meat',
-            'pork': 'meat',
-        }
-
-        results = {}
+        contents = set()
         for product in self.products:
-            results[product] = product
-            for key in expansions:
-                if key in product:
-                    results[key] = product
-                    results[expansions[key]] = product
-                    break
-
-        return [{
-            'product': expansion,
-            'derived_from': product
-        } for expansion, product in results.items()]
+            contents |= set(product.contents)
+        return list(contents)
 
     def to_doc(self):
         data = super().to_doc()
@@ -174,7 +116,6 @@ class Recipe(Storable, Searchable):
             for ingredient in self.ingredients
         ]
         data['contents'] = self.contents
-        data['products'] = self.products
         data['product_count'] = len(self.products)
         return data
 
@@ -187,14 +128,14 @@ class Recipe(Storable, Searchable):
         return [{
             'constant_score': {
                 'boost': 1,
-                'filter': {'match': {'contents.product': inc}}
+                'filter': {'match': {'contents': inc}}
             }
         } for inc in include]
 
     @staticmethod
     def _generate_should_not_clause(include, exclude):
         # match any ingredients in the exclude list
-        return [{'match': {'contents.product': exc}} for exc in exclude]
+        return [{'match': {'contents': exc}} for exc in exclude]
 
     @staticmethod
     def _generate_sort_params(include, sort):
@@ -272,9 +213,8 @@ class Recipe(Storable, Searchable):
 
         recipes = []
         for result in results['hits']['hits']:
-            matches = self.matches(result, include)
-            recipe = Recipe.from_doc(result['_source'], matches)
-            recipes.append(recipe.to_dict())
+            recipe = Recipe.from_doc(result['_source'])
+            recipes.append(recipe.to_dict(include))
 
         return {
             'total': min(results['hits']['total']['value'], 50 * limit),

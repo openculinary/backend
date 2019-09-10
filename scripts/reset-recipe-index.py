@@ -28,13 +28,7 @@ mapping = {
                 }
             }
         },
-        'products': {'type': 'keyword'},
-        'contents': {
-            'properties': {
-                'product': {'type': 'keyword'},
-                'derived_from': {'type': 'keyword'}
-            }
-        }
+        'contents': {'type': 'keyword'}
     }
 }
 settings = {

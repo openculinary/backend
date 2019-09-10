@@ -35,7 +35,6 @@ function loadState() {
     case 'verified': confirmVerified(); break;
     case 'view': executeView(); break;
   }
-  renderShoppingList();
 }
 
 $(window).on('hashchange', loadState);
