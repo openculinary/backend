@@ -61,21 +61,22 @@ function storeShoppingList(shoppingList) {
 }
 
 function recipeElement(recipe) {
-  var remove = $('<a />', {
-    'class': 'remove fa fa-trash-alt',
-    'click': removeRecipeFromShoppingList
-  });
+  var remove = $('<a />', {'class': 'remove fa fa-trash-alt'});
+  remove.on('click', removeRecipeFromShoppingList);
+  remove.on('click', removeRecipeFromMealPlan);
+
   var title = $('<span />', {
     'class': 'tag badge badge-info',
     'text': recipe.title
   });
   var cloneRemove = $('<span />', {
-    'click': removeRecipeFromMealPlan,
+    'click': removeMealFromMealPlan,
     'data-role': 'remove'
   });
   var item = $('<div />', {
     'class': 'recipe',
-    'data-id': recipe.id
+    'data-id': recipe.id,
+    'data-title': recipe.title
   });
 
   remove.appendTo(item);
@@ -88,7 +89,7 @@ function aggregateUnitQuantities(product) {
   var shoppingList = loadShoppingList();
   var unitQuantities = {};
   $.each(product.recipes, function(recipeId) {
-    var multiple = shoppingList.recipes[recipeId].multiple;
+    var multiple = shoppingList.recipes[recipeId].multiple || 1;
     product.recipes[recipeId].amounts.forEach(function (amount) {
       if (!amount.units) amount.units = '';
       if (!(amount.units in unitQuantities)) unitQuantities[amount.units] = 0;
@@ -259,10 +260,9 @@ function removeProductFromShoppingList(shoppingList, product, recipeId) {
 }
 
 function removeRecipeFromShoppingList() {
-  var recipe = getRecipe(this);
-  $(`#meal-planner .recipe[data-id="${recipe.id}"]`).remove();
-
   var shoppingList = loadShoppingList();
+
+  var recipe = getRecipe(this);
   delete shoppingList.recipes[recipe.id];
 
   $.each(shoppingList.products, function(productId) {
