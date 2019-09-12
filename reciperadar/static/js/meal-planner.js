@@ -26,10 +26,10 @@ function storeMealPlan(mealPlan) {
 
 function removeRecipeFromMealPlan() {
   var mealPlan = loadMealPlan();
-  var recipeId = $(this).parents('.recipe').children('a').data('recipe-id');
+  var recipe = getRecipe(this);
 
   var date = $(this).parents('tr').data('date');
-  var index = mealPlan[date].map(function(recipe) { return recipe.id; }).indexOf(recipeId);
+  var index = mealPlan[date].map(function(recipe) { return recipe.id; }).indexOf(recipe.id);
 
   if (index >= 0) mealPlan[date].splice(index, 1);
   if (!mealPlan[date].length) delete mealPlan[date];
@@ -53,12 +53,12 @@ function cloneHandler(evt) {
 
 function endHandler(evt) {
   var mealPlan = loadMealPlan();
-  var recipeId = $(evt.item).children('a').data('recipe-id');
+  var recipe = getRecipe(evt.item);
 
   var fromRow = $(evt.from).parents('tr');
   if (fromRow.length) {
     var date = fromRow.data('date');
-    var index = mealPlan[date].map(function(recipe) { return recipe.id; }).indexOf(recipeId)
+    var index = mealPlan[date].map(function(recipe) { return recipe.id; }).indexOf(recipe.id)
 
     if (index >= 0) mealPlan[date].splice(index, 1);
     if (!mealPlan[date].length) delete mealPlan[date];
@@ -68,7 +68,7 @@ function endHandler(evt) {
   var date = toRow.data('date');
 
   if (!(date in mealPlan)) mealPlan[date] = [];
-  mealPlan[date].push({id: recipeId});
+  mealPlan[date].push({id: recipe.id});
 
   storeMealPlan(mealPlan);
 }

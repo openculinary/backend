@@ -63,8 +63,7 @@ function storeShoppingList(shoppingList) {
 function recipeElement(recipe) {
   var remove = $('<a />', {
     'class': 'remove fa fa-trash-alt',
-    'click': removeRecipeFromShoppingList,
-    'data-recipe-id': recipe.id,
+    'click': removeRecipeFromShoppingList
   });
   var title = $('<span />', {
     'class': 'tag badge badge-info',
@@ -75,7 +74,8 @@ function recipeElement(recipe) {
     'data-role': 'remove'
   });
   var item = $('<div />', {
-    'class': 'recipe'
+    'class': 'recipe',
+    'data-id': recipe.id
   });
 
   remove.appendTo(item);
@@ -233,18 +233,17 @@ function addProductToShoppingList(shoppingList, product, recipeId) {
 }
 
 function addRecipeToShoppingList() {
-  var recipe = {
-    id: $(this).data('recipe-id'),
-    title: $(this).data('recipe-title'),
+  var shoppingList = loadShoppingList();
+
+  var recipe = getRecipe(this);
+  shoppingList.recipes[recipe.id] = {
+    id: recipe.id,
+    title: recipe.title,
     multiple: 1
   };
 
-  var shoppingList = loadShoppingList();
-  shoppingList.recipes[recipe.id] = recipe;
-
-  var products = $(this).data('products');
-  $.each(products, function(productId) {
-    var product = products[productId];
+  $.each(recipe.products, function(productId) {
+    var product = recipe.products[productId];
     addProductToShoppingList(shoppingList, product, recipe.id);
   });
   updateRecipeState(recipe.id, shoppingList);
@@ -260,26 +259,26 @@ function removeProductFromShoppingList(shoppingList, product, recipeId) {
 }
 
 function removeRecipeFromShoppingList() {
-  var recipeId = $(this).data('recipe-id');
-  $('#meal-planner a[data-recipe-id="' + recipeId + '"]').parents('.recipe').remove();
+  var recipe = getRecipe(this);
+  $('#meal-planner .recipe[data-id="' + recipe.id + '"]').remove();
 
   var shoppingList = loadShoppingList();
-  delete shoppingList.recipes[recipeId];
+  delete shoppingList.recipes[recipe.id];
 
   $.each(shoppingList.products, function(productId) {
     var product = shoppingList.products[productId];
-    if (recipeId in product.recipes) {
-      removeProductFromShoppingList(shoppingList, product, recipeId);
+    if (recipe.id in product.recipes) {
+      removeProductFromShoppingList(shoppingList, product, recipe.id);
     }
   });
-  updateRecipeState(recipeId, shoppingList);
+  updateRecipeState(recipe.id, shoppingList);
 
   storeShoppingList(shoppingList);
   renderShoppingList(shoppingList);
 }
 
 function updateRecipeState(recipeId, shoppingList) {
-  var addButton = $('button[data-recipe-id="' + recipeId + '"].add-to-shopping-list');
+  var addButton = $('#search .results .recipe[data-id="' + recipeId + '"] button.add-to-shopping-list');
   var isInShoppingList = recipeId in shoppingList.recipes;
   addButton.prop('disabled', isInShoppingList);
   addButton.toggleClass('btn-outline-primary', !isInShoppingList);
