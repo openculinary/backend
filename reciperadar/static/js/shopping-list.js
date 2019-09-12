@@ -67,23 +67,32 @@ function recipeElement(recipe) {
     'data-recipe-id': recipe.id,
   });
   var title = $('<span />', {
-    'class': 'recipe',
+    'class': 'tag badge badge-info',
     'text': recipe.title
   });
-  var item = $('<div />');
+  var cloneRemove = $('<span />', {
+    'click': removeRecipeFromMealPlan,
+    'data-role': 'remove'
+  });
+  var item = $('<div />', {
+    'class': 'recipe'
+  });
 
   remove.appendTo(item);
+  cloneRemove.appendTo(title);
   title.appendTo(item);
   return item;
 }
 
 function aggregateUnitQuantities(product) {
+  var shoppingList = loadShoppingList();
   var unitQuantities = {};
   $.each(product.recipes, function(recipeId) {
+    var multiple = shoppingList.recipes[recipeId].multiple;
     product.recipes[recipeId].amounts.forEach(function (amount) {
       if (!amount.units) amount.units = '';
       if (!(amount.units in unitQuantities)) unitQuantities[amount.units] = 0;
-      unitQuantities[amount.units] += amount.quantity;
+      unitQuantities[amount.units] += amount.quantity * multiple;
     });
   });
   $.each(unitQuantities, function(unit) {
@@ -175,7 +184,7 @@ function getProductsByCategory(shoppingList) {
 }
 
 function renderShoppingList(shoppingList) {
-  var recipesHtml = $('#shopping-list .recipes').empty();
+  var recipesHtml = $('#meal-planner .recipes').empty();
   $.each(shoppingList.recipes, function(recipeId) {
     var recipe = shoppingList.recipes[recipeId];
     recipeElement(recipe).appendTo(recipesHtml);
@@ -226,7 +235,8 @@ function addProductToShoppingList(shoppingList, product, recipeId) {
 function addRecipeToShoppingList() {
   var recipe = {
     id: $(this).data('recipe-id'),
-    title: $(this).data('recipe-title')
+    title: $(this).data('recipe-title'),
+    multiple: 1
   };
 
   var shoppingList = loadShoppingList();
@@ -251,6 +261,7 @@ function removeProductFromShoppingList(shoppingList, product, recipeId) {
 
 function removeRecipeFromShoppingList() {
   var recipeId = $(this).data('recipe-id');
+  $('#meal-planner a[data-recipe-id="' + recipeId + '"]').parents('.recipe').remove();
 
   var shoppingList = loadShoppingList();
   delete shoppingList.recipes[recipeId];

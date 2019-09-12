@@ -4,20 +4,6 @@
   margin-bottom: 1rem;
 }
 
-#shopping-list .recipes {
-  margin-bottom: 1rem;
-  padding: 4px;
-  font-size: 13px;
-}
-
-#shopping-list .recipes a.remove {
-  color: red;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: none;
-  margin-right: 0.5em;
-}
-
 #shopping-list .products fieldset {
   border: solid 1px silver;
   margin-bottom: 1rem;
