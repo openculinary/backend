@@ -29,7 +29,7 @@
         "type": "object",
         "properties": {
           "product": {"type": "string"},
-          "category": {"type": "string"},
+          "category": {"type": ["null", "string"]},
           "singular": {"type": "string"},
           "plural": {"type": "string"},
           "state": {"type": "string", "default": "required"},
