@@ -13,6 +13,11 @@
   font-size: 13px;
 }
 
+#meal-planner a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 #meal-planner .recipe a.remove {
   color: red;
   cursor: pointer;
