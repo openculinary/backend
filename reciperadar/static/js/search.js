@@ -35,17 +35,11 @@ function contentFormatter(value, row, index) {
     'target': '_blank',
     'rel': 'noreferrer'
   }).appendTo(content);
-  var ingredients = $('<ul />', {
-    'class': 'ingredients',
-    'data-recipe-id': row.id
-  }).appendTo(content);
+  var ingredients = $('<ul />', {'class': 'ingredients'}).appendTo(content);
   $.each(row.ingredients, function() {
     $('<li />', {'html': this.tokens.map(renderToken).join('')}).appendTo(ingredients);
   });
-  var directions = $('<ul />', {
-    'class': 'directions collapse',
-    'data-recipe-id': row.id
-  }).appendTo(content);
+  var directions = $('<ul />', {'class': 'directions collapse'}).appendTo(content);
   $.each(row.directions, function() {
     $('<li />', {'html': this.tokens.map(renderToken).join('')}).appendTo(directions);
   });
@@ -53,26 +47,6 @@ function contentFormatter(value, row, index) {
 }
 
 function metadataFormatter(value, row, index) {
-  var productsToAdd = [];
-  row.ingredients.forEach(function(ingredient) {
-    var productToken, quantityToken, unitsToken;
-    ingredient.tokens.forEach(function(token) {
-      if (token.type == 'product') productToken = token;
-      if (token.type == 'quantity') quantityToken = token;
-      if (token.type == 'units') unitsToken = token;
-    });
-
-    productsToAdd.push({
-      product: productToken.value,
-      category: productToken.category,
-      singular: productToken.singular,
-      plural: productToken.plural,
-      state: productToken.state,
-      quantity: quantityToken ? quantityToken.value : null,
-      units: unitsToken ? unitsToken.value : null
-    });
-  });
-
   var duration = moment.duration(row.time, 'minutes');
   var metadata = $('<div />');
   $('<img />', {'src': row.image, 'alt': row.title}).appendTo(metadata);
@@ -83,23 +57,51 @@ function metadataFormatter(value, row, index) {
   $('<span />', {'text': duration.as('minutes') + ' mins'}).appendTo(metadata);
   $('<button />', {
     'class': 'btn btn-outline-primary toggle-directions',
-    'text': 'View instructions',
-    'data-recipe-id': row.id,
+    'text': 'View instructions'
   }).appendTo(metadata);
   $('<button />', {
     'class': 'btn btn-outline-primary add-to-shopping-list',
-    'text': 'Add to shopping list',
-    'data-recipe-id': row.id,
-    'data-recipe-title': row.title,
-    'data-products': JSON.stringify(productsToAdd),
+    'text': 'Add to shopping list'
   }).appendTo(metadata);
   return metadata.html();
 }
 
+function getRecipeProducts(recipe) {
+  var recipeProducts = [];
+  recipe.ingredients.forEach(function(ingredient) {
+    var productToken, quantityToken, unitsToken;
+    ingredient.tokens.forEach(function(token) {
+      if (token.type == 'product') productToken = token;
+      if (token.type == 'quantity') quantityToken = token;
+      if (token.type == 'units') unitsToken = token;
+    });
+
+    recipeProducts.push({
+      product: productToken.value,
+      category: productToken.category,
+      singular: productToken.singular,
+      plural: productToken.plural,
+      state: productToken.state,
+      quantity: quantityToken ? quantityToken.value : null,
+      units: unitsToken ? unitsToken.value : null
+    });
+  });
+  return recipeProducts;
+}
+
+function rowAttributes(row) {
+  return {
+    'class': 'recipe',
+    'data-id': row.id,
+    'data-title': row.title,
+    'data-products': JSON.stringify(getRecipeProducts(row))
+  }
+}
+
 function toggleDirections() {
-  var recipeId = $(this).data('recipe-id');
-  $('#search .results ul.ingredients[data-recipe-id="' + recipeId + '"]').toggleClass('collapse');
-  $('#search .results ul.directions[data-recipe-id="' + recipeId + '"]').toggleClass('collapse');
+  var recipe = getRecipe(this);
+  $('#search .results .recipe[data-id="' + recipe.id + '"] ul.ingredients').toggleClass('collapse');
+  $('#search .results .recipe[data-id="' + recipe.id + '"] ul.directions').toggleClass('collapse');
   $(this).text($(this).text() === 'View instructions' ? 'View ingredients' : 'View instructions');
 }
 

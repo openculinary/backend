@@ -1,3 +1,12 @@
+function getRecipe(el) {
+  var target = $(el).hasClass('recipe') ? $(el) : $(el).parents('.recipe');
+  return {
+    id: target.data('id'),
+    title: target.data('title'),
+    products: target.data('products')
+  }
+}
+
 function float2rat(x) {
     var tolerance = 1.0E-2;
     var h1=1; var h2=0;
