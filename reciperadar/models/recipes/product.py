@@ -66,7 +66,7 @@ class IngredientProduct(Storable):
             True: IngredientProduct.STATE_AVAILABLE,
             False: IngredientProduct.STATE_REQUIRED,
         }
-        available = bool(set(self.contents) & set(include))
+        available = bool(set(self.contents) & set(include or []))
 
         return {
             'type': 'product',
