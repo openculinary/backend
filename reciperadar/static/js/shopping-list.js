@@ -69,6 +69,9 @@ function recipeElement(recipe) {
     'class': 'tag badge badge-info',
     'text': recipe.title
   });
+  var link = $('<a />', {
+    'href': `#search&action=view&id=${recipe.id}`
+  });
   var cloneRemove = $('<span />', {
     'click': removeMealFromMealPlan,
     'data-role': 'remove'
@@ -81,7 +84,8 @@ function recipeElement(recipe) {
 
   remove.appendTo(item);
   cloneRemove.appendTo(title);
-  title.appendTo(item);
+  title.appendTo(link);
+  link.appendTo(item);
   return item;
 }
 

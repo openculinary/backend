@@ -147,6 +147,7 @@ function executeView() {
   $('#search .results table').bootstrapTable('refresh', {
     url: '/api/recipes/' + encodeURIComponent(id) + '/view'
   });
+  scrollToSearchResults();
 }
 
 $('#search .results table').on('page-change.bs.table', function(e, number, size) {
@@ -188,9 +189,8 @@ $('#search .results table').on('load-success.bs.table', function() {
   var sortPrompt = $('<span>').text('Order by ');
   sortSelect.appendTo(sortPrompt);
 
-  var paginationDetail = $('#search .results div.pagination-detail');
-  paginationDetail.empty();
-  sortPrompt.appendTo(paginationDetail);
+  var paginationDetail = $('#search .results div.pagination-detail').empty();
+  if ($.bbq.getState('action') === 'search') sortPrompt.appendTo(paginationDetail);
 
   $(this).find('.metadata button.add-to-shopping-list').on('click', addRecipeToShoppingList);
   $(this).find('.metadata button.toggle-directions').on('click', toggleDirections);
