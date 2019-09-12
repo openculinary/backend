@@ -103,6 +103,7 @@ $(function() {
 
     if (date in mealPlan) {
       $.each(mealPlan[date], function (index, recipe) {
+        if (!(recipe.id in shoppingList.recipes)) return;
         var recipe = shoppingList.recipes[recipe.id];
         var element = recipeElement(recipe);
         cell.append(element);
