@@ -20,7 +20,7 @@
   text-decoration: none;
   margin-right: 0.5em;
 }
-#meal-planner table .recipe a.remove {
+#meal-planner .scheduler .recipe a.remove {
   visibility: hidden;
   width: 0;
   margin: 0;
@@ -39,7 +39,7 @@
   vertical-align: middle;
   font-weight: bold;
 }
-#meal-planner table .recipe span[data-role="remove"] {
+#meal-planner .scheduler .recipe span[data-role="remove"] {
   visibility: visible;
   padding-left: 12px;
 }
@@ -47,13 +47,13 @@
   visibility: hidden;
 }
 
-#meal-planner table {
+#meal-planner .scheduler {
   width: 100%;
   height: calc(80vh);
   border: solid 2px silver;
 }
 
-#meal-planner th {
+#meal-planner .scheduler th {
   width: 96px;
   height: calc(15vh);
 
@@ -67,10 +67,15 @@
   font-weight: normal;
 }
 
-#meal-planner td {
+#meal-planner .scheduler td {
   padding: 12px;
   border-top: solid 1px silver;
 
   vertical-align: top;
   text-align: left;
+}
+
+#meal-planner .scheduler tr.weekday-6,
+#meal-planner .scheduler tr.weekday-0 {
+  background-color: beige;
 }
