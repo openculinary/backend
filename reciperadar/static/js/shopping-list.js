@@ -260,7 +260,7 @@ function removeProductFromShoppingList(shoppingList, product, recipeId) {
 
 function removeRecipeFromShoppingList() {
   var recipe = getRecipe(this);
-  $('#meal-planner .recipe[data-id="' + recipe.id + '"]').remove();
+  $(`#meal-planner .recipe[data-id="${recipe.id}"]`).remove();
 
   var shoppingList = loadShoppingList();
   delete shoppingList.recipes[recipe.id];
@@ -278,7 +278,7 @@ function removeRecipeFromShoppingList() {
 }
 
 function updateRecipeState(recipeId, shoppingList) {
-  var addButton = $('#search .results .recipe[data-id="' + recipeId + '"] button.add-to-shopping-list');
+  var addButton = $(`#search .results .recipe[data-id="${recipeId}"] button.add-to-shopping-list`);
   var isInShoppingList = recipeId in shoppingList.recipes;
   addButton.prop('disabled', isInShoppingList);
   addButton.toggleClass('btn-outline-primary', !isInShoppingList);

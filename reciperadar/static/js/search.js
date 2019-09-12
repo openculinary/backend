@@ -100,8 +100,8 @@ function rowAttributes(row) {
 
 function toggleDirections() {
   var recipe = getRecipe(this);
-  $('#search .results .recipe[data-id="' + recipe.id + '"] ul.ingredients').toggleClass('collapse');
-  $('#search .results .recipe[data-id="' + recipe.id + '"] ul.directions').toggleClass('collapse');
+  $(`#search .results .recipe[data-id="${recipe.id}"] ul.ingredients`).toggleClass('collapse');
+  $(`#search .results .recipe[data-id="${recipe.id}"] ul.directions`).toggleClass('collapse');
   $(this).text($(this).text() === 'View instructions' ? 'View ingredients' : 'View instructions');
 }
 
