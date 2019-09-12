@@ -192,7 +192,10 @@ class Recipe(Storable, Searchable):
                     'bool': {
                         'should': should_clause,
                         'must_not': must_not_clause,
-                        'filter': [{'range': {'time': {'gte': 5}}}],
+                        'filter': [
+                            {'range': {'time': {'gte': 5}}},
+                            {'range': {'product_count': {'gt': 0}}},
+                        ],
                         'minimum_should_match': '1<75%'
                     }
                 },
