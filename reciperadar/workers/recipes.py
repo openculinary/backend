@@ -90,11 +90,7 @@ def crawl_recipe(url, image_url):
             return
 
     crawler_url = 'http://localhost:6000'
-    crawler_data = {
-        'url': url,
-        'image_url': image_url
-    }
-    crawler_response = requests.post(url=crawler_url, data=crawler_data)
+    crawler_response = requests.post(url=crawler_url, data={'url': url})
 
     recipe_url.crawled_at = datetime.utcnow()
     recipe_url.crawl_status = crawler_response.status_code
