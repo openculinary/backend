@@ -65,12 +65,10 @@ def process_recipe(recipe_id):
     index_recipe.delay(recipe_id)
 
 
-thresholds = {
-    200: timedelta(days=28),
-    404: timedelta(days=28),
+backoffs = {
+    404: timedelta(hours=1),
     429: timedelta(hours=1),
-    500: timedelta(days=2),
-    501: timedelta(days=28),
+    500: timedelta(hours=1),
 }
 
 
@@ -83,9 +81,9 @@ def crawl_recipe(url, image_url):
         recipe_url = RecipeURL(url=url)
 
     if recipe_url.crawled_at:
-        threshold = thresholds.get(recipe_url.crawl_status, timedelta(days=1))
-        if (recipe_url.crawled_at + threshold) > datetime.utcnow():
-            print(f'* Skipping recently crawled url={url}')
+        backoff = backoffs.get(recipe_url.crawl_status)
+        if backoff and (recipe_url.crawled_at + backoff) > datetime.utcnow():
+            print(f'* Skipping recently failed url={url}')
             session.close()
             return
 
