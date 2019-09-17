@@ -14,11 +14,7 @@ def recipe_crawl():
     if not url:
         return abort(400)
 
-    image_url = request.form.get('image_url')
-    if not image_url:
-        return abort(400)
-
-    crawl_recipe.delay(url, image_url)
+    crawl_recipe.delay(url)
     return jsonify({})
 
 

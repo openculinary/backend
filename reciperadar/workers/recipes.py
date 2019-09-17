@@ -73,7 +73,7 @@ backoffs = {
 
 
 @celery.task(queue='crawl_recipe')
-def crawl_recipe(url, image_url):
+def crawl_recipe(url):
     session = Database().get_session()
     recipe_url = session.query(RecipeURL).filter(RecipeURL.url == url).first()
 
