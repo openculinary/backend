@@ -19,7 +19,7 @@ def index_recipe(recipe_id):
         return
     recipe.index()
     recipe.indexed_at = datetime.utcnow()
-    print(f'Indexed {recipe.id}')
+    print(f'Indexed {recipe.id} for url={recipe.src}')
 
     session.commit()
     session.close()
