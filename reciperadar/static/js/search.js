@@ -49,7 +49,7 @@ function contentFormatter(value, row, index) {
 function metadataFormatter(value, row, index) {
   var duration = moment.duration(row.time, 'minutes');
   var metadata = $('<div />');
-  $('<img />', {'src': row.image, 'alt': row.title}).appendTo(metadata);
+  $('<img />', {'src': row.image_url, 'alt': row.title}).appendTo(metadata);
   $('<span />', {'html': '<strong>serves</strong>'}).appendTo(metadata);
   $('<span />', {'text': row.servings}).appendTo(metadata);
   $('<br />').appendTo(metadata);

@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod, abstractproperty
 from base58 import b58encode
+from datetime import datetime
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import NotFoundError
 from sqlalchemy.ext.declarative import declarative_base
@@ -54,3 +55,6 @@ class Searchable(object):
 
     def index(self):
         self.es.index(index=self.noun, id=self.id, body=self.to_doc())
+        if hasattr(self, 'indexed_at'):
+            self.indexed_at = datetime.utcnow()
+        return True
