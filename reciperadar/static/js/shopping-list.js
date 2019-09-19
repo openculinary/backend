@@ -254,6 +254,8 @@ function addRecipeToShoppingList() {
 
   storeShoppingList(shoppingList);
   renderShoppingList(shoppingList);
+
+  gtag('event', 'add_to_cart');
 }
 
 function removeProductFromShoppingList(shoppingList, product, recipeId) {

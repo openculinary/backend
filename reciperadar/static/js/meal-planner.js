@@ -110,6 +110,8 @@ function cloneHandler(evt) {
     var mealPlanRemove = $(element).find('span[data-role="remove"]');
     mealPlanRemove.off('click');
     mealPlanRemove.on('click', removeMealFromMealPlan);
+
+    gtag('event', 'add_to_wishlist');
   });
 }
 

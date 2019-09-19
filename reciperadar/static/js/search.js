@@ -105,6 +105,10 @@ function toggleDirections() {
   $(this).text($(this).text() === 'View instructions' ? 'View ingredients' : 'View instructions');
 }
 
+function recipeRedirect() {
+  gtag('event', 'generate_lead');
+}
+
 function scrollToSearchResults() {
   var scrollTop = $('#search .results').offset().top - $('header').height() - 32;
   $('html, body').animate({scrollTop: scrollTop}, 500);
@@ -139,6 +143,7 @@ function executeSearch() {
   });
   $('#search .results').show();
   scrollToSearchResults();
+  gtag('event', 'search');
 }
 
 function executeView() {
@@ -194,6 +199,7 @@ $('#search .results table').on('load-success.bs.table', function() {
 
   $(this).find('.metadata button.add-to-shopping-list').on('click', addRecipeToShoppingList);
   $(this).find('.metadata button.toggle-directions').on('click', toggleDirections);
+  $(this).find('.recipe a').on('click', recipeRedirect);
 });
 
 $('#search .results table').on('post-body.bs.table', function(data) {
