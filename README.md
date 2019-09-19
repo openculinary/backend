@@ -17,6 +17,8 @@ sudo apt install \
 ```
 sudo -u postgres createuser <user>
 sudo -u postgres createdb <user>
+
+pipenv shell
 python -m reciperadar.services.database
 ```
 
