@@ -23,6 +23,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 CORS(app, origins=[
     r'^https://\w+.reciperadar.com$',
     r'^http://localhost$',
+    r'^http://192.168.\d+.\d+$',
 ])
 jsonschema = JsonSchema(app)
 mail = Mail(app)
