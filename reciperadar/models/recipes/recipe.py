@@ -103,20 +103,16 @@ class Recipe(Storable, Searchable):
             'src': self.src,
             'domain': self.domain,
             'url': self.url,
-            'image_url': self.image_url,
+            'image_url': self.image_path,
         }
 
     @property
-    def image_url(self):
+    def image_path(self):
         return f'{self.IMAGE_DIR}/{self.id[:2]}/{self.id}.webp'
 
     @property
-    def image_filename(self):
-        return f'{self.STATIC_DIR}/{self.image_url}'
-
-    @property
     def image_exists(self):
-        return os.path.exists(self.image_filename)
+        return os.path.exists(self.image_path)
 
     def _request_image_data(self):
         product = 'Mozilla/5.0'
@@ -134,8 +130,8 @@ class Recipe(Storable, Searchable):
 
     def _save_image_data(self, content):
         image = Image.open(BytesIO(content))
-        os.makedirs(os.path.dirname(self.image_filename), exist_ok=True)
-        image.save(self.image_filename, 'webp')
+        os.makedirs(os.path.dirname(self.image_path), exist_ok=True)
+        image.save(self.image_path, 'webp')
 
     def download_image(self):
         if self.image_exists:

@@ -4,4 +4,4 @@
 venv
 __pycache__
 credentials
-reciperadar/static/images
+images
