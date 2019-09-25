@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from flask_jsonschema import JsonSchema, ValidationError
 from flask_mail import Mail
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -19,6 +20,10 @@ app.config.update(
 )
 app.url_map.strict_slashes = False
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+CORS(app, origins=[
+    r'^https://\w+.reciperadar.com$',
+    r'^http://localhost$',
+])
 jsonschema = JsonSchema(app)
 mail = Mail(app)
 
