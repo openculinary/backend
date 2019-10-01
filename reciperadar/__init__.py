@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from flask_jsonschema import JsonSchema, ValidationError
 from flask_mail import Mail
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -9,7 +8,6 @@ import os
 
 app = Flask(__name__)
 app.config.update(
-    JSONSCHEMA_DIR=os.path.join(app.root_path, 'api/schemas'),
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT=587,
     MAIL_USE_TLS=True,
@@ -25,13 +23,7 @@ CORS(app, origins=[
     r'^http://localhost$',
     r'^http://192.168.\d+.\d+$',
 ])
-jsonschema = JsonSchema(app)
 mail = Mail(app)
-
-
-@app.errorhandler(ValidationError)
-def on_validation_error(e):
-    return jsonify({'error': e.message}), 400
 
 
 import reciperadar.api.emails
