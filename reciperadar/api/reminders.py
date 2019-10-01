@@ -1,6 +1,5 @@
 from dateutil import parser
-from flask import jsonify, request, send_file
-from flask_jsonschema import validate
+from flask import jsonify, request
 from sqlalchemy.sql.expression import func
 from pytz import timezone
 from pytz.exceptions import UnknownTimeZoneError
@@ -14,13 +13,7 @@ from reciperadar.services.calendar import get_calendar_api
 from reciperadar.services.database import Database
 
 
-@app.route('/api/shopping-list/json.schema')
-def recipe_reminder_schema():
-    return send_file('api/schemas/shopping-list.json')
-
-
 @app.route('/api/shopping-list/reminder', methods=['POST'])
-@validate('shopping-list', 'reminder')
 def recipe_reminder():
     emails = request.args.getlist('email[]')
     emails = [unquote(email) for email in emails]
@@ -49,9 +42,11 @@ def recipe_reminder():
     except UnknownTimeZoneError:
         return jsonify({'error': 'invalid_timezone'}), 400
 
-    reminder = Reminder.from_shopping_list(
+    collaboration_id = request.args.get('collaboration-id')
+
+    reminder = Reminder.from_request(
         base_uri=request.url_root,
-        shopping_list=request.json,
+        collaboration_id=collaboration_id,
         start_time=dt,
         timezone=tz
     )

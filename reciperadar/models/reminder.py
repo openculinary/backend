@@ -1,9 +1,6 @@
-from base58 import b58encode
 from datetime import timedelta
-import json
 from sqlalchemy import Column, DateTime, ForeignKey, String
 from sqlalchemy.orm import relationship
-import zlib
 
 from reciperadar.models.base import Storable
 from reciperadar.services.calendar import get_calendar_api
@@ -41,13 +38,8 @@ class Reminder(Storable):
     )
 
     @staticmethod
-    def from_shopping_list(base_uri, shopping_list, start_time, timezone):
-        data = json.dumps(shopping_list, separators=(',', ':'))
-        data = data.encode('utf-8')
-        data = zlib.compress(data)
-        data = b58encode(data)
-        data = data.decode('utf-8')
-        location = f'{base_uri}#action=shopping-list&shopping-list={data}'
+    def from_request(base_uri, collaboration_id, start_time, timezone):
+        location = f'{base_uri}#action=join&collaborationId={collaboration_id}'
 
         return Reminder(
             summary='Your shopping list',
