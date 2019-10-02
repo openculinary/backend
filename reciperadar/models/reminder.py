@@ -38,8 +38,11 @@ class Reminder(Storable):
     )
 
     @staticmethod
-    def from_request(base_uri, collaboration_id, start_time, timezone):
+    def from_request(base_uri, collaboration_id, collaboration_keys,
+                     start_time, timezone):
         location = f'{base_uri}#action=join&collaborationId={collaboration_id}'
+        if collaboration_keys:
+            location = f'{location}&collaborationKeys={collaboration_keys}'
 
         return Reminder(
             summary='Your shopping list',
