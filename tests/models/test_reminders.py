@@ -14,6 +14,7 @@ def reminder_args():
         'start_time': future_meal_dt,
         'timezone': 'Europe/London',
         'collaboration_id': 'example-collaboration-id',
+        'collaboration_keys': None,
         'base_uri': 'example.com'
     }
 

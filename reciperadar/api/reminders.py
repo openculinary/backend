@@ -43,10 +43,12 @@ def recipe_reminder():
         return jsonify({'error': 'invalid_timezone'}), 400
 
     collaboration_id = request.args.get('collaboration-id')
+    collaboration_keys = request.args.get('collaboration-keys')
 
     reminder = Reminder.from_request(
         base_uri=request.url_root,
         collaboration_id=collaboration_id,
+        collaboration_keys=collaboration_keys,
         start_time=dt,
         timezone=tz
     )
