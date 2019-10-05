@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import NotFoundError
 import sys
 
-es = Elasticsearch()
+es = Elasticsearch('elasticsearch')
 index = 'recipes'
 
 try:

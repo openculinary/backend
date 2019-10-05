@@ -1,9 +1,11 @@
+import os
+
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_mail import Mail
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-import os
+from reciperadar.services.database import DB_URI
 
 
 app = Flask(__name__)
@@ -13,7 +15,7 @@ app.config.update(
     MAIL_USE_TLS=True,
     MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
     MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
-    SQLALCHEMY_DATABASE_URI='postgresql://',
+    SQLALCHEMY_DATABASE_URI=DB_URI,
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 )
 app.url_map.strict_slashes = False
