@@ -1,7 +1,5 @@
-from io import BytesIO
-from mmh3 import hash_bytes
 import os
-from PIL import Image
+from pymmh3 import hash_bytes
 import requests
 from sqlalchemy import (
     Column,
@@ -64,7 +62,8 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def from_doc(doc):
-        recipe_id = doc.get('id') or Recipe.generate_id(hash_bytes(doc['src']))
+        src_hash = hash_bytes(doc['src']).encode('utf-8')
+        recipe_id = doc.get('id') or Recipe.generate_id(src_hash)
         return Recipe(
             id=recipe_id,
             title=doc['title'],
@@ -107,8 +106,13 @@ class Recipe(Storable, Searchable):
         }
 
     @property
+    def image_ext(self):
+        prefix, ext = os.path.splitext(self.image_src)
+        return ext[1:]
+
+    @property
     def image_path(self):
-        return f'{self.IMAGE_DIR}/{self.id[:2]}/{self.id}.webp'
+        return f'{self.IMAGE_DIR}/{self.id[:2]}/{self.id}.{self.image_ext}'
 
     @property
     def image_exists(self):
@@ -129,9 +133,10 @@ class Recipe(Storable, Searchable):
         return image_response.content
 
     def _save_image_data(self, content):
-        image = Image.open(BytesIO(content))
         os.makedirs(os.path.dirname(self.image_path), exist_ok=True)
-        image.save(self.image_path, 'webp')
+        image_file = open(self.image_path, 'wb')
+        image_file.write(content)
+        image_file.close()
 
     def download_image(self):
         if self.image_exists:

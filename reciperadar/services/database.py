@@ -1,11 +1,13 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
+DB_URI = f'postgresql+pg8000://api@postgresql/api'
+
 
 class Database(object):
 
     def __init__(self):
-        self.engine = create_engine('postgresql://')
+        self.engine = create_engine(DB_URI)
         self.session_cls = sessionmaker(
             bind=self.engine,
             autoflush=False

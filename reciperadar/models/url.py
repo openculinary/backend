@@ -18,8 +18,6 @@ class RecipeURL(Storable):
     class BackoffException(Exception):
         pass
 
-    CRAWLER_URL = 'http://localhost:6000'
-
     ERROR_MESSAGES = {
         404: 'Missing or incomplete recipe',
         429: 'Crawler rate-limit exceeded',
@@ -48,7 +46,7 @@ class RecipeURL(Storable):
         if backoff and (self.crawled_at + backoff) > datetime.utcnow():
             raise RecipeURL.BackoffException()
 
-        response = requests.post(url=self.CRAWLER_URL, data={'url': self.url})
+        response = requests.post('crawler', data={'url': self.url})
         self.crawl_status = response.status_code
         self.crawled_at = datetime.utcnow()
         response.raise_for_status()

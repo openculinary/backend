@@ -1,3 +1,10 @@
+buildah:
+  image: fedora:31
+  before_script:
+    - dnf install -y buildah git
+  script:
+    - sh -x build.sh
+
 py37:
   image: python:3.7
   before_script:

@@ -15,15 +15,13 @@ sudo apt install \
 
 ## Initialize the database
 ```
-sudo -u postgres createuser <user>
-sudo -u postgres createdb <user>
+sudo -u postgres createuser api
+sudo -u postgres createdb api
 
-pipenv shell
-python -m reciperadar.services.database
+pipenv run python -m reciperadar.services.database
 ```
 
 ## Initialize the search indices
 ```
-pipenv shell
-python scripts/reset-recipe-index.py
+pipenv run python scripts/reset-recipe-index.py
 ```
