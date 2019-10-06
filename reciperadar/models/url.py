@@ -46,7 +46,9 @@ class RecipeURL(Storable):
         if backoff and (self.crawled_at + backoff) > datetime.utcnow():
             raise RecipeURL.BackoffException()
 
-        response = requests.post('crawler', data={'url': self.url})
+        data = {'url': self.url}
+        response = requests.post('http://crawler-service', data=data)
+
         self.crawl_status = response.status_code
         self.crawled_at = datetime.utcnow()
         response.raise_for_status()
