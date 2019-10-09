@@ -1,4 +1,7 @@
-IMAGE_NAME='registry.gitlab.com/openculinary/api'
+REGISTRY='registry.gitlab.com'
+PROJECT='openculinary'
+
+IMAGE_NAME=${REGISTRY}/${PROJECT}/$(basename `git rev-parse --show-toplevel`)
 IMAGE_COMMIT=$(git rev-parse --short HEAD)
 
 if [ -n "${GITLAB_USER_ID}" ]; then
