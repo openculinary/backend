@@ -1,7 +1,7 @@
 buildah:
   image: fedora:31
   before_script:
-    - dnf install -y buildah git
+    - dnf install -y buildah runc git
   script:
     - sh -x build.sh
 
