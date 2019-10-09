@@ -1,9 +1,0 @@
-kind: Endpoints
-apiVersion: v1
-metadata:
-  name: rabbitmq
-subsets:
-- addresses:
-  - ip: 192.168.100.1
-  ports:
-  - port: 5672
