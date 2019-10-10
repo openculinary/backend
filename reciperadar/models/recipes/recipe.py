@@ -1,6 +1,5 @@
 import os
 from pymmh3 import hash_bytes
-import requests
 from sqlalchemy import (
     Column,
     DateTime,
@@ -17,9 +16,6 @@ from reciperadar.models.recipes.product import IngredientProduct
 
 class Recipe(Storable, Searchable):
     __tablename__ = 'recipes'
-
-    STATIC_DIR = 'reciperadar/static'
-    IMAGE_DIR = 'images/recipes'
 
     id = Column(String, primary_key=True)
     title = Column(String)
@@ -69,8 +65,7 @@ class Recipe(Storable, Searchable):
             title=doc['title'],
             src=doc['src'],
             domain=doc['domain'],
-            # TODO: Remove fallback 'image' field
-            image_src=doc.get('image_src') or doc.get('image'),
+            image_src=doc.get('image_src'),
             ingredients=[
                 RecipeIngredient.from_doc(ingredient)
                 for ingredient in doc['ingredients']
@@ -112,42 +107,7 @@ class Recipe(Storable, Searchable):
 
     @property
     def image_path(self):
-        return f'{self.IMAGE_DIR}/{self.id[:2]}/{self.id}.{self.image_ext}'
-
-    @property
-    def image_exists(self):
-        return os.path.exists(self.image_path)
-
-    def _request_image_data(self):
-        product = 'Mozilla/5.0'
-        system = 'Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7'
-        platform = 'Gecko/2009021910 Firefox/3.0.7'
-        headers = {'User-Agent': f'{product} ({system}) {platform}'}
-
-        image_response = requests.get(
-            url=self.image_src,
-            timeout=0.25,
-            headers=headers
-        )
-        image_response.raise_for_status()
-        return image_response.content
-
-    def _save_image_data(self, content):
-        os.makedirs(os.path.dirname(self.image_path), exist_ok=True)
-        image_file = open(self.image_path, 'wb')
-        image_file.write(content)
-        image_file.close()
-
-    def download_image(self):
-        if self.image_exists:
-            return True
-        try:
-            image_data = self._request_image_data()
-            self._save_image_data(image_data)
-        except Exception:
-            print(f'Image download failed for url={self.image_src}')
-            return False
-        return self.image_exists
+        return f'images/recipes/{self.id}.{self.image_ext}'
 
     @property
     def contents(self):

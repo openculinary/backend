@@ -29,11 +29,7 @@ def process_recipe(recipe_id):
         session.close()
         return
 
-    if recipe.download_image():
-        print(f'Downloaded image for url={recipe.src}')
-        session.commit()
-        index_recipe.delay(recipe.id)
-
+    index_recipe.delay(recipe.id)
     session.close()
 
 
