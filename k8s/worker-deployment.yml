@@ -6,7 +6,7 @@ spec:
   template:
     metadata:
       labels:
-        app: api
+        app: api-worker
     spec:
       imagePullSecrets:
       - name: gitlab-registry
@@ -19,4 +19,4 @@ spec:
   replicas: 5
   selector:
     matchLabels:
-      app: api
+      app: api-worker
