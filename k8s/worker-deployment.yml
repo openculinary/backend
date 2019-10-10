@@ -16,7 +16,7 @@ spec:
         name: api
         command: ['pipenv']
         args: ['run', 'celery', 'worker', '-A', 'reciperadar.workers', '-Q', 'celery,crawl_recipe,process_recipe,index_recipe']
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: api
