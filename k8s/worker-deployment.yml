@@ -2,11 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-worker-deployment
+  labels:
+    app: api
 spec:
+  selector:
+    matchLabels:
+      app: api
+      role: worker
   template:
     metadata:
       labels:
-        app: api-worker
+        app: api
+        role: worker
     spec:
       imagePullSecrets:
       - name: gitlab-registry
@@ -17,6 +24,3 @@ spec:
         command: ['pipenv']
         args: ['run', 'celery', 'worker', '-A', 'reciperadar.workers', '-Q', 'celery,crawl_recipe,process_recipe,index_recipe']
   replicas: 5
-  selector:
-    matchLabels:
-      app: api-worker

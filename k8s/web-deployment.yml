@@ -2,11 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-deployment
+  labels:
+    app: api
 spec:
+  selector:
+    matchLabels:
+      app: api
+      role: web
   template:
     metadata:
       labels:
         app: api
+        role: web
     spec:
       imagePullSecrets:
       - name: gitlab-registry
@@ -17,6 +24,3 @@ spec:
         ports:
         - containerPort: 80
   replicas: 3
-  selector:
-    matchLabels:
-      app: api
