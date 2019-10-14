@@ -20,7 +20,7 @@ def raw_recipe_hit():
                     "product": {"product": "two"}
                 }
             ],
-            "image_src": "http://www.example.com/path/image.png",
+            "image_src": "http://www.example.com/path/image.png?v=123",
             "time": 30,
             "src": "http://www.example.com/recipes/test",
             "domain": "example.com",
