@@ -3,6 +3,7 @@ from pymmh3 import hash_bytes
 from sqlalchemy import (
     Column,
     DateTime,
+    Float,
     Integer,
     String,
 )
@@ -25,6 +26,7 @@ class Recipe(Storable, Searchable):
     image_src = Column(String)
     time = Column(Integer)
     servings = Column(Integer)
+    rating = Column(Float)
     ingredients = relationship(
         'RecipeIngredient',
         backref='recipe',
@@ -78,7 +80,8 @@ class Recipe(Storable, Searchable):
                 if direction['description'].strip()
             ],
             servings=doc['servings'],
-            time=doc['time']
+            time=doc['time'],
+            rating=doc['rating']
         )
 
     def to_dict(self, include=None):
@@ -95,6 +98,7 @@ class Recipe(Storable, Searchable):
                 for direction in self.directions
             ],
             'servings': self.servings,
+            'rating': self.rating,
             'src': self.src,
             'domain': self.domain,
             'url': self.url,
@@ -162,20 +166,20 @@ class Recipe(Storable, Searchable):
             def missing_count = product_count - _score;
 
             def missing_ratio = missing_count / product_count;
-            def present_ratio = _score / product_count;
+            def normalized_rating = doc.rating.value / 10;
         '''
         sort_configs = {
             # rank: number of ingredient matches
-            # tiebreak: percentage of recipe matched
+            # tiebreak: recipe rating
             'relevance': {
-                'script': f'{preamble} _score + present_ratio',
+                'script': f'{preamble} _score + normalized_rating',
                 'order': 'desc'
             },
 
             # rank: number of missing ingredients
-            # tiebreak: percentage of recipe matched
+            # tiebreak: recipe rating
             'ingredients': {
-                'script': f'{preamble} missing_count + present_ratio',
+                'script': f'{preamble} missing_count + normalized_rating',
                 'order': 'asc'
             },
 
