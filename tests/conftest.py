@@ -24,7 +24,8 @@ def raw_recipe_hit():
             "time": 30,
             "src": "http://www.example.com/recipes/test",
             "domain": "example.com",
-            "servings": 2
+            "servings": 2,
+            "rating": 4.5
         },
         "inner_hits": {"ingredients": {"hits": {"hits": []}}}
     }
