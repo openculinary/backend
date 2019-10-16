@@ -137,7 +137,7 @@ class Recipe(Storable, Searchable):
         return data
 
     @staticmethod
-    def _generate_should_clause(include):
+    def _generate_include_clause(include):
         if not include:
             return {'match_all': {}}
 
@@ -150,7 +150,7 @@ class Recipe(Storable, Searchable):
         } for inc in include]
 
     @staticmethod
-    def _generate_should_not_clause(include, exclude):
+    def _generate_exclude_clause(exclude):
         # match any ingredients in the exclude list
         return [{'match': {'contents': exc}} for exc in exclude]
 
@@ -192,44 +192,62 @@ class Recipe(Storable, Searchable):
         }
         return sort_configs[sort]
 
-    def search(self, include, exclude, offset, limit, sort):
-        offset = max(0, offset)
-        limit = max(1, limit)
-        limit = min(25, limit)
-        sort = sort or 'relevance'
-
-        should_clause = self._generate_should_clause(include)
-        must_not_clause = self._generate_should_not_clause(include, exclude)
+    def _render_query(self, include, exclude, sort, match_all=True):
+        include_clause = self._generate_include_clause(include)
+        exclude_clause = self._generate_exclude_clause(exclude)
         sort_params = self._generate_sort_params(include, sort)
 
-        query = {
+        return {
             'function_score': {
                 'boost_mode': 'replace',
                 'query': {
                     'bool': {
-                        'should': should_clause,
-                        'must_not': must_not_clause,
+                        'must' if match_all else 'should': include_clause,
+                        'must_not': exclude_clause,
                         'filter': [
                             {'range': {'time': {'gte': 5}}},
                             {'range': {'product_count': {'gt': 0}}},
-                        ],
-                        'minimum_should_match': '1<75%'
+                        ]
                     }
                 },
                 'script_score': {'script': {'source': sort_params['script']}}
             }
-        }
-        sort = [{'_score': sort_params['order']}]
+        }, [{'_score': sort_params['order']}]
 
-        results = self.es.search(
-            index=self.noun,
-            body={
-                'from': offset,
-                'size': limit,
-                'query': query,
-                'sort': sort,
-            }
-        )
+    def _refined_queries(self, include, exclude, sort_order):
+        query, sort = self._render_query(include, exclude, sort_order)
+        yield query, sort, None
+
+        item_count = len(include)
+        if item_count > 3:
+            for _ in range(item_count):
+                removed = include.pop()
+                query, sort = self._render_query(include, exclude, sort_order)
+                yield query, sort, f'removed:{removed}'
+                include.append(removed)
+
+        query, sort = self._render_query(include, exclude, sort_order, True)
+        yield query, sort, 'match_any'
+
+    def search(self, include, exclude, offset, limit, sort_order):
+        offset = max(0, offset)
+        limit = max(1, limit)
+        limit = min(25, limit)
+        sort_order = sort_order or 'relevance'
+
+        queries = self._refined_queries(include, exclude, sort_order)
+        for query, sort, refinement in queries:
+            results = self.es.search(
+                index=self.noun,
+                body={
+                    'from': offset,
+                    'size': limit,
+                    'query': query,
+                    'sort': sort,
+                }
+            )
+            if results['hits']['total']['value']:
+                break
 
         recipes = []
         for result in results['hits']['hits']:
@@ -238,5 +256,6 @@ class Recipe(Storable, Searchable):
 
         return {
             'total': min(results['hits']['total']['value'], 50 * limit),
-            'results': recipes
+            'results': recipes,
+            'refinements': [refinement] if refinement else []
         }
