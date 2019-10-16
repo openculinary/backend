@@ -226,7 +226,7 @@ class Recipe(Storable, Searchable):
                 yield query, sort, f'removed:{removed}'
                 include.append(removed)
 
-        query, sort = self._render_query(include, exclude, sort_order, True)
+        query, sort = self._render_query(include, exclude, sort_order, False)
         yield query, sort, 'match_any'
 
     def search(self, include, exclude, offset, limit, sort_order):
