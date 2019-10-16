@@ -221,7 +221,7 @@ class Recipe(Storable, Searchable):
         item_count = len(include)
         if item_count > 3:
             for _ in range(item_count):
-                removed = include.pop()
+                removed = include.pop(0)
                 query, sort = self._render_query(include, exclude, sort_order)
                 yield query, sort, f'removed:{removed}'
                 include.append(removed)
