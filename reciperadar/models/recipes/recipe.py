@@ -255,6 +255,7 @@ class Recipe(Storable, Searchable):
             recipes.append(recipe.to_dict(include))
 
         return {
+            'authority': 'api',
             'total': min(results['hits']['total']['value'], 50 * limit),
             'results': recipes,
             'refinements': [refinement] if refinement else []
