@@ -23,4 +23,15 @@ spec:
         name: api
         ports:
         - containerPort: 80
+        env:
+          - name: MAIL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: api-verifications-mail
+                key: username
+          - name: MAIL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: api-verifications-mail
+                key: password
   replicas: 3
