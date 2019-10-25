@@ -23,7 +23,7 @@ class RecipeDirection(Storable):
         direction_id = doc.get('id') or RecipeDirection.generate_id()
         return RecipeDirection(
             id=direction_id,
-            index=doc['index'],
+            index=doc.get('index'),  # TODO
             description=doc['description'].strip()
         )
 
