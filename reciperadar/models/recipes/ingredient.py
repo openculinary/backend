@@ -2,6 +2,7 @@ from sqlalchemy import (
     Column,
     Float,
     ForeignKey,
+    Integer,
     String,
 )
 from sqlalchemy.orm import relationship
@@ -17,6 +18,7 @@ class RecipeIngredient(Storable, Searchable):
     recipe_id = Column(String, fk, index=True)
 
     id = Column(String, primary_key=True)
+    index = Column(Integer)
     description = Column(String)
     product = relationship(
         'IngredientProduct',
@@ -36,6 +38,7 @@ class RecipeIngredient(Storable, Searchable):
         ingredient_id = doc.get('id') or RecipeIngredient.generate_id()
         return RecipeIngredient(
             id=ingredient_id,
+            index=doc['index'],
             description=doc['description'].strip(),
             product=IngredientProduct.from_doc(doc['product']),
             quantity=doc.get('quantity'),

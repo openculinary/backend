@@ -12,10 +12,12 @@ def raw_recipe_hit():
             "title": "Test Recipe",
             "ingredients": [
                 {
+                    "index": 0,
                     "description": "1 unit of test ingredient one",
                     "product": {"product": "one"}
                 },
                 {
+                    "index": 1,
                     "description": "two units of test ingredient two",
                     "product": {"product": "two"}
                 }
