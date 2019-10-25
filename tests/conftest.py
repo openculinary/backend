@@ -10,6 +10,22 @@ def raw_recipe_hit():
         "_score": 10.04635,
         "_source": {
             "title": "Test Recipe",
+            "directions": [
+                {
+                    "index": 0,
+                    "description": "place each skewer in the oven",
+                    "appliances": [
+                        {
+                            "appliance": "oven"
+                        }
+                    ],
+                    "utensils": [
+                        {
+                            "utensil": "skewer"
+                        }
+                    ]
+                }
+            ],
             "ingredients": [
                 {
                     "index": 0,
