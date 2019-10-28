@@ -2,8 +2,19 @@ from flask import jsonify, request
 
 from reciperadar import app
 from reciperadar.models.events.search import SearchEvent
-from reciperadar.models.recipes import Recipe, RecipeIngredient
+from reciperadar.models.recipes import (
+    Recipe,
+    RecipeEquipment,
+    RecipeIngredient,
+)
 from reciperadar.workers.events import store_event
+
+
+@app.route('/api/equipment')
+def equipment():
+    prefix = request.args.get('pre')
+    results = RecipeEquipment().autosuggest(prefix)
+    return jsonify(results)
 
 
 @app.route('/api/ingredients')
@@ -17,14 +28,16 @@ def ingredients():
 def recipes():
     include = request.args.getlist('include[]')
     exclude = request.args.getlist('exclude[]')
+    equipment = request.args.getlist('equipment[]')
     offset = min(request.args.get('offset', type=int, default=0), (50*10)-10)
     limit = min(request.args.get('limit', type=int, default=10), 10)
     sort = request.args.get('sort')
-    results = Recipe().search(include, exclude, offset, limit, sort)
+    results = Recipe().search(include, exclude, equipment, offset, limit, sort)
 
     store_event(SearchEvent(
         include=include,
         exclude=exclude,
+        equipment=equipment,
         offset=offset,
         limit=limit,
         sort=sort,

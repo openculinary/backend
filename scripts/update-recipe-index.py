@@ -17,6 +17,11 @@ mapping = {
                     'properties': {
                         'utensil': {'type': 'keyword'}
                     }
+                },
+                'equipment': {
+                    'properties': {
+                        'equipment': {'type': 'keyword'}
+                    }
                 }
             }
         },

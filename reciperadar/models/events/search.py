@@ -13,6 +13,7 @@ class SearchEvent(BaseEvent):
 
     include = Column(postgresql.ARRAY(String))
     exclude = Column(postgresql.ARRAY(String))
+    equipment = Column(postgresql.ARRAY(String))
     offset = Column(Integer)
     limit = Column(Integer)
     sort = Column(String)

@@ -50,13 +50,12 @@ class RecipeDirection(Storable):
 
     def to_doc(self):
         data = super().to_doc()
-        data['appliances'] = [
-            appliance.to_doc()
+        data['equipment'] = [
+            {'equipment': appliance.appliance}
             for appliance in self.appliances
-        ]
-        data['utensils'] = [
-            utensil.to_doc()
-            for utensil in self.appliances
+        ] + [
+            {'equipment': utensil.utensil}
+            for utensil in self.utensils
         ]
         return data
 

@@ -138,9 +138,6 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def _generate_include_clause(include):
-        if not include:
-            return {'match_all': {}}
-
         # sum the score of query ingredients found in the recipe
         return [{
             'constant_score': {
@@ -153,6 +150,13 @@ class Recipe(Storable, Searchable):
     def _generate_exclude_clause(exclude):
         # match any ingredients in the exclude list
         return [{'match': {'contents': exc}} for exc in exclude]
+
+    @staticmethod
+    def _generate_equipment_clause(equipment):
+        return [
+            {'match': {'directions.equipment.equipment': item}}
+            for item in equipment
+        ]
 
     @staticmethod
     def _generate_sort_params(include, sort):
@@ -192,50 +196,83 @@ class Recipe(Storable, Searchable):
         }
         return sort_configs[sort]
 
-    def _render_query(self, include, exclude, sort, match_all=True):
+    def _render_query(self, include, exclude, equipment, sort, match_all=True):
         include_clause = self._generate_include_clause(include)
         exclude_clause = self._generate_exclude_clause(exclude)
+        equipment_clause = self._generate_equipment_clause(equipment)
         sort_params = self._generate_sort_params(include, sort)
+
+        must, should, must_not, filter = [], [], [], []
+        if include_clause:
+            target = must if match_all else should
+            target += include_clause
+        if exclude_clause:
+            must_not += exclude_clause
+        if equipment_clause:
+            filter += equipment_clause
+        filter += [
+            {'range': {'time': {'gte': 5}}},
+            {'range': {'product_count': {'gt': 0}}},
+        ]
 
         return {
             'function_score': {
                 'boost_mode': 'replace',
                 'query': {
                     'bool': {
-                        'must' if match_all else 'should': include_clause,
-                        'must_not': exclude_clause,
-                        'filter': [
-                            {'range': {'time': {'gte': 5}}},
-                            {'range': {'product_count': {'gt': 0}}},
-                        ]
+                        'must': must or {'match_all': {}},
+                        'should': should,
+                        'must_not': must_not,
+                        'filter': filter
                     }
                 },
                 'script_score': {'script': {'source': sort_params['script']}}
             }
         }, [{'_score': sort_params['order']}]
 
-    def _refined_queries(self, include, exclude, sort_order):
-        query, sort = self._render_query(include, exclude, sort_order)
+    def _refined_queries(self, include, exclude, equipment, sort_order):
+        query, sort = self._render_query(
+            include=include,
+            exclude=exclude,
+            equipment=equipment,
+            sort=sort_order
+        )
         yield query, sort, None
 
         item_count = len(include)
         if item_count > 3:
             for _ in range(item_count):
                 removed = include.pop(0)
-                query, sort = self._render_query(include, exclude, sort_order)
+                query, sort = self._render_query(
+                    include=include,
+                    exclude=exclude,
+                    equipment=equipment,
+                    sort=sort_order
+                )
                 yield query, sort, f'removed:{removed}'
                 include.append(removed)
 
-        query, sort = self._render_query(include, exclude, sort_order, False)
+        query, sort = self._render_query(
+            include=include,
+            exclude=exclude,
+            equipment=equipment,
+            sort=sort_order,
+            match_all=False
+        )
         yield query, sort, 'match_any'
 
-    def search(self, include, exclude, offset, limit, sort_order):
+    def search(self, include, exclude, equipment, offset, limit, sort_order):
         offset = max(0, offset)
         limit = max(1, limit)
         limit = min(25, limit)
         sort_order = sort_order or 'relevance'
 
-        queries = self._refined_queries(include, exclude, sort_order)
+        queries = self._refined_queries(
+            include=include,
+            exclude=exclude,
+            equipment=equipment,
+            sort_order=sort_order
+        )
         for query, sort, refinement in queries:
             results = self.es.search(
                 index=self.noun,
