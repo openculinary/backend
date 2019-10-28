@@ -15,8 +15,6 @@ spec:
         app: api
         role: web
     spec:
-      imagePullSecrets:
-      - name: gitlab-registry
       containers:
       - image: registry.openculinary.org/reciperadar/api
         imagePullPolicy: IfNotPresent
