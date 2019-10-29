@@ -1,4 +1,3 @@
-import os
 from pymmh3 import hash_bytes
 from sqlalchemy import (
     Column,
@@ -8,7 +7,6 @@ from sqlalchemy import (
     String,
 )
 from sqlalchemy.orm import relationship
-from urllib.parse import urlparse
 
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
@@ -106,14 +104,8 @@ class Recipe(Storable, Searchable):
         }
 
     @property
-    def image_ext(self):
-        path = urlparse(self.image_src).path
-        prefix, ext = os.path.splitext(path)
-        return ext[1:]
-
-    @property
     def image_path(self):
-        return f'images/recipes/{self.id}.{self.image_ext}'
+        return f'images/recipes/{self.id}.png'
 
     @property
     def contents(self):
