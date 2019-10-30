@@ -1,16 +1,12 @@
-from ipaddress import ip_address
-
-from flask import abort, jsonify, request
+from flask import jsonify
 
 from reciperadar import app
 from reciperadar.search.products import ProductSearch
+from reciperadar.utils.decorators import internal
 
 
 @app.route('/api/products')
+@internal
 def products():
-    forwarded_for = request.headers.get('x-forwarded-for')
-    if forwarded_for and not ip_address(forwarded_for).is_private:
-        return abort(403)
-
     products = ProductSearch().products()
     return jsonify(products)
