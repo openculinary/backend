@@ -21,4 +21,15 @@ spec:
         name: api
         command: ['pipenv']
         args: ['run', 'celery', 'worker', '-A', 'reciperadar.workers', '-Q', 'celery,crawl_recipe,process_recipe,index_recipe']
+        env:
+          - name: MAIL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: api-verifications-mail
+                key: username
+          - name: MAIL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: api-verifications-mail
+                key: password
   replicas: 5
