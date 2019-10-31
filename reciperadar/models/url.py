@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from sqlalchemy import Column, DateTime, Integer, String
 import requests
-import tldextract
+from tldextract import TLDExtract
 
 from reciperadar.models.base import Storable
 
@@ -25,9 +25,13 @@ class RecipeURL(Storable):
         501: 'Website not supported',
     }
 
+    # By default TLDExtract pulls a subdomain suffix list from the web;
+    # here we disable that behaviour - it falls back to a built-in snapshot
+    tldextract = TLDExtract(suffix_list_urls=None)
+
     def __init__(self, *args, **kwargs):
         if 'url' in kwargs:
-            url_info = tldextract.extract(kwargs['url'])
+            url_info = self.tldextract(kwargs['url'])
             domain = f'{url_info.domain}.{url_info.suffix}'
             kwargs['domain'] = domain
         super().__init__(*args, **kwargs)
