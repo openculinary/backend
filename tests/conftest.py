@@ -1,5 +1,12 @@
 import pytest
 
+from reciperadar import app
+
+
+@pytest.fixture
+def client():
+    yield app.test_client()
+
 
 @pytest.fixture
 def raw_recipe_hit():
