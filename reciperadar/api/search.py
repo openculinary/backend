@@ -24,6 +24,12 @@ def ingredients():
     return jsonify(results)
 
 
+def log_search(user_agent, event):
+    if 'www.uptimerobot.com' in user_agent:
+        return
+    store_event(event)
+
+
 @app.route('/api/recipes/search')
 def recipes():
     include = request.args.getlist('include[]')
@@ -34,7 +40,8 @@ def recipes():
     sort = request.args.get('sort')
     results = Recipe().search(include, exclude, equipment, offset, limit, sort)
 
-    store_event(SearchEvent(
+    user_agent = request.headers.get('user-agent')
+    log_search(user_agent, SearchEvent(
         include=include,
         exclude=exclude,
         equipment=equipment,
