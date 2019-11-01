@@ -148,12 +148,11 @@ class IngredientProduct(Storable):
 
         contents = {self.singular}
         for content in content_graph:
-            product_terms = self.product.split()
-            if content in product_terms:
+            if content in self.product.split():
                 excluded = False
                 for field in [content, content_graph[content]]:
                     for excluded_term in exclusion_graph.get(field, []):
-                        excluded = excluded or excluded_term in product_terms
+                        excluded = excluded or excluded_term in self.product
                 if excluded:
                     continue
                 contents.add(content)
