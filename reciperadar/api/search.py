@@ -27,6 +27,8 @@ def ingredients():
 def log_search(user_agent, event):
     if 'www.uptimerobot.com' in user_agent:
         return
+
+    # TODO: Once 'event' is json serializable: switch to store_event.delay
     store_event(event)
 
 
