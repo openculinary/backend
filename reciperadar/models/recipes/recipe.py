@@ -244,14 +244,15 @@ class Recipe(Storable, Searchable):
                 yield query, sort, f'removed:{removed}'
                 include.append(removed)
 
-        query, sort = self._render_query(
-            include=include,
-            exclude=exclude,
-            equipment=equipment,
-            sort=sort_order,
-            match_all=False
-        )
-        yield query, sort, 'match_any'
+        if item_count > 1:
+            query, sort = self._render_query(
+                include=include,
+                exclude=exclude,
+                equipment=equipment,
+                sort=sort_order,
+                match_all=False
+            )
+            yield query, sort, 'match_any'
 
     def search(self, include, exclude, equipment, offset, limit, sort_order):
         offset = max(0, offset)
