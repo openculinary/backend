@@ -141,7 +141,7 @@ class IngredientProduct(Storable):
             'venison': 'meat',
         }
         exclusion_graph = {
-            'meat': ['stock', 'broth', 'tomato'],
+            'meat': ['stock', 'broth', 'tomato', 'bouillon', 'soup', 'eggs'],
             'bread': ['crumbs'],
             'fruit_and_veg': ['green tomato'],
         }

@@ -22,14 +22,17 @@ def test_chicken_breast_contents():
     assert 'meat' in product.contents
 
 
-def test_chicken_broth_contents():
-    product = IngredientProduct(
-        product='chicken broth',
-        singular='chicken broth'
-    )
+def test_chicken_exclusion_contents():
+    exclusions = ['broth', 'bouillon', 'soup']
 
-    assert 'chicken broth' in product.contents
-    assert 'chicken' not in product.contents
+    for exclusion in exclusions:
+        product = IngredientProduct(
+            product=f'chicken {exclusion}',
+            singular=f'chicken {exclusion}'
+        )
 
-    # TODO: identify meat-derived products
-    # assert 'meat' in contents
+        assert f'chicken {exclusion}' in product.contents
+        assert 'chicken' not in product.contents
+
+        # TODO: identify meat-derived products
+        # assert 'meat' in contents
