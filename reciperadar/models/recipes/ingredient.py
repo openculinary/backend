@@ -42,7 +42,9 @@ class RecipeIngredient(Storable, Searchable):
             description=doc['description'].strip(),
             product=IngredientProduct.from_doc(doc['product']),
             quantity=doc.get('quantity'),
+            quantity_parser=doc.get('quantity_parser'),
             units=doc.get('units'),
+            units_parser=doc.get('units_parser'),
             verb=doc.get('verb')
         )
 
