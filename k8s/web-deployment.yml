@@ -32,4 +32,3 @@ spec:
               secretKeyRef:
                 name: api-verifications-mail
                 key: password
-  replicas: 3
