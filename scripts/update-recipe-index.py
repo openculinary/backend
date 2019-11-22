@@ -1,8 +1,6 @@
+import argparse
 from elasticsearch import Elasticsearch
 import sys
-
-es = Elasticsearch('elasticsearch')
-index = 'recipes'
 
 mapping = {
     'properties': {
@@ -48,9 +46,15 @@ settings = {
     }
 }
 
+parser = argparse.ArgumentParser(description='Configure recipes search index')
+parser.add_argument('--hostname', required=True)
+parser.add_argument('--index')
+args = parser.parse_args()
+
+es = Elasticsearch(args.hostname)
 try:
-    es.indices.put_mapping(index=index, body=mapping)
-    es.indices.put_settings(index=index, body=settings)
+    es.indices.put_mapping(index=args.index, body=mapping)
+    es.indices.put_settings(index=args.index, body=settings)
 except Exception as e:
     print('Failed to create recipe index: {}'.format(e))
     sys.exit(1)
