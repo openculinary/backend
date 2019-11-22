@@ -1,6 +1,6 @@
 # RecipeRadar API
 
-The RecipeRadar API provides services to the RecipeRadar [frontend](../frontend) and [crawler](../crawler) applications.
+The RecipeRadar API provides services to the RecipeRadar [frontend](https://www.github.com/openculinary/frontend) and [crawler](https://www.github.com/openculinary/crawler) applications.
 
 It provides endpoints to support the following functionality:
 
@@ -14,11 +14,11 @@ The service is composed of two Kubernetes deployments:
 * `api-deployment` - `gunicorn` web pods
 * `api-worker-deployment` - `celery` task workers
 
-The `api-deployment` component has high uptime and availability requirements since it's a core part of the [frontend](../frontend) recipe search experience.
+The `api-deployment` component has high uptime and availability requirements since it's a core part of the [frontend](https://www.github.com/openculinary/frontend) recipe search experience.
 
 ## Install dependencies
 
-Make sure to follow the RecipeRadar [infrastructure](../infrastructure) setup to ensure all cluster dependencies are available in your environment.
+Make sure to follow the RecipeRadar [infrastructure](https://www.github.com/openculinary/infrastructure) setup to ensure all cluster dependencies are available in your environment.
 
 ## Development
 
