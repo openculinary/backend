@@ -8,6 +8,23 @@ from tldextract import TLDExtract
 from reciperadar.models.base import Storable
 
 
+def request_patch(self, *args, **kwargs):
+    kwargs['proxies'] = kwargs.pop('proxies', {
+        'http': 'http://proxy:3128',
+        'https': 'http://proxy:3128',
+    })
+    kwargs['timeout'] = kwargs.pop('timeout', 5)
+    kwargs['verify'] = kwargs.pop('verify', '/etc/ssl/k8s/proxy-cert/ca.crt')
+    return self.request_orig(*args, **kwargs)
+
+
+setattr(
+    requests.sessions.Session, 'request_orig',
+    requests.sessions.Session.request
+)
+requests.sessions.Session.request = request_patch
+
+
 class BaseURL(AbstractConcreteBase, Storable):
     __metaclass__ = ABC
 
@@ -66,11 +83,15 @@ class CrawlURL(BaseURL):
     __tablename__ = 'crawl_urls'
 
     def _make_request(self):
-        return requests.get(self.url)
+        return requests.get(url=self.url)
 
 
 class RecipeURL(BaseURL):
     __tablename__ = 'recipe_urls'
 
     def _make_request(self):
-        return requests.post('http://crawler-service', data={'url': self.url})
+        return requests.post(
+            url='http://crawler-service',
+            data={'url': self.url},
+            proxies={}
+        )
