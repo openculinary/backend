@@ -1,5 +1,5 @@
 from reciperadar.models.recipes import Recipe
-from reciperadar.models.url import RecipeURL
+from reciperadar.models.url import CrawlURL, RecipeURL
 from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 
@@ -57,5 +57,33 @@ def crawl_recipe(url):
     session = Database().get_session()
     session.query(Recipe).filter_by(id=recipe.id).delete()
     session.add(recipe)
+    session.commit()
+    session.close()
+
+
+@celery.task(queue='crawl_url')
+def crawl_url(url):
+    session = Database().get_session()
+    crawl_url = session.query(CrawlURL).get(url) or CrawlURL(url=url)
+
+    try:
+        response = crawl_url.crawl()
+    except RecipeURL.BackoffException:
+        print(f'Backoff: {crawl_url.error_message} for url={crawl_url.url}')
+        return
+    except Exception:
+        print(f'{crawl_url.error_message} for url={crawl_url.url}')
+        return
+    finally:
+        session.add(crawl_url)
+        session.commit()
+        session.close()
+
+    recipe_url = RecipeURL(response.url)
+    crawl_recipe.delay(recipe_url.url)
+
+    session = Database().get_session()
+    session.query(RecipeURL).get(recipe_url.url).delete()
+    session.add(recipe_url)
     session.commit()
     session.close()
