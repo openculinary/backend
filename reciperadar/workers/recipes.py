@@ -89,7 +89,7 @@ def crawl_url(url):
     crawl_recipe.delay(recipe_url.url)
 
     session = Database().get_session()
-    session.query(RecipeURL).get(recipe_url.url).delete()
+    session.query(RecipeURL).filter_by(url=recipe_url.url).delete()
     session.add(recipe_url)
     session.commit()
     session.close()
