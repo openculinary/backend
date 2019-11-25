@@ -39,7 +39,7 @@ def crawl_recipe(url):
     recipe_url = session.query(RecipeURL).get(url) or RecipeURL(url=url)
 
     try:
-        recipe_json = recipe_url.crawl().json()
+        response = recipe_url.crawl()
     except RecipeURL.BackoffException:
         print(f'Backoff: {recipe_url.error_message} for url={recipe_url.url}')
         return
@@ -51,7 +51,10 @@ def crawl_recipe(url):
         session.commit()
         session.close()
 
-    recipe = Recipe.from_doc(recipe_json)
+    if not response.ok:
+        return
+
+    recipe = Recipe.from_doc(response.json())
     process_recipe.delay(recipe.id)
 
     session = Database().get_session()
@@ -78,6 +81,9 @@ def crawl_url(url):
         session.add(crawl_url)
         session.commit()
         session.close()
+
+    if not response.ok:
+        return
 
     recipe_url = RecipeURL(response.url)
     crawl_recipe.delay(recipe_url.url)
