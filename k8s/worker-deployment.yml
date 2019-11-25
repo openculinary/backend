@@ -20,7 +20,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: api
         command: ['pipenv']
-        args: ['run', 'celery', 'worker', '-A', 'reciperadar.workers', '-Q', 'celery,recrawl_query,crawl_recipe,process_recipe,index_recipe']
+        args: ['run', 'celery', 'worker', '-A', 'reciperadar.workers', '-Q', 'celery,recrawl_search,crawl_recipe,process_recipe,index_recipe']
         env:
           - name: MAIL_USERNAME
             valueFrom:
