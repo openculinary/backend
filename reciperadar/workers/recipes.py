@@ -85,7 +85,7 @@ def crawl_url(url):
     if not response.ok:
         return
 
-    recipe_url = RecipeURL(response.url)
+    recipe_url = RecipeURL(url=response.url)
     crawl_recipe.delay(recipe_url.url)
 
     session = Database().get_session()
