@@ -39,7 +39,7 @@ def crawl_recipe(url):
     recipe_url = session.query(RecipeURL).get(url) or RecipeURL(url=url)
 
     try:
-        recipe_json = recipe_url.crawl()
+        recipe_json = recipe_url.crawl().json()
     except RecipeURL.BackoffException:
         print(f'Backoff: {recipe_url.error_message} for url={recipe_url.url}')
         return

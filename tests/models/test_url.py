@@ -30,10 +30,10 @@ def test_crawl_url_resolution(crawl_url, crawl_headers, recipe_url):
     responses.add(responses.GET, crawl_url, status=301, headers=crawl_headers)
     responses.add(responses.GET, recipe_url, status=200)
 
-    crawled_url = CrawlURL(url=crawl_url)
-    resolved_url = crawled_url.resolve()
+    crawl_input = CrawlURL(url=crawl_url)
+    crawl_output = crawl_input.crawl()
 
-    assert (crawled_url.url, resolved_url.url) == (crawl_url, recipe_url)
+    assert (crawl_input.url, crawl_output.url) == (crawl_url, recipe_url)
 
 
 def test_recipe_url_domain(recipe_url):
