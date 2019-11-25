@@ -11,23 +11,14 @@ from reciperadar.models.base import Storable
 class BaseURL(AbstractConcreteBase, Storable):
     __metaclass__ = ABC
 
-    # By default TLDExtract pulls a subdomain suffix list from the web;
-    # here we disable that behaviour - it falls back to a built-in snapshot
-    tldextract = TLDExtract(suffix_list_urls=None)
-
-    url = Column(String, primary_key=True)
-    domain = Column(String)
-    crawled_at = Column(DateTime)
-    crawl_status = Column(Integer)
-
-    class BackoffException(Exception):
-        pass
-
     BACKOFFS = {
         404: timedelta(hours=1),
         429: timedelta(hours=1),
         500: timedelta(hours=1),
     }
+
+    class BackoffException(Exception):
+        pass
 
     ERROR_MESSAGES = {
         404: 'Missing or incomplete recipe',
@@ -36,10 +27,21 @@ class BaseURL(AbstractConcreteBase, Storable):
         501: 'Website not supported',
     }
 
-    def __init__(self, url):
-        url_info = self.tldextract(url)
-        domain = f'{url_info.domain}.{url_info.suffix}'
-        super().__init__(url=url, domain=domain)
+    # By default TLDExtract pulls a subdomain suffix list from the web;
+    # here we disable that behaviour - it falls back to a built-in snapshot
+    tldextract = TLDExtract(suffix_list_urls=None)
+
+    def __init__(self, *args, **kwargs):
+        if 'url' in kwargs:
+            url_info = self.tldextract(kwargs['url'])
+            domain = f'{url_info.domain}.{url_info.suffix}'
+            kwargs['domain'] = domain
+        super().__init__(*args, **kwargs)
+
+    url = Column(String, primary_key=True)
+    domain = Column(String)
+    crawled_at = Column(DateTime)
+    crawl_status = Column(Integer)
 
     @abstractmethod
     def _make_request(self):
