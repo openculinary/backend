@@ -7,6 +7,7 @@ from reciperadar.models.base import Storable
 
 
 class CrawlURL(Storable):
+    __tablename__ = 'crawl_urls'
 
     # By default TLDExtract pulls a subdomain suffix list from the web;
     # here we disable that behaviour - it falls back to a built-in snapshot
