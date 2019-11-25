@@ -13,19 +13,18 @@ class CrawlURL(Storable):
     # here we disable that behaviour - it falls back to a built-in snapshot
     tldextract = TLDExtract(suffix_list_urls=None)
 
-    src = Column(String, primary_key=True)
-    src_domain = Column(String)
-    dst = Column(String)
+    url = Column(String, primary_key=True)
+    domain = Column(String)
 
-    def __init__(self, src):
-        src_info = self.tldextract(src)
-        src_domain = f'{src_info.domain}.{src_info.suffix}'
-        super().__init__(src=src, src_domain=src_domain)
+    def __init__(self, url):
+        url_info = self.tldextract(url)
+        domain = f'{url_info.domain}.{url_info.suffix}'
+        super().__init__(url=url, domain=domain)
 
     def resolve(self):
-        response = requests.get(self.src)
+        response = requests.get(self.url)
         if response.ok:
-            self.dst = response.url
+            return RecipeURL(url=response.url)
 
 
 class RecipeURL(Storable):

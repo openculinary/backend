@@ -20,9 +20,9 @@ def recipe_url(crawl_url):
 
 
 def test_crawl_url_domain(crawl_url):
-    url = CrawlURL(src=crawl_url)
+    url = CrawlURL(url=crawl_url)
 
-    assert url.src_domain == 'example.com'
+    assert url.domain == 'example.com'
 
 
 @responses.activate
@@ -30,10 +30,10 @@ def test_crawl_url_resolution(crawl_url, crawl_headers, recipe_url):
     responses.add(responses.GET, crawl_url, status=301, headers=crawl_headers)
     responses.add(responses.GET, recipe_url, status=200)
 
-    url = CrawlURL(src=crawl_url)
-    url.resolve()
+    crawled_url = CrawlURL(url=crawl_url)
+    resolved_url = crawled_url.resolve()
 
-    assert (url.src, url.dst) == (crawl_url, recipe_url)
+    assert (crawled_url.url, resolved_url.url) == (crawl_url, recipe_url)
 
 
 def test_recipe_url_domain(recipe_url):
