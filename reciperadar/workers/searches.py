@@ -3,8 +3,8 @@ import requests
 from reciperadar.workers.broker import celery
 
 
-@celery.task(queue='recrawl_query')
-def recrawl_query(include):
+@celery.task(queue='recrawl_search')
+def recrawl_search(include):
     params = {'include[]': include}
     response = requests.post('http://recrawler-service', params=params)
 
