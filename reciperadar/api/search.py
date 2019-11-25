@@ -8,6 +8,7 @@ from reciperadar.models.recipes import (
     RecipeIngredient,
 )
 from reciperadar.workers.events import store_event
+from reciperadar.workers.searches import recrawl_search
 
 
 @app.route('/api/equipment')
@@ -30,6 +31,9 @@ def log_search(user_agent, event):
 
     # TODO: Once 'event' is json serializable: switch to store_event.delay
     store_event(event)
+
+    # Perform a recrawl for the search to find any new/missing recipes
+    recrawl_search.delay(event.include)
 
 
 @app.route('/api/recipes/search')
