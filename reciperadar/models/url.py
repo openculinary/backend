@@ -1,13 +1,32 @@
+from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy.ext.declarative import AbstractConcreteBase
 import requests
 from tldextract import TLDExtract
 
 from reciperadar.models.base import Storable
 
 
-class RecipeURL(Storable):
-    __tablename__ = 'recipe_urls'
+def request_patch(self, *args, **kwargs):
+    kwargs['proxies'] = kwargs.pop('proxies', {
+        'http': 'http://proxy:3128',
+        'https': 'http://proxy:3128',
+    })
+    kwargs['timeout'] = kwargs.pop('timeout', 5)
+    kwargs['verify'] = kwargs.pop('verify', '/etc/ssl/k8s/proxy-cert/ca.crt')
+    return self.request_orig(*args, **kwargs)
+
+
+setattr(
+    requests.sessions.Session, 'request_orig',
+    requests.sessions.Session.request
+)
+requests.sessions.Session.request = request_patch
+
+
+class BaseURL(AbstractConcreteBase, Storable):
+    __metaclass__ = ABC
 
     BACKOFFS = {
         404: timedelta(hours=1),
@@ -41,6 +60,10 @@ class RecipeURL(Storable):
     crawled_at = Column(DateTime)
     crawl_status = Column(Integer)
 
+    @abstractmethod
+    def _make_request(self):
+        pass
+
     @property
     def error_message(self):
         return self.ERROR_MESSAGES.get(self.crawl_status, 'Unknown error')
@@ -50,11 +73,29 @@ class RecipeURL(Storable):
         if backoff and (self.crawled_at + backoff) > datetime.utcnow():
             raise RecipeURL.BackoffException()
 
-        data = {'url': self.url}
-        response = requests.post('http://crawler-service', data=data)
-
+        response = self._make_request()
         self.crawl_status = response.status_code
         self.crawled_at = datetime.utcnow()
-        response.raise_for_status()
+        return response
 
-        return response.json()
+
+class CrawlURL(BaseURL):
+    __tablename__ = 'crawl_urls'
+
+    resolves_to = Column(String)
+
+    def _make_request(self):
+        response = requests.get(url=self.url)
+        self.resolves_to = response.url
+        return response
+
+
+class RecipeURL(BaseURL):
+    __tablename__ = 'recipe_urls'
+
+    def _make_request(self):
+        return requests.post(
+            url='http://crawler-service',
+            data={'url': self.url},
+            proxies={}
+        )
