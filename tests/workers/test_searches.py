@@ -18,13 +18,23 @@ def valid_response():
 
 @responses.activate
 def test_recrawler_error_handled(error_response):
-    result = recrawl_search(include=['tofu'])
+    result = recrawl_search(
+        include=['tofu'],
+        exclude=[],
+        equipment=[],
+        offset=0
+    )
 
     assert result == []
 
 
 @responses.activate
 def test_recrawler_success(valid_response):
-    result = recrawl_search(include=['tofu'])
+    result = recrawl_search(
+        include=['tofu'],
+        exclude=[],
+        equipment=[],
+        offset=0
+    )
 
     assert result == ['http://www.example.com']

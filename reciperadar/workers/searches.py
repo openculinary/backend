@@ -4,8 +4,13 @@ from reciperadar.workers.broker import celery
 
 
 @celery.task(queue='recrawl_search')
-def recrawl_search(include):
-    params = {'include[]': include}
+def recrawl_search(include, exclude, equipment, offset):
+    params = {
+        'include[]': include,
+        'exclude[]': exclude,
+        'equipment[]': equipment,
+        'offset': offset
+    }
     response = requests.post(
         url='http://recrawler-service',
         params=params,
