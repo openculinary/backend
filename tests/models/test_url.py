@@ -30,6 +30,7 @@ def test_origin_url_resolution(origin_url, content_url):
     recipe_url = crawl_url.crawl()
 
     assert (crawl_url.url, recipe_url.url) == (origin_url, content_url)
+    assert crawl_url.resolves_to == recipe_url.url
 
 
 def test_content_url_domain(content_url):
