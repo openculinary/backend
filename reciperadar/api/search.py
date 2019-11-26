@@ -43,7 +43,7 @@ def recipes():
     if not is_robot(user_agent):
 
         # Perform a recrawl for the search to find any new/missing recipes
-        recrawl_search.delay(include)
+        recrawl_search.delay(include, exclude, equipment, offset)
 
         # TODO: Once 'event' is json serializable: switch to store_event.delay
         store_event(SearchEvent(
