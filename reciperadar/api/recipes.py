@@ -4,7 +4,7 @@ from reciperadar import app
 from reciperadar.models.recipes import Recipe
 from reciperadar.services.database import Database
 from reciperadar.utils.decorators import internal
-from reciperadar.workers.recipes import crawl_recipe, index_recipe
+from reciperadar.workers.recipes import crawl_url, index_recipe
 
 
 @app.route('/api/recipes/<recipe_id>')
@@ -29,7 +29,7 @@ def recipe_crawl():
     if not url:
         return abort(400)
 
-    crawl_recipe.delay(url)
+    crawl_url.delay(url)
     return jsonify({})
 
 
