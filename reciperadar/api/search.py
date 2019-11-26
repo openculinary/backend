@@ -25,15 +25,8 @@ def ingredients():
     return jsonify(results)
 
 
-def log_search(user_agent, event):
-    if user_agent and 'www.uptimerobot.com' in user_agent:
-        return
-
-    # TODO: Once 'event' is json serializable: switch to store_event.delay
-    store_event(event)
-
-    # Perform a recrawl for the search to find any new/missing recipes
-    recrawl_search.delay(event.include)
+def is_robot(user_agent):
+    return user_agent and 'www.uptimerobot.com' in user_agent
 
 
 @app.route('/api/recipes/search')
@@ -47,15 +40,21 @@ def recipes():
     results = Recipe().search(include, exclude, equipment, offset, limit, sort)
 
     user_agent = request.headers.get('user-agent')
-    log_search(user_agent, SearchEvent(
-        include=include,
-        exclude=exclude,
-        equipment=equipment,
-        offset=offset,
-        limit=limit,
-        sort=sort,
-        results_ids=[result['id'] for result in results['results']],
-        results_total=results['total']
-    ))
+    if not is_robot(user_agent):
+
+        # Perform a recrawl for the search to find any new/missing recipes
+        recrawl_search.delay(include)
+
+        # TODO: Once 'event' is json serializable: switch to store_event.delay
+        store_event(SearchEvent(
+            include=include,
+            exclude=exclude,
+            equipment=equipment,
+            offset=offset,
+            limit=limit,
+            sort=sort,
+            results_ids=[result['id'] for result in results['results']],
+            results_total=results['total']
+        ))
 
     return jsonify(results)
