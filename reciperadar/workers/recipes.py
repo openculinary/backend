@@ -85,11 +85,12 @@ def crawl_url(url):
     if not response.ok:
         return
 
-    recipe_url = RecipeURL(url=response.url)
-    crawl_recipe.delay(recipe_url.url)
+    url = response.url
 
     session = Database().get_session()
-    session.query(RecipeURL).filter_by(url=recipe_url.url).delete()
+    recipe_url = session.query(RecipeURL).get(url) or RecipeURL(url=url)
     session.add(recipe_url)
     session.commit()
     session.close()
+
+    crawl_recipe.delay(url)
