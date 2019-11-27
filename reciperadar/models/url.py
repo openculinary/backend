@@ -42,6 +42,7 @@ class BaseURL(AbstractConcreteBase, Storable):
         429: 'Crawler rate-limit exceeded',
         500: 'Scraper failure occurred',
         501: 'Website not supported',
+        598: 'Network read timeout error',
     }
 
     # By default TLDExtract pulls a subdomain suffix list from the web;
