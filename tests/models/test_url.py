@@ -1,4 +1,6 @@
+from mock import patch
 import pytest
+import requests
 import responses
 
 from reciperadar.models.url import CrawlURL, RecipeURL
@@ -18,6 +20,17 @@ def test_origin_url_domain(origin_url):
     url = CrawlURL(url=origin_url)
 
     assert url.domain == 'example.com'
+
+
+@patch('requests.get')
+def test_crawl_timeout(get, origin_url):
+    get.side_effect = [requests.exceptions.Timeout]
+
+    url = CrawlURL(url=origin_url)
+    url.crawl()
+
+    assert url.crawl_status == 598
+    assert 'timeout' in url.error_message
 
 
 @responses.activate

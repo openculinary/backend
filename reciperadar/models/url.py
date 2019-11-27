@@ -42,6 +42,7 @@ class BaseURL(AbstractConcreteBase, Storable):
         429: 'Crawler rate-limit exceeded',
         500: 'Scraper failure occurred',
         501: 'Website not supported',
+        598: 'Network read timeout error',
     }
 
     # By default TLDExtract pulls a subdomain suffix list from the web;
@@ -73,7 +74,12 @@ class BaseURL(AbstractConcreteBase, Storable):
         if backoff and (self.crawled_at + backoff) > datetime.utcnow():
             raise RecipeURL.BackoffException()
 
-        response = self._make_request()
+        try:
+            response = self._make_request()
+        except requests.exceptions.Timeout:
+            response = requests.Response()
+            response.status_code = 598
+
         self.crawl_status = response.status_code
         self.crawled_at = datetime.utcnow()
         return response
