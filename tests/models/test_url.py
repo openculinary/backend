@@ -30,6 +30,7 @@ def test_crawl_timeout(get, origin_url):
     url.crawl()
 
     assert url.crawl_status == 598
+    assert 'timeout' in url.error_message
 
 
 @responses.activate
