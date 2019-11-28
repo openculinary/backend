@@ -194,28 +194,21 @@ class Recipe(Storable, Searchable):
         equipment_clause = self._generate_equipment_clause(equipment)
         sort_params = self._generate_sort_params(include, sort)
 
-        must, should, must_not, filter = [], [], [], []
-        if include_clause:
-            target = must if match_all else should
-            target += include_clause
-        if exclude_clause:
-            must_not += exclude_clause
-        if equipment_clause:
-            filter += equipment_clause
-        filter += [
+        filter_clause = [
             {'range': {'time': {'gte': 5}}},
             {'range': {'product_count': {'gt': 0}}},
         ]
+        if equipment_clause:
+            filter_clause += equipment_clause
 
         return {
             'function_score': {
                 'boost_mode': 'replace',
                 'query': {
                     'bool': {
-                        'must': must,
-                        'should': should,
-                        'must_not': must_not,
-                        'filter': filter
+                        'must' if match_all else 'should': include_clause,
+                        'must_not': exclude_clause,
+                        'filter': filter_clause
                     }
                 },
                 'script_score': {'script': {'source': sort_params['script']}}
