@@ -208,7 +208,8 @@ class Recipe(Storable, Searchable):
                     'bool': {
                         'must' if match_all else 'should': include_clause,
                         'must_not': exclude_clause,
-                        'filter': filter_clause
+                        'filter': filter_clause,
+                        'minimum_should_match': None if match_all else 1
                     }
                 },
                 'script_score': {'script': {'source': sort_params['script']}}
