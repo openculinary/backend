@@ -212,7 +212,7 @@ class Recipe(Storable, Searchable):
                 'boost_mode': 'replace',
                 'query': {
                     'bool': {
-                        'must': must or {'match_all': {}},
+                        'must': must,
                         'should': should,
                         'must_not': must_not,
                         'filter': filter
