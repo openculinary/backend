@@ -9,6 +9,7 @@ from sqlalchemy.orm import relationship
 from reciperadar.models.base import Storable
 from reciperadar.models.recipes.appliance import DirectionAppliance
 from reciperadar.models.recipes.utensil import DirectionUtensil
+from reciperadar.models.recipes.vessel import DirectionVessel
 
 
 class RecipeDirection(Storable):
@@ -30,6 +31,11 @@ class RecipeDirection(Storable):
         backref='recipe_directions',
         passive_deletes='all'
     )
+    vessels = relationship(
+        'DirectionVessel',
+        backref='recipe_directions',
+        passive_deletes='all'
+    )
 
     @staticmethod
     def from_doc(doc, matches=None):
@@ -45,6 +51,10 @@ class RecipeDirection(Storable):
             utensils=[
                 DirectionUtensil.from_doc(utensil)
                 for utensil in doc.get('utensils', [])
+            ],
+            vessels=[
+                DirectionVessel.from_doc(vessel)
+                for vessel in doc.get('vessels', [])
             ]
         )
 
@@ -56,6 +66,9 @@ class RecipeDirection(Storable):
         ] + [
             {'equipment': utensil.utensil}
             for utensil in self.utensils
+        ] + [
+            {'equipment': vessel.vessel}
+            for vessel in self.vessels
         ]
         return data
 

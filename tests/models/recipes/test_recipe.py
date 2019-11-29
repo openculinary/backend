@@ -6,3 +6,4 @@ def test_recipe_from_doc(raw_recipe_hit):
 
     assert recipe.directions[0].appliances[0].appliance == 'oven'
     assert recipe.directions[0].utensils[0].utensil == 'skewer'
+    assert recipe.directions[0].vessels[0].vessel == 'casserole dish'

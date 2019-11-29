@@ -30,6 +30,11 @@ def raw_recipe_hit():
                         {
                             "utensil": "skewer"
                         }
+                    ],
+                    "vessels": [
+                        {
+                            "vessel": "casserole dish"
+                        }
                     ]
                 }
             ],
