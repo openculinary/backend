@@ -55,13 +55,15 @@ def crawl_recipe(url):
         return
 
     recipe = Recipe.from_doc(response.json())
-    process_recipe.delay(recipe.id)
+    recipe_id = recipe.id
 
     session = Database().get_session()
-    session.query(Recipe).filter_by(id=recipe.id).delete()
+    session.query(Recipe).filter_by(id=recipe_id).delete()
     session.add(recipe)
     session.commit()
     session.close()
+
+    process_recipe.delay(recipe_id)
 
 
 @celery.task(queue='crawl_url')
