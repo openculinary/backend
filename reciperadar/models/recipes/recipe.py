@@ -280,7 +280,7 @@ class Recipe(Storable, Searchable):
 
         return {
             'authority': 'api',
-            'total': min(results['hits']['total']['value'], 50 * limit),
+            'total': min(results['hits']['total']['value'], 25 * limit),
             'results': recipes,
             'refinements': [refinement] if refinement else []
         }

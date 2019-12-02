@@ -1,6 +1,7 @@
 from abc import ABC
 from datetime import datetime
 from sqlalchemy import (
+    Boolean,
     Column,
     DateTime,
     String,
@@ -16,3 +17,4 @@ class BaseEvent(AbstractConcreteBase, Storable):
 
     event_id = Column(String, default=uuid4, primary_key=True)
     logged_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    suspected_bot = Column(Boolean, default=False)
