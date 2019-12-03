@@ -1,4 +1,15 @@
+import pytest
+
 from reciperadar.models.recipes import IngredientProduct
+
+
+def product_categories():
+    return {
+        'olive oil': 'Oil, Vinegar & Condiments',
+        'canola oil': 'Oil, Vinegar & Condiments',
+        'white wine vinegar': 'Oil, Vinegar & Condiments',
+        'ketchup': 'Oil, Vinegar & Condiments',
+    }
 
 
 def test_chicken_contents():
@@ -36,3 +47,13 @@ def test_chicken_exclusion_contents():
 
         # TODO: identify meat-derived products
         # assert 'meat' in contents
+
+
+@pytest.mark.parametrize('product,category', product_categories().items())
+def test_product_categories(product, category):
+    product = IngredientProduct(
+        product=product,
+        singular=product
+    )
+
+    assert product.category == category

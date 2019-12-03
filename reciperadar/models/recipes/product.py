@@ -89,6 +89,7 @@ class IngredientProduct(Storable):
             'fruit_and_veg': 'Fruit & Vegetables',
             'egg': 'Dairy',
             'meat': 'Meat',
+            'oil_and_vinegar_and_condiments': 'Oil, Vinegar & Condiments',
         }
 
         for content in self.contents:
@@ -139,6 +140,11 @@ class IngredientProduct(Storable):
             'steak': 'meat',
             'turkey': 'meat',
             'venison': 'meat',
+
+            'ketchup': 'oil_and_vinegar_and_condiments',
+            'oil': 'oil_and_vinegar_and_condiments',
+            'soy sauce': 'oil_and_vinegar_and_condiments',
+            'vinegar': 'oil_and_vinegar_and_condiments',
         }
         exclusion_graph = {
             'meat': ['stock', 'broth', 'tomato', 'bouillon', 'soup', 'eggs'],
