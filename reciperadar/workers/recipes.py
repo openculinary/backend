@@ -54,7 +54,12 @@ def crawl_recipe(url):
     if not response.ok:
         return
 
-    recipe = Recipe.from_doc(response.json())
+    try:
+        recipe = Recipe.from_doc(response.json())
+    except Exception as e:
+        print(f'Failed to load crawler result for url={recipe_url.url} - {e}')
+        return
+
     recipe_id = recipe.id
 
     session = Database().get_session()
