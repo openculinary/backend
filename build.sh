@@ -10,5 +10,5 @@ buildah copy ${container} 'reciperadar' 'reciperadar'
 buildah copy ${container} 'Pipfile'
 buildah run ${container} -- pip install pipenv
 buildah run ${container} -- pipenv install
-buildah config --port 80 --entrypoint 'pipenv run gunicorn reciperadar:app --bind :80' ${container}
+buildah config --port 80 --entrypoint 'pipenv run gunicorn reciperadar:app --bind :80 --timeout 60' ${container}
 buildah commit --squash --rm ${container} ${IMAGE_NAME}:${IMAGE_COMMIT}
