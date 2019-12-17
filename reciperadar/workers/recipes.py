@@ -41,10 +41,10 @@ def crawl_recipe(url):
     try:
         response = recipe_url.crawl()
     except RecipeURL.BackoffException:
-        print(f'Backoff: {recipe_url.error_message} for url={recipe_url.url}')
+        print(f'Backoff: {recipe_url.error_message} for url={url}')
         return
     except Exception:
-        print(f'{recipe_url.error_message} for url={recipe_url.url}')
+        print(f'{recipe_url.error_message} for url={url}')
         return
     finally:
         session.add(recipe_url)
@@ -57,7 +57,7 @@ def crawl_recipe(url):
     try:
         recipe = Recipe.from_doc(response.json())
     except Exception as e:
-        print(f'Failed to load crawler result for url={recipe_url.url} - {e}')
+        print(f'Failed to load crawler result for url={url} - {e}')
         return
 
     recipe_id = recipe.id
