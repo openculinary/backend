@@ -111,7 +111,7 @@ class Recipe(Storable, Searchable):
     def contents(self):
         contents = set()
         for product in self.products:
-            contents |= set(product.contents)
+            contents |= set(product.contents or [])
         return list(contents)
 
     def to_doc(self):
