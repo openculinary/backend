@@ -11,7 +11,6 @@ from sqlalchemy.orm import relationship
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
-from reciperadar.models.recipes.product import IngredientProduct
 
 
 class Recipe(Storable, Searchable):
@@ -48,14 +47,11 @@ class Recipe(Storable, Searchable):
 
     @property
     def products(self):
-        products_by_id = {
-            ingredient.product.singular: IngredientProduct(
-                product=ingredient.product.product,
-                singular=ingredient.product.singular,
-            )
+        unique_products = {
+            ingredient.product.singular: ingredient.product
             for ingredient in self.ingredients
         }
-        return list(products_by_id.values())
+        return list(unique_products.values())
 
     @staticmethod
     def from_doc(doc):
