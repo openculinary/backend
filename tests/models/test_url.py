@@ -1,7 +1,6 @@
 from mock import patch
 import pytest
 import requests
-import responses
 
 from reciperadar.models.url import CrawlURL, RecipeURL
 
@@ -16,15 +15,9 @@ def content_url(origin_url):
     return origin_url.replace('subdomain', 'migrated')
 
 
-def test_origin_url_domain(origin_url):
-    url = CrawlURL(url=origin_url)
-
-    assert url.domain == 'example.com'
-
-
-@patch('requests.get')
-def test_crawl_timeout(get, origin_url):
-    get.side_effect = [requests.exceptions.Timeout]
+@patch('requests.post')
+def test_crawl_timeout(post, origin_url):
+    post.side_effect = [requests.exceptions.Timeout]
 
     url = CrawlURL(url=origin_url)
     url.crawl()
@@ -33,17 +26,10 @@ def test_crawl_timeout(get, origin_url):
     assert 'timeout' in url.error_message
 
 
-@responses.activate
-def test_origin_url_resolution(origin_url, content_url):
-    redir_headers = {'Location': content_url}
-    responses.add(responses.GET, origin_url, status=301, headers=redir_headers)
-    responses.add(responses.GET, content_url, status=200)
+def test_origin_url_domain(origin_url):
+    url = CrawlURL(url=origin_url)
 
-    crawl_url = CrawlURL(url=origin_url)
-    recipe_url = crawl_url.crawl()
-
-    assert (crawl_url.url, recipe_url.url) == (origin_url, content_url)
-    assert crawl_url.resolves_to == recipe_url.url
+    assert url.domain == 'example.com'
 
 
 def test_content_url_domain(content_url):

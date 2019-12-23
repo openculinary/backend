@@ -13,8 +13,7 @@ def recrawl_search(include, exclude, equipment, offset):
     }
     response = requests.post(
         url='http://recrawler-service',
-        params=params,
-        proxies={}
+        params=params
     )
 
     try:

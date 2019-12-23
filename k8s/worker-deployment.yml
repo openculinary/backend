@@ -32,10 +32,3 @@ spec:
               secretKeyRef:
                 name: api-verifications-mail
                 key: password
-        volumeMounts:
-        - name: proxy-cert
-          mountPath: /etc/ssl/k8s/proxy-cert
-      volumes:
-      - name: proxy-cert
-        secret:
-          secretName: proxy-cert

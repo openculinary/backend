@@ -78,6 +78,7 @@ def crawl_url(url):
 
     try:
         response = crawl_url.crawl()
+        url = crawl_url.resolves_to
     except RecipeURL.BackoffException:
         print(f'Backoff: {crawl_url.error_message} for url={crawl_url.url}')
         return
@@ -91,8 +92,6 @@ def crawl_url(url):
 
     if not response.ok:
         return
-
-    url = response.url
 
     session = Database().get_session()
     recipe_url = session.query(RecipeURL).get(url) or RecipeURL(url=url)
