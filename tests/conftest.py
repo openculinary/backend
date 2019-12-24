@@ -42,7 +42,11 @@ def raw_recipe_hit():
                 {
                     "index": 0,
                     "description": "1 unit of test ingredient one",
-                    "product": {"product": "one"}
+                    "product": {
+                        "product": "one",
+                        "contents": ["content-of-one"],
+                        "ancestors": ["ancestor-of-one"]
+                    }
                 },
                 {
                     "index": 1,
