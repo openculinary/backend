@@ -32,8 +32,8 @@ class IngredientProduct(Storable):
         product_id = doc.get('id') or IngredientProduct.generate_id()
         contents = list(set(
             [doc.get('product')] +
-            doc.get('contents', []) +
-            doc.get('ancestors', [])
+            (doc.get('contents') or []) +
+            (doc.get('ancestors') or [])
         ))
         return IngredientProduct(
             id=product_id,
