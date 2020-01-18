@@ -33,7 +33,7 @@ def recipes():
     equipment = request.args.getlist('equipment[]')
     offset = min(request.args.get('offset', type=int, default=0), (25*10)-10)
     limit = min(request.args.get('limit', type=int, default=10), 10)
-    sort = request.args.get('sort')
+    sort = request.args.get('sort', default='ingredients')
     results = Recipe().search(include, exclude, equipment, offset, limit, sort)
 
     user_agent = request.headers.get('user-agent')

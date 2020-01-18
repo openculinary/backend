@@ -392,7 +392,6 @@ class Recipe(Storable, Searchable):
         offset = max(0, offset)
         limit = max(1, limit)
         limit = min(25, limit)
-        sort_order = sort_order or 'relevance'
 
         queries = self._refined_queries(
             include=include,
