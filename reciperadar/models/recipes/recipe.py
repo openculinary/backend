@@ -196,7 +196,7 @@ class Recipe(Storable, Searchable):
             # rank: number of missing ingredients
             # tiebreak: recipe rating
             'ingredients': {
-                'script': f'{preamble} missing_score + normalized_rating',
+                'script': f'{preamble} missing_score + 1 - normalized_rating',
                 'order': 'asc'
             },
 
