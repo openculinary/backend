@@ -173,9 +173,9 @@ class Recipe(Storable, Searchable):
 
     @staticmethod
     def _generate_sort_params(include, sort):
-        # don't score relevance searches if no query ingredients are provided
-        if sort == 'relevance' and not include:
-            return {'script': '0', 'order': 'desc'}
+        # if no ingredients are specified, we may be able to short-cut sorting
+        if not include and sort != 'duration':
+            return {'script': 'doc.rating.value', 'order': 'desc'}
 
         preamble = '''
             def product_count = doc.product_count.value;
