@@ -54,7 +54,7 @@ class Searchable(object):
         return self.from_doc(doc['_source'])
 
     def index(self):
-        self.es.index(index=self.noun, id=self.id, body=self.to_doc())
         if hasattr(self, 'indexed_at'):
             self.indexed_at = datetime.utcnow()
+        self.es.index(index=self.noun, id=self.id, body=self.to_doc())
         return True
