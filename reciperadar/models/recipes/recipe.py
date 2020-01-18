@@ -53,6 +53,13 @@ class Recipe(Storable, Searchable):
         }
         return list(unique_products.values())
 
+    @property
+    def hidden(self):
+        for ingredient in self.ingredients:
+            if not ingredient.product.singular:
+                return True
+        return False
+
     @staticmethod
     def from_doc(doc):
         src_hash = hash_bytes(doc['src']).encode('utf-8')
@@ -122,6 +129,7 @@ class Recipe(Storable, Searchable):
         ]
         data['contents'] = self.contents
         data['product_count'] = len(self.products)
+        data['hidden'] = self.hidden
         return data
 
     @staticmethod
@@ -218,7 +226,9 @@ class Recipe(Storable, Searchable):
 
         must = include_clause if match_all else []
         should = include_exact if match_all else include_clause
-        must_not = exclude_clause
+        must_not = exclude_clause + [
+            {'match': {'hidden': True}},
+        ]
         filter = equipment_clause + [
             {'range': {'time': {'gte': 5}}},
             {'range': {'product_count': {'gt': 0}}},
