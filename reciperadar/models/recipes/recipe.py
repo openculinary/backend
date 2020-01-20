@@ -19,6 +19,7 @@ class Recipe(Storable, Searchable):
     id = Column(String, primary_key=True)
     title = Column(String)
     src = Column(String)
+    dst = Column(String)
     domain = Column(String)
     image_src = Column(String)
     time = Column(Integer)
@@ -68,6 +69,7 @@ class Recipe(Storable, Searchable):
             id=recipe_id,
             title=doc['title'],
             src=doc['src'],
+            dst=doc.get('dst'),  # TODO: Backwards compatibility; update
             domain=doc['domain'],
             image_src=doc.get('image_src'),
             ingredients=[
@@ -130,6 +132,7 @@ class Recipe(Storable, Searchable):
         data['contents'] = self.contents
         data['product_count'] = len(self.products)
         data['hidden'] = self.hidden
+        data['src'] = self.dst  # TODO: Backwards compatibility; remove
         return data
 
     @staticmethod

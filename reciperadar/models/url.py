@@ -71,7 +71,7 @@ class BaseURL(AbstractConcreteBase, Storable):
 class CrawlURL(BaseURL):
     __tablename__ = 'crawl_urls'
 
-    resolves_to = Column(String)
+    resolves_to = Column(String, index=True)
 
     def _make_request(self):
         response = requests.post(
