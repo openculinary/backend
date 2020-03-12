@@ -121,6 +121,13 @@ class RecipeIngredient(Storable, Searchable):
                               }
                             }
                           }
+                        },
+                        # retrieve a category for each ingredient
+                        'category': {
+                          'terms': {
+                            'field': 'ingredients.product.category',
+                            'size': 1
+                          }
                         }
                       }
                     }
@@ -143,9 +150,11 @@ class RecipeIngredient(Storable, Searchable):
             plural_docs = result['plurality']['plural']['buckets']
             plural_wins = plural_count > total_count - plural_count
 
+            category_docs = result['category']['buckets']
             suggestion_doc = plural_docs[0] if plural_wins else result
             suggestions.append(IngredientProduct(
                 product=suggestion_doc['key'],
+                category=category_docs[0]['key'] if category_docs else None,
                 singular=result['key']
             ))
 
