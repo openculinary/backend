@@ -14,6 +14,19 @@ def test_search_invalid_sort(query, client):
     assert not query.called
 
 
+@patch('reciperadar.api.recipes.recrawl_search.delay')
+@patch('reciperadar.api.recipes.store_event')
+@patch('reciperadar.search.base.QueryRepository.es.search')
+def test_search_empty_query(search, store, recrawl, client):
+    search.return_value = {'hits': {'hits': [], 'total': {'value': 0}}}
+
+    response = client.get('/api/recipes/search')
+
+    assert response.status_code == 200
+    assert 'refinements' in response.json
+    assert 'empty_query' in response.json['refinements']
+
+
 @patch('werkzeug.datastructures.Headers.get')
 @patch('reciperadar.api.recipes.recrawl_search.delay')
 @patch('reciperadar.api.recipes.store_event')
