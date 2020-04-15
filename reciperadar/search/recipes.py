@@ -91,7 +91,7 @@ class RecipeSearch(QueryRepository):
         # if no ingredients are specified, we may be able to short-cut sorting
         if not include and sort != 'duration':
             return {'script': 'doc.rating.value', 'order': 'desc'}
-        return self.sort_methods[sort]
+        return self.sort_methods()[sort]
 
     def _render_query(self, include, exclude, equipment, sort, match_all=True):
         include_clause = self._generate_include_clause(include)
