@@ -3,6 +3,17 @@ from mock import patch
 from reciperadar.search.recipes import RecipeSearch
 
 
+@patch.object(RecipeSearch, 'query')
+def test_search_invalid_sort(query, client):
+    response = client.get(
+        path='/api/recipes/search',
+        query_string={'sort': 'invalid'}
+    )
+
+    assert response.status_code == 400
+    assert not query.called
+
+
 @patch('werkzeug.datastructures.Headers.get')
 @patch('reciperadar.api.recipes.recrawl_search.delay')
 @patch('reciperadar.api.recipes.store_event')
