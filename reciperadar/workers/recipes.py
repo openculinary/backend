@@ -38,7 +38,7 @@ def find_earliest_crawl(session, url):
         .filter_by(resolves_to=url) \
         .filter(CrawlURL.crawled_at.isnot(None)) \
         .order_by(CrawlURL.crawled_at.asc()) \
-        .one()
+        .first()
 
 
 @celery.task(queue='crawl_recipe')
