@@ -152,7 +152,7 @@ def crawl_recipe(url):
     address 'C', the website owner had updated A, B and C to point to an
     updated location 'D'.
 
-    The graph includes one further change made by the website owner, who added 
+    The graph includes one further change made by the website owner, who added
     a redirect from 'D' to 'E' in order to use a cleaner URL.
 
     In order to de-duplicate recipes in the RecipeRadar search engine, we use
