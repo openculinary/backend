@@ -20,6 +20,7 @@ class RecipeIngredient(Storable, Searchable):
     id = Column(String, primary_key=True)
     index = Column(Integer)
     description = Column(String)
+    markup = Column(String)
     product = relationship(
         'IngredientProduct',
         backref='recipe_ingredient',
@@ -40,6 +41,7 @@ class RecipeIngredient(Storable, Searchable):
             id=ingredient_id,
             index=doc.get('index'),  # TODO
             description=doc['description'].strip(),
+            markup=doc.get('markup'),
             product=IngredientProduct.from_doc(doc['product']),
             quantity=doc.get('quantity'),
             quantity_parser=doc.get('quantity_parser'),
@@ -69,7 +71,10 @@ class RecipeIngredient(Storable, Searchable):
                 'value': ' ',
             })
         tokens.append(self.product.to_dict(include))
-        return {'tokens': tokens}
+        return {
+            'markup': self.markup,
+            'tokens': tokens,
+        }
 
     def to_doc(self):
         data = super().to_doc()

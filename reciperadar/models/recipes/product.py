@@ -16,6 +16,7 @@ class IngredientProduct(Storable):
     ingredient_id = Column(String, fk, index=True)
 
     id = Column(String, primary_key=True)
+    product_id = Column(String)
     product = Column(String)
     product_parser = Column(String)
     is_plural = Column(Boolean)
@@ -37,6 +38,7 @@ class IngredientProduct(Storable):
         ))
         return IngredientProduct(
             id=product_id,
+            product_id=doc.get('product_id'),
             product=doc.get('product'),
             product_parser=doc.get('product_parser'),
             is_plural=doc.get('is_plural'),
