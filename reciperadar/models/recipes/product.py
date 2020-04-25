@@ -48,18 +48,20 @@ class IngredientProduct(Storable):
             contents=contents
         )
 
-    def to_dict(self, include):
+    def state(self, include):
         states = {
             True: IngredientProduct.STATE_AVAILABLE,
             False: IngredientProduct.STATE_REQUIRED,
         }
         available = bool(set(self.contents or []) & set(include or []))
+        return states[available]
 
+    def to_dict(self, include):
         return {
             'type': 'product',
             'value': self.product,
             'category': self.category,
             'singular': self.singular,
             'plural': self.plural,
-            'state': states[available]
+            'state': self.state(include),
         }
