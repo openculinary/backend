@@ -54,7 +54,8 @@ class BaseURL(AbstractConcreteBase, Storable):
 
     def crawl(self):
         backoff = self.BACKOFFS.get(self.crawl_status)
-        if backoff and (self.crawled_at + backoff) > datetime.utcnow():
+        now = datetime.utcnow()
+        if self.crawled_at and backoff and self.crawled_at + backoff > now:
             raise RecipeURL.BackoffException()
 
         try:
@@ -64,7 +65,7 @@ class BaseURL(AbstractConcreteBase, Storable):
             response.status_code = 598
 
         self.crawl_status = response.status_code
-        self.crawled_at = datetime.utcnow()
+        self.crawled_at = now
         return response
 
 
