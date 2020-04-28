@@ -27,7 +27,7 @@ class Feedback(Storable):
 
             message = Message(
                 subject=f'User feedback: {title}',
-                sender='verifications@reciperadar.com',
+                sender='contact@reciperadar.com',
                 recipients=['feedback@reciperadar.com'],
                 html=html
             )

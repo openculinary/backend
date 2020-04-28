@@ -25,10 +25,10 @@ spec:
           - name: MAIL_USERNAME
             valueFrom:
               secretKeyRef:
-                name: api-verifications-mail
+                name: api-contact-mail
                 key: username
           - name: MAIL_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: api-verifications-mail
+                name: api-contact-mail
                 key: password
