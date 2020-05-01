@@ -1,6 +1,6 @@
-from mock import patch
 import pytest
 import requests
+from unittest.mock import patch
 
 from reciperadar.models.url import CrawlURL, RecipeURL
 
