@@ -21,6 +21,7 @@ class RecipeDirection(Storable):
     id = Column(String, primary_key=True)
     index = Column(Integer)
     description = Column(String)
+    markup = Column(String)
     appliances = relationship(
         'DirectionAppliance',
         backref='recipe_directions',
@@ -44,6 +45,7 @@ class RecipeDirection(Storable):
             id=direction_id,
             index=doc.get('index'),  # TODO
             description=doc['description'],
+            markup=doc.get('markup'),
             appliances=[
                 DirectionAppliance.from_doc(appliance)
                 for appliance in doc.get('appliances', [])
@@ -73,7 +75,10 @@ class RecipeDirection(Storable):
         return data
 
     def to_dict(self):
-        return {'tokens': [{
-            'type': 'text',
-            'value': self.description
-        }]}
+        return {
+            'markup': self.markup,
+            'tokens': [{
+                'type': 'text',
+                'value': self.description,
+            }],
+        }
