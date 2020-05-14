@@ -73,6 +73,7 @@ class RecipeIngredient(Storable, Searchable):
         tokens.append(self.product.to_dict(include))
         return {
             'markup': self.markup,
+            'product': self.product.to_dict(include),
             'state': self.product.state(include),
             'tokens': tokens,
         }
