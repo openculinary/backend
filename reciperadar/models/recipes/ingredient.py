@@ -85,9 +85,9 @@ class RecipeIngredient(Storable, Searchable):
                   },
                   'aggregations': {
                     # retrieve the top products in singular pluralization
-                    'product': {
+                    'product_id': {
                       'terms': {
-                        'field': 'ingredients.product.singular',
+                        'field': 'ingredients.product.product_id',
                         'min_doc_count': 5,
                         'size': 10
                       },
@@ -96,21 +96,24 @@ class RecipeIngredient(Storable, Searchable):
                         'plurality': {
                           'filter': {
                             'match': {'ingredients.product.is_plural': True}
-                          },
-                          'aggregations': {
-                            # return the plural word form in the results
-                            'plural': {
-                              'terms': {
-                                'field': 'ingredients.product.plural',
-                                'size': 1
-                              }
-                            }
                           }
                         },
                         # retrieve a category for each ingredient
                         'category': {
                           'terms': {
                             'field': 'ingredients.product.category',
+                            'size': 1
+                          }
+                        },
+                        'singular': {
+                          'terms': {
+                            'field': 'ingredients.product.singular',
+                            'size': 1
+                          }
+                        },
+                        'plural': {
+                          'terms': {
+                            'field': 'ingredients.product.plural',
                             'size': 1
                           }
                         }
@@ -123,7 +126,7 @@ class RecipeIngredient(Storable, Searchable):
           }
         }
         results = self.es.search(index=self.noun, body=query)['aggregations']
-        results = results['ingredients']['products']['product']['buckets']
+        results = results['ingredients']['products']['product_id']['buckets']
 
         # iterate through the suggestions and determine whether to display
         # the singular or plural form of the word based on how frequently
@@ -132,15 +135,19 @@ class RecipeIngredient(Storable, Searchable):
         for result in results:
             total_count = result['doc_count']
             plural_count = result['plurality']['doc_count']
-            plural_docs = result['plurality']['plural']['buckets']
             plural_wins = plural_count > total_count - plural_count
 
-            category_docs = result['category']['buckets']
-            suggestion_doc = plural_docs[0] if plural_wins else result
+            product_id = result['key']
+            category = (result['category']['buckets'] or [{}])[0].get('key')
+            singular = (result['singular']['buckets'] or [{}])[0].get('key')
+            plural = (result['plural']['buckets'] or [{}])[0].get('key')
+
             suggestions.append(IngredientProduct(
-                product=suggestion_doc['key'],
-                category=category_docs[0]['key'] if category_docs else None,
-                singular=result['key']
+                product_id=product_id,
+                product=plural if plural_wins else singular,
+                category=category,
+                singular=singular,
+                plural=plural,
             ))
 
         suggestions.sort(key=lambda s: (
@@ -149,7 +156,9 @@ class RecipeIngredient(Storable, Searchable):
             len(s.product)),  # sort remaining matches by length
         )
         return [{
+            'product_id': suggestion.product_id,
             'product': suggestion.product,
             'category': suggestion.category,
-            'singular': suggestion.singular
+            'singular': suggestion.singular,
+            'plural': suggestion.plural,
         } for suggestion in suggestions]
