@@ -1,7 +1,7 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
-DB_URI = f'postgresql+pg8000://api@postgresql/api'
+DB_URI = 'postgresql+pg8000://api@postgresql/api'
 
 
 class Database(object):

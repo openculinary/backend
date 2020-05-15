@@ -82,7 +82,8 @@ class RecipeSearch(QueryRepository):
             return {'script': 'doc.rating.value', 'order': 'desc'}
         return self.sort_methods()[sort]
 
-    def _render_query(self, include, exclude, equipment, sort, min_include_match=None):
+    def _render_query(self, include, exclude, equipment, sort,
+                      min_include_match=None):
         include_clause = self._generate_include_clause(include)
         exclude_clause = self._generate_exclude_clause(exclude)
         equipment_clause = self._generate_equipment_clause(equipment)
@@ -142,7 +143,7 @@ class RecipeSearch(QueryRepository):
                     sort=sort,
                     min_include_match=min_include_match
                 )
-                yield query, sort_method, f'partial'
+                yield query, sort_method, 'partial'
 
             query, sort_method = self._render_query(
                 include=include,
