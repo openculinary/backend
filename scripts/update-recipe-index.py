@@ -28,6 +28,7 @@ mapping = {
             'properties': {
                 'product': {
                     'properties': {
+                        'product_id': {'type': 'keyword'},
                         'product': {'type': 'keyword'},
                         'category': {'type': 'keyword'},
                         'is_plural': {'type': 'boolean'},
