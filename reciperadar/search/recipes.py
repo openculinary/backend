@@ -119,7 +119,7 @@ class RecipeSearch(QueryRepository):
                         'should': should,
                         'must_not': must_not,
                         'filter': filter,
-                        'minimum_should_match': None if match_all else 1
+                        'minimum_should_match': 0 if match_all else 1
                     }
                 },
                 'script_score': {'script': {'source': sort_params['script']}}
