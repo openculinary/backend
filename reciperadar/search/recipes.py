@@ -134,7 +134,7 @@ class RecipeSearch(QueryRepository):
         yield query, sort_method, None
 
         if include:
-            for min_include_match in range(item_count, 1, -1):
+            for min_include_match in range(len(include), 1, -1):
                 query, sort_method = self._render_query(
                     include=include,
                     exclude=exclude,
