@@ -7,17 +7,6 @@ class RecipeSearch(QueryRepository):
     @staticmethod
     def _generate_include_clause(include):
         return [{
-            'constant_score': {
-                'boost': pow(10, idx),
-                'filter': {
-                    'match': {'contents': inc}
-                }
-            }
-        } for idx, inc in enumerate(reversed(include))]
-
-    @staticmethod
-    def _generate_include_exact(include):
-        return [{
             'nested': {
                 'path': 'ingredients',
                 'query': {
@@ -93,15 +82,13 @@ class RecipeSearch(QueryRepository):
             return {'script': 'doc.rating.value', 'order': 'desc'}
         return self.sort_methods()[sort]
 
-    def _render_query(self, include, exclude, equipment, sort, match_all=True):
+    def _render_query(self, include, exclude, equipment, sort, min_include_match=None):
         include_clause = self._generate_include_clause(include)
-        include_exact = self._generate_include_exact(include)
         exclude_clause = self._generate_exclude_clause(exclude)
         equipment_clause = self._generate_equipment_clause(equipment)
         sort_params = self._generate_sort_method(include, sort)
 
-        must = include_clause if match_all else []
-        should = include_exact if match_all else include_clause
+        should = include_clause
         must_not = exclude_clause + [
             {'match': {'hidden': True}},
         ]
@@ -109,17 +96,17 @@ class RecipeSearch(QueryRepository):
             {'range': {'time': {'gte': 5}}},
             {'range': {'product_count': {'gt': 0}}},
         ]
+        min_include_match = min_include_match or len(should)
 
         return {
             'function_score': {
                 'boost_mode': 'replace',
                 'query': {
                     'bool': {
-                        'must': must,
                         'should': should,
                         'must_not': must_not,
                         'filter': filter,
-                        'minimum_should_match': 0 if match_all else 1
+                        'minimum_should_match': min_include_match,
                     }
                 },
                 'script_score': {'script': {'source': sort_params['script']}}
@@ -146,26 +133,23 @@ class RecipeSearch(QueryRepository):
         )
         yield query, sort_method, None
 
-        item_count = len(include)
-        if item_count > 3:
-            for _ in range(item_count):
-                removed = include.pop(0)
+        if include:
+            for min_include_match in range(item_count, 1, -1):
                 query, sort_method = self._render_query(
                     include=include,
                     exclude=exclude,
                     equipment=equipment,
-                    sort=sort
+                    sort=sort,
+                    min_include_match=min_include_match
                 )
-                yield query, sort_method, f'removed:{removed}'
-                include.append(removed)
+                yield query, sort_method, f'partial'
 
-        if item_count > 1:
             query, sort_method = self._render_query(
                 include=include,
                 exclude=exclude,
                 equipment=equipment,
                 sort=sort,
-                match_all=False
+                min_include_match=0
             )
             yield query, sort_method, 'match_any'
 
