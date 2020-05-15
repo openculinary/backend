@@ -51,31 +51,9 @@ class RecipeIngredient(Storable, Searchable):
         )
 
     def to_dict(self, include=None):
-        tokens = []
-        if self.quantity:
-            tokens.append({
-                'type': 'quantity',
-                'value': self.quantity,
-            })
-            tokens.append({
-                'type': 'text',
-                'value': ' ',
-            })
-        if self.units:
-            tokens.append({
-                'type': 'units',
-                'value': self.units,
-            })
-            tokens.append({
-                'type': 'text',
-                'value': ' ',
-            })
-        tokens.append(self.product.to_dict(include))
         return {
             'markup': self.markup,
             'product': self.product.to_dict(include),
-            'state': self.product.state(include),
-            'tokens': tokens,
         }
 
     def to_doc(self):

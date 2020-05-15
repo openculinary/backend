@@ -77,8 +77,4 @@ class RecipeDirection(Storable):
     def to_dict(self):
         return {
             'markup': self.markup,
-            'tokens': [{
-                'type': 'text',
-                'value': self.description,
-            }],
         }
