@@ -24,18 +24,18 @@ Make sure to follow the RecipeRadar [infrastructure](https://www.github.com/open
 
 To install development tools and run linting and tests locally, execute the following commands:
 
-```
-pipenv install --dev
-pipenv run make
+```sh
+$ pipenv install --dev
+$ make lint tests
 ```
 
 ## Local Deployment
 
 To deploy the service to the local infrastructure environment, execute the following commands:
 
-```
-sudo sh -x ./build.sh
-sh -x ./deploy.sh
+```sh
+$ make
+$ make deploy
 ```
 
 ## Operations
@@ -44,9 +44,9 @@ sh -x ./deploy.sh
 
 For the search engine to correctly index recipe data, an Elasticsearch mapping needs to be configured for the `recipe` index.  This can be done using the `update-recipe-index.py` script:
 
-```
+```sh
 # For an Elasticsearch instance running on 'localhost' on the default port
-pipenv run python scripts/update-recipe-index.py --hostname localhost
+$ pipenv run python scripts/update-recipe-index.py --hostname localhost
 ```
 
 ### Pausing background workers
@@ -55,6 +55,6 @@ Sometimes -- for example, during schema upgrades or other changes which need car
 
 Since the workers are a Kubernetes `deployment`, a straightforward way to do this is to scale the deployment down to zero temporarily:
 
-```
-kubectl scale deployments/api-worker-deployment --replicas 0
+```sh
+$ kubectl scale deployments/api-worker-deployment --replicas 0
 ```
