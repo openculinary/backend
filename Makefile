@@ -1,6 +1,6 @@
-.PHONY: prebuild lint tests
+.PHONY: build lint tests
 
-prebuild: lint tests
+build: lint tests
 
 lint:
 	flake8
