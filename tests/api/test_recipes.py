@@ -53,7 +53,7 @@ def test_search_recrawling(query, store, recrawl, client):
 
 
 @patch('reciperadar.api.recipes.recrawl_search.delay')
-@patch('reciperadar.api.recipes.store_event')
+@patch('reciperadar.api.recipes.store_event.delay')
 @patch.object(RecipeSearch, 'query')
 def test_bot_search(query, store, recrawl, client):
     query.return_value = {'results': [], 'total': 0}
@@ -65,4 +65,4 @@ def test_bot_search(query, store, recrawl, client):
     client.get('/api/recipes/search', headers={'user-agent': user_agent})
 
     assert store.called
-    assert store.call_args[0][0].suspected_bot
+    assert store.call_args[1]['event_data']['suspected_bot'] is True

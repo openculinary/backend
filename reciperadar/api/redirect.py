@@ -1,7 +1,6 @@
 from flask import abort, redirect
 
 from reciperadar import app
-from reciperadar.models.events.redirect import RedirectEvent
 from reciperadar.models.recipes import Recipe
 from reciperadar.workers.events import store_event
 
@@ -12,10 +11,13 @@ def recipe_redirect(recipe_id):
     if not recipe:
         return abort(404)
 
-    store_event(RedirectEvent(
-        recipe_id=recipe.id,
-        domain=recipe.domain,
-        src=recipe.src
-    ))
+    store_event.delay(
+        event_table='redirects',
+        event_data={
+            'recipe_id': recipe.id,
+            'domain': recipe.domain,
+            'src': recipe.src,
+        }
+    )
 
     return redirect(recipe.src, code=301)
