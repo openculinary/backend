@@ -21,4 +21,3 @@ CORS(app, origins=[
 
 import reciperadar.api.products
 import reciperadar.api.recipes
-import reciperadar.api.redirect
