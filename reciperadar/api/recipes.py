@@ -4,14 +4,12 @@ from user_agents import parse as ua_parser
 from reciperadar import app
 from reciperadar.models.recipes import Recipe
 from reciperadar.search.recipes import RecipeSearch
-from reciperadar.utils.decorators import internal
 from reciperadar.workers.events import store_event
 from reciperadar.workers.recipes import crawl_url, index_recipe
 from reciperadar.workers.searches import recrawl_search
 
 
 @app.route('/api/recipes/<recipe_id>')
-@internal
 def recipe_get(recipe_id):
     recipe = Recipe().get_by_id(recipe_id)
     if not recipe:
@@ -79,7 +77,6 @@ def recipe_search():
 
 
 @app.route('/api/recipes/crawl', methods=['POST'])
-@internal
 def recipe_crawl():
     url = request.form.get('url')
     if not url:
@@ -90,7 +87,6 @@ def recipe_crawl():
 
 
 @app.route('/api/recipes/index', methods=['POST'])
-@internal
 def recipe_index():
     recipe_id = request.form.get('recipe_id')
     if not recipe_id:
