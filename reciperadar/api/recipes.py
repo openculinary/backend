@@ -1,8 +1,6 @@
 from flask import abort, jsonify, request
 from user_agents import parse as ua_parser
 
-from sqlalchemy.sql.expression import func
-
 from reciperadar import app
 from reciperadar.models.events.search import SearchEvent
 from reciperadar.models.recipes import Recipe
@@ -70,19 +68,6 @@ def recipes():
     ))
 
     return jsonify(results)
-
-
-@app.route('/api/recipes/sample')
-@internal
-def recipes_sample():
-    limit = request.args.get('limit', type=int, default=10)
-
-    session = Database().get_session()
-    recipes = session.query(Recipe).order_by(func.random()).limit(limit)
-    response = [recipe.to_doc() for recipe in recipes]
-    session.close()
-
-    return jsonify(response)
 
 
 @app.route('/api/recipes/crawl', methods=['POST'])
