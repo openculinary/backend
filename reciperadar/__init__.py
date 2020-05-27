@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
 from flask_mail import Mail
 from werkzeug.middleware.proxy_fix import ProxyFix
