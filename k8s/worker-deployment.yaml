@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-worker-deployment
+  name: backend-worker-deployment
   labels:
-    app: api
+    app: backend
 spec:
   selector:
     matchLabels:
-      app: api
+      app: backend
       role: worker
   template:
     metadata:
       labels:
-        app: api
+        app: backend
         role: worker
     spec:
       containers:
-      - image: registry.openculinary.org/reciperadar/api
+      - image: registry.openculinary.org/reciperadar/backend
         imagePullPolicy: IfNotPresent
-        name: api
+        name: backend
         command: ['pipenv']
         args: ['run', 'celery', 'worker', '-A', 'reciperadar.workers', '-Q', 'celery,crawl_url,crawl_recipe,process_recipe,index_recipe,recrawl_search']

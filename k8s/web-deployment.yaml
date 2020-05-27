@@ -1,34 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deployment
+  name: backend-deployment
   labels:
-    app: api
+    app: backend
 spec:
   selector:
     matchLabels:
-      app: api
+      app: backend
       role: web
   template:
     metadata:
       labels:
-        app: api
+        app: backend
         role: web
     spec:
       containers:
-      - image: registry.openculinary.org/reciperadar/api
+      - image: registry.openculinary.org/reciperadar/backend
         imagePullPolicy: IfNotPresent
-        name: api
+        name: backend
         ports:
         - containerPort: 80
-        env:
-          - name: MAIL_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: api-contact-mail
-                key: username
-          - name: MAIL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: api-contact-mail
-                key: password
