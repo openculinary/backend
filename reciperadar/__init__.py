@@ -32,4 +32,3 @@ import reciperadar.api.feedback
 import reciperadar.api.products
 import reciperadar.api.recipes
 import reciperadar.api.redirect
-import reciperadar.api.search
