@@ -1,20 +1,16 @@
-# RecipeRadar API
+# RecipeRadar Backend
 
-The RecipeRadar API provides services to the RecipeRadar [frontend](https://www.github.com/openculinary/frontend) and [crawler](https://www.github.com/openculinary/crawler) applications.
+The RecipeRadar backend provides data persistence and modeling services.
 
 It provides endpoints to support the following functionality:
 
-* Recipe and ingredient search
-* User feedback collection
-* Recipe crawling (cluster-internal)
-* Data export (cluster-internal)
+* Recipe crawling
+* Data export
 
 The service is composed of two Kubernetes deployments:
 
-* `api-deployment` - `gunicorn` web pods
-* `api-worker-deployment` - `celery` task workers
-
-The `api-deployment` component has high uptime and availability requirements since it's a core part of the [frontend](https://www.github.com/openculinary/frontend) recipe search experience.
+* `backend-deployment` - `gunicorn` web pods
+* `backend-worker-deployment` - `celery` task workers
 
 ## Install dependencies
 
@@ -56,5 +52,5 @@ Sometimes -- for example, during schema upgrades or other changes which need car
 Since the workers are a Kubernetes `deployment`, a straightforward way to do this is to scale the deployment down to zero temporarily:
 
 ```sh
-$ kubectl scale deployments/api-worker-deployment --replicas 0
+$ kubectl scale deployments/backend-worker-deployment --replicas 0
 ```
