@@ -21,14 +21,3 @@ spec:
         name: backend
         ports:
         - containerPort: 80
-        env:
-          - name: MAIL_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: api-contact-mail
-                key: username
-          - name: MAIL_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: api-contact-mail
-                key: password
