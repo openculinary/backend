@@ -8,7 +8,6 @@ app.config.update(
     SQLALCHEMY_DATABASE_URI=DB_URI,
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 )
-app.url_map.strict_slashes = False
 
 
 import reciperadar.api.products
