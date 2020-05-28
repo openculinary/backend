@@ -111,7 +111,6 @@ def crawl_recipe(url):
         print(f'Failed to load crawler result for url={url} - {e}')
         return
 
-
     '''
     Due to the fluid nature of the world wide web, a vist to a specific URL
     that previously contained recipe contents may result in a redirect to a
