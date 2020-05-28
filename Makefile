@@ -18,7 +18,7 @@ image:
 	$(eval container=$(shell buildah from docker.io/library/python:3.8-alpine))
 	buildah copy $(container) 'reciperadar' 'reciperadar'
 	buildah copy $(container) 'Pipfile'
-	buildah run $(container) -- pip install pipenv --
+	buildah run $(container) -- pip install pipenv==2018.11.26 --
 	buildah run $(container) -- pipenv install --
 	buildah config --port 80 --entrypoint 'pipenv run gunicorn reciperadar:app --bind :80 --timeout 60' $(container)
 	buildah commit --squash --rm $(container) ${IMAGE_NAME}:${IMAGE_TAG}
