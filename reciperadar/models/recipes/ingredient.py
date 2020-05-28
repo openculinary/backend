@@ -1,12 +1,4 @@
-from sqlalchemy import (
-    Column,
-    Float,
-    ForeignKey,
-    Integer,
-    String,
-)
-from sqlalchemy.orm import relationship
-
+from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.product import IngredientProduct
 
@@ -14,25 +6,25 @@ from reciperadar.models.recipes.product import IngredientProduct
 class RecipeIngredient(Storable, Searchable):
     __tablename__ = 'recipe_ingredients'
 
-    fk = ForeignKey('recipes.id', ondelete='cascade')
-    recipe_id = Column(String, fk, index=True)
+    fk = db.ForeignKey('recipes.id', ondelete='cascade')
+    recipe_id = db.Column(db.String, fk, index=True)
 
-    id = Column(String, primary_key=True)
-    index = Column(Integer)
-    description = Column(String)
-    markup = Column(String)
-    product = relationship(
+    id = db.Column(db.String, primary_key=True)
+    index = db.Column(db.Integer)
+    description = db.Column(db.String)
+    markup = db.Column(db.String)
+    product = db.relationship(
         'IngredientProduct',
         backref='recipe_ingredient',
         uselist=False,
         passive_deletes='all'
     )
 
-    quantity = Column(Float)
-    quantity_parser = Column(String)
-    units = Column(String)
-    units_parser = Column(String)
-    verb = Column(String)
+    quantity = db.Column(db.Float)
+    quantity_parser = db.Column(db.String)
+    units = db.Column(db.String)
+    units_parser = db.Column(db.String)
+    verb = db.Column(db.String)
 
     @staticmethod
     def from_doc(doc):

@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
-from sqlalchemy import Column, DateTime, Integer, String
 import requests
 from tldextract import TLDExtract
 
+from reciperadar import db
 from reciperadar.models.base import Storable
 
 
@@ -39,10 +39,10 @@ class BaseURL(Storable):
             kwargs['domain'] = domain
         super().__init__(*args, **kwargs)
 
-    url = Column(String, primary_key=True)
-    domain = Column(String)
-    crawled_at = Column(DateTime)
-    crawl_status = Column(Integer)
+    url = db.Column(db.String, primary_key=True)
+    domain = db.Column(db.String)
+    crawled_at = db.Column(db.DateTime)
+    crawl_status = db.Column(db.Integer)
 
     @abstractmethod
     def _make_request(self):
@@ -72,7 +72,7 @@ class BaseURL(Storable):
 class CrawlURL(BaseURL):
     __tablename__ = 'crawl_urls'
 
-    resolves_to = Column(String, index=True)
+    resolves_to = db.Column(db.String, index=True)
 
     def _make_request(self):
         response = requests.post(

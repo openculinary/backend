@@ -1,13 +1,6 @@
 from pymmh3 import hash_bytes
-from sqlalchemy import (
-    Column,
-    DateTime,
-    Float,
-    Integer,
-    String,
-)
-from sqlalchemy.orm import relationship
 
+from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
@@ -16,27 +9,27 @@ from reciperadar.models.recipes.ingredient import RecipeIngredient
 class Recipe(Storable, Searchable):
     __tablename__ = 'recipes'
 
-    id = Column(String, primary_key=True)
-    title = Column(String)
-    src = Column(String)
-    dst = Column(String)
-    domain = Column(String)
-    image_src = Column(String)
-    time = Column(Integer)
-    servings = Column(Integer)
-    rating = Column(Float)
-    ingredients = relationship(
+    id = db.Column(db.String, primary_key=True)
+    title = db.Column(db.String)
+    src = db.Column(db.String)
+    dst = db.Column(db.String)
+    domain = db.Column(db.String)
+    image_src = db.Column(db.String)
+    time = db.Column(db.Integer)
+    servings = db.Column(db.Integer)
+    rating = db.Column(db.Float)
+    ingredients = db.relationship(
         'RecipeIngredient',
         backref='recipe',
         passive_deletes='all'
     )
-    directions = relationship(
+    directions = db.relationship(
         'RecipeDirection',
         backref='recipe',
         passive_deletes='all'
     )
 
-    indexed_at = Column(DateTime)
+    indexed_at = db.Column(db.DateTime)
 
     @property
     def noun(self):
