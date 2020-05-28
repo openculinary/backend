@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 from sqlalchemy import Column, DateTime, Integer, String
-from sqlalchemy.ext.declarative import AbstractConcreteBase
 import requests
 from tldextract import TLDExtract
 
 from reciperadar.models.base import Storable
 
 
-class BaseURL(AbstractConcreteBase, Storable):
+class BaseURL(Storable):
+    __abstract__ = True
     __metaclass__ = ABC
 
     BACKOFFS = {

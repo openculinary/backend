@@ -7,12 +7,12 @@ from sqlalchemy import (
     String,
 )
 from uuid import uuid4
-from sqlalchemy.ext.declarative import AbstractConcreteBase
 
 from reciperadar.models.base import Storable
 
 
-class BaseEvent(AbstractConcreteBase, Storable):
+class BaseEvent(Storable):
+    __abstract__ = True
     __metaclass__ = ABC
 
     event_id = Column(String, default=uuid4, primary_key=True)

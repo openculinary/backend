@@ -3,16 +3,13 @@ from base58 import b58encode
 from datetime import datetime
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import NotFoundError
-from sqlalchemy.ext.declarative import declarative_base
 from uuid import uuid4
 
-
-def decl_base(cls):
-    return declarative_base(cls=cls)
+from reciperadar import db
 
 
-@decl_base
-class Storable(object):
+class Storable(db.Model):
+    __abstract__ = True
 
     @staticmethod
     def generate_id(input_bytes=None):
