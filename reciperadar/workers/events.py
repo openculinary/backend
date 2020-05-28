@@ -1,6 +1,6 @@
+from reciperadar import db
 from reciperadar.models.events.redirect import RedirectEvent
 from reciperadar.models.events.search import SearchEvent
-from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 
 
@@ -16,7 +16,5 @@ def store_event(event_table, event_data):
         return
     event = event_table_classes[event_table](**event_data)
 
-    session = Database().get_session()
-    session.add(event)
-    session.commit()
-    session.close()
+    db.session.add(event)
+    db.session.commit()
