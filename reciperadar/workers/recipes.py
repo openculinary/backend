@@ -1,43 +1,36 @@
 from sqlalchemy.orm import aliased
 
+from reciperadar import db
 from reciperadar.models.recipes import Recipe
 from reciperadar.models.url import CrawlURL, RecipeURL
-from reciperadar.services.database import Database
 from reciperadar.workers.broker import celery
 
 
 @celery.task(queue='index_recipe')
 def index_recipe(recipe_id):
-    session = Database().get_session()
-    recipe = session.query(Recipe).get(recipe_id)
+    recipe = db.session.query(Recipe).get(recipe_id)
     if not recipe:
         print('Could not find recipe to index')
-        session.close()
         return
 
     if recipe.index():
         print(f'Indexed {recipe.id} for url={recipe.src}')
-        session.commit()
-
-    session.close()
+        db.session.commit()
 
 
 @celery.task(queue='process_recipe')
 def process_recipe(recipe_id):
-    session = Database().get_session()
-    recipe = session.query(Recipe).get(recipe_id)
+    recipe = db.session.query(Recipe).get(recipe_id)
     if not recipe:
         print('Could not find recipe to process')
-        session.close()
         return
 
     index_recipe.delay(recipe.id)
-    session.close()
 
 
-def find_earliest_crawl(session, url):
+def find_earliest_crawl(url):
     earliest_crawl = (
-        session.query(
+        db.session.query(
             CrawlURL.crawled_at,
             CrawlURL.url,
             CrawlURL.resolves_to
@@ -48,7 +41,7 @@ def find_earliest_crawl(session, url):
 
     previous_step = aliased(earliest_crawl)
     earliest_crawl = earliest_crawl.union_all(
-        session.query(
+        db.session.query(
             CrawlURL.crawled_at,
             CrawlURL.url,
             previous_step.c.url
@@ -58,15 +51,15 @@ def find_earliest_crawl(session, url):
     )
 
     return (
-        session.query(earliest_crawl)
+        db.session.query(earliest_crawl)
         .order_by(earliest_crawl.c.crawled_at.asc())
         .first()
     )
 
 
-def find_latest_crawl(session, url):
+def find_latest_crawl(url):
     latest_crawl = (
-        session.query(
+        db.session.query(
             CrawlURL.crawled_at,
             CrawlURL.url,
             CrawlURL.resolves_to
@@ -77,7 +70,7 @@ def find_latest_crawl(session, url):
 
     previous_step = aliased(latest_crawl)
     latest_crawl = latest_crawl.union_all(
-        session.query(
+        db.session.query(
             CrawlURL.crawled_at,
             CrawlURL.url,
             previous_step.c.url
@@ -87,7 +80,7 @@ def find_latest_crawl(session, url):
     )
 
     return (
-        session.query(latest_crawl)
+        db.session.query(latest_crawl)
         .order_by(latest_crawl.c.crawled_at.desc())
         .first()
     )
@@ -95,8 +88,7 @@ def find_latest_crawl(session, url):
 
 @celery.task(queue='crawl_recipe')
 def crawl_recipe(url):
-    session = Database().get_session()
-    recipe_url = session.query(RecipeURL).get(url) or RecipeURL(url=url)
+    recipe_url = db.session.query(RecipeURL).get(url) or RecipeURL(url=url)
 
     try:
         response = recipe_url.crawl()
@@ -107,9 +99,8 @@ def crawl_recipe(url):
         print(f'{recipe_url.error_message} for url={url}')
         return
     finally:
-        session.add(recipe_url)
-        session.commit()
-        session.close()
+        db.session.add(recipe_url)
+        db.session.commit()
 
     if not response.ok:
         return
@@ -119,8 +110,6 @@ def crawl_recipe(url):
     except Exception as e:
         print(f'Failed to load crawler result for url={url} - {e}')
         return
-
-    session = Database().get_session()
 
     '''
     Due to the fluid nature of the world wide web, a vist to a specific URL
@@ -181,13 +170,13 @@ def crawl_recipe(url):
     '''
 
     # Find any more-recent crawls of this URL, allowing detection of duplicates
-    latest_crawl = find_latest_crawl(session, url)
+    latest_crawl = find_latest_crawl(url)
     if not latest_crawl:
         print(f'Failed to find latest crawl for url={url}')
         return
 
     # Find the first-known crawl for the latest URL, and consider it the origin
-    earliest_crawl = find_earliest_crawl(session, latest_crawl.resolves_to)
+    earliest_crawl = find_earliest_crawl(latest_crawl.resolves_to)
     if not earliest_crawl:
         print(f'Failed to find earliest crawl for url={url}')
         return
@@ -196,18 +185,16 @@ def crawl_recipe(url):
     recipe_data['dst'] = latest_crawl.resolves_to
     recipe = Recipe.from_doc(recipe_data)
 
-    session.query(Recipe).filter_by(id=recipe.id).delete()
-    session.add(recipe)
-    session.commit()
+    db.session.query(Recipe).filter_by(id=recipe.id).delete()
+    db.session.add(recipe)
+    db.session.commit()
 
     process_recipe.delay(recipe.id)
-    session.close()
 
 
 @celery.task(queue='crawl_url')
 def crawl_url(url):
-    session = Database().get_session()
-    crawl_url = session.query(CrawlURL).get(url) or CrawlURL(url=url)
+    crawl_url = db.session.query(CrawlURL).get(url) or CrawlURL(url=url)
 
     try:
         response = crawl_url.crawl()
@@ -219,17 +206,14 @@ def crawl_url(url):
         print(f'{crawl_url.error_message} for url={crawl_url.url}')
         return
     finally:
-        session.add(crawl_url)
-        session.commit()
-        session.close()
+        db.session.add(crawl_url)
+        db.session.commit()
 
     if not response.ok:
         return
 
-    session = Database().get_session()
-    recipe_url = session.query(RecipeURL).get(url) or RecipeURL(url=url)
-    session.add(recipe_url)
-    session.commit()
-    session.close()
+    recipe_url = db.session.query(RecipeURL).get(url) or RecipeURL(url=url)
+    db.session.add(recipe_url)
+    db.session.commit()
 
     crawl_recipe.delay(url)
