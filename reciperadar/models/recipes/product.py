@@ -1,29 +1,24 @@
-from sqlalchemy import (
-    Boolean,
-    Column,
-    ForeignKey,
-    String,
-)
 from sqlalchemy.dialects import postgresql
 
+from reciperadar import db
 from reciperadar.models.base import Storable
 
 
 class IngredientProduct(Storable):
     __tablename__ = 'ingredient_products'
 
-    fk = ForeignKey('recipe_ingredients.id', ondelete='cascade')
-    ingredient_id = Column(String, fk, index=True)
+    fk = db.ForeignKey('recipe_ingredients.id', ondelete='cascade')
+    ingredient_id = db.Column(db.String, fk, index=True)
 
-    id = Column(String, primary_key=True)
-    product_id = Column(String)
-    product = Column(String)
-    product_parser = Column(String)
-    is_plural = Column(Boolean)
-    singular = Column(String)
-    plural = Column(String)
-    category = Column(String)
-    contents = Column(postgresql.ARRAY(String))
+    id = db.Column(db.String, primary_key=True)
+    product_id = db.Column(db.String)
+    product = db.Column(db.String)
+    product_parser = db.Column(db.String)
+    is_plural = db.Column(db.Boolean)
+    singular = db.Column(db.String)
+    plural = db.Column(db.String)
+    category = db.Column(db.String)
+    contents = db.Column(postgresql.ARRAY(db.String))
 
     STATE_AVAILABLE = 'available'
     STATE_REQUIRED = 'required'

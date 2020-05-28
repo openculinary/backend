@@ -1,11 +1,4 @@
-from sqlalchemy import (
-    Column,
-    ForeignKey,
-    Integer,
-    String,
-)
-from sqlalchemy.orm import relationship
-
+from reciperadar import db
 from reciperadar.models.base import Storable
 from reciperadar.models.recipes.appliance import DirectionAppliance
 from reciperadar.models.recipes.utensil import DirectionUtensil
@@ -15,24 +8,24 @@ from reciperadar.models.recipes.vessel import DirectionVessel
 class RecipeDirection(Storable):
     __tablename__ = 'recipe_directions'
 
-    fk = ForeignKey('recipes.id', ondelete='cascade')
-    recipe_id = Column(String, fk, index=True)
+    fk = db.ForeignKey('recipes.id', ondelete='cascade')
+    recipe_id = db.Column(db.String, fk, index=True)
 
-    id = Column(String, primary_key=True)
-    index = Column(Integer)
-    description = Column(String)
-    markup = Column(String)
-    appliances = relationship(
+    id = db.Column(db.String, primary_key=True)
+    index = db.Column(db.Integer)
+    description = db.Column(db.String)
+    markup = db.Column(db.String)
+    appliances = db.relationship(
         'DirectionAppliance',
         backref='recipe_directions',
         passive_deletes='all'
     )
-    utensils = relationship(
+    utensils = db.relationship(
         'DirectionUtensil',
         backref='recipe_directions',
         passive_deletes='all'
     )
-    vessels = relationship(
+    vessels = db.relationship(
         'DirectionVessel',
         backref='recipe_directions',
         passive_deletes='all'

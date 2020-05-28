@@ -1,5 +1,3 @@
-from sqlalchemy.orm import aliased
-
 from reciperadar import db
 from reciperadar.models.recipes import Recipe
 from reciperadar.models.url import CrawlURL, RecipeURL
@@ -39,7 +37,7 @@ def find_earliest_crawl(url):
         .cte(recursive=True)
     )
 
-    previous_step = aliased(earliest_crawl)
+    previous_step = db.aliased(earliest_crawl)
     earliest_crawl = earliest_crawl.union_all(
         db.session.query(
             CrawlURL.crawled_at,
@@ -68,7 +66,7 @@ def find_latest_crawl(url):
         .cte(recursive=True)
     )
 
-    previous_step = aliased(latest_crawl)
+    previous_step = db.aliased(latest_crawl)
     latest_crawl = latest_crawl.union_all(
         db.session.query(
             CrawlURL.crawled_at,
