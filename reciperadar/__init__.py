@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -10,6 +11,7 @@ app.config.update(
 db = SQLAlchemy(app, session_options={
     'autoflush': False
 })
+migrate = Migrate(app, db)
 
 
 import reciperadar.api.products
