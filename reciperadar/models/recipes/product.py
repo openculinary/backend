@@ -55,7 +55,6 @@ class IngredientProduct(Storable):
         return {
             'product_id': self.product_id,
             'product': self.product,
-            'value': self.product,
             'category': self.category,
             'singular': self.singular,
             'plural': self.plural,
