@@ -46,6 +46,8 @@ class RecipeIngredient(Storable, Searchable):
         return {
             'markup': self.markup,
             'product': self.product.to_dict(include),
+            'quantity': self.quantity,
+            'units': self.units,
         }
 
     def to_doc(self):
