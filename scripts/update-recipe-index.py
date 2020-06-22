@@ -9,26 +9,26 @@ settings = {
     },
     'analysis': {
         'analyzer': {
-            'autocomplete.analyze': {
-                'tokenizer': 'autocomplete.tokenize',
+            'autocomplete_analyze': {
+                'tokenizer': 'autocomplete_tokenize',
                 'filter': ['lowercase']
             },
-            'autocomplete.search': {
-                'tokenizer': 'lowercase',
-                'filter': ['autocomplete.filter']
+            'autocomplete_search': {
+                'tokenizer': 'standard',
+                'filter': ['lowercase', 'autocomplete_filter']
             }
         },
         'filter': {
-            'autocomplete.filter': {
+            'autocomplete_filter': {
                 'type': 'truncate',
                 'length': 10
             }
         },
         'tokenizer': {
-            'autocomplete.tokenize': {
+            'autocomplete_tokenize': {
                 'type': 'edge_ngram',
-                'min_ngram': 3,
-                'max_ngram': 10,
+                'min_gram': 3,
+                'max_gram': 10,
                 'token_chars': ['letter']
             }
         }
@@ -62,10 +62,10 @@ mapping = {
                     'properties': {
                         'product_id': {'type': 'keyword'},
                         'product': {'type': 'text'},
-                        'product.autocomplete': {
+                        'product_autocomplete': {
                             'type': 'text',
-                            'analyzer': 'autocomplete.analyze',
-                            'search_analyzer': 'autocomplete.search'
+                            'analyzer': 'autocomplete_analyze',
+                            'search_analyzer': 'autocomplete_search'
                         },
                         'category': {'type': 'keyword'},
                         'is_plural': {'type': 'boolean'},
