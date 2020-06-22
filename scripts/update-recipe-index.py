@@ -6,6 +6,32 @@ settings = {
     'index': {
         'number_of_replicas': 0,
         'refresh_interval': '300s',
+    },
+    'analysis': {
+        'analyzer': {
+            'autocomplete.analyze': {
+                'tokenizer': 'autocomplete.tokenize',
+                'filter': ['lowercase']
+            },
+            'autocomplete.search': {
+                'tokenizer': 'lowercase',
+                'filter': ['autocomplete.filter']
+            }
+        },
+        'filter': {
+            'autocomplete.filter': {
+                'type': 'truncate',
+                'length': 10
+            }
+        }
+        'tokenizer': {
+            'autocomplete.tokenize': {
+                'type': 'edge_ngram',
+                'min_ngram': 3,
+                'max_ngram': 10,
+                'token_chars': ['letter']
+            }
+        }
     }
 }
 mapping = {
@@ -36,6 +62,11 @@ mapping = {
                     'properties': {
                         'product_id': {'type': 'keyword'},
                         'product': {'type': 'text'},
+                        'product.autocomplete': {
+                            'type': 'text',
+                            'analyzer': 'autocomplete.analyze',
+                            'search_analyzer': 'autocomplete.search'
+                        },
                         'category': {'type': 'keyword'},
                         'is_plural': {'type': 'boolean'},
                         'singular': {'type': 'keyword'},
