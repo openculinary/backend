@@ -55,8 +55,8 @@ args = parser.parse_args()
 
 es = Elasticsearch(args.hostname)
 try:
-    es.indices.put_mapping(index=args.index, body=mapping)
     es.indices.put_settings(index=args.index, body=settings)
+    es.indices.put_mapping(index=args.index, body=mapping)
 except Exception as e:
     print('Failed to create recipe index: {}'.format(e))
     sys.exit(1)
