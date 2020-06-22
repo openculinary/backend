@@ -23,7 +23,7 @@ settings = {
                 'type': 'truncate',
                 'length': 10
             }
-        }
+        },
         'tokenizer': {
             'autocomplete.tokenize': {
                 'type': 'edge_ngram',
