@@ -2,6 +2,12 @@ import argparse
 from elasticsearch import Elasticsearch
 import sys
 
+settings = {
+    'index': {
+        'number_of_replicas': 0,
+        'refresh_interval': '300s',
+    }
+}
 mapping = {
     'properties': {
         'directions': {
@@ -39,12 +45,6 @@ mapping = {
             }
         },
         'contents': {'type': 'keyword'}
-    }
-}
-settings = {
-    'index': {
-        'number_of_replicas': 0,
-        'refresh_interval': '300s',
     }
 }
 
