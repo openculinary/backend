@@ -62,7 +62,7 @@ mapping = {
                     'properties': {
                         'product_id': {'type': 'keyword'},
                         'product': {
-                            'type': 'text',
+                            'type': 'keyword',
                             'fields': {
                                 'autocomplete': {
                                     'type': 'text',
