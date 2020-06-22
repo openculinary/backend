@@ -61,11 +61,15 @@ mapping = {
                 'product': {
                     'properties': {
                         'product_id': {'type': 'keyword'},
-                        'product': {'type': 'text'},
-                        'product_autocomplete': {
+                        'product': {
                             'type': 'text',
-                            'analyzer': 'autocomplete_analyze',
-                            'search_analyzer': 'autocomplete_search'
+                            'fields': {
+                                'autocomplete': {
+                                    'type': 'text',
+                                    'analyzer': 'autocomplete_analyze',
+                                    'search_analyzer': 'autocomplete_search'
+                                }
+                            }
                         },
                         'category': {'type': 'keyword'},
                         'is_plural': {'type': 'boolean'},
