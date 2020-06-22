@@ -43,6 +43,11 @@ class IngredientProduct(Storable):
             contents=contents
         )
 
+    def to_doc(self):
+        doc = super().to_doc()
+        doc['product_autocomplete'] = doc['product']
+        return doc
+
     def state(self, include):
         states = {
             True: IngredientProduct.STATE_AVAILABLE,
