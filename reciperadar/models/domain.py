@@ -1,7 +1,7 @@
-from reciperadar.models.base import Storable
+from reciperadar.models.base import Searchable, Storable
 
 
-class Domain(Storable):
+class Domain(Searchable, Storable):
     __tablename__ = 'domains'
 
     domain = Column(String, primary_key=True)
