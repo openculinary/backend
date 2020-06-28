@@ -1,13 +1,10 @@
 """recipe_ingredients.quantity* -> recipe_ingredients.magnitude*
 
 Revision ID: 8f39b3c75033
-Revises: 
 Create Date: 2020-06-28 16:09:49.000760
 
 """
 from alembic import op
-import sqlalchemy as sa
-from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
 revision = '8f39b3c75033'
@@ -17,10 +14,26 @@ depends_on = None
 
 
 def upgrade():
-    op.alter_column('recipe_ingredients', 'quantity_parser', new_column_name='magnitude_parser')
-    op.alter_column('recipe_ingredients', 'quantity', new_column_name='magnitude')
+    op.alter_column(
+        table='recipe_ingredients',
+        column='quantity_parser',
+        new_column_name='magnitude_parser'
+    )
+    op.alter_column(
+        table='recipe_ingredients',
+        column='quantity',
+        new_column_name='magnitude'
+    )
 
 
 def downgrade():
-    op.alter_column('recipe_ingredients', 'magnitude_parser', new_column_name='quantity_parser')
-    op.alter_column('recipe_ingredients', 'magnitude', new_column_name='quantity')
+    op.alter_column(
+        table='recipe_ingredients',
+        column='magnitude_parser',
+        new_column_name='quantity_parser'
+    )
+    op.alter_column(
+        table='recipe_ingredients',
+        column='magnitude',
+        new_column_name='quantity'
+    )
