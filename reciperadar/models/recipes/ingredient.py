@@ -20,8 +20,8 @@ class RecipeIngredient(Storable, Searchable):
         passive_deletes='all'
     )
 
-    quantity = db.Column(db.Float)
-    quantity_parser = db.Column(db.String)
+    magnitude = db.Column(db.Float)
+    magnitude_parser = db.Column(db.String)
     units = db.Column(db.String)
     units_parser = db.Column(db.String)
     verb = db.Column(db.String)
@@ -35,8 +35,10 @@ class RecipeIngredient(Storable, Searchable):
             description=doc['description'].strip(),
             markup=doc.get('markup'),
             product=IngredientProduct.from_doc(doc['product']),
-            quantity=doc.get('quantity'),
-            quantity_parser=doc.get('quantity_parser'),
+            magnitude=doc.get('magnitude') or doc.get('quantity'),  # TODO
+            magnitude_parser=(
+                doc.get('magnitude_parser') or doc.get('quantity_parser')
+            ),  # TODO
             units=doc.get('units'),
             units_parser=doc.get('units_parser'),
             verb=doc.get('verb')
@@ -47,7 +49,7 @@ class RecipeIngredient(Storable, Searchable):
             'markup': self.markup,
             'product': self.product.to_dict(include),
             'quantity': {
-                'magnitude': self.quantity,
+                'magnitude': self.magnitude,
                 'units': self.units,
             }
         }
