@@ -95,7 +95,6 @@ class Recipe(Storable, Searchable):
             ],
             'servings': self.servings,
             'rating': self.rating,
-            'src': self.src,
             'dst': self.dst,
             'domain': self.domain,
             'url': self.url,
