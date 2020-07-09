@@ -104,7 +104,7 @@ def crawl_recipe(url):
         return
 
     try:
-        recipe_data = response.json()
+        recipe_data = response.json()['recipe']
     except Exception as e:
         print(f'Failed to load crawler result for url={url} - {e}')
         return
