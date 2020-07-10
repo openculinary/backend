@@ -1,4 +1,4 @@
-"""empty message
+"""add crawler_version column to crawl-related tables
 
 Revision ID: 8763d112afd0
 Revises: 8f39b3c75033
