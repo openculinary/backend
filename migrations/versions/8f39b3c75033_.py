@@ -15,25 +15,25 @@ depends_on = None
 
 def upgrade():
     op.alter_column(
-        table='recipe_ingredients',
-        column='quantity_parser',
+        table_name='recipe_ingredients',
+        column_name='quantity_parser',
         new_column_name='magnitude_parser'
     )
     op.alter_column(
-        table='recipe_ingredients',
-        column='quantity',
+        table_name='recipe_ingredients',
+        column_name='quantity',
         new_column_name='magnitude'
     )
 
 
 def downgrade():
     op.alter_column(
-        table='recipe_ingredients',
-        column='magnitude_parser',
+        table_name='recipe_ingredients',
+        column_name='magnitude_parser',
         new_column_name='quantity_parser'
     )
     op.alter_column(
-        table='recipe_ingredients',
-        column='magnitude',
+        table_name='recipe_ingredients',
+        column_name='magnitude',
         new_column_name='quantity'
     )
