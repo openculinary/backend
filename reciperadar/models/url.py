@@ -80,7 +80,7 @@ class CrawlURL(BaseURL):
             data={'url': self.url}
         )
         if response.ok:
-            self.resolves_to = response.json()['resolves_to']
+            self.resolves_to = response.json()['url']['resolves_to']
         return response
 
 
