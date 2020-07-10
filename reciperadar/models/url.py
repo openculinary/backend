@@ -43,6 +43,7 @@ class BaseURL(Storable):
     domain = db.Column(db.String)
     crawled_at = db.Column(db.DateTime)
     crawl_status = db.Column(db.Integer)
+    crawler_version = db.Column(db.String)
 
     @abstractmethod
     def _make_request(self):
@@ -63,6 +64,10 @@ class BaseURL(Storable):
         except requests.exceptions.Timeout:
             response = requests.Response()
             response.status_code = 598
+
+        if response.ok:
+            metadata = response.json().get('metadata', {})
+            self.crawler_version = metadata.get('service_version')
 
         self.crawl_status = response.status_code
         self.crawled_at = now
