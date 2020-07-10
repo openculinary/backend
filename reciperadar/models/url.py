@@ -92,8 +92,14 @@ class CrawlURL(BaseURL):
 class RecipeURL(BaseURL):
     __tablename__ = 'recipe_urls'
 
+    recipe_scrapers_version = db.Column(db.String, index=True)
+
     def _make_request(self):
-        return requests.post(
+        response = requests.post(
             url='http://crawler-service/crawl',
             data={'url': self.url}
         )
+        if response.ok:
+            metadata = response.json().get('metadata', {})
+            self.recipe_scrapers_version = metadata['recipe_scrapers_version']
+        return response
