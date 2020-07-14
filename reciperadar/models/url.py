@@ -94,6 +94,60 @@ class RecipeURL(BaseURL):
 
     recipe_scrapers_version = db.Column(db.String, index=True)
 
+    def find_earliest_crawl(self):
+        earliest_crawl = (
+            db.session.query(
+                CrawlURL.crawled_at,
+                CrawlURL.url,
+                CrawlURL.resolves_to
+            )
+            .filter_by(resolves_to=self.url)
+            .cte(recursive=True)
+        )
+
+        previous_step = db.aliased(earliest_crawl)
+        earliest_crawl = earliest_crawl.union(
+            db.session.query(
+                CrawlURL.crawled_at,
+                CrawlURL.url,
+                CrawlURL.resolves_to
+            )
+            .filter_by(resolves_to=previous_step.c.url)
+        )
+
+        return (
+            db.session.query(earliest_crawl)
+            .order_by(earliest_crawl.c.crawled_at.asc())
+            .first()
+        )
+
+    def find_latest_crawl(self):
+        latest_crawl = (
+            db.session.query(
+                CrawlURL.crawled_at,
+                CrawlURL.url,
+                CrawlURL.resolves_to
+            )
+            .filter_by(resolves_to=self.url)
+            .cte(recursive=True)
+        )
+
+        previous_step = db.aliased(latest_crawl)
+        latest_crawl = latest_crawl.union(
+            db.session.query(
+                CrawlURL.crawled_at,
+                CrawlURL.url,
+                CrawlURL.resolves_to
+            )
+            .filter_by(url=previous_step.c.resolves_to)
+        )
+
+        return (
+            db.session.query(latest_crawl)
+            .order_by(latest_crawl.c.crawled_at.desc())
+            .first()
+        )
+
     def _make_request(self):
         response = requests.post(
             url='http://crawler-service/crawl',
