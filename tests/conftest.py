@@ -1,11 +1,16 @@
 import pytest
 
-from reciperadar import app
+from reciperadar import app, create_db
 
 
 @pytest.fixture
 def client():
     yield app.test_client()
+
+
+@pytest.fixture
+def _db():
+    return create_db(app)
 
 
 @pytest.fixture

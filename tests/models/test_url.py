@@ -36,3 +36,14 @@ def test_content_url_domain(content_url):
     url = RecipeURL(url=content_url)
 
     assert url.domain == 'example.com'
+
+
+def test_crawl_url_session(db_session, origin_url):
+    url = CrawlURL(url=origin_url)
+    db_session.add(url)
+    db_session.commit()
+    assert CrawlURL.query.count() == 1
+
+
+def test_crawl_url_session_reset(db_session):
+    assert CrawlURL.query.count() == 0
