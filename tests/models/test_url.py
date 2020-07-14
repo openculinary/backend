@@ -43,7 +43,9 @@ def test_content_url_domain(content_url):
 def test_crawl_url_timeline(db_session):
     path = [
         (datetime(2020, 1, 1), 'A', 'B'),
+        (datetime(2020, 2, 1), 'X', 'Y'),
         (datetime(2020, 2, 1), 'B', 'C'),
+        (datetime(2020, 3, 1), 'Y', 'C'),
         (datetime(2020, 3, 1), 'C', 'D'),
         (datetime(2020, 4, 1), 'D', 'D'),
     ]
