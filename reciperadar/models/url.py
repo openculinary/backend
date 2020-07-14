@@ -106,14 +106,13 @@ class RecipeURL(BaseURL):
         )
 
         previous_step = db.aliased(earliest_crawl)
-        earliest_crawl = earliest_crawl.union_all(
+        earliest_crawl = earliest_crawl.union(
             db.session.query(
                 CrawlURL.crawled_at,
                 CrawlURL.url,
-                previous_step.c.url
+                CrawlURL.resolves_to
             )
             .filter_by(resolves_to=previous_step.c.url)
-            .filter(CrawlURL.resolves_to != previous_step.c.resolves_to)
         )
 
         return (
@@ -134,14 +133,13 @@ class RecipeURL(BaseURL):
         )
 
         previous_step = db.aliased(latest_crawl)
-        latest_crawl = latest_crawl.union_all(
+        latest_crawl = latest_crawl.union(
             db.session.query(
                 CrawlURL.crawled_at,
                 CrawlURL.url,
-                previous_step.c.url
+                CrawlURL.resolves_to
             )
             .filter_by(url=previous_step.c.resolves_to)
-            .filter(CrawlURL.resolves_to != previous_step.c.resolves_to)
         )
 
         return (
