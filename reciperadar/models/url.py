@@ -138,7 +138,7 @@ class RecipeURL(BaseURL):
             db.session.query(
                 CrawlURL.crawled_at,
                 CrawlURL.url,
-                previous_step.c.url
+                CrawlURL.resolves_to
             )
             .filter_by(url=previous_step.c.resolves_to)
             .filter(CrawlURL.resolves_to != previous_step.c.resolves_to)
