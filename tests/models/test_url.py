@@ -61,4 +61,5 @@ def test_crawl_url_timeline(db_session):
     latest_crawl = recipe.find_latest_crawl()
 
     assert earliest_crawl.url == 'A'
+    assert latest_crawl.url == 'D'
     assert latest_crawl.resolves_to == 'D'
