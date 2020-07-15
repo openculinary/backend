@@ -4,6 +4,7 @@ from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
+from reciperadar.models.url import RecipeURL
 
 
 class Recipe(Storable, Searchable):
@@ -53,6 +54,10 @@ class Recipe(Storable, Searchable):
             if not ingredient.product.singular:
                 return True
         return False
+
+    @property
+    def recipe_url(self):
+        return db.session.query(RecipeURL).get(self.dst)
 
     @staticmethod
     def from_doc(doc):
