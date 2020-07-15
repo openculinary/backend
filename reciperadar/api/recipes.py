@@ -15,7 +15,7 @@ def recipe_get(recipe_id):
 
 @app.route('/api/recipes/<recipe_id>/diagnostics')
 def recipe_diagnostics(recipe_id):
-    recipe = Recipe().get_by_id(recipe_id)
+    recipe = Recipe.query.get(recipe_id)
     if not recipe:
         return abort(404)
 
