@@ -25,7 +25,7 @@ def recipe_diagnostics(recipe_id):
     return jsonify({
         'id': recipe.id,
         'indexed_at': recipe.indexed_at,
-        'current_crawl': {
+        'latest_crawl': {
             'url': recipe_url.url,
             'crawled_at': recipe_url.crawled_at,
             'crawl_status': recipe_url.crawl_status,
