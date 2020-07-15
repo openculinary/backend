@@ -1,5 +1,4 @@
 from flask import abort, jsonify, request
-import requests
 
 from reciperadar import app
 from reciperadar.models.recipes import Recipe
