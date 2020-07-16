@@ -96,22 +96,14 @@ class RecipeURL(BaseURL):
 
     def find_earliest_crawl(self):
         earliest_crawl = (
-            db.session.query(
-                CrawlURL.crawled_at,
-                CrawlURL.url,
-                CrawlURL.resolves_to
-            )
+            db.session.query(CrawlURL)
             .filter_by(resolves_to=self.url)
             .cte(recursive=True)
         )
 
         previous_step = db.aliased(earliest_crawl)
         earliest_crawl = earliest_crawl.union(
-            db.session.query(
-                CrawlURL.crawled_at,
-                CrawlURL.url,
-                CrawlURL.resolves_to
-            )
+            db.session.query(CrawlURL)
             .filter_by(resolves_to=previous_step.c.url)
         )
 
@@ -123,22 +115,14 @@ class RecipeURL(BaseURL):
 
     def find_latest_crawl(self):
         latest_crawl = (
-            db.session.query(
-                CrawlURL.crawled_at,
-                CrawlURL.url,
-                CrawlURL.resolves_to
-            )
+            db.session.query(CrawlURL)
             .filter_by(resolves_to=self.url)
             .cte(recursive=True)
         )
 
         previous_step = db.aliased(latest_crawl)
         latest_crawl = latest_crawl.union(
-            db.session.query(
-                CrawlURL.crawled_at,
-                CrawlURL.url,
-                CrawlURL.resolves_to
-            )
+            db.session.query(CrawlURL)
             .filter_by(url=previous_step.c.resolves_to)
         )
 
