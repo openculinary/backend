@@ -3,6 +3,10 @@ import pytest
 from reciperadar import app, create_db
 
 
+def pytest_configure(config):
+    config.addinivalue_line('markers', 'skip_when_transaction_unavailable')
+
+
 @pytest.fixture
 def client():
     yield app.test_client()
@@ -11,6 +15,13 @@ def client():
 @pytest.fixture
 def _db():
     return create_db(app)
+
+
+@pytest.fixture(autouse=True)
+def _skip_when_transaction_unavailable(request, _transaction):
+    if request.node.get_closest_marker('skip_when_transaction_unavailable'):
+        if not _transaction:
+            pytest.skip()
 
 
 @pytest.fixture

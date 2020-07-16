@@ -40,6 +40,7 @@ def test_content_url_domain(content_url):
     assert url.domain == 'example.com'
 
 
+@pytest.mark.skip_when_transaction_unavailable
 def test_crawl_url_timeline(db_session):
     path = [
         (datetime(2020, 1, 1), 'A', 'B'),
