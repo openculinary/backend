@@ -49,7 +49,7 @@ def recipe_crawl_retrieve(recipe_id):
 
     recipe_data = recipe.recipe_url.crawl().json()['recipe']
     recipe = Recipe.from_doc(recipe_data)
-    return jsonify()
+    return jsonify(recipe.to_doc())
 
 
 @app.route('/recipes/crawl', methods=['POST'])
