@@ -5,7 +5,7 @@ from reciperadar.models.recipes import Recipe
 from reciperadar.workers.recipes import crawl_url, index_recipe
 
 
-@app.route('/api/recipes/<recipe_id>')
+@app.route('/recipes/<recipe_id>')
 def recipe_get(recipe_id):
     recipe = Recipe.query.get(recipe_id)
     if not recipe:
@@ -13,7 +13,7 @@ def recipe_get(recipe_id):
     return jsonify(recipe.to_doc())
 
 
-@app.route('/api/recipes/<recipe_id>/diagnostics')
+@app.route('/recipes/<recipe_id>/diagnostics')
 def recipe_diagnostics(recipe_id):
     recipe = Recipe.query.get(recipe_id)
     if not recipe:
@@ -42,7 +42,7 @@ def recipe_diagnostics(recipe_id):
     })
 
 
-@app.route('/api/recipes/crawl', methods=['POST'])
+@app.route('/recipes/crawl', methods=['POST'])
 def recipe_crawl():
     url = request.form.get('url')
     if not url:
@@ -52,7 +52,7 @@ def recipe_crawl():
     return jsonify({})
 
 
-@app.route('/api/recipes/index', methods=['POST'])
+@app.route('/recipes/index', methods=['POST'])
 def recipe_index():
     recipe_id = request.form.get('recipe_id')
     if not recipe_id:

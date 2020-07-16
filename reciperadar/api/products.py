@@ -13,7 +13,7 @@ def stream(items):
         yield f'{line}\n'
 
 
-@app.route('/api/products')
+@app.route('/products')
 def products():
     products = ProductSearch().products()
     return Response(stream(products), content_type='application/x-ndjson')
