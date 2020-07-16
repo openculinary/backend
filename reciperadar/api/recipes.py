@@ -13,7 +13,7 @@ def recipe_get(recipe_id):
     return jsonify(recipe.to_doc())
 
 
-@app.route('/recipes/<recipe_id>/diagnostics')
+@app.route('/recipes/<recipe_id>/history')
 def recipe_diagnostics(recipe_id):
     recipe = Recipe.query.get(recipe_id)
     if not recipe:
