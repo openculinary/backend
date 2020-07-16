@@ -41,7 +41,7 @@ def recipe_diagnostics(recipe_id):
     })
 
 
-@app.route('/recipes/<recipe_id>/crawl', methods=['GET'])
+@app.route('/recipes/<recipe_id>/crawl')
 def recipe_crawl_retrieve(recipe_id):
     recipe = Recipe.query.get(recipe_id)
     if not recipe:
