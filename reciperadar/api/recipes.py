@@ -36,8 +36,8 @@ def recipe_diagnostics(recipe_id):
         'earliest_crawl': {
             'url': earliest_crawl.url,
             'crawled_at': earliest_crawl.crawled_at,
-            'crawl_status': recipe_url.crawl_status,
-            'crawler_version': recipe_url.crawler_version,
+            'crawl_status': earliest_crawl.crawl_status,
+            'crawler_version': earliest_crawl.crawler_version,
         },
     })
 
