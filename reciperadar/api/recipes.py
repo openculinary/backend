@@ -48,6 +48,9 @@ def recipe_crawl_retrieve(recipe_id):
         return abort(404)
 
     recipe_data = recipe.recipe_url.crawl().json()['recipe']
+    recipe_data['src'] = recipe.src
+    recipe_data['dst'] = recipe.dst
+
     recipe = Recipe.from_doc(recipe_data)
     return jsonify(recipe.to_doc())
 
