@@ -13,7 +13,7 @@ def recipe_get(recipe_id):
     return jsonify(recipe.to_doc())
 
 
-@app.route('/recipes/<recipe_id>/diagnostics')
+@app.route('/recipes/<recipe_id>/history')
 def recipe_diagnostics(recipe_id):
     recipe = Recipe.query.get(recipe_id)
     if not recipe:
@@ -25,7 +25,6 @@ def recipe_diagnostics(recipe_id):
     return jsonify({
         'id': recipe.id,
         'indexed_at': recipe.indexed_at,
-        'current_crawl': recipe_url.crawl().json(),
         'latest_crawl': {
             'url': recipe_url.url,
             'crawled_at': recipe_url.crawled_at,
@@ -42,8 +41,22 @@ def recipe_diagnostics(recipe_id):
     })
 
 
+@app.route('/recipes/<recipe_id>/crawl')
+def recipe_crawl_retrieve(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    if not recipe:
+        return abort(404)
+
+    recipe_data = recipe.recipe_url.crawl().json()['recipe']
+    recipe_data['src'] = recipe.src
+    recipe_data['dst'] = recipe.dst
+
+    recipe = Recipe.from_doc(recipe_data)
+    return jsonify(recipe.to_doc())
+
+
 @app.route('/recipes/crawl', methods=['POST'])
-def recipe_crawl():
+def recipe_crawl_submit():
     url = request.form.get('url')
     if not url:
         return abort(400)
