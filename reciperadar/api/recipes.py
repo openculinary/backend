@@ -41,8 +41,16 @@ def recipe_diagnostics(recipe_id):
     })
 
 
+@app.route('/recipes/<recipe_id>/crawl', methods=['GET'])
+def recipe_crawl_retrieve(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    if not recipe:
+        return abort(404)
+    return jsonify(recipe.recipe_url.crawl().json())
+
+
 @app.route('/recipes/crawl', methods=['POST'])
-def recipe_crawl():
+def recipe_crawl_submit():
     url = request.form.get('url')
     if not url:
         return abort(400)
