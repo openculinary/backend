@@ -46,7 +46,10 @@ def recipe_crawl_retrieve(recipe_id):
     recipe = Recipe.query.get(recipe_id)
     if not recipe:
         return abort(404)
-    return jsonify(recipe.recipe_url.crawl().json())
+
+    recipe_data = recipe.recipe_url.crawl().json()['recipe']
+    recipe = Recipe.from_doc(recipe_data)
+    return jsonify()
 
 
 @app.route('/recipes/crawl', methods=['POST'])
