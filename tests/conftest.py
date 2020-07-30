@@ -26,21 +26,11 @@ def raw_recipe_hit():
                 {
                     "index": 0,
                     "description": "place each skewer in the oven",
-                    "appliances": [
-                        {
-                            "appliance": "oven"
-                        }
-                    ],
-                    "utensils": [
-                        {
-                            "utensil": "skewer"
-                        }
-                    ],
-                    "vessels": [
-                        {
-                            "vessel": "casserole dish"
-                        }
-                    ]
+                    "markup": (
+                        "<mark class='action'>place</mark> each "
+                        "<mark class='equipment utensil'>skewer</mark> in the "
+                        "<mark class='equipment appliance'>oven</mark>"
+                    )
                 }
             ],
             "ingredients": [
