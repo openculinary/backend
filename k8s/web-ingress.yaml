@@ -2,8 +2,6 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: backend-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: 4m
 spec:
   rules:
   - host: backend
