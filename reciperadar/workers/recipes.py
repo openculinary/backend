@@ -52,7 +52,7 @@ def crawl_recipe(url):
         return
 
     '''
-    Due to the fluid nature of the world wide web, a vist to a specific URL
+    Due to the fluid nature of the world wide web, a visit to a specific URL
     that previously contained recipe contents may result in a redirect to a
     different web address.
 
