@@ -24,4 +24,4 @@ tldextract = "==2.2.2"
 flake8 = "*"
 pytest = "*"
 responses = "*"
-pytest-flask-sqlalchemy = { git = "https://github.com/jayaddison/pytest-flask-sqlalchemy.git", ref = "95f0ba3c5456fadca1613483e4d2004538000895" }
+pytest-flask-sqlalchemy = { git = "https://github.com/jayaddison/pytest-flask-sqlalchemy.git", ref = "0c51214b3efbf78b74b563208b380982e24dad71" }
