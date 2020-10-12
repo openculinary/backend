@@ -36,14 +36,15 @@ class RecipeIngredient(Storable, Searchable):
     @staticmethod
     def from_doc(doc):
         ingredient_id = doc.get('id') or RecipeIngredient.generate_id()
+        nutrition = doc.get('nutrition')
         return RecipeIngredient(
             id=ingredient_id,
             index=doc.get('index'),  # TODO
             description=doc['description'].strip(),
             markup=doc.get('markup'),
             product=IngredientProduct.from_doc(doc['product']),
-            nutrition=IngredientNutrition.from_doc(doc['nutrition'])
-            if 'nutrition' in doc else None,
+            nutrition=IngredientNutrition.from_doc(nutrition)
+            if nutrition else None,
             magnitude=doc.get('magnitude') or doc.get('quantity'),  # TODO
             magnitude_parser=(
                 doc.get('magnitude_parser') or doc.get('quantity_parser')
