@@ -26,12 +26,3 @@ class IngredientNutrition(Storable):
             fibre=doc.get('fibre'),
             protein=doc.get('protein'),
         )
-
-    def to_dict(self):
-        return {
-            'carbohydrates': self.carbohydrates,
-            'energy': self.energy,
-            'fat': self.fat,
-            'fibre': self.fibre,
-            'protein': self.protein,
-        }
