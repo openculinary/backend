@@ -68,4 +68,5 @@ class RecipeIngredient(Storable, Searchable):
     def to_doc(self):
         data = super().to_doc()
         data['product'] = self.product.to_doc()
+        data['nutrition'] = self.nutrition.to_doc() if self.nutrition else None
         return data
