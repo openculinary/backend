@@ -27,7 +27,7 @@ class IngredientNutrition(Storable):
             protein=doc.get('protein'),
         )
 
-    def to_dict(self, include):
+    def to_dict(self):
         return {
             'carbohydrates': self.carbohydrates,
             'energy': self.energy,
