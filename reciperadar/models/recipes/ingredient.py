@@ -57,6 +57,7 @@ class RecipeIngredient(Storable, Searchable):
         return {
             'markup': self.markup,
             'product': self.product.to_dict(include),
+            'nutrition': self.nutrition.to_dict() if self.nutrition else None,
             'quantity': {
                 'magnitude': self.magnitude,
                 'units': self.units,
