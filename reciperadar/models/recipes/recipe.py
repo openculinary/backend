@@ -130,7 +130,6 @@ class Recipe(Storable, Searchable):
             if not ingredient.nutrition:
                 continue
             for nutrient in totals.keys():
-                print(getattr(ingredient.nutrition, nutrient))
                 totals[nutrient] += getattr(ingredient.nutrition, nutrient)
         return totals
 
