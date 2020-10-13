@@ -4,6 +4,7 @@ from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
+from reciperadar.models.recipes.nutrition import IngredientNutrition
 from reciperadar.models.url import RecipeURL
 
 
@@ -104,6 +105,7 @@ class Recipe(Storable, Searchable):
             'domain': self.domain,
             'url': self.url,
             'image_url': self.image_path,
+            'nutrition': self.nutrition,
         }
 
     @property
@@ -116,6 +118,22 @@ class Recipe(Storable, Searchable):
         for product in self.products:
             contents |= set(product.contents or [])
         return list(contents)
+
+    @property
+    def nutrition(self):
+        totals = {
+            c.name: 0
+            for c in IngredientNutrition.__table__.columns
+            if not c.primary_key and not c.foreign_keys
+        }
+        for ingredient in self.ingredients:
+            if not ingredient.nutrition:
+                continue
+            for nutrient in totals.keys():
+                totals[nutrient] += getattr(ingredient.nutrition, nutrient)
+        for nutrient in totals.keys():
+            totals[nutrient] = round(totals[nutrient], 2)
+        return totals
 
     def to_doc(self):
         data = super().to_doc()
@@ -131,4 +149,5 @@ class Recipe(Storable, Searchable):
         data['product_count'] = len(self.products)
         data['hidden'] = self.hidden
         data['src'] = self.dst  # TODO: Backwards compatibility; remove
+        data['nutrition'] = self.nutrition
         return data

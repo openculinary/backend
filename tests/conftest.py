@@ -41,6 +41,13 @@ def raw_recipe_hit():
                         "product": "one",
                         "contents": ["content-of-one"],
                         "ancestors": ["ancestor-of-one"]
+                    },
+                    "nutrition": {
+                        "carbohydrates": 0,
+                        "energy": 0,
+                        "fat": 0.01,
+                        "fibre": 0.65,
+                        "protein": 0.05
                     }
                 },
                 {

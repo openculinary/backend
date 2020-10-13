@@ -1,6 +1,7 @@
 from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.product import IngredientProduct
+from reciperadar.models.recipes.nutrition import IngredientNutrition
 
 
 class RecipeIngredient(Storable, Searchable):
@@ -19,6 +20,12 @@ class RecipeIngredient(Storable, Searchable):
         uselist=False,
         passive_deletes='all'
     )
+    nutrition = db.relationship(
+        'IngredientNutrition',
+        backref='recipe_ingredient',
+        uselist=False,
+        passive_deletes='all'
+    )
 
     magnitude = db.Column(db.Float)
     magnitude_parser = db.Column(db.String)
@@ -29,12 +36,15 @@ class RecipeIngredient(Storable, Searchable):
     @staticmethod
     def from_doc(doc):
         ingredient_id = doc.get('id') or RecipeIngredient.generate_id()
+        nutrition = doc.get('nutrition')
         return RecipeIngredient(
             id=ingredient_id,
             index=doc.get('index'),  # TODO
             description=doc['description'].strip(),
             markup=doc.get('markup'),
             product=IngredientProduct.from_doc(doc['product']),
+            nutrition=IngredientNutrition.from_doc(nutrition)
+            if nutrition else None,
             magnitude=doc.get('magnitude') or doc.get('quantity'),  # TODO
             magnitude_parser=(
                 doc.get('magnitude_parser') or doc.get('quantity_parser')
@@ -48,6 +58,7 @@ class RecipeIngredient(Storable, Searchable):
         return {
             'markup': self.markup,
             'product': self.product.to_dict(include),
+            'nutrition': self.nutrition.to_dict() if self.nutrition else None,
             'quantity': {
                 'magnitude': self.magnitude,
                 'units': self.units,
@@ -57,4 +68,5 @@ class RecipeIngredient(Storable, Searchable):
     def to_doc(self):
         data = super().to_doc()
         data['product'] = self.product.to_doc()
+        data['nutrition'] = self.nutrition.to_doc() if self.nutrition else None
         return data

@@ -10,7 +10,19 @@ def test_recipe_from_doc(raw_recipe_hit):
     assert recipe.ingredients[0].product.product == 'one'
     expected_contents = ['one', 'content-of-one', 'ancestor-of-one']
     actual_contents = recipe.ingredients[0].product.contents
+
     assert all([content in actual_contents for content in expected_contents])
+
+    assert recipe.ingredients[0].nutrition.carbohydrates == 0
+    assert recipe.ingredients[0].nutrition.fibre == 0.65
+
+    assert recipe.nutrition == {
+        'carbohydrates': 0,
+        'energy': 0,
+        'fat': 0.01,
+        'fibre': 0.65,
+        'protein': 0.05,
+    }
 
 
 def test_hidden_recipe(raw_recipe_hit):
