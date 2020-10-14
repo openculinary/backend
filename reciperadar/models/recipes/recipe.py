@@ -121,6 +121,21 @@ class Recipe(Storable, Searchable):
 
     @property
     def nutrition(self):
+        all_ingredients_mass = sum([
+            i.mass or 0
+            for i in self.ingredients
+        ])
+        ingredients_with_nutrition_mass = sum([
+            i.mass or 0
+            for i in self.ingredients
+            if i.nutrition
+        ])
+
+        # Only render nutritional content when it is known for 90%+ of the
+        # recipe ingredients, by mass
+        if ingredients_with_nutrition_mass < all_ingredients_mass * 0.9:
+            return None
+
         totals = {
             c.name: 0
             for c in IngredientNutrition.__table__.columns
