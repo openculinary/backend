@@ -31,6 +31,7 @@ class RecipeIngredient(Storable, Searchable):
     magnitude_parser = db.Column(db.String)
     units = db.Column(db.String)
     units_parser = db.Column(db.String)
+    relative_density = db.Column(db.Float)
     verb = db.Column(db.String)
 
     @staticmethod
@@ -45,6 +46,7 @@ class RecipeIngredient(Storable, Searchable):
             product=IngredientProduct.from_doc(doc['product']),
             nutrition=IngredientNutrition.from_doc(nutrition)
             if nutrition else None,
+            relative_density=doc.get('relative_density'),
             magnitude=doc.get('magnitude') or doc.get('quantity'),  # TODO
             magnitude_parser=(
                 doc.get('magnitude_parser') or doc.get('quantity_parser')

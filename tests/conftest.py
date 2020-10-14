@@ -48,7 +48,8 @@ def raw_recipe_hit():
                         "fat": 0.01,
                         "fibre": 0.65,
                         "protein": 0.05
-                    }
+                    },
+                    "relative_density": 0.5,
                 },
                 {
                     "index": 1,

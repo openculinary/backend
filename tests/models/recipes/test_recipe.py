@@ -15,6 +15,7 @@ def test_recipe_from_doc(raw_recipe_hit):
 
     assert recipe.ingredients[0].nutrition.carbohydrates == 0
     assert recipe.ingredients[0].nutrition.fibre == 0.65
+    assert recipe.ingredients[0].relative_density == 0.5
 
     assert recipe.nutrition == {
         'carbohydrates': 0,
