@@ -1,4 +1,4 @@
-"""empty message
+"""Add recipe_ingredients.relative_density column
 
 Revision ID: 518a3792bb67
 Revises: c8683f781ac5
