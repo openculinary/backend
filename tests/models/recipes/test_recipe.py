@@ -33,3 +33,12 @@ def test_hidden_recipe(raw_recipe_hit):
     doc = recipe.to_doc()
 
     assert doc.get('hidden') is True
+
+
+def test_nutritional_filtering(raw_recipe_hit):
+    recipe = Recipe().from_doc(raw_recipe_hit['_source'])
+
+    assert recipe.ingredients[1].nutrition is None
+    recipe.ingredients[1].magnitude = 500
+
+    assert recipe.nutrition is None

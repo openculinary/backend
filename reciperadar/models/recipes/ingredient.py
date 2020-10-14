@@ -34,6 +34,13 @@ class RecipeIngredient(Storable, Searchable):
     relative_density = db.Column(db.Float)
     verb = db.Column(db.String)
 
+    @property
+    def mass(self):
+        if self.units == 'g':
+            return self.magnitude
+        if self.units == 'ml':
+            return self.magnitude / self.relative_density
+
     @staticmethod
     def from_doc(doc):
         ingredient_id = doc.get('id') or RecipeIngredient.generate_id()

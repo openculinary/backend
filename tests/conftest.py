@@ -42,6 +42,8 @@ def raw_recipe_hit():
                         "contents": ["content-of-one"],
                         "ancestors": ["ancestor-of-one"]
                     },
+                    "magnitude": 50,
+                    "units": "ml",
                     "nutrition": {
                         "carbohydrates": 0,
                         "energy": 0,
@@ -54,7 +56,9 @@ def raw_recipe_hit():
                 {
                     "index": 1,
                     "description": "two units of test ingredient two",
-                    "product": {"product": "two"}
+                    "product": {"product": "two"},
+                    "magnitude": 2,
+                    "units": "g"
                 }
             ],
             "image_src": "http://www.example.com/path/image.png?v=123",
