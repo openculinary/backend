@@ -72,17 +72,6 @@ class RecipeIngredient(Storable, Searchable):
             is_vegetarian=doc.get('is_vegetarian'),
         )
 
-    def to_dict(self, include=None):
-        return {
-            'markup': self.markup,
-            'product': self.product.to_dict(include),
-            'nutrition': self.nutrition.to_dict() if self.nutrition else None,
-            'quantity': {
-                'magnitude': self.magnitude,
-                'units': self.units,
-            }
-        }
-
     def to_doc(self):
         data = super().to_doc()
         data['product'] = self.product.to_doc()

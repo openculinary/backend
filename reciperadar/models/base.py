@@ -17,10 +17,6 @@ class Storable(db.Model):
             input_bytes = uuid4().bytes
         return b58encode(input_bytes).decode('utf-8')
 
-    def to_dict(self):
-        # Return the doc representation by default
-        return self.to_doc()
-
     def to_doc(self):
         # Index all database fields by default
         return {

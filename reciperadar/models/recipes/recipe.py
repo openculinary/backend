@@ -86,28 +86,6 @@ class Recipe(Storable, Searchable):
             rating=doc['rating']
         )
 
-    def to_dict(self, include=None):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'time': self.time,
-            'ingredients': [
-                ingredient.to_dict(include)
-                for ingredient in self.ingredients
-            ],
-            'directions': [
-                direction.to_dict()
-                for direction in sorted(self.directions, key=lambda x: x.index)
-            ],
-            'servings': self.servings,
-            'rating': self.rating,
-            'dst': self.dst,
-            'domain': self.domain,
-            'url': self.url,
-            'image_url': self.image_path,
-            'nutrition': self.nutrition,
-        }
-
     @property
     def image_path(self):
         return f'images/recipes/{self.id}.png'

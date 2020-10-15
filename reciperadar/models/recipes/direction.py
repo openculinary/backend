@@ -92,8 +92,3 @@ class RecipeDirection(Storable):
             for vessel in self.vessels
         ]
         return data
-
-    def to_dict(self):
-        return {
-            'markup': self.markup,
-        }
