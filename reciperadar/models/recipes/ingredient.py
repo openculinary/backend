@@ -60,7 +60,7 @@ class RecipeIngredient(Storable, Searchable):
             ),  # TODO
             units=doc.get('units'),
             units_parser=doc.get('units_parser'),
-            verb=doc.get('verb')
+            verb=doc.get('verb'),
         )
 
     def to_dict(self, include=None):
