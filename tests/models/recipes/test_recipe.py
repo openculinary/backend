@@ -25,6 +25,9 @@ def test_recipe_from_doc(raw_recipe_hit):
         'protein': 0.05,
     }
 
+    assert recipe.ingredients[0].is_vegan
+    assert not recipe.ingredients[1].is_gluten_free
+
 
 def test_hidden_recipe(raw_recipe_hit):
     recipe = Recipe().from_doc(raw_recipe_hit['_source'])

@@ -34,6 +34,11 @@ class RecipeIngredient(Storable, Searchable):
     relative_density = db.Column(db.Float)
     verb = db.Column(db.String)
 
+    is_dairy_free = db.Column(db.Boolean)
+    is_gluten_free = db.Column(db.Boolean)
+    is_vegan = db.Column(db.Boolean)
+    is_vegetarian = db.Column(db.Boolean)
+
     @property
     def mass(self):
         if self.units == 'g':
@@ -61,6 +66,10 @@ class RecipeIngredient(Storable, Searchable):
             units=doc.get('units'),
             units_parser=doc.get('units_parser'),
             verb=doc.get('verb'),
+            is_dairy_free=doc.get('is_dairy_free'),
+            is_gluten_free=doc.get('is_gluten_free'),
+            is_vegan=doc.get('is_vegan'),
+            is_vegetarian=doc.get('is_vegetarian'),
         )
 
     def to_dict(self, include=None):

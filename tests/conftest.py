@@ -52,13 +52,15 @@ def raw_recipe_hit():
                         "protein": 0.05
                     },
                     "relative_density": 0.5,
+                    "is_vegan": True,
                 },
                 {
                     "index": 1,
                     "description": "two units of test ingredient two",
                     "product": {"product": "two"},
                     "magnitude": 2,
-                    "units": "g"
+                    "units": "g",
+                    "is_gluten_free": False,
                 }
             ],
             "image_src": "http://www.example.com/path/image.png?v=123",
