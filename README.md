@@ -42,7 +42,7 @@ For the search engine to correctly index recipe data, an Elasticsearch mapping n
 
 ```sh
 # For an Elasticsearch instance running on 'localhost' on the default port
-$ pipenv run python scripts/update-recipe-index.py --hostname localhost
+$ pipenv run python scripts/update-recipe-index.py --hostname localhost --index recipes
 ```
 
 ### Pausing background workers
