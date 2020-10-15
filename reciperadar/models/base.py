@@ -53,5 +53,10 @@ class Searchable(object):
     def index(self):
         if hasattr(self, 'indexed_at'):
             self.indexed_at = datetime.utcnow()
-        self.es.index(index=self.noun, id=self.id, body=self.to_doc())
+        self.es.index(
+            index=self.noun,
+            id=self.id,
+            body=self.to_doc(),
+            timeout=60,
+        )
         return True
