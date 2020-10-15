@@ -20,4 +20,4 @@ spec:
         imagePullPolicy: IfNotPresent
         name: backend
         command: ['/srv/.local/bin/pipenv']
-        args: ['run', 'celery', 'worker', '-A', 'reciperadar.workers', '-Q', 'celery,crawl_url,crawl_recipe,process_recipe,index_recipe,recrawl_search']
+        args: ['run', 'celery', '-A', 'reciperadar.workers', 'worker', '-Q', 'celery,crawl_url,crawl_recipe,process_recipe,index_recipe,recrawl_search']
