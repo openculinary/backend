@@ -68,7 +68,7 @@ class Recipe(Storable, Searchable):
             id=recipe_id,
             title=doc['title'],
             src=doc['src'],
-            dst=doc.get('dst'),  # TODO: Backwards compatibility; update
+            dst=doc['dst'],
             domain=doc['domain'],
             image_src=doc.get('image_src'),
             ingredients=[
