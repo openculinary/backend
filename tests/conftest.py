@@ -53,6 +53,7 @@ def raw_recipe_hit():
                     },
                     "relative_density": 0.5,
                     "is_vegan": True,
+                    "is_vegetarian": True,
                 },
                 {
                     "index": 1,
@@ -61,6 +62,7 @@ def raw_recipe_hit():
                     "magnitude": 2,
                     "units": "g",
                     "is_gluten_free": False,
+                    "is_vegetarian": True,
                 }
             ],
             "image_src": "http://www.example.com/path/image.png?v=123",

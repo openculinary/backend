@@ -28,6 +28,10 @@ def test_recipe_from_doc(raw_recipe_hit):
     assert recipe.ingredients[0].is_vegan
     assert not recipe.ingredients[1].is_gluten_free
 
+    assert not recipe.is_gluten_free
+    assert not recipe.is_vegan
+    assert recipe.is_vegetarian
+
 
 def test_hidden_recipe(raw_recipe_hit):
     recipe = Recipe().from_doc(raw_recipe_hit['_source'])

@@ -128,6 +128,34 @@ class Recipe(Storable, Searchable):
             totals[nutrient] = round(totals[nutrient], 2)
         return totals
 
+    @property
+    def is_dairy_free(self):
+        return all([
+            ingredient.is_dairy_free
+            for ingredient in self.ingredients
+        ])
+
+    @property
+    def is_gluten_free(self):
+        return all([
+            ingredient.is_gluten_free
+            for ingredient in self.ingredients
+        ])
+
+    @property
+    def is_vegan(self):
+        return all([
+            ingredient.is_vegan
+            for ingredient in self.ingredients
+        ])
+
+    @property
+    def is_vegetarian(self):
+        return all([
+            ingredient.is_vegetarian
+            for ingredient in self.ingredients
+        ])
+
     def to_doc(self):
         data = super().to_doc()
         data['directions'] = [
@@ -142,4 +170,8 @@ class Recipe(Storable, Searchable):
         data['product_count'] = len(self.products)
         data['hidden'] = self.hidden
         data['nutrition'] = self.nutrition
+        data['is_dairy_free'] = self.is_dairy_free
+        data['is_gluten_free'] = self.is_gluten_free
+        data['is_vegan'] = self.is_vegan
+        data['is_vegetarian'] = self.is_vegetarian
         return data
