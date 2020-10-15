@@ -73,7 +73,7 @@ class RecipeDirection(Storable):
         equipment = RecipeDirection._parse_equipment(doc['markup'])
         return RecipeDirection(
             id=direction_id,
-            index=doc.get('index'),  # TODO
+            index=doc['index'],
             description=doc['description'],
             markup=doc['markup'],
             **equipment
