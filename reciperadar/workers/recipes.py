@@ -126,8 +126,14 @@ def crawl_recipe(url):
     recipe_data['dst'] = latest_crawl.resolves_to
     recipe = Recipe.from_doc(recipe_data)
 
+    domain = (
+        db.session.query(Domain).get(recipe.domain)
+        or Domain(domain=recipe.domain)
+    )
+
     db.session.query(Recipe).filter_by(id=recipe.id).delete()
     db.session.add(recipe)
+    db.session.add(domain)
     db.session.commit()
 
     process_recipe.delay(recipe.id)
@@ -136,10 +142,6 @@ def crawl_recipe(url):
 @celery.task(queue='crawl_url')
 def crawl_url(url):
     crawl_url = db.session.query(CrawlURL).get(url) or CrawlURL(url=url)
-    crawl_domain = (
-        db.session.query(Domain).get(crawl_url.domain)
-        or Domain(domain=crawl_url.domain)
-    )
 
     try:
         response = crawl_url.crawl()
@@ -152,7 +154,6 @@ def crawl_url(url):
         return
     finally:
         db.session.add(crawl_url)
-        db.session.add(crawl_domain)
         db.session.commit()
 
     if not response.ok:
