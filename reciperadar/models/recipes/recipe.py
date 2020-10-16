@@ -4,6 +4,8 @@ from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
+from reciperadar.models.recipes.nutrition import IngredientNutrition
+from reciperadar.models.url import RecipeURL
 
 
 class Recipe(Storable, Searchable):
@@ -54,6 +56,10 @@ class Recipe(Storable, Searchable):
                 return True
         return False
 
+    @property
+    def recipe_url(self):
+        return db.session.query(RecipeURL).get(self.dst)
+
     @staticmethod
     def from_doc(doc):
         src_hash = hash_bytes(doc['src']).encode('utf-8')
@@ -62,7 +68,7 @@ class Recipe(Storable, Searchable):
             id=recipe_id,
             title=doc['title'],
             src=doc['src'],
-            dst=doc.get('dst'),  # TODO: Backwards compatibility; update
+            dst=doc['dst'],
             domain=doc['domain'],
             image_src=doc.get('image_src'),
             ingredients=[
@@ -80,28 +86,6 @@ class Recipe(Storable, Searchable):
             rating=doc['rating']
         )
 
-    def to_dict(self, include=None):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'time': self.time,
-            'ingredients': [
-                ingredient.to_dict(include)
-                for ingredient in self.ingredients
-            ],
-            'directions': [
-                direction.to_dict()
-                for direction in sorted(self.directions, key=lambda x: x.index)
-            ],
-            'servings': self.servings,
-            'rating': self.rating,
-            'src': self.src,
-            'dst': self.dst,
-            'domain': self.domain,
-            'url': self.url,
-            'image_url': self.image_path,
-        }
-
     @property
     def image_path(self):
         return f'images/recipes/{self.id}.png'
@@ -112,6 +96,65 @@ class Recipe(Storable, Searchable):
         for product in self.products:
             contents |= set(product.contents or [])
         return list(contents)
+
+    @property
+    def nutrition(self):
+        all_ingredients_mass = sum([
+            i.mass or 0
+            for i in self.ingredients
+        ])
+        ingredients_with_nutrition_mass = sum([
+            i.mass or 0
+            for i in self.ingredients
+            if i.nutrition
+        ])
+
+        # Only render nutritional content when it is known for 90%+ of the
+        # recipe ingredients, by mass
+        if ingredients_with_nutrition_mass < all_ingredients_mass * 0.9:
+            return None
+
+        totals = {
+            c.name: 0
+            for c in IngredientNutrition.__table__.columns
+            if not c.primary_key and not c.foreign_keys
+        }
+        for ingredient in self.ingredients:
+            if not ingredient.nutrition:
+                continue
+            for nutrient in totals.keys():
+                totals[nutrient] += getattr(ingredient.nutrition, nutrient)
+        for nutrient in totals.keys():
+            totals[nutrient] = round(totals[nutrient], 2)
+        return totals
+
+    @property
+    def is_dairy_free(self):
+        return all([
+            ingredient.is_dairy_free
+            for ingredient in self.ingredients
+        ])
+
+    @property
+    def is_gluten_free(self):
+        return all([
+            ingredient.is_gluten_free
+            for ingredient in self.ingredients
+        ])
+
+    @property
+    def is_vegan(self):
+        return all([
+            ingredient.is_vegan
+            for ingredient in self.ingredients
+        ])
+
+    @property
+    def is_vegetarian(self):
+        return all([
+            ingredient.is_vegetarian
+            for ingredient in self.ingredients
+        ])
 
     def to_doc(self):
         data = super().to_doc()
@@ -126,5 +169,9 @@ class Recipe(Storable, Searchable):
         data['contents'] = self.contents
         data['product_count'] = len(self.products)
         data['hidden'] = self.hidden
-        data['src'] = self.dst  # TODO: Backwards compatibility; remove
+        data['nutrition'] = self.nutrition
+        data['is_dairy_free'] = self.is_dairy_free
+        data['is_gluten_free'] = self.is_gluten_free
+        data['is_vegan'] = self.is_vegan
+        data['is_vegetarian'] = self.is_vegetarian
         return data

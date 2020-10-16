@@ -43,6 +43,7 @@ class BaseURL(Storable):
     domain = db.Column(db.String)
     crawled_at = db.Column(db.DateTime)
     crawl_status = db.Column(db.Integer)
+    crawler_version = db.Column(db.String)
 
     @abstractmethod
     def _make_request(self):
@@ -64,6 +65,10 @@ class BaseURL(Storable):
             response = requests.Response()
             response.status_code = 598
 
+        if response.ok:
+            metadata = response.json().get('metadata', {})
+            self.crawler_version = metadata.get('service_version')
+
         self.crawl_status = response.status_code
         self.crawled_at = now
         return response
@@ -80,15 +85,59 @@ class CrawlURL(BaseURL):
             data={'url': self.url}
         )
         if response.ok:
-            self.resolves_to = response.json()['resolves_to']
+            self.resolves_to = response.json()['url']['resolves_to']
         return response
 
 
 class RecipeURL(BaseURL):
     __tablename__ = 'recipe_urls'
 
+    recipe_scrapers_version = db.Column(db.String, index=True)
+
+    def find_earliest_crawl(self):
+        earliest_crawl = (
+            db.session.query(CrawlURL)
+            .filter_by(resolves_to=self.url)
+            .cte(recursive=True)
+        )
+
+        previous_step = db.aliased(earliest_crawl)
+        earliest_crawl = earliest_crawl.union(
+            db.session.query(CrawlURL)
+            .filter_by(resolves_to=previous_step.c.url)
+        )
+
+        return (
+            db.session.query(earliest_crawl)
+            .order_by(earliest_crawl.c.crawled_at.asc())
+            .first()
+        )
+
+    def find_latest_crawl(self):
+        latest_crawl = (
+            db.session.query(CrawlURL)
+            .filter_by(resolves_to=self.url)
+            .cte(recursive=True)
+        )
+
+        previous_step = db.aliased(latest_crawl)
+        latest_crawl = latest_crawl.union(
+            db.session.query(CrawlURL)
+            .filter_by(url=previous_step.c.resolves_to)
+        )
+
+        return (
+            db.session.query(latest_crawl)
+            .order_by(latest_crawl.c.crawled_at.desc())
+            .first()
+        )
+
     def _make_request(self):
-        return requests.post(
+        response = requests.post(
             url='http://crawler-service/crawl',
             data={'url': self.url}
         )
+        if response.ok:
+            metadata = response.json().get('metadata', {})
+            self.recipe_scrapers_version = metadata['recipe_scrapers_version']
+        return response

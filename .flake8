@@ -1,3 +1,4 @@
 [flake8]
 per-file-ignores=
     reciperadar/ __init__.py:E402,F401
+    migrations/versions/*.py:E122,E128,E501

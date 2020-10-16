@@ -17,10 +17,6 @@ class Storable(db.Model):
             input_bytes = uuid4().bytes
         return b58encode(input_bytes).decode('utf-8')
 
-    def to_dict(self):
-        # Return the doc representation by default
-        return self.to_doc()
-
     def to_doc(self):
         # Index all database fields by default
         return {
@@ -53,5 +49,10 @@ class Searchable(object):
     def index(self):
         if hasattr(self, 'indexed_at'):
             self.indexed_at = datetime.utcnow()
-        self.es.index(index=self.noun, id=self.id, body=self.to_doc())
+        self.es.index(
+            index=self.noun,
+            id=self.id,
+            body=self.to_doc(),
+            request_timeout=60,
+        )
         return True

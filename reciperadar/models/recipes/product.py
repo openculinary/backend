@@ -50,14 +50,3 @@ class IngredientProduct(Storable):
         }
         available = bool(set(self.contents or []) & set(include or []))
         return states[available]
-
-    def to_dict(self, include):
-        return {
-            'product_id': self.product_id,
-            'product': self.product,
-            'value': self.product,
-            'category': self.category,
-            'singular': self.singular,
-            'plural': self.plural,
-            'state': self.state(include),
-        }

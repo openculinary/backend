@@ -1,11 +1,16 @@
 import pytest
 
-from reciperadar import app
+from reciperadar import app, create_db
 
 
 @pytest.fixture
 def client():
     yield app.test_client()
+
+
+@pytest.fixture
+def _db():
+    return create_db(app)
 
 
 @pytest.fixture
@@ -21,21 +26,11 @@ def raw_recipe_hit():
                 {
                     "index": 0,
                     "description": "place each skewer in the oven",
-                    "appliances": [
-                        {
-                            "appliance": "oven"
-                        }
-                    ],
-                    "utensils": [
-                        {
-                            "utensil": "skewer"
-                        }
-                    ],
-                    "vessels": [
-                        {
-                            "vessel": "casserole dish"
-                        }
-                    ]
+                    "markup": (
+                        "<mark class='action'>place</mark> each "
+                        "<mark class='equipment utensil'>skewer</mark> in the "
+                        "<mark class='equipment appliance'>oven</mark>"
+                    )
                 }
             ],
             "ingredients": [
@@ -46,17 +41,34 @@ def raw_recipe_hit():
                         "product": "one",
                         "contents": ["content-of-one"],
                         "ancestors": ["ancestor-of-one"]
-                    }
+                    },
+                    "magnitude": 50,
+                    "units": "ml",
+                    "nutrition": {
+                        "carbohydrates": 0,
+                        "energy": 0,
+                        "fat": 0.01,
+                        "fibre": 0.65,
+                        "protein": 0.05
+                    },
+                    "relative_density": 0.5,
+                    "is_vegan": True,
+                    "is_vegetarian": True,
                 },
                 {
                     "index": 1,
                     "description": "two units of test ingredient two",
-                    "product": {"product": "two"}
+                    "product": {"product": "two"},
+                    "magnitude": 2,
+                    "units": "g",
+                    "is_gluten_free": False,
+                    "is_vegetarian": True,
                 }
             ],
             "image_src": "http://www.example.com/path/image.png?v=123",
             "time": 30,
             "src": "http://www.example.com/recipes/test",
+            "dst": "https://www.example.com/recipes/test",
             "domain": "example.com",
             "servings": 2,
             "rating": 4.5

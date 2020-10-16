@@ -26,64 +26,6 @@ def process_recipe(recipe_id):
     index_recipe.delay(recipe.id)
 
 
-def find_earliest_crawl(url):
-    earliest_crawl = (
-        db.session.query(
-            CrawlURL.crawled_at,
-            CrawlURL.url,
-            CrawlURL.resolves_to
-        )
-        .filter_by(resolves_to=url)
-        .cte(recursive=True)
-    )
-
-    previous_step = db.aliased(earliest_crawl)
-    earliest_crawl = earliest_crawl.union_all(
-        db.session.query(
-            CrawlURL.crawled_at,
-            CrawlURL.url,
-            previous_step.c.url
-        )
-        .filter_by(resolves_to=previous_step.c.url)
-        .filter(CrawlURL.resolves_to != previous_step.c.resolves_to)
-    )
-
-    return (
-        db.session.query(earliest_crawl)
-        .order_by(earliest_crawl.c.crawled_at.asc())
-        .first()
-    )
-
-
-def find_latest_crawl(url):
-    latest_crawl = (
-        db.session.query(
-            CrawlURL.crawled_at,
-            CrawlURL.url,
-            CrawlURL.resolves_to
-        )
-        .filter_by(resolves_to=url)
-        .cte(recursive=True)
-    )
-
-    previous_step = db.aliased(latest_crawl)
-    latest_crawl = latest_crawl.union_all(
-        db.session.query(
-            CrawlURL.crawled_at,
-            CrawlURL.url,
-            previous_step.c.url
-        )
-        .filter_by(url=previous_step.c.resolves_to)
-        .filter(CrawlURL.resolves_to != previous_step.c.resolves_to)
-    )
-
-    return (
-        db.session.query(latest_crawl)
-        .order_by(latest_crawl.c.crawled_at.desc())
-        .first()
-    )
-
-
 @celery.task(queue='crawl_recipe')
 def crawl_recipe(url):
     recipe_url = db.session.query(RecipeURL).get(url) or RecipeURL(url=url)
@@ -104,13 +46,13 @@ def crawl_recipe(url):
         return
 
     try:
-        recipe_data = response.json()
+        recipe_data = response.json()['recipe']
     except Exception as e:
         print(f'Failed to load crawler result for url={url} - {e}')
         return
 
     '''
-    Due to the fluid nature of the world wide web, a vist to a specific URL
+    Due to the fluid nature of the world wide web, a visit to a specific URL
     that previously contained recipe contents may result in a redirect to a
     different web address.
 
@@ -168,13 +110,13 @@ def crawl_recipe(url):
     '''
 
     # Find any more-recent crawls of this URL, allowing detection of duplicates
-    latest_crawl = find_latest_crawl(url)
+    latest_crawl = recipe_url.find_latest_crawl()
     if not latest_crawl:
         print(f'Failed to find latest crawl for url={url}')
         return
 
     # Find the first-known crawl for the latest URL, and consider it the origin
-    earliest_crawl = find_earliest_crawl(latest_crawl.resolves_to)
+    earliest_crawl = recipe_url.find_earliest_crawl()
     if not earliest_crawl:
         print(f'Failed to find earliest crawl for url={url}')
         return
