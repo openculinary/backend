@@ -1,5 +1,6 @@
 from reciperadar import db
 from reciperadar.models.recipes import Recipe
+from reciperadar.models.domain import Domain
 from reciperadar.models.url import CrawlURL, RecipeURL
 from reciperadar.workers.broker import celery
 
@@ -135,6 +136,10 @@ def crawl_recipe(url):
 @celery.task(queue='crawl_url')
 def crawl_url(url):
     crawl_url = db.session.query(CrawlURL).get(url) or CrawlURL(url=url)
+    crawl_domain = (
+        db.session.query(Domain).get(crawl_url.domain)
+        or Domain(domain=crawl_url.domain)
+    )
 
     try:
         response = crawl_url.crawl()
@@ -147,6 +152,7 @@ def crawl_url(url):
         return
     finally:
         db.session.add(crawl_url)
+        db.session.add(crawl_domain)
         db.session.commit()
 
     if not response.ok:
