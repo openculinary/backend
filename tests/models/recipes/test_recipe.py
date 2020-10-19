@@ -21,8 +21,8 @@ def test_recipe_from_doc(raw_recipe_hit):
         'carbohydrates': 0,
         'energy': 0,
         'fat': 0.01,
-        'fibre': 0.65,
-        'protein': 0.05,
+        'fibre': 0.33,
+        'protein': 0.03,
     }
 
     assert recipe.ingredients[0].is_vegan

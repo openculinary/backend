@@ -125,7 +125,7 @@ class Recipe(Storable, Searchable):
             for nutrient in totals.keys():
                 totals[nutrient] += getattr(ingredient.nutrition, nutrient)
         for nutrient in totals.keys():
-            totals[nutrient] = round(totals[nutrient], 2)
+            totals[nutrient] = round(totals[nutrient] / self.servings, 2)
         return totals
 
     @property
