@@ -70,6 +70,7 @@ def raw_recipe_hit():
             "src": "http://www.example.com/recipes/test",
             "dst": "https://www.example.com/recipes/test",
             "domain": "example.com",
+            "author": "example",
             "servings": 2,
             "rating": 4.5
         },
