@@ -65,6 +65,7 @@ def raw_recipe_hit():
                     "is_vegetarian": True,
                 }
             ],
+            "author": "example",
             "image_src": "http://www.example.com/path/image.png?v=123",
             "time": 30,
             "src": "http://www.example.com/recipes/test",
