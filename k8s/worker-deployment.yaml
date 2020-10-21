@@ -21,3 +21,6 @@ spec:
         name: backend
         command: ['/srv/.local/bin/pipenv']
         args: ['run', 'celery', '-A', 'reciperadar.workers', 'worker', '-Q', 'celery,crawl_url,crawl_recipe,process_recipe,index_recipe,recrawl_search']
+        env:
+        - name: 'PYTHONPATH'
+          value: '/usr/lib/python3.8/site-packages'
