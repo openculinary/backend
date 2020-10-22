@@ -18,6 +18,7 @@ image:
 	$(eval container=$(shell buildah from docker.io/library/python:3.8-alpine))
 	buildah copy $(container) 'reciperadar' 'reciperadar'
 	buildah copy $(container) 'Pipfile'
+	buildah run $(container) -- apk add py3-gevent --
 	buildah run $(container) -- adduser -h /srv/ -s /sbin/nologin -D -H gunicorn --
 	buildah run $(container) -- chown gunicorn /srv/ --
 	buildah run --user gunicorn $(container) -- pip install --user pipenv --
