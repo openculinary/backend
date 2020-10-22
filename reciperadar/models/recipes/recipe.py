@@ -4,7 +4,10 @@ from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
-from reciperadar.models.recipes.nutrition import IngredientNutrition
+from reciperadar.models.recipes.nutrition import (
+    IngredientNutrition,
+    RecipeNutrition,
+)
 from reciperadar.models.url import RecipeURL
 
 
@@ -30,6 +33,12 @@ class Recipe(Storable, Searchable):
     directions = db.relationship(
         'RecipeDirection',
         backref='recipe',
+        passive_deletes='all'
+    )
+    nutrition = db.relationship(
+        'RecipeNutrition',
+        backref='recipe',
+        uselist=False,
         passive_deletes='all'
     )
 
@@ -85,6 +94,8 @@ class Recipe(Storable, Searchable):
                 for direction in doc.get('directions') or []
                 if direction['description'].strip()
             ],
+            nutrition=RecipeNutrition.from_doc(doc['nutrition'])
+            if doc.get('nutrition') else None,
             servings=doc['servings'],
             time=doc['time'],
             rating=doc['rating']
@@ -102,7 +113,7 @@ class Recipe(Storable, Searchable):
         return list(contents)
 
     @property
-    def nutrition(self):
+    def aggregate_ingredient_nutrition(self):
         all_ingredients_mass = sum([
             i.mass or 0
             for i in self.ingredients
@@ -173,7 +184,8 @@ class Recipe(Storable, Searchable):
         data['contents'] = self.contents
         data['product_count'] = len(self.products)
         data['hidden'] = self.hidden
-        data['nutrition'] = self.nutrition
+        data['nutrition'] = self.nutrition.to_dict() \
+            if self.nutrition else self.aggregate_ingredient_nutrition,
         data['is_dairy_free'] = self.is_dairy_free
         data['is_gluten_free'] = self.is_gluten_free
         data['is_vegan'] = self.is_vegan
