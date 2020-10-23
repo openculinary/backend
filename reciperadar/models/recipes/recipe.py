@@ -135,28 +135,28 @@ class Recipe(Storable, Searchable):
     @property
     def is_dairy_free(self):
         return all([
-            ingredient.is_dairy_free
+            ingredient.product.is_dairy_free
             for ingredient in self.ingredients
         ])
 
     @property
     def is_gluten_free(self):
         return all([
-            ingredient.is_gluten_free
+            ingredient.product.is_gluten_free
             for ingredient in self.ingredients
         ])
 
     @property
     def is_vegan(self):
         return all([
-            ingredient.is_vegan
+            ingredient.product.is_vegan
             for ingredient in self.ingredients
         ])
 
     @property
     def is_vegetarian(self):
         return all([
-            ingredient.is_vegetarian
+            ingredient.product.is_vegetarian
             for ingredient in self.ingredients
         ])
 

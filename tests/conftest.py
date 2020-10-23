@@ -40,7 +40,9 @@ def raw_recipe_hit():
                     "product": {
                         "product": "one",
                         "contents": ["content-of-one"],
-                        "ancestors": ["ancestor-of-one"]
+                        "ancestors": ["ancestor-of-one"],
+                        "is_vegan": True,
+                        "is_vegetarian": True
                     },
                     "magnitude": 50,
                     "units": "ml",
@@ -51,18 +53,18 @@ def raw_recipe_hit():
                         "fibre": 0.65,
                         "protein": 0.05
                     },
-                    "relative_density": 0.5,
-                    "is_vegan": True,
-                    "is_vegetarian": True,
+                    "relative_density": 0.5
                 },
                 {
                     "index": 1,
                     "description": "two units of test ingredient two",
-                    "product": {"product": "two"},
+                    "product": {
+                        "product": "two",
+                        "is_gluten_free": False,
+                        "is_vegetarian": True
+                    },
                     "magnitude": 2,
-                    "units": "g",
-                    "is_gluten_free": False,
-                    "is_vegetarian": True,
+                    "units": "g"
                 }
             ],
             "author": "example",
