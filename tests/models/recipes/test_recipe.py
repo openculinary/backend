@@ -26,8 +26,8 @@ def test_recipe_from_doc(raw_recipe_hit):
         'protein': 0.03,
     }
 
-    assert recipe.ingredients[0].is_vegan
-    assert not recipe.ingredients[1].is_gluten_free
+    assert recipe.ingredients[0].product.is_vegan
+    assert not recipe.ingredients[1].product.is_gluten_free
 
     assert not recipe.is_gluten_free
     assert not recipe.is_vegan
