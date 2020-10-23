@@ -53,6 +53,6 @@ class Searchable(object):
             index=self.noun,
             id=self.id,
             body=self.to_doc(),
-            request_timeout=60,
+            request_timeout=300,
         )
         return True
