@@ -19,6 +19,10 @@ class IngredientProduct(Storable):
     plural = db.Column(db.String)
     category = db.Column(db.String)
     contents = db.Column(postgresql.ARRAY(db.String))
+    is_dairy_free = db.Column(db.Boolean)
+    is_gluten_free = db.Column(db.Boolean)
+    is_vegan = db.Column(db.Boolean)
+    is_vegetarian = db.Column(db.Boolean)
 
     STATE_AVAILABLE = 'available'
     STATE_REQUIRED = 'required'
@@ -40,7 +44,11 @@ class IngredientProduct(Storable):
             singular=doc.get('singular'),
             plural=doc.get('plural'),
             category=doc.get('category'),
-            contents=contents
+            contents=contents,
+            is_dairy_free=doc.get('is_dairy_free'),
+            is_gluten_free=doc.get('is_gluten_free'),
+            is_vegan=doc.get('is_vegan'),
+            is_vegetarian=doc.get('is_vegetarian'),
         )
 
     def state(self, include):
