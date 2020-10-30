@@ -2,12 +2,7 @@ from reciperadar import db
 from reciperadar.models.recipes import Recipe
 from reciperadar.models.domain import Domain
 from reciperadar.models.url import CrawlURL, RecipeURL
-from reciperadar.workers.broker import celery, postrun
-
-
-@postrun.connect
-def cleanup(task_id, task, *args, **kwargs):
-    db.session.close()
+from reciperadar.workers.broker import celery
 
 
 @celery.task(queue='index_recipe')
