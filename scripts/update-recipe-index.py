@@ -79,7 +79,8 @@ mapping = {
                 }
             }
         },
-        'contents': {'type': 'keyword'}
+        'contents': {'type': 'keyword'},
+        'domain': {'type': 'keyword'}
     }
 }
 

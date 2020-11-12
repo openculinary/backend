@@ -19,6 +19,7 @@ class IngredientProduct(Storable):
     plural = db.Column(db.String)
     category = db.Column(db.String)
     contents = db.Column(postgresql.ARRAY(db.String))
+    is_kitchen_staple = db.Column(db.Boolean)
     is_dairy_free = db.Column(db.Boolean)
     is_gluten_free = db.Column(db.Boolean)
     is_vegan = db.Column(db.Boolean)
@@ -45,6 +46,7 @@ class IngredientProduct(Storable):
             plural=doc.get('plural'),
             category=doc.get('category'),
             contents=contents,
+            is_kitchen_staple=doc.get('is_kitchen_staple'),
             is_dairy_free=doc.get('is_dairy_free'),
             is_gluten_free=doc.get('is_gluten_free'),
             is_vegan=doc.get('is_vegan'),
