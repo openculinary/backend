@@ -14,7 +14,6 @@ class Product(Storable):
     singular = db.Column(db.String)
     plural = db.Column(db.String)
     category = db.Column(db.String)
-    contents = db.Column(postgresql.ARRAY(db.String))
     is_kitchen_staple = db.Column(db.Boolean)
     is_dairy_free = db.Column(db.Boolean)
     is_gluten_free = db.Column(db.Boolean)
