@@ -18,7 +18,7 @@ def test_recipe_from_doc(raw_recipe_hit):
     assert recipe.ingredients[0].nutrition.fibre == 0.65
     assert recipe.ingredients[0].relative_density == 0.5
 
-    assert recipe.nutrition == {
+    assert recipe.aggregate_ingredient_nutrition == {
         'carbohydrates': 0,
         'energy': 0,
         'fat': 0.01,
@@ -49,4 +49,4 @@ def test_nutritional_filtering(raw_recipe_hit):
     assert recipe.ingredients[1].nutrition is None
     recipe.ingredients[1].magnitude = 500
 
-    assert recipe.nutrition is None
+    assert recipe.aggregate_ingredient_nutrition is None
