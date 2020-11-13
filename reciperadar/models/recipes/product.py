@@ -32,7 +32,7 @@ class Product(Storable):
     def from_doc(doc):
         nutrition = doc.get('nutrition')
         return Product(
-            id=doc.get('product_id'),
+            id=doc.get('id'),
             singular=doc.get('singular'),
             plural=doc.get('plural'),
             category=doc.get('category'),
