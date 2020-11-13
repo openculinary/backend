@@ -4,6 +4,24 @@ from reciperadar import db
 from reciperadar.models.base import Storable
 
 
+class Product(Storable):
+    __tablename__ = 'products'
+
+    parent_fk = db.ForeignKey('products.id', ondelete='cascade')
+    parent_id = db.Column(db.String, parent_fk, index=True)
+
+    id = db.Column(db.String, primary_key=True)
+    singular = db.Column(db.String)
+    plural = db.Column(db.String)
+    category = db.Column(db.String)
+    contents = db.Column(postgresql.ARRAY(db.String))
+    is_kitchen_staple = db.Column(db.Boolean)
+    is_dairy_free = db.Column(db.Boolean)
+    is_gluten_free = db.Column(db.Boolean)
+    is_vegan = db.Column(db.Boolean)
+    is_vegetarian = db.Column(db.Boolean)
+
+
 class IngredientProduct(Storable):
     __tablename__ = 'ingredient_products'
 
