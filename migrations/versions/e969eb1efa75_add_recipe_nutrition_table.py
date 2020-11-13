@@ -1,7 +1,7 @@
 """Add recipe nutrition table
 
 Revision ID: e969eb1efa75
-Revises: cb0dd207d413
+Revises: c696855f1023
 Create Date: 2020-10-22 14:18:20.045012
 
 """
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = 'e969eb1efa75'
-down_revision = 'cb0dd207d413'
+down_revision = 'c696855f1023'
 branch_labels = None
 depends_on = None
 
