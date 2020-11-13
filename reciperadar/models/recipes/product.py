@@ -20,6 +20,13 @@ class Product(Storable):
     is_vegan = db.Column(db.Boolean)
     is_vegetarian = db.Column(db.Boolean)
 
+    nutrition = db.relationship(
+        'ProductNutrition',
+        backref='product',
+        uselist=False,
+        passive_deletes='all'
+    )
+
 
 class IngredientProduct(Storable):
     __tablename__ = 'ingredient_products'
