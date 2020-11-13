@@ -2,6 +2,7 @@ from sqlalchemy.dialects import postgresql
 
 from reciperadar import db
 from reciperadar.models.base import Storable
+from reciperadar.models.recipes.nutrition import ProductNutrition
 
 
 class Product(Storable):
@@ -26,6 +27,23 @@ class Product(Storable):
         uselist=False,
         passive_deletes='all'
     )
+
+    @staticmethod
+    def from_doc(doc):
+        nutrition = doc.get('nutrition')
+        return Product(
+            id=doc.get('product_id'),
+            singular=doc.get('singular'),
+            plural=doc.get('plural'),
+            category=doc.get('category'),
+            is_kitchen_staple=doc.get('is_kitchen_staple'),
+            is_dairy_free=doc.get('is_dairy_free'),
+            is_gluten_free=doc.get('is_gluten_free'),
+            is_vegan=doc.get('is_vegan'),
+            is_vegetarian=doc.get('is_vegetarian'),
+            nutrition=ProductNutrition.from_doc(doc['nutrition'])
+            if nutrition else None,
+        )
 
 
 class IngredientProduct(Storable):
