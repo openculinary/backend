@@ -5,7 +5,6 @@ from reciperadar.models.base import Storable
 class Nutrition(Storable):
     __abstract__ = True
 
-    id = db.Column(db.String, primary_key=True)
     carbohydrates = db.Column(db.Float)
     energy = db.Column(db.Float)
     fat = db.Column(db.Float)
@@ -13,11 +12,20 @@ class Nutrition(Storable):
     protein = db.Column(db.Float)
 
 
+class ProductNutrition(Nutrition):
+    __tablename__ = 'product_nutrition'
+
+    fk = db.ForeignKey('products.id', ondelete='cascade')
+    product_id = db.Column(db.String, fk, primary_key=True)
+
+
 class IngredientNutrition(Nutrition):
     __tablename__ = 'ingredient_nutrition'
 
     fk = db.ForeignKey('recipe_ingredients.id', ondelete='cascade')
     ingredient_id = db.Column(db.String, fk, index=True)
+
+    id = db.Column(db.String, primary_key=True)
 
     @staticmethod
     def from_doc(doc):
@@ -37,6 +45,8 @@ class RecipeNutrition(Nutrition):
 
     fk = db.ForeignKey('recipes.id', ondelete='cascade')
     recipe_id = db.Column(db.String, fk, index=True)
+
+    id = db.Column(db.String, primary_key=True)
 
     @staticmethod
     def from_doc(doc):
