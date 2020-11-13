@@ -29,6 +29,8 @@ class IngredientProduct(Storable):
     ingredient_id = db.Column(db.String, ingredient_fk, index=True)
 
     id = db.Column(db.String, primary_key=True)
+    # TODO: enable product foreign key relationship
+    # product_fk = db.ForeignKey('recipe_ingredients.id', ondelete='cascade')
     product_id = db.Column(db.String)
     product = db.Column(db.String)
     product_parser = db.Column(db.String)
