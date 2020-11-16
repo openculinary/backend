@@ -250,7 +250,6 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,hamburger,hamburger,hamburgers,,f,t,t,t,t
 ,harissa,harissa,harissas,,f,t,t,t,t
 ,hazelnut,hazelnut,hazelnuts,,f,t,t,t,t
-,head_romaine_lettuce__rinsed,head romaine lettuce- rinsed,head romaine lettuce- rinseds,,f,t,t,t,t
 ,heaped_tbsp_plain_flour,heaped tbsp plain flour,heaped tbsp plain flours,,f,t,f,t,t
 ,herb,herb,herbs,,f,t,t,t,t
 ,hickory_smoked_sea_salt,hickory smoked sea salt,hickory smoked sea salts,,f,t,t,t,t
@@ -334,7 +333,6 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,melon_liqueur,melon liqueur,melon liqueurs,,f,t,t,t,t
 ,mexican_crema,mexican crema,mexican cremas,,f,t,t,t,t
 ,milk,milk,milks,dairy,t,f,t,f,t
-,milk__scalded,milk- scalded,milk- scaldeds,,f,t,t,t,t
 ,millet,millet,millets,,f,t,t,t,t
 ,mint,mint,mints,,f,t,t,t,t
 ,mirin,mirin,mirins,,f,t,t,t,t
@@ -637,7 +635,6 @@ apple,apple_brandy,apple brandy,apple brandies,,f,t,t,t,t
 apple,apple_cider,apple cider,apple ciders,,f,t,t,t,t
 apple,apple_jelly,apple jelly,apple jellies,,f,t,t,t,t
 apple,apple_juice,apple juice,apple juices,,f,t,t,t,t
-apple,apple___peeled,apple - peeled,apple - peeleds,,f,t,t,t,t
 apple,apple_pie_filling,apple pie filling,apple pie fillings,,f,t,t,t,t
 apple,bramley_apple,bramley apple,bramley apples,,f,t,t,t,t
 apple,granny_smith_apple,granny smith apple,granny smith apples,,f,t,t,t,t
@@ -657,7 +654,6 @@ apricot,apricot_preserve,apricot preserve,apricot preserves,,f,t,t,t,t
 artichoke,artichoke_heart,artichoke heart,artichoke hearts,,f,t,t,t,t
 artichoke_heart,jar_marinated_artichoke_heart,jar marinated artichoke heart,jar marinated artichoke hearts,,f,t,t,t,t
 asparagu,asparagus_spear,asparagus spear,asparagus spears,,f,t,t,t,t
-avocado,avocado___peeled,avocado - peeled,avocado - peeleds,,f,t,t,t,t
 avocado,hass_avocado,hass avocado,hass avocados,,f,t,t,t,t
 bacon,bacon_bit,bacon bit,bacon bits,meat_and_deli,f,t,t,f,f
 bacon,bacon_dripping,bacon dripping,bacon drippings,meat_and_deli,f,t,t,f,f
@@ -868,7 +864,6 @@ buttermilk,lowfat_buttermilk,lowfat buttermilk,lowfat buttermilks,,f,t,t,t,t
 buttermilk,non_fat_buttermilk,non-fat buttermilk,non-fat buttermilks,,f,t,t,t,t
 buttermilk,powdered_buttermilk,powdered buttermilk,powdered buttermilks,,f,t,t,t,t
 buttermilk,well_shaken_buttermilk,well-shaken buttermilk,well-shaken buttermilks,,f,t,t,t,t
-butternut_squash,butternut_squash___peeled,butternut squash - peeled,butternut squash - peeleds,,f,t,t,t,t
 button_mushroom,white_button_mushroom,white button mushroom,white button mushrooms,,f,t,t,t,t
 cabbage,napa_cabbage,napa cabbage,napa cabbages,,f,t,t,t,t
 cabbage,purple_cabbage,purple cabbage,purple cabbages,,f,t,t,t,t
@@ -1036,7 +1031,7 @@ chive,snipped_chive,snipped chive,snipped chives,,f,t,t,t,t
 chocolate,bittersweet_chocolate,bittersweet chocolate,bittersweet chocolates,,f,t,t,t,t
 chocolate,chocolate_bar,chocolate bar,chocolate bars,,f,t,t,t,t
 chocolate,chocolate_cocoa,chocolate cocoa,chocolate cocoas,,f,t,t,t,t
-chocolate,chocolate_confectioners'_coating,chocolate confectioners' coating,chocolate confectioners' coatings,,f,t,t,t,t
+chocolate,chocolate_confectioners_coating,chocolate confectioners' coating,chocolate confectioners' coatings,,f,t,t,t,t
 chocolate,chocolate_cookie_crumb,chocolate cookie crumb,chocolate cookie crumbs,,f,t,t,t,t
 chocolate,chocolate_curl,chocolate curl,chocolate curls,,f,t,t,t,t
 chocolate,chocolate_extract,chocolate extract,chocolate extracts,,f,t,t,t,t
@@ -1212,7 +1207,6 @@ crust,whole_prepared_pie_crust,whole prepared pie crust,whole prepared pie crust
 crust,whole_refrigerated_pie_crust,whole refrigerated pie crust,whole refrigerated pie crusts,,f,t,t,t,t
 crusty_bread,loaf_crusty_bread,loaf crusty bread,loaf crusty breads,,f,t,f,t,t
 cube_vegetable_bouillon,vegetable_bouillon_powder,vegetable bouillon powder,vegetable bouillon powders,,f,t,f,t,t
-cucumber,cucumber___peeled,cucumber - peeled,cucumber - peeleds,,f,t,t,t,t
 cucumber,english_cucumber,english cucumber,english cucumbers,,f,t,t,t,t
 cumin,cumin_powder,cumin powder,cumin powders,,f,t,t,t,t
 cumin,cumin_seed,cumin seed,cumin seeds,,f,t,t,t,t
@@ -1362,7 +1356,6 @@ garlic,garlic_powder,garlic powder,garlic powders,fruit_and_veg,f,t,t,t,t
 garlic,garlic_scape,garlic scape,garlic scapes,fruit_and_veg,f,t,t,t,t
 garlic,roasted_garlic,roasted garlic,roasted garlics,fruit_and_veg,f,t,t,t,t
 garlic_and_herb_seasoning_blend,salt_free_herb_seasoning_blend,salt-free herb seasoning blend,salt-free herb seasoning blends,,f,t,t,t,t
-garlic_salt,lawry's_garlic_salt,lawry's garlic salt,lawry's garlic salts,fruit_and_veg,f,t,t,t,t
 gelatin,gelatin_powder,gelatin powder,gelatin powders,,f,t,t,t,t
 gelatin,sheets_leaf_gelatine,sheets leaf gelatine,sheets leaf gelatines,,f,t,t,t,t
 gelatin,unflavored_gelatin,unflavored gelatin,unflavored gelatins,,f,t,t,t,t
@@ -1461,7 +1454,6 @@ hot_wing_sauce,buffalo_wing_sauce,buffalo wing sauce,buffalo wing sauces,,f,t,t,
 hungarian_paprika,sweet_hungarian_paprika,sweet hungarian paprika,sweet hungarian paprikas,,f,t,t,t,t
 ice,crushed_ice_or_ice_cube,crushed ice or ice cube,crushed ice or ice cubes,,f,t,t,t,t
 ice,tray_ice_cube,tray ice cube,tray ice cubes,,f,t,t,t,t
-iceberg_lettuce,head_iceberg_lettuce___rinsed,head iceberg lettuce - rinsed,head iceberg lettuce - rinseds,,f,t,t,t,t
 ice_cream,caramel_ice_cream_topping,caramel ice cream topping,caramel ice cream toppings,,f,t,t,t,t
 ice_cream,chocolate_ice_cream,chocolate ice cream,chocolate ice creams,,f,t,t,t,t
 ice_cream,coffee_ice_cream,coffee ice cream,coffee ice creams,,f,t,t,t,t
@@ -1517,7 +1509,6 @@ lamb,leg_of_lamb,leg of lamb,legs of lamb,meat_and_deli,f,t,t,f,f
 lasagna_noodle,no_boil_lasagna_noodle,no-boil lasagna noodle,no-boil lasagna noodles,,f,t,f,t,t
 lavender,lavender_flower,lavender flower,lavender flowers,,f,t,t,t,t
 lemon,lemon_curd,lemon curd,lemon curds,,f,t,t,t,t
-lemon,lemon___cut_into_wedges,lemon - cut into wedges,lemon - cuts into wedges,,f,t,t,t,t
 lemon,lemon_extract,lemon extract,lemon extracts,,f,t,t,t,t
 lemon,lemon_juice,lemon juice,lemon juices,,f,t,t,t,t
 lemon,lemon_rind,lemon rind,lemon rinds,,f,t,t,t,t
@@ -1564,7 +1555,6 @@ long_grain_white_rice,regular_long_grain_white_rice,regular long-grain white ric
 macaroni,elbow_macaroni,elbow macaroni,elbow macaronis,,f,t,t,t,t
 mango,mango_chutney,mango chutney,mango chutneys,,f,t,t,t,t
 mango,mango_nectar,mango nectar,mango nectars,,f,t,t,t,t
-mango,mango___peeled,mango - peeled,mango - peeleds,,f,t,t,t,t
 mango,mango_pulp,mango pulp,mango pulps,,f,t,t,t,t
 maple_syrup,good_quality_maple_syrup,good quality maple syrup,good quality maple syrups,,f,t,t,t,t
 maple_syrup,real_maple_syrup,real maple syrup,real maple syrups,,f,t,t,t,t
@@ -1579,7 +1569,6 @@ marshmallow,miniature_marshmallow,miniature marshmallow,miniature marshmallows,,
 marshmallow,mini_marshmallow,mini marshmallow,mini marshmallows,,f,t,t,t,t
 masa,masa_harina,masa harina,masa harinas,,f,t,t,t,t
 mayonnaise,chipotle_mayonnaise,chipotle mayonnaise,chipotle mayonnaises,,f,t,t,t,t
-mayonnaise,hellman's_mayonnaise,hellman's mayonnaise,hellman's mayonnaises,,f,t,t,t,t
 mayonnaise,low_fat_mayonnaise,low-fat mayonnaise,low-fat mayonnaises,,f,t,t,t,t
 mayonnaise,ready_made_mayonnaise,ready-made mayonnaise,ready-made mayonnaises,,f,t,t,t,t
 mayonnaise,real_mayonnaise,real mayonnaise,real mayonnaises,,f,t,t,t,t
@@ -1866,7 +1855,6 @@ pea,snap_pea,snap pea,snap peas,,f,t,t,t,t
 pea,snow_pea,snow pea,snow peas,,f,t,t,t,t
 pea,sweet_pea,sweet pea,sweet peas,,f,t,t,t,t
 pea,yellow_split_pea,yellow split pea,yellow split peas,,f,t,t,t,t
-peach,fresh_peaches___peeled,fresh peaches - peeled,fresh peaches - peeleds,,f,t,t,t,t
 peach,peach_nectar,peach nectar,peach nectars,,f,t,t,t,t
 peach,peach_preserve,peach preserve,peach preserves,,f,t,t,t,t
 peach,peach_schnapp,peach schnapp,peach schnapps,,f,t,t,t,t
@@ -1881,7 +1869,6 @@ peanut_butter,natural_peanut_butter,natural peanut butter,natural peanut butters
 peanut_butter,peanut_butter_chip,peanut butter chip,peanut butter chips,dairy,f,f,t,f,t
 peanut_butter,peanut_butter_cup,peanut butter cup,peanut butter cups,dairy,f,f,t,f,t
 peanut_butter,smooth_peanut_butter,smooth peanut butter,smooth peanut butters,dairy,f,f,t,f,t
-pear,pears___peeled,pears - peeled,pears - peeleds,,f,t,t,t,t
 pear,whole_bosc_pear,whole bosc pear,whole bosc pears,,f,t,t,t,t
 pecan,walnuts_or_pecan,walnuts or pecan,walnuts or pecans,,f,t,t,t,t
 penne_pasta,box_penne_pasta,box penne pasta,box penne pastas,,f,t,f,t,t
@@ -1964,7 +1951,6 @@ potato,floury_potato,floury potato,floury potatoes,,f,t,f,t,t
 potato,leftover_mashed_potato,leftover mashed potato,leftover mashed potatoes,,f,t,t,t,t
 potato,new_potato,new potato,new potatoes,,f,t,t,t,t
 potato,potato_chip,potato chip,potato chips,,f,t,t,t,t
-potato,potatoes___peeled_and_cubed,potatoes - peeled and cubed,potatoes - peeled and cubeds,,f,t,t,t,t
 potato,potato_starch,potato starch,potato starches,,f,t,t,t,t
 potato,prepared_mashed_potato,prepared mashed potato,prepared mashed potatoes,,f,t,t,t,t
 potato,red_potato,red potato,red potatoes,,f,t,t,t,t
@@ -2194,14 +2180,12 @@ sausage,smoked_sausage,smoked sausage,smoked sausages,meat_and_deli,f,t,t,f,f
 sausage,turkey_sausage,turkey sausage,turkey sausages,meat_and_deli,f,t,t,f,f
 savory,dried_summer_savory,dried summer savory,dried summer savories,,f,t,t,t,t
 seasoned_bread_crumb,italian_style_seasoned_bread_crumb,italian-style seasoned bread crumb,italian-style seasoned bread crumbs,,f,t,f,t,t
-seasoned_salt,lawry's_seasoned_salt,lawry's seasoned salt,lawry's seasoned salts,,f,t,t,t,t
 seasoning,accent_seasoning,accent seasoning,accent seasonings,,f,t,t,t,t
 seasoning,adobo_seasoning,adobo seasoning,adobo seasonings,,f,t,t,t,t
 seasoning,bbq_seasoning,bbq seasoning,bbq seasonings,,f,t,t,t,t
 seasoning,beau_monde_seasoning,beau monde seasoning,beau monde seasonings,,f,t,t,t,t
 seasoning,blackening_seasoning,blackening seasoning,blackening seasonings,,f,t,t,t,t
 seasoning,cajun_seasoning,cajun seasoning,cajun seasonings,,f,t,t,t,t
-seasoning,cavender's_seasoning,cavender's seasoning,cavender's seasonings,,f,t,t,t,t
 seasoning,chipotle_seasoning,chipotle seasoning,chipotle seasonings,,f,t,t,t,t
 seasoning,creole_seasoning,creole seasoning,creole seasonings,,f,t,t,t,t
 seasoning,creole_style_seasoning,creole-style seasoning,creole-style seasonings,,f,t,t,t,t
@@ -2212,7 +2196,6 @@ seasoning,italian_seasoning,italian seasoning,italian seasonings,,f,t,t,t,t
 seasoning,italian_style_seasoning,italian-style seasoning,italian-style seasonings,,f,t,t,t,t
 seasoning,jerk_seasoning,jerk seasoning,jerk seasonings,,f,t,t,t,t
 seasoning,lemon_pepper_seasoning,lemon-pepper seasoning,lemon-pepper seasonings,,f,t,t,t,t
-seasoning,nature's_seasoning,nature's seasoning,nature's seasonings,,f,t,t,t,t
 seasoning,old_bay_seasoning,old bay seasoning,old bay seasonings,,f,t,t,t,t
 seasoning,old_bay_seasoning_tm,old bay seasoning tm,old bay seasoning tms,,f,t,t,t,t
 seasoning,poultry_seasoning,poultry seasoning,poultry seasonings,,f,t,t,t,t
@@ -2259,7 +2242,6 @@ shortening,crisco_shortening,crisco shortening,crisco shortenings,,f,t,t,t,t
 shortening,solid_shortening,solid shortening,solid shortenings,,f,t,t,t,t
 shortening,vegan_shortening,vegan shortening,vegan shortenings,,f,t,t,t,t
 shrimp,jumbo_shrimp,jumbo shrimp,jumbo shrimps,,f,t,t,f,f
-shrimp,large_shrimp___peeled_and_deveined,large shrimp - peeled and deveined,large shrimp - peeled and deveineds,,f,t,t,f,f
 shrimp,peeled_and_deveined_shrimp,peeled and deveined shrimp,peeled and deveined shrimps,,f,t,t,f,f
 shrimp,salad_shrimp,salad shrimp,salad shrimps,,f,t,t,f,f
 sirloin_steak,beef_sirloin_steak,beef sirloin steak,beef sirloin steaks,meat_and_deli,f,t,t,f,f
@@ -2434,7 +2416,6 @@ tomato,cherry_tomato,cherry tomato,cherry tomatoes,fruit_and_veg,f,t,t,t,t
 tomato,grape_tomato,grape tomato,grape tomatoes,fruit_and_veg,f,t,t,t,t
 tomato,green_tomato,green tomato,green tomatoes,fruit_and_veg,f,t,t,t,t
 tomato,heirloom_tomato,heirloom tomato,heirloom tomatoes,fruit_and_veg,f,t,t,t,t
-tomato,large_tomatoes___peeled,large tomatoes - peeled,large tomatoes - peeleds,,f,t,t,t,t
 tomato,plum_tomato,plum tomato,plum tomatoes,fruit_and_veg,f,t,t,t,t
 tomato,sun_dried_tomato,sun-dried tomato,sun-dried tomatoes,fruit_and_veg,f,t,t,t,t
 tomato,tin_chopped_tomato,tin chopped tomato,tin chopped tomatoes,fruit_and_veg,f,t,t,t,t
