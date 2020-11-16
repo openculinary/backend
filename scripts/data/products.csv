@@ -1,0 +1,2628 @@
+parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_free,is_vegan,is_vegetarian
+,accent,accent,accents,,f,t,t,t,t
+,add_in,add-in,add-ins,,f,t,t,t,t
+,agave,agave,agaves,,f,t,t,t,t
+,all_spice,all-spice,all-spices,,f,t,t,t,t
+,allspice,allspice,allspices,,f,t,t,t,t
+,almond,almond,almonds,,f,t,t,t,t
+,amaretto,amaretto,amarettoes,,f,t,t,t,t
+,anchovy,anchovy,anchovies,,f,t,t,f,f
+,anise,anise,anises,,f,t,t,t,t
+,apple,apple,apples,,f,t,t,t,t
+,applesauce,applesauce,applesauces,,f,t,t,t,t
+,apricot,apricot,apricots,,f,t,t,t,t
+,arrowroot,arrowroot,arrowroots,,f,t,t,t,t
+,artichoke,artichoke,artichokes,,f,t,t,t,t
+,arugula,arugula,arugulas,,f,t,t,t,t
+,asafetida,asafetida,asafetidas,,f,t,t,t,t
+,asafoetida,asafoetida,asafoetidas,,f,t,t,t,t
+,asparagu,asparagu,asparagus,,f,t,t,t,t
+,athenos_traditional_crumbled_feta_cheese,athenos traditional crumbled feta cheese,athenos traditional crumbled feta cheeses,dairy,f,f,t,f,t
+,aubergine,aubergine,aubergines,,f,t,t,t,t
+,avocado,avocado,avocados,,f,t,t,t,t
+,baby_back_rib,baby back rib,baby back ribs,,f,t,t,t,t
+,bacon,bacon,bacons,meat_and_deli,f,t,t,f,f
+,baguette,baguette,baguettes,,f,t,f,t,t
+,baking_mix,baking mix,baking mixes,,f,t,t,t,t
+,baking_powder,baking powder,baking powders,,f,t,t,t,t
+,bamboo_shoot,bamboo shoot,bamboo shoots,,f,t,t,t,t
+,banana,banana,bananas,fruit_and_veg,f,t,t,t,t
+,banana_chip,banana chip,banana chips,fruit_and_veg,f,t,t,t,t
+,barley,barley,barleys,,f,t,t,t,t
+,basil,basil,basils,,f,t,t,t,t
+,bean,bean,beans,,f,t,t,t,t
+,beansprout,beansprout,beansprouts,,f,t,t,t,t
+,beef,beef,beefs,meat_and_deli,f,t,t,f,f
+,beer,beer,beers,,f,t,f,t,t
+,beet,beet,beets,,f,t,t,t,t
+,berry,berry,berries,fruit_and_veg,f,t,t,t,t
+,biscoff_spread,biscoff spread,biscoff spreads,,f,t,t,t,t
+,biscuit,biscuit,biscuits,,f,t,t,t,t
+,bisquick,bisquick,bisquicks,,f,t,t,t,t
+,bitter,bitter,bitters,,f,t,t,t,t
+,black,black,blacks,,f,t,t,t,t
+,blackberry,blackberry,blackberries,,f,t,t,t,t
+,blueberry,blueberry,blueberries,,f,t,t,t,t
+,blue_food_coloring,blue food coloring,blue food colorings,,f,t,t,t,t
+,bok_choy,bok choy,bok choys,,f,t,t,t,t
+,boneles,boneles,boneless,,f,t,t,t,t
+,bonito_flake,bonito flake,bonito flakes,,f,t,t,t,t
+,bouquet_garni,bouquet garni,bouquet garnis,,f,t,t,t,t
+,bourbon,bourbon,bourbons,,f,t,t,t,t
+,bran,bran,brans,,f,t,t,t,t
+,brand,brand,brands,,f,t,t,t,t
+,brandy,brandy,brandies,,f,t,t,t,t
+,bread,bread,breads,,f,t,f,t,t
+,breadcrumb,breadcrumb,breadcrumbs,,f,t,f,t,t
+,brie,brie,bries,,f,t,t,t,t
+,brisket,brisket,briskets,,f,t,t,t,t
+,broccoli,broccoli,broccolis,,f,t,t,t,t
+,buckwheat_groat,buckwheat groat,buckwheat groats,,f,t,t,t,t
+,bulgur,bulgur,bulgurs,,f,t,t,t,t
+,bun,bun,buns,,f,t,t,t,t
+,butter,butter,butters,dairy,t,f,t,f,t
+,buttermilk,buttermilk,buttermilks,,f,t,t,t,t
+,butterscotch_chip,butterscotch chip,butterscotch chips,,f,t,t,t,t
+,butterscotch_morsel,butterscotch morsel,butterscotch morsels,,f,t,t,t,t
+,butterscotch_schnapp,butterscotch schnapp,butterscotch schnapps,,f,t,t,t,t
+,cabbage,cabbage,cabbages,,f,t,t,t,t
+,cabernet_sauvignon,cabernet sauvignon,cabernet sauvignons,,f,t,t,t,t
+,cacao,cacao,cacaos,,f,t,t,t,t
+,cajun_spice,cajun spice,cajun spices,,f,t,t,t,t
+,cake,cake,cakes,,f,t,t,t,t
+,calorie_controlled_cooking_oil_spray,calorie controlled cooking oil spray,calorie controlled cooking oil sprays,oil_and_vinegar_and_condiments,f,t,t,t,t
+,calvado,calvado,calvadoes,,f,t,t,t,t
+,can_crescent_roll,can crescent roll,can crescent rolls,,f,t,t,t,t
+,candy_cane,candy cane,candy canes,,f,t,t,t,t
+,can_hominy,can hominy,can hominies,,f,t,t,t,t
+,canning_jar_with_lids_and_rings,canning jar with lids and rings,canning jars with lids and rings,,f,t,t,t,t
+,cantaloupe,cantaloupe,cantaloupes,,f,t,t,t,t
+,caper,caper,capers,,f,t,t,t,t
+,caramel,caramel,caramels,,f,t,t,t,t
+,cardamom,cardamom,cardamoms,,f,t,t,t,t
+,carrot,carrot,carrots,,f,t,t,t,t
+,cashew,cashew,cashews,,f,t,t,t,t
+,catfish_fillet,catfish fillet,catfish fillets,,f,t,t,t,t
+,catsup,catsup,catsups,,f,t,t,t,t
+,cauliflower,cauliflower,cauliflowers,,f,t,t,t,t
+,cayenne,cayenne,cayennes,,f,t,t,t,t
+,celery,celery,celeries,,f,t,t,t,t
+,celerystick,celerystick,celerysticks,,f,t,t,t,t
+,chambord,chambord,chambords,,f,t,t,t,t
+,champagne,champagne,champagnes,,f,t,t,t,t
+,chardonnay,chardonnay,chardonnays,,f,t,t,t,t
+,cheddar,cheddar,cheddars,,f,t,t,t,t
+,cheerio,cheerio,cheerios,,f,t,t,t,t
+,cheese,cheese,cheeses,dairy,f,f,t,f,t
+,cheesecloth,cheesecloth,cheesecloths,,f,t,t,t,t
+,cherry,cherry,cherries,,f,t,t,t,t
+,chervil,chervil,chervils,,f,t,t,t,t
+,chestnut,chestnut,chestnuts,,f,t,t,t,t
+,chicken,chicken,chickens,meat_and_deli,f,t,t,f,f
+,chickpea,chickpea,chickpeas,,f,t,t,t,t
+,chily,chily,chilies,,f,t,t,t,t
+,chinese_five_spice,chinese five spice,chinese five spices,,f,t,t,t,t
+,chipotle,chipotle,chipotles,,f,t,t,t,t
+,chive,chive,chives,,f,t,t,t,t
+,chocolate,chocolate,chocolates,,f,t,t,t,t
+,chocolate_chip,chocolate chip,chocolate chips,,f,t,t,t,t
+,chocolate_hazelnut_spread,chocolate-hazelnut spread,chocolate-hazelnut spreads,,f,t,t,t,t
+,chorizo,chorizo,chorizoes,,f,t,t,t,t
+,chuck,chuck,chucks,,f,t,t,t,t
+,chutney,chutney,chutneys,,f,t,t,t,t
+,ciabatta_roll,ciabatta roll,ciabatta rolls,,f,t,t,t,t
+,cider,cider,ciders,,f,t,t,t,t
+,cilantro,cilantro,cilantros,,f,t,t,t,t
+,cinammon,cinammon,cinammons,,f,t,t,t,t
+,cinnamon,cinnamon,cinnamons,,f,t,t,t,t
+,citric_acid,citric acid,citric acids,,f,t,t,t,t
+,citron,citron,citrons,,f,t,t,t,t
+,clam,clam,clams,,f,t,t,f,f
+,clove,clove,cloves,,f,t,t,t,t
+,cocoa,cocoa,cocoas,,f,t,t,t,t
+,coconut,coconut,coconuts,,f,t,t,t,t
+,cod,cod,cod,,f,t,t,f,f
+,coffee,coffee,coffees,,f,t,t,t,t
+,coffee_flavored_liqueur,coffee-flavored liqueur,coffee-flavored liqueurs,,f,t,t,t,t
+,cognac,cognac,cognacs,,f,t,t,t,t
+,cointreau,cointreau,cointreaus,,f,t,t,t,t
+,cola,cola,colas,,f,t,t,t,t
+,coleslaw,coleslaw,coleslaws,,f,t,t,t,t
+,condiment,condiment,condiments,,f,t,t,t,t
+,cooking_spray,cooking spray,cooking sprays,,f,t,t,t,t
+,cooky,cooky,cookies,,f,t,t,t,t
+,coriander,coriander,corianders,,f,t,t,t,t
+,corianderleaf,corianderleaf,corianderleaves,,f,t,t,t,t
+,corn,corn,corns,,f,t,t,t,t
+,cornbread,cornbread,cornbreads,,f,t,f,t,t
+,corn_chip,corn chip,corn chips,,f,t,t,t,t
+,cornflake,cornflake,cornflakes,,f,t,t,t,t
+,cornflour,cornflour,cornflours,,f,t,f,t,t
+,cornichon,cornichon,cornichons,,f,t,t,t,t
+,cornish_game_hen,cornish game hen,cornish game hens,,f,t,t,t,t
+,cornmeal,cornmeal,cornmeals,,f,t,t,t,t
+,cornstach,cornstach,cornstaches,,f,t,t,t,t
+,cornstarch,cornstarch,cornstarches,,f,t,t,t,t
+,cornstartch,cornstartch,cornstartches,,f,t,t,t,t
+,corriander,corriander,corrianders,,f,t,t,t,t
+,courgette,courgette,courgettes,,f,t,t,t,t
+,couscou,couscou,couscous,,f,t,t,t,t
+,crab,crab,crabs,,f,t,t,f,f
+,crabmeat,crabmeat,crabmeats,,f,t,t,t,t
+,cracked_wheat,cracked wheat,cracked wheats,,f,t,t,t,t
+,cracker,cracker,crackers,,f,t,t,t,t
+,craisin,craisin,craisins,,f,t,t,t,t
+,cranberry,cranberry,cranberries,,f,t,t,t,t
+,crawfish_tail,crawfish tail,crawfish tails,,f,t,t,t,t
+,cream,cream,creams,,f,t,t,t,t
+,creme_de_cassis_liqueur,creme de cassis liqueur,cremes de cassis liqueur,,f,t,t,t,t
+,creme_de_menthe,creme de menthe,cremes de menthe,,f,t,t,t,t
+,crisco,crisco,criscoes,,f,t,t,t,t
+,crouton,crouton,croutons,,f,t,t,t,t
+,crushed_dried_chilly,crushed dried chilly,crushed dried chillies,,f,t,t,t,t
+,crust,crust,crusts,,f,t,t,t,t
+,cubed_honeydew,cubed honeydew,cubed honeydews,,f,t,t,t,t
+,cucumber,cucumber,cucumbers,,f,t,t,t,t
+,cumin,cumin,cumins,,f,t,t,t,t
+,cupcake,cupcake,cupcakes,,f,t,t,t,t
+,currant,currant,currants,,f,t,t,t,t
+,curry,curry,curries,,f,t,t,t,t
+,custard,custard,custards,,f,t,t,t,t
+,dairy,dairy,dairies,dairy,f,f,t,f,t
+,date,date,dates,,f,t,t,t,t
+,decoration,decoration,decorations,,f,t,t,t,t
+,deselect_all,deselect all,deselect alls,,f,t,t,t,t
+,dijon,dijon,dijons,,f,t,t,t,t
+,dill,dill,dills,,f,t,t,t,t
+,dough,dough,doughs,,f,t,t,t,t
+,dressing,dressing,dressings,,f,t,t,t,t
+,dripping,dripping,drippings,,f,t,t,t,t
+,drops_pink_food_coloring,drops pink food coloring,drops pink food colorings,,f,t,t,t,t
+,duck_fat,duck fat,duck fats,,f,t,t,t,t
+,dulce_de_leche,dulce de leche,dulces de leche,,f,t,t,t,t
+,eaches_bay_leaf,eaches bay leaf,eaches bay leaves,,f,t,t,t,t
+,earth_balance,earth balance,earth balances,,f,t,t,t,t
+,edamame,edamame,edamames,,f,t,t,t,t
+,egg,egg,eggs,dairy,t,f,t,f,t
+,eggnog,eggnog,eggnogs,,f,t,t,t,t
+,eggplant,eggplant,eggplants,,f,t,t,t,t
+,english_mustardpowder,english mustardpowder,english mustardpowders,,f,t,t,t,t
+,envelope_active_dry_yeast,envelope active dry yeast,envelope active dry yeasts,,f,t,t,t,t
+,erythritol_crystal,erythritol crystal,erythritol crystals,,f,t,t,t,t
+,espresso,espresso,espressos,,f,t,t,t,t
+,extract,extract,extracts,,f,t,t,t,t
+,farro,farro,farroes,,f,t,t,t,t
+,fennel,fennel,fennels,,f,t,t,t,t
+,feta,feta,fetas,,f,t,t,t,t
+,fettuccine,fettuccine,fettuccines,,f,t,t,t,t
+,fig,fig,figs,,f,t,t,t,t
+,fillets_sea_bas,fillets sea bas,fillets sea bass,,f,t,t,t,t
+,filling,filling,fillings,,f,t,t,t,t
+,flax,flax,flaxes,,f,t,t,t,t
+,flaxseed,flaxseed,flaxseeds,,f,t,t,t,t
+,fleur_de_sel,fleur de sel,fleurs de sel,,f,t,t,t,t
+,flounder_fillet,flounder fillet,flounder fillets,,f,t,t,t,t
+,flour,flour,flours,,t,t,f,t,t
+,fluid_campari,fluid campari,fluid camparis,,f,t,t,t,t
+,fluid_elderflower_liqueur,fluid elderflower liqueur,fluid elderflower liqueurs,,f,t,t,t,t
+,food_colouring,food colouring,food colourings,,f,t,t,t,t
+,for_meatball,for meatball,for meatballs,,f,t,t,t,t
+,fraîche,fraîche,fraîches,,f,t,t,t,t
+,frito,frito,fritoes,,f,t,t,t,t
+,frosting,frosting,frostings,,f,t,t,t,t
+,frozen_hash_brown,frozen hash brown,frozen hash browns,,f,t,t,t,t
+,frozen_petits_pois,frozen petits pois,frozen petits pois,,f,t,t,t,t
+,frozen_tater_tot,frozen tater tot,frozen tater tots,,f,t,t,t,t
+,fruit,fruit,fruits,,f,t,t,t,t
+,fully_cooked,fully-cooked,fully-cookeds,,f,t,t,t,t
+,garam_masala,garam masala,garam masalas,,f,t,t,t,t
+,garlic,garlic,garlics,fruit_and_veg,f,t,t,t,t
+,garnish,garnish,garnishes,,f,t,t,t,t
+,gelatin,gelatin,gelatins,,f,t,t,t,t
+,gel_food_coloring,gel food coloring,gel food colorings,,f,t,t,t,t
+,ghee,ghee,ghees,,f,t,t,t,t
+,gin,gin,gins,,f,t,t,t,t
+,ginger,ginger,gingers,,f,t,t,t,t
+,ginger_garlic_paste,ginger-garlic paste,ginger-garlic pastes,,f,t,t,t,t
+,gingersnap,gingersnap,gingersnaps,,f,t,t,t,t
+,glaze,glaze,glazes,,f,t,t,t,t
+,golden,golden,goldens,,f,t,t,t,t
+,goose_fat,goose fat,goose fats,,f,t,t,t,t
+,gorgonzola,gorgonzola,gorgonzolas,,f,t,t,t,t
+,graham_wafer_crumb,graham wafer crumb,graham wafer crumbs,,f,t,t,t,t
+,grand_marnier,grand marnier,grand marniers,,f,t,t,t,t
+,granola,granola,granolas,,f,t,t,t,t
+,grape,grape,grapes,,f,t,t,t,t
+,grapefruit,grapefruit,grapefruits,,f,t,t,t,t
+,gravy,gravy,gravies,,f,t,t,t,t
+,green,green,greens,,f,t,t,t,t
+,grenadine,grenadine,grenadines,,f,t,t,t,t
+,grit,grit,grits,,f,t,t,t,t
+,ground,ground,grounds,,f,t,t,t,t
+,grouper_fillet,grouper fillet,grouper fillets,,f,t,t,t,t
+,gruyere,gruyere,gruyeres,,f,t,t,t,t
+,guacamole,guacamole,guacamoles,,f,t,t,t,t
+,guava_paste,guava paste,guava pastes,,f,t,t,t,t
+,guinnes,guinnes,guinneses,,f,t,t,t,t
+,haddock_fillet,haddock fillet,haddock fillets,,f,t,t,f,f
+,half_and_half,half-and-half,half-and-halves,,f,t,t,t,t
+,halibut,halibut,halibuts,,f,t,t,f,f
+,ham,ham,hams,meat_and_deli,f,t,t,f,f
+,hamburger,hamburger,hamburgers,,f,t,t,t,t
+,harissa,harissa,harissas,,f,t,t,t,t
+,hazelnut,hazelnut,hazelnuts,,f,t,t,t,t
+,head_romaine_lettuce__rinsed,head romaine lettuce- rinsed,head romaine lettuce- rinseds,,f,t,t,t,t
+,heaped_tbsp_plain_flour,heaped tbsp plain flour,heaped tbsp plain flours,,f,t,f,t,t
+,herb,herb,herbs,,f,t,t,t,t
+,hickory_smoked_sea_salt,hickory smoked sea salt,hickory smoked sea salts,,f,t,t,t,t
+,hoagie_roll,hoagie roll,hoagie rolls,,f,t,t,t,t
+,honey,honey,honeys,,f,t,t,t,t
+,horseradish,horseradish,horseradishes,,f,t,t,t,t
+,hot_dog,hot dog,hot dogs,,f,t,t,t,t
+,huckleberry,huckleberry,huckleberries,,f,t,t,t,t
+,hummu,hummu,hummus,,f,t,t,t,t
+,ice,ice,ices,,f,t,t,t,t
+,inch,inch,inches,,f,t,t,t,t
+,ingredient,ingredient,ingredients,,f,t,t,t,t
+,jalapeño,jalapeño,jalapeñoes,,f,t,t,t,t
+,jam,jam,jams,,f,t,t,t,t
+,jars_pint_sized_canning_jar,jars pint-sized canning jar,jars pint-sized canning jars,,f,t,t,t,t
+,jelly,jelly,jellies,,f,t,t,t,t
+,jicama,jicama,jicamas,,f,t,t,t,t
+,juice,juice,juices,,f,t,t,t,t
+,kahlua,kahlua,kahluas,,f,t,t,t,t
+,kaiser_roll,kaiser roll,kaiser rolls,,f,t,t,t,t
+,kale,kale,kales,,f,t,t,t,t
+,kefir,kefir,kefirs,,f,t,t,t,t
+,ketchup,ketchup,ketchups,oil_and_vinegar_and_condiments,f,t,t,t,t
+,kielbasa,kielbasa,kielbasas,,f,t,t,t,t
+,kimchi,kimchi,kimchis,,f,t,t,t,t
+,kirsch,kirsch,kirsches,,f,t,t,t,t
+,kirschwasser,kirschwasser,kirschwassers,,f,t,t,t,t
+,kitchen_bouquet,kitchen bouquet,kitchen bouquets,,f,t,t,t,t
+,kitchen_twine,kitchen twine,kitchen twines,,f,t,t,t,t
+,kiwi,kiwi,kiwis,,f,t,t,t,t
+,korma_paste,korma paste,korma pastes,,f,t,t,t,t
+,kraft_mozza_cheddar_shredded_cheese,kraft mozza-cheddar shredded cheese,kraft mozza-cheddar shredded cheeses,dairy,f,f,t,f,t
+,kraft_tex_mex_shredded_cheese,kraft tex mex shredded cheese,kraft tex mex shredded cheeses,dairy,f,f,t,f,t
+,kumquat,kumquat,kumquats,,f,t,t,t,t
+,ladyfinger,ladyfinger,ladyfingers,,f,t,t,t,t
+,lamb,lamb,lambs,meat_and_deli,f,t,t,f,f
+,lard,lard,lards,,f,t,t,t,t
+,lavender,lavender,lavenders,,f,t,t,t,t
+,leek,leek,leeks,,f,t,t,t,t
+,lemon,lemon,lemons,,f,t,t,t,t
+,lemonade,lemonade,lemonades,,f,t,t,t,t
+,lemongrass_stalk,lemongrass stalk,lemongrass stalks,,f,t,t,t,t
+,lemon_lime_flavored_carbonated_beverage,lemon-lime flavored carbonated beverage,lemon-lime flavored carbonated beverages,,f,t,t,t,t
+,lemonwedge,lemonwedge,lemonwedges,,f,t,t,t,t
+,lentil,lentil,lentils,,f,t,t,t,t
+,lettuce,lettuce,lettuces,,f,t,t,t,t
+,lime,lime,limes,,f,t,t,t,t
+,limeade,limeade,limeades,,f,t,t,t,t
+,limewedge,limewedge,limewedges,,f,t,t,t,t
+,limoncello,limoncello,limoncellos,,f,t,t,t,t
+,linguine,linguine,linguines,,f,t,t,t,t
+,liquid,liquid,liquids,,f,t,t,t,t
+,loaf,loaf,loaves,,f,t,f,t,t
+,lobster,lobster,lobsters,,f,t,t,f,f
+,lollipop_stick,lollipop stick,lollipop sticks,,f,t,t,t,t
+,london_broil,london broil,london broils,,f,t,t,t,t
+,macaroni,macaroni,macaronis,,f,t,t,t,t
+,mace,mace,maces,,f,t,t,t,t
+,mackerel_fillet,mackerel fillet,mackerel fillets,,f,t,t,f,f
+,madeira,madeira,madeiras,,f,t,t,t,t
+,mahi_mahi_fillet,mahi mahi fillet,mahi mahi fillets,,f,t,t,t,t
+,mango,mango,mangoes,,f,t,t,t,t
+,manicotti_shell,manicotti shell,manicotti shells,,f,t,t,t,t
+,maple,maple,maples,,f,t,t,t,t
+,maraschino_liqueur,maraschino liqueur,maraschino liqueurs,,f,t,t,t,t
+,margarine,margarine,margarines,,f,t,t,t,t
+,marinade,marinade,marinades,,f,t,t,t,t
+,marinara,marinara,marinaras,,f,t,t,t,t
+,marjoram,marjoram,marjorams,,f,t,t,t,t
+,marmalade,marmalade,marmalades,,f,t,t,t,t
+,marmite,marmite,marmites,,f,t,t,t,t
+,marsala,marsala,marsalas,,f,t,t,t,t
+,marshmallow,marshmallow,marshmallows,,f,t,t,t,t
+,marzipan,marzipan,marzipans,,f,t,t,t,t
+,masa,masa,masas,,f,t,t,t,t
+,mascarpone,mascarpone,mascarpones,,f,t,t,t,t
+,matcha,matcha,matchas,,f,t,t,t,t
+,matzo_meal,matzo meal,matzo meals,,f,t,t,t,t
+,mayonnaise,mayonnaise,mayonnaises,,f,t,t,t,t
+,meat,meat,meats,meat_and_deli,f,t,t,f,f
+,melon_liqueur,melon liqueur,melon liqueurs,,f,t,t,t,t
+,mexican_crema,mexican crema,mexican cremas,,f,t,t,t,t
+,milk,milk,milks,dairy,t,f,t,f,t
+,milk__scalded,milk- scalded,milk- scaldeds,,f,t,t,t,t
+,millet,millet,millets,,f,t,t,t,t
+,mint,mint,mints,,f,t,t,t,t
+,mirin,mirin,mirins,,f,t,t,t,t
+,miso,miso,misoes,,f,t,t,t,t
+,mixed,mixed,mixeds,,f,t,t,t,t
+,mizuna_leaf,mizuna leaf,mizuna leaves,,f,t,t,t,t
+,m&m,m&m,m&ms,,f,t,t,t,t
+,mola,mola,molas,,f,t,t,t,t
+,molas,molas,molass,,f,t,t,t,t
+,monosodium_glutamate,monosodium glutamate,monosodium glutamates,,f,t,t,t,t
+,monterey_jack,monterey jack,monterey jacks,,f,t,t,t,t
+,mozzarella,mozzarella,mozzarellas,,f,t,t,t,t
+,mrs._dash,mrs. dash,mrs. dashes,,f,t,t,t,t
+,mushroom,mushroom,mushrooms,,f,t,t,t,t
+,mussel,mussel,mussels,,f,t,t,f,f
+,mustard,mustard,mustards,,f,t,t,t,t
+,nectarine,nectarine,nectarines,,f,t,t,t,t
+,non_dairy_creamer,non-dairy creamer,non-dairy creamers,,f,t,t,t,t
+,noodle,noodle,noodles,,f,t,f,t,t
+,nut,nut,nuts,,f,t,t,t,t
+,nutella,nutella,nutellas,,f,t,t,t,t
+,nutmeg,nutmeg,nutmegs,,f,t,t,t,t
+,oat,oat,oats,,f,t,t,t,t
+,oatmeal,oatmeal,oatmeals,,f,t,t,t,t
+,oil,oil,oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+,okra,okra,okras,,f,t,t,t,t
+,old_bay,old bay,old bays,,f,t,t,t,t
+,olive,olive,olives,,f,t,t,t,t
+,onion,onion,onions,fruit_and_veg,t,t,t,t,t
+,orange,orange,oranges,,f,t,t,t,t
+,oregano,oregano,oreganos,,f,t,t,t,t
+,oregeno,oregeno,oregenoes,,f,t,t,t,t
+,oreo,oreo,oreos,,f,t,t,t,t
+,orzo,orzo,orzoes,,f,t,t,t,t
+,package_dry_pectin,package dry pectin,package dry pectins,,f,t,t,t,t
+,package_frozen_french_fry,package frozen french fry,package frozen french fries,,f,t,t,t,t
+,package_unsweetened,package unsweetened,package unsweeteneds,,f,t,t,t,t
+,package_vegetarian_burger_crumble,package vegetarian burger crumble,package vegetarian burger crumbles,,f,t,t,t,t
+,pale_ale,pale ale,pale ales,,f,t,t,t,t
+,pancetta,pancetta,pancettas,,f,t,t,t,t
+,panko,panko,pankoes,,f,t,t,t,t
+,papaya,papaya,papayas,,f,t,t,t,t
+,paprika,paprika,paprikas,,f,t,t,t,t
+,parchment_paper,parchment paper,parchment papers,,f,t,t,t,t
+,parmesa,parmesa,parmesas,,f,t,t,t,t
+,parmesan,parmesan,parmesans,,f,t,t,t,t
+,parmigiano_reggiano,parmigiano-reggiano,parmigiano-reggianoes,,f,t,t,t,t
+,parsley,parsley,parsleys,,f,t,t,t,t
+,parsnip,parsnip,parsnips,,f,t,t,t,t
+,passata,passata,passatas,,f,t,t,t,t
+,pasta,pasta,pastas,,f,t,f,t,t
+,pastry,pastry,pastries,,f,t,t,t,t
+,pea,pea,peas,,f,t,t,t,t
+,peach,peach,peaches,,f,t,t,t,t
+,peanut,peanut,peanuts,,f,t,t,t,t
+,pear,pear,pears,,f,t,t,t,t
+,pecan,pecan,pecans,,f,t,t,t,t
+,pecorino_romano,pecorino romano,pecorino romanoes,,f,t,t,t,t
+,penne,penne,pennes,,f,t,t,t,t
+,pepita,pepita,pepitas,,f,t,t,t,t
+,pepper,pepper,peppers,,f,t,t,t,t
+,peppercorn,peppercorn,peppercorns,,f,t,t,t,t
+,peppermint,peppermint,peppermints,,f,t,t,t,t
+,pepperoncini,pepperoncini,pepperoncinis,,f,t,t,t,t
+,pepperoni,pepperoni,pepperonis,,f,t,t,t,t
+,persimmon_pulp,persimmon pulp,persimmon pulps,,f,t,t,t,t
+,pesto,pesto,pestoes,,f,t,t,t,t
+,pickle,pickle,pickles,,f,t,t,t,t
+,pico_de_gallo,pico de gallo,picoes de gallo,,f,t,t,t,t
+,pieces_tilapia,pieces tilapia,pieces tilapias,,f,t,t,t,t
+,pimento,pimento,pimentos,,f,t,t,t,t
+,pineapple,pineapple,pineapples,,f,t,t,t,t
+,pinot_grigio,pinot grigio,pinot grigios,,f,t,t,t,t
+,pinot_noir,pinot noir,pinot noirs,,f,t,t,t,t
+,pisco,pisco,piscoes,,f,t,t,t,t
+,pistachio,pistachio,pistachios,,f,t,t,t,t
+,pita,pita,pitas,,f,t,t,t,t
+,pita_chip,pita chip,pita chips,,f,t,t,t,t
+,plum,plum,plums,,f,t,t,t,t
+,polenta,polenta,polentas,,f,t,t,t,t
+,pomegranate,pomegranate,pomegranates,,f,t,t,t,t
+,popcorn,popcorn,popcorns,,f,t,t,t,t
+,poppyseed,poppyseed,poppyseeds,,f,t,t,t,t
+,popsicle,popsicle,popsicles,,f,t,t,t,t
+,pork,pork,porks,meat_and_deli,f,t,t,f,f
+,port,port,ports,,f,t,t,t,t
+,post_shreddies_cereal,post shreddies cereal,post shreddies cereals,,f,t,t,t,t
+,potato,potato,potatoes,,f,t,t,t,t
+,powder,powder,powders,,f,t,t,t,t
+,prawn,prawn,prawns,,f,t,t,f,f
+,pretzel,pretzel,pretzels,,f,t,t,t,t
+,prosciutto,prosciutto,prosciuttoes,,f,t,t,t,t
+,provolone,provolone,provolones,,f,t,t,t,t
+,prune,prune,prunes,,f,t,t,t,t
+,pudding,pudding,puddings,,f,t,t,t,t
+,puffed_wheat_cereal,puffed wheat cereal,puffed wheat cereals,,f,t,t,t,t
+,pumpkin,pumpkin,pumpkins,,f,t,t,t,t
+,queso_fresco,queso fresco,queso frescoes,,f,t,t,t,t
+,quinoa,quinoa,quinoas,,f,t,t,t,t
+,rabbit,rabbit,rabbits,,f,t,t,t,t
+,radish,radish,radishes,,f,t,t,t,t
+,raisin,raisin,raisins,,f,t,t,t,t
+,ras_el_hanout,ras el hanout,ras el hanouts,,f,t,t,t,t
+,rasin,rasin,rasins,,f,t,t,t,t
+,raspberry,raspberry,raspberries,,f,t,t,t,t
+,red,red,reds,,f,t,t,t,t
+,redcurrant,redcurrant,redcurrants,,f,t,t,t,t
+,reese,reese,reeses,,f,t,t,t,t
+,rhubarb,rhubarb,rhubarbs,,f,t,t,t,t
+,rice,rice,rices,,f,t,t,t,t
+,ricotta,ricotta,ricottas,,f,t,t,t,t
+,rigatoni,rigatoni,rigatonis,,f,t,t,t,t
+,roasted,roasted,roasteds,,f,t,t,t,t
+,rocket,rocket,rockets,,f,t,t,t,t
+,rocketleaf,rocketleaf,rocketleaves,,f,t,t,t,t
+,root_beer,root beer,root beers,,f,t,f,t,t
+,rosemary,rosemary,rosemaries,,f,t,t,t,t
+,rosemarysprig,rosemarysprig,rosemarysprigs,,f,t,t,t,t
+,rosewater,rosewater,rosewaters,,f,t,t,t,t
+,rum,rum,rums,,f,t,t,t,t
+,rutabaga,rutabaga,rutabagas,,f,t,t,t,t
+,saffron,saffron,saffrons,,f,t,t,t,t
+,sage,sage,sages,,f,t,t,t,t
+,sake,sake,sakes,,f,t,t,t,t
+,salad,salad,salads,,f,t,t,t,t
+,salami,salami,salamis,,f,t,t,t,t
+,salmon,salmon,salmon,,f,t,t,f,f
+,salsa,salsa,salsas,,f,t,t,t,t
+,salt,salt,salts,,t,t,t,t,t
+,sambal_oelek,sambal oelek,sambal oeleks,,f,t,t,t,t
+,samphire,samphire,samphires,,f,t,t,t,t
+,sandwich_roll,sandwich roll,sandwich rolls,,f,t,t,t,t
+,sauce,sauce,sauces,,f,t,t,t,t
+,sauerkraut,sauerkraut,sauerkrauts,,f,t,t,t,t
+,sausage,sausage,sausages,meat_and_deli,f,t,t,f,f
+,savory,savory,savories,,f,t,t,t,t
+,scallion,scallion,scallions,,f,t,t,t,t
+,scallop,scallop,scallops,,f,t,t,t,t
+,scone,scone,scones,,f,t,t,t,t
+,season_all,season-all,season-alls,,f,t,t,t,t
+,seasoning,seasoning,seasonings,,f,t,t,t,t
+,seed,seed,seeds,,f,t,t,t,t
+,semi_sweet_morsel,semi-sweet morsel,semi-sweet morsels,,f,t,t,t,t
+,semolina,semolina,semolinas,,f,t,t,t,t
+,shallot,shallot,shallots,,f,t,t,t,t
+,shaving,shaving,shavings,,f,t,t,t,t
+,sheets_nori,sheets nori,sheets noris,,f,t,t,t,t
+,sherry,sherry,sherries,,f,t,t,t,t
+,shortening,shortening,shortenings,,f,t,t,t,t
+,short_rib,short rib,short ribs,,f,t,t,t,t
+,shrimp,shrimp,shrimps,,f,t,t,f,f
+,shucked_oyster,shucked oyster,shucked oysters,,f,t,t,t,t
+,sirloin,sirloin,sirloins,,f,t,t,t,t
+,skewer,skewer,skewers,,f,t,t,t,t
+,skinles,skinles,skinless,,f,t,t,t,t
+,slices_texas_toast,slices texas toast,slices texas toasts,,f,t,t,t,t
+,smoked_gouda,smoked gouda,smoked goudas,,f,t,t,t,t
+,soda,soda,sodas,,f,t,t,t,t
+,sofrito,sofrito,sofritoes,,f,t,t,t,t
+,sole_fillet,sole fillet,sole fillets,,f,t,t,t,t
+,sourdough_starter,sourdough starter,sourdough starters,,f,t,t,t,t
+,soy_creamer,soy creamer,soy creamers,,f,t,t,t,t
+,spaghetti,spaghetti,spaghettis,,f,t,t,t,t
+,spaghettini,spaghettini,spaghettinis,,f,t,t,t,t
+,spinach,spinach,spinaches,,f,t,t,t,t
+,spinachleaf,spinachleaf,spinachleaves,,f,t,t,t,t
+,splenda,splenda,splendas,,f,t,t,t,t
+,split_bengal_gram,split bengal gram,split bengal grams,,f,t,t,t,t
+,spring_roll_wrapper,spring roll wrapper,spring roll wrappers,,f,t,t,t,t
+,sprinkle,sprinkle,sprinkles,,f,t,t,t,t
+,sprite,sprite,sprites,,f,t,t,t,t
+,sprout,sprout,sprouts,,f,t,t,t,t
+,squash,squash,squashes,,f,t,t,t,t
+,squid,squid,squids,,f,t,t,f,f
+,sriracha,sriracha,srirachas,,f,t,t,t,t
+,steak,steak,steaks,meat_and_deli,f,t,t,f,f
+,stevia,stevia,stevias,,f,t,t,t,t
+,stilton,stilton,stiltons,,f,t,t,t,t
+,stock,stock,stocks,,f,t,t,t,t
+,stout,stout,stouts,,f,t,t,t,t
+,strawberry,strawberry,strawberries,,f,t,t,t,t
+,stuffing,stuffing,stuffings,,f,t,t,t,t
+,sucanat,sucanat,sucanats,,f,t,t,t,t
+,suet,suet,suets,,f,t,t,t,t
+,sugar,sugar,sugars,,t,t,t,t,t
+,sugar_based_curing_mixture,sugar-based curing mixture,sugar-based curing mixtures,,f,t,t,t,t
+,sultana,sultana,sultanas,,f,t,t,t,t
+,sumac,sumac,sumacs,,f,t,t,t,t
+,sunflower_kernel,sunflower kernel,sunflower kernels,,f,t,t,t,t
+,sweetcorn,sweetcorn,sweetcorns,,f,t,t,t,t
+,sweetener,sweetener,sweeteners,,f,t,t,t,t
+,sweet_relish,sweet relish,sweet relishes,,f,t,t,t,t
+,swiss_chard,swiss chard,swiss chards,,f,t,t,t,t
+,syrup,syrup,syrups,,f,t,t,t,t
+,tabasco,tabasco,tabascoes,,f,t,t,t,t
+,tagliatelle,tagliatelle,tagliatelles,,f,t,t,t,t
+,tahini,tahini,tahinis,,f,t,t,t,t
+,tamari,tamari,tamaris,,f,t,t,t,t
+,tamarind_paste,tamarind paste,tamarind pastes,,f,t,t,t,t
+,tamarindpaste,tamarindpaste,tamarindpastes,,f,t,t,t,t
+,tapioca,tapioca,tapiocas,,f,t,t,t,t
+,tarragon,tarragon,tarragons,,f,t,t,t,t
+,tea,tea,teas,,f,t,t,t,t
+,tequila,tequila,tequilas,,f,t,t,t,t
+,thyme,thyme,thymes,,f,t,t,t,t
+,thymesprig,thymesprig,thymesprigs,,f,t,t,t,t
+,toffee_chip,toffee chip,toffee chips,,f,t,t,t,t
+,toffee_piece,toffee piece,toffee pieces,,f,t,t,t,t
+,tofu,tofu,tofus,,f,t,t,t,t
+,tomatillo,tomatillo,tomatilloes,,f,t,t,t,t
+,tomato,tomato,tomatoes,fruit_and_veg,f,t,t,t,t
+,toothpick,toothpick,toothpicks,,f,t,t,t,t
+,topping,topping,toppings,,f,t,t,t,t
+,tortellini,tortellini,tortellinis,,f,t,t,t,t
+,tortilla,tortilla,tortillas,,f,t,t,t,t
+,tortilla_chip,tortilla chip,tortilla chips,,f,t,t,t,t
+,treacle,treacle,treacles,,f,t,t,t,t
+,triple_sec,triple sec,triple secs,,f,t,t,t,t
+,tub_philadelphia_original_cooking_creme,tub philadelphia original cooking creme,tub philadelphia original cooking cremes,,f,t,t,t,t
+,tuna,tuna,tuna,,f,t,t,f,f
+,turkey,turkey,turkeys,meat_and_deli,f,t,t,f,f
+,turmeric,turmeric,turmerics,,f,t,t,t,t
+,turnip,turnip,turnips,,f,t,t,t,t
+,vanilla,vanilla,vanillas,,f,t,t,t,t
+,veal,veal,veals,,f,t,t,t,t
+,vegetable,vegetable,vegetables,,f,t,t,t,t
+,velveeta,velveeta,velveetas,,f,t,t,t,t
+,venison,venison,venisons,meat_and_deli,f,t,t,f,f
+,vermouth,vermouth,vermouths,,f,t,t,t,t
+,vinaigrette,vinaigrette,vinaigrettes,,f,t,t,t,t
+,vinegar,vinegar,vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+,vital_wheat_gluten,vital wheat gluten,vital wheat glutens,,f,t,t,t,t
+,vodka,vodka,vodkas,,f,t,t,t,t
+,walnut,walnut,walnuts,,f,t,t,t,t
+,wasabi,wasabi,wasabis,,f,t,t,t,t
+,water,water,waters,,t,t,t,t,t
+,water_chestnut,water chestnut,water chestnuts,,f,t,t,t,t
+,watercres,watercres,watercress,,f,t,t,t,t
+,watermelon,watermelon,watermelons,,f,t,t,t,t
+,weight_gnocchi,weight gnocchi,weight gnocchis,,f,t,t,t,t
+,weight_good_quality_dark_chocolate,weight good quality dark chocolate,weight good quality dark chocolates,,f,t,t,t,t
+,wheat_chex,wheat chex,wheat chexes,,f,t,t,t,t
+,wheat_germ,wheat germ,wheat germs,,f,t,t,t,t
+,whip,whip,whips,,f,t,t,t,t
+,whiskey,whiskey,whiskeys,,f,t,t,t,t
+,whisky,whisky,whiskies,,f,t,t,t,t
+,white,white,whites,,f,t,t,t,t
+,white_baking_chip,white baking chip,white baking chips,,f,t,t,t,t
+,whole_bone_in,whole bone-in,whole bone-ins,,f,t,t,t,t
+,whole_croissant,whole croissant,whole croissants,,f,t,t,t,t
+,whole_deep_dish_pie_crust,whole deep dish pie crust,whole deep dish pie crusts,,f,t,t,t,t
+,whole_english_muffin,whole english muffin,whole english muffins,,f,t,t,t,t
+,whole_frozen_dinner_roll,whole frozen dinner roll,whole frozen dinner rolls,,f,t,t,t,t
+,whole_large_butternut,whole large butternut,whole large butternuts,,f,t,t,t,t
+,whole_mini_pretzel_twist,whole mini-pretzel twist,whole mini-pretzel twists,,f,t,t,t,t
+,whole_rolo_candy,whole rolo candy,whole rolo candies,,f,t,t,t,t
+,whole_store_bought_pizza_dough,whole store bought pizza dough,whole store bought pizza doughs,,f,t,t,t,t
+,whole_tangerine,whole tangerine,whole tangerines,,f,t,t,t,t
+,whole_tostada_shell,whole tostada shell,whole tostada shells,,f,t,t,t,t
+,whole_unbaked_pie_shell,whole unbaked pie shell,whole unbaked pie shells,,f,t,t,t,t
+,whole_yolk,whole yolk,whole yolks,,f,t,t,t,t
+,wine,wine,wines,,f,t,t,t,t
+,wonton_wrapper,wonton wrapper,wonton wrappers,,f,t,t,t,t
+,wood_chip,wood chip,wood chips,,f,t,t,t,t
+,worcestershire,worcestershire,worcestershires,,f,t,t,t,t
+,xanthan_gum,xanthan gum,xanthan gums,,f,t,t,t,t
+,yam,yam,yams,,f,t,t,t,t
+,yeast,yeast,yeasts,,f,t,t,t,t
+,yellow_food_coloring,yellow food coloring,yellow food colorings,,f,t,t,t,t
+,yoghurt,yoghurt,yoghurts,,f,t,t,t,t
+,yogurt,yogurt,yogurts,dairy,f,f,t,f,t
+,zucchini,zucchini,zucchinis,,f,t,t,t,t
+adobo_sauce,adobo_sauce_from_canned_chipotle_peppers,adobo sauce from canned chipotle peppers,adobo sauces from canned chipotle peppers,,f,t,t,t,t
+adobo_sauce,chipotle_adobo_sauce,chipotle adobo sauce,chipotle adobo sauces,,f,t,t,t,t
+adobo_sauce_from_canned_chipotle_peppers,adobo_sauce_from_chipotle_peppers,adobo sauce from chipotle peppers,adobo sauces from chipotle peppers,,f,t,t,t,t
+adobo_sauce_from_canned_chipotle_peppers,adobo_sauce_from_the_chipotle_can,adobo sauce from the chipotle can,adobo sauces from the chipotle can,,f,t,t,t,t
+agave,agave_nectar,agave nectar,agave nectars,,f,t,t,t,t
+all_purpose_flour,gluten_free_all_purpose_flour,gluten-free all-purpose flour,gluten-free all-purpose flours,,f,t,f,t,t
+all_purpose_flour,unbleached_all_purpose_flour,unbleached all-purpose flour,unbleached all-purpose flours,,f,t,f,t,t
+all_purpose_flour,white_all_purpose_flour,white all-purpose flour,white all-purpose flours,,f,t,f,t,t
+allspice,allspice_berry,allspice berry,allspice berries,fruit_and_veg,f,t,t,t,t
+allspice,ground_allspice,ground allspice,ground allspices,,f,t,t,t,t
+almond,almond_bark,almond bark,almond barks,,f,t,t,t,t
+almond,almond_essence,almond essence,almond essences,,f,t,t,t,t
+almond,almond_extract,almond extract,almond extracts,,f,t,t,t,t
+almond,almond_meal,almond meal,almond meals,,f,t,t,t,t
+almond,almond_sliver,almond sliver,almond slivers,,f,t,t,t,t
+almond,blanched_almond,blanched almond,blanched almonds,,f,t,t,t,t
+almond,blanched_slivered_almond,blanched slivered almond,blanched slivered almonds,,f,t,t,t,t
+almond,roasted_almond,roasted almond,roasted almonds,,f,t,t,t,t
+almond,unsalted_almond,unsalted almond,unsalted almonds,,f,t,t,t,t
+almond_bark,weight_chocolate_almond_bark,weight chocolate almond bark,weight chocolate almond barks,,f,t,t,t,t
+almond_bark,weight_white_almond_bark,weight white almond bark,weight white almond barks,,f,t,t,t,t
+almond_milk,unsweetened_almond_milk,unsweetened almond milk,unsweetened almond milks,dairy,f,f,t,f,t
+almond_milk,vanilla_almond_milk,vanilla almond milk,vanilla almond milks,dairy,f,f,t,f,t
+american_cheese,processed_american_cheese,processed american cheese,processed american cheeses,dairy,f,f,t,f,t
+american_cheese,slices_white_american_cheese,slices white american cheese,slices white american cheeses,dairy,f,f,t,f,t
+anise,star_anise,star anise,star anises,,f,t,t,t,t
+apple,apple_brandy,apple brandy,apple brandies,,f,t,t,t,t
+apple,apple_cider,apple cider,apple ciders,,f,t,t,t,t
+apple,apple_jelly,apple jelly,apple jellies,,f,t,t,t,t
+apple,apple_juice,apple juice,apple juices,,f,t,t,t,t
+apple,apple___peeled,apple - peeled,apple - peeleds,,f,t,t,t,t
+apple,apple_pie_filling,apple pie filling,apple pie fillings,,f,t,t,t,t
+apple,bramley_apple,bramley apple,bramley apples,,f,t,t,t,t
+apple,granny_smith_apple,granny smith apple,granny smith apples,,f,t,t,t,t
+apple,red_apple,red apple,red apples,,f,t,t,t,t
+apple,whole_gala_apple,whole gala apple,whole gala apples,,f,t,t,t,t
+apple,whole_green_apple,whole green apple,whole green apples,,f,t,t,t,t
+apple,whole_mcintosh_apple,whole mcintosh apple,whole mcintosh apples,,f,t,t,t,t
+apple_juice,unsweetened_apple_juice,unsweetened apple juice,unsweetened apple juices,,f,t,t,t,t
+apple_sauce,unsweetened_apple_sauce,unsweetened apple sauce,unsweetened apple sauces,,f,t,t,t,t
+applesauce,natural_applesauce,natural applesauce,natural applesauces,,f,t,t,t,t
+applesauce,no_sugar_added_applesauce,no-sugar-added applesauce,no-sugar-added applesauces,,f,t,t,t,t
+applesauce,unsweetened_applesauce,unsweetened applesauce,unsweetened applesauces,,f,t,t,t,t
+apricot,apricot_brandy,apricot brandy,apricot brandies,,f,t,t,t,t
+apricot,apricot_jam,apricot jam,apricot jams,,f,t,t,t,t
+apricot,apricot_nectar,apricot nectar,apricot nectars,,f,t,t,t,t
+apricot,apricot_preserve,apricot preserve,apricot preserves,,f,t,t,t,t
+artichoke,artichoke_heart,artichoke heart,artichoke hearts,,f,t,t,t,t
+artichoke_heart,jar_marinated_artichoke_heart,jar marinated artichoke heart,jar marinated artichoke hearts,,f,t,t,t,t
+asparagu,asparagus_spear,asparagus spear,asparagus spears,,f,t,t,t,t
+avocado,avocado___peeled,avocado - peeled,avocado - peeleds,,f,t,t,t,t
+avocado,hass_avocado,hass avocado,hass avocados,,f,t,t,t,t
+bacon,bacon_bit,bacon bit,bacon bits,meat_and_deli,f,t,t,f,f
+bacon,bacon_dripping,bacon dripping,bacon drippings,meat_and_deli,f,t,t,f,f
+bacon,bacon_grease,bacon grease,bacon greases,meat_and_deli,f,t,t,f,f
+bacon,bacon_lardon,bacon lardon,bacon lardons,meat_and_deli,f,t,t,f,f
+bacon,bacon_strip,bacon strip,bacon strips,meat_and_deli,f,t,t,f,f
+bacon,rashers_smoked_streaky_bacon,rashers smoked streaky bacon,rashers smoked streaky bacons,meat_and_deli,f,t,t,f,f
+bacon,rashers_streaky_bacon,rashers streaky bacon,rashers streaky bacons,meat_and_deli,f,t,t,f,f
+bacon,reserved_bacon_fat,reserved bacon fat,reserved bacon fats,meat_and_deli,f,t,t,f,f
+bacon,slices_applewood_smoked_bacon,slices applewood smoked bacon,slices applewood smoked bacons,meat_and_deli,f,t,t,f,f
+bacon,slices_canadian_bacon,slices canadian bacon,slices canadian bacons,meat_and_deli,f,t,t,f,f
+bacon,slices_center_cut_bacon,slices center-cut bacon,slices center-cut bacons,meat_and_deli,f,t,t,f,f
+bacon,slices_crispy_bacon,slices crispy bacon,slices crispy bacons,meat_and_deli,f,t,t,f,f
+bacon,turkey_bacon,turkey bacon,turkey bacons,meat_and_deli,f,t,t,f,f
+bacon_bit,real_bacon_bit,real bacon bit,real bacon bits,meat_and_deli,f,t,t,f,f
+bacon_dripping,reserved_bacon_dripping,reserved bacon dripping,reserved bacon drippings,meat_and_deli,f,t,t,f,f
+bacon_lardon,smoked_bacon_lardon,smoked bacon lardon,smoked bacon lardons,meat_and_deli,f,t,t,f,f
+baguette,french_baguette,french baguette,french baguettes,,f,t,f,t,t
+baking_mix,all_purpose_baking_mix,all-purpose baking mix,all-purpose baking mixes,,f,t,t,t,t
+baking_mix,biscuit_baking_mix,biscuit baking mix,biscuit baking mixes,,f,t,t,t,t
+baking_mix,bisquick_baking_mix,bisquick baking mix,bisquick baking mixes,,f,t,t,t,t
+baking_mix,buttermilk_baking_mix,buttermilk baking mix,buttermilk baking mixes,,f,t,t,t,t
+baking_powder,double_acting_baking_powder,double-acting baking powder,double-acting baking powders,,f,t,t,t,t
+baking_powder,gluten_free_baking_powder,gluten-free baking powder,gluten-free baking powders,,f,t,t,t,t
+baking_powder,level_tsp_baking_powder,level tsp baking powder,level tsp baking powders,,f,t,t,t,t
+balsamic_vinaigrette,balsamic_vinaigrette_dressing,balsamic vinaigrette dressing,balsamic vinaigrette dressings,,f,t,t,t,t
+balsamic_vinegar,aged_balsamic_vinegar,aged balsamic vinegar,aged balsamic vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+balsamic_vinegar,good_balsamic_vinegar,good balsamic vinegar,good balsamic vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+balsamic_vinegar,good_quality_balsamic_vinegar,good quality balsamic vinegar,good quality balsamic vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+balsamic_vinegar,white_balsamic_vinegar,white balsamic vinegar,white balsamic vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+banana,banana_extract,banana extract,banana extracts,fruit_and_veg,f,t,t,t,t
+banana,banana_shallot,banana shallot,banana shallots,fruit_and_veg,f,t,t,t,t
+banana,overripe_banana,overripe banana,overripe bananas,fruit_and_veg,f,t,t,t,t
+banana,package_instant_banana_pudding_mix,package instant banana pudding mix,package instant banana pudding mixes,fruit_and_veg,f,t,t,t,t
+banana,very_ripe_banana,very ripe banana,very ripe bananas,fruit_and_veg,f,t,t,t,t
+banana,whole_over_ripe_banana,whole over-ripe banana,whole over-ripe bananas,fruit_and_veg,f,t,t,t,t
+banana_pepper,banana_pepper_ring,banana pepper ring,banana pepper rings,fruit_and_veg,f,t,t,t,t
+barbecue_sauce,honey_barbecue_sauce,honey barbecue sauce,honey barbecue sauces,,f,t,t,t,t
+barley,pearl_barley,pearl barley,pearl barleys,,f,t,t,t,t
+barley,wheat_and_barley_nugget_cereal,wheat and barley nugget cereal,wheat and barley nugget cereals,,f,t,t,t,t
+basil,basil_pesto,basil pesto,basil pestoes,,f,t,t,t,t
+basil,sweet_basil,sweet basil,sweet basils,,f,t,t,t,t
+basil,thai_basil,thai basil,thai basils,,f,t,t,t,t
+basil_pesto,prepared_basil_pesto,prepared basil pesto,prepared basil pestoes,,f,t,t,t,t
+basmati_rice,brown_basmati_rice,brown basmati rice,brown basmati rices,,f,t,t,t,t
+bbq_sauce,honey_bbq_sauce,honey bbq sauce,honey bbq sauces,,f,t,t,t,t
+bean,baked_bean,baked bean,baked beans,,f,t,t,t,t
+bean,bean_sprout,bean sprout,bean sprouts,,f,t,t,t,t
+bean,black_bean,black bean,black beans,,f,t,t,t,t
+bean,broad_bean,broad bean,broad beans,,f,t,t,t,t
+bean,cannellini_bean,cannellini bean,cannellini beans,,f,t,t,t,t
+bean,chili_bean,chili bean,chili beans,,f,t,t,t,t
+bean,coffee_bean,coffee bean,coffee beans,,f,t,t,t,t
+bean,dried_navy_bean,dried navy bean,dried navy beans,,f,t,t,t,t
+bean,dried_red_bean,dried red bean,dried red beans,,f,t,t,t,t
+bean,dry_great_northern_bean,dry great northern bean,dry great northern beans,,f,t,t,t,t
+bean,edamame_bean,edamame bean,edamame beans,,f,t,t,t,t
+bean,french_bean,french bean,french beans,,f,t,t,t,t
+bean,garbanzo_bean,garbanzo bean,garbanzo beans,,f,t,t,t,t
+bean,green_bean,green bean,green beans,,f,t,t,t,t
+bean,kidney_bean,kidney bean,kidney beans,,f,t,t,t,t
+bean,lima_bean,lima bean,lima beans,,f,t,t,t,t
+bean,pinto_bean,pinto bean,pinto beans,,f,t,t,t,t
+bean,pork_and_bean,can pork and bean,can pork and beans,meat_and_deli,f,t,t,f,f
+bean,ranch_style_bean,can ranch-style bean,can ranch-style beans,,f,t,t,t,t
+bean,refried_bean,refried bean,refried beans,,f,t,t,t,t
+bean,white_bean,white bean,white beans,,f,t,t,t,t
+bean_sprout,mung_bean_sprout,mung bean sprout,mung bean sprouts,,f,t,t,t,t
+beef,beef_base,beef base,beef bases,meat_and_deli,f,t,t,f,f
+beef,beef_brisket,beef brisket,beef briskets,meat_and_deli,f,t,t,f,f
+beef,beef_chuck,beef chuck,beef chucks,meat_and_deli,f,t,t,f,f
+beef,beef_consomme,beef consomme,beef consommes,meat_and_deli,f,t,t,f,f
+beef,beef_dripping,beef dripping,beef drippings,meat_and_deli,f,t,t,f,f
+beef,beef_short_rib,beef short rib,beef short ribs,meat_and_deli,f,t,t,f,f
+beef,beef_sirloin,beef sirloin,beef sirloins,meat_and_deli,f,t,t,f,f
+beef,beef_steak,beef steak,beef steaks,meat_and_deli,f,t,t,f,f
+beef,beef_suet,beef suet,beef suets,meat_and_deli,f,t,t,f,f
+beef,beef_tenderloin,beef tenderloin,beef tenderloins,meat_and_deli,f,t,t,f,f
+beef,beef_tongue,beef tongue,beef tongues,meat_and_deli,f,t,t,f,f
+beef,ground_beef,ground beef,ground beefs,meat_and_deli,f,t,t,f,f
+beef,lean_beef_mince,lean beef mince,lean beef minces,meat_and_deli,f,t,t,f,f
+beef,roast_beef,roast beef,roast beefs,meat_and_deli,f,t,t,f,f
+beef_chuck,beef_chuck_roast,beef chuck roast,beef chuck roasts,meat_and_deli,f,t,t,f,f
+beef_chuck_roast,boneless_beef_chuck_roast,boneless beef chuck roast,boneless beef chuck roasts,meat_and_deli,f,t,t,f,f
+beef_short_rib,boneless_beef_short_rib,boneless beef short rib,boneless beef short ribs,meat_and_deli,f,t,t,f,f
+beer,guinness_beer,guinness beer,guinness beers,,f,t,f,t,t
+beer,mexican_beer,mexican beer,mexican beers,,f,t,f,t,t
+beer,stout_beer,stout beer,stout beers,,f,t,f,t,t
+bell_pepper,green_bell_pepper,green bell pepper,green bell peppers,,f,t,t,t,t
+bell_pepper,red_bell_pepper,red bell pepper,red bell peppers,,f,t,t,t,t
+bell_pepper,sweet_bell_pepper,sweet bell pepper,sweet bell peppers,,f,t,t,t,t
+berry,berry_jam,berry jam,berry jams,fruit_and_veg,f,t,t,t,t
+berry,goji_berry,goji berry,goji berries,fruit_and_veg,f,t,t,t,t
+berry,juniper_berry,juniper berry,juniper berries,fruit_and_veg,f,t,t,t,t
+biscuit,digestive_biscuit,digestive biscuit,digestive biscuits,,f,t,t,t,t
+bitter,angostura_bitter,angostura bitter,angostura bitters,,f,t,t,t,t
+bitter,aromatic_bitter,aromatic bitter,aromatic bitters,,f,t,t,t,t
+bittersweet_chocolate,squares_bittersweet_chocolate,squares bittersweet chocolate,squares bittersweet chocolates,,f,t,t,t,t
+black,black_treacle,black treacle,black treacles,,f,t,t,t,t
+black_bean,black_bean_sauce,black bean sauce,black bean sauces,,f,t,t,t,t
+black_bean,refried_black_bean,refried black bean,refried black beans,,f,t,t,t,t
+blackberry,blackberry_jam,blackberry jam,blackberry jams,,f,t,t,t,t
+black_pepper,black_pepper_powder,black pepper powder,black pepper powders,,f,t,t,t,t
+black_pepper,cracked_black_pepper,cracked black pepper,cracked black peppers,,f,t,t,t,t
+black_pepper,fresh_ground_black_pepper,fresh-ground black pepper,fresh-ground black peppers,,f,t,t,t,t
+black_pepper,ground_black_pepper,ground black pepper,ground black peppers,,f,t,t,t,t
+black_pepper,salt_black_pepper,salt black pepper,salt black peppers,,f,t,t,t,t
+black_peppercorn,cracked_black_peppercorn,cracked black peppercorn,cracked black peppercorns,,f,t,t,t,t
+blanched_almond,blanched_almond_flour,blanched almond flour,blanched almond flours,,f,t,f,t,t
+blueberry,can_blueberry_pie_filling,can blueberry pie filling,can blueberry pie fillings,,f,t,t,t,t
+blue_cheese,blue_cheese_dressing,blue cheese dressing,blue cheese dressings,dairy,f,f,t,f,t
+blue_cheese,blue_cheese_salad_dressing,blue cheese salad dressing,blue cheese salad dressings,dairy,f,f,t,f,t
+blue_food_coloring,blue_curacao,blue curacao,blue curacaos,,f,t,t,t,t
+boneless_chicken_breast,skinless_boneless_chicken_breast,skinless boneless chicken breast,skinless boneless chicken breasts,meat_and_deli,f,t,t,f,f
+boneless_pork_chop,boneless_pork_loin,boneless pork loin,boneless pork loins,meat_and_deli,f,t,t,f,f
+boneless_pork_chop,boneless_pork_roast,boneless pork roast,boneless pork roasts,meat_and_deli,f,t,t,f,f
+boneless_pork_chop,boneless_pork_shoulder,boneless pork shoulder,boneless pork shoulders,meat_and_deli,f,t,t,f,f
+boneless_pork_loin,boneless_pork_loin_roast,boneless pork loin roast,boneless pork loin roasts,meat_and_deli,f,t,t,f,f
+boneless_pork_shoulder,boneless_pork_shoulder_roast,boneless pork shoulder roast,boneless pork shoulder roasts,meat_and_deli,f,t,t,f,f
+boneless_skinless_chicken,boneless_skinless_chicken_tender,boneless skinless chicken tender,boneless skinless chicken tenders,meat_and_deli,f,t,t,f,f
+bourbon,bourbon_whiskey,bourbon whiskey,bourbon whiskeys,,f,t,t,t,t
+bourbon,kentucky_bourbon,kentucky bourbon,kentucky bourbons,,f,t,t,t,t
+bread,bread_bowl,bread bowl,bread bowls,,f,t,f,t,t
+bread,bread_machine_yeast,bread machine yeast,bread machine yeasts,,f,t,f,t,t
+bread,crusty_bread,crusty bread,crusty breads,,f,t,f,t,t
+bread,french_bread,french bread,french breads,,f,t,f,t,t
+bread,italian_bread_crumb,italian bread crumb,italian bread crumbs,,f,t,f,t,t
+bread,italian_seasoned_bread_crumb,italian-seasoned bread crumb,italian-seasoned bread crumbs,,f,t,f,t,t
+bread,loaf_challah_bread,loaf challah bread,loaf challah breads,,f,t,f,t,t
+bread,loaf_frozen_bread_dough,loaf frozen bread dough,loaf frozen bread doughs,,f,t,f,t,t
+bread,naan_bread,naan bread,naan breads,,f,t,f,t,t
+bread,package_corn_bread_mix,package corn bread mix,package corn bread mixes,,f,t,f,t,t
+bread,package_dry_bread_stuffing_mix,package dry bread stuffing mix,package dry bread stuffing mixes,,f,t,f,t,t
+bread,panko_bread_crumb,panko bread crumb,panko bread crumbs,,f,t,f,t,t
+bread,pita_bread,pita bread,pita breads,,f,t,f,t,t
+bread,seasoned_bread_crumb,seasoned bread crumb,seasoned bread crumbs,,f,t,f,t,t
+bread,slices_ciabatta_bread,slices ciabatta bread,slices ciabatta breads,,f,t,f,t,t
+bread,slices_day_old_bread,slices day-old bread,slices day-old breads,,f,t,f,t,t
+bread,slices_focaccia_bread,slices focaccia bread,slices focaccia breads,,f,t,f,t,t
+bread,slices_multigrain_bread,slices multigrain bread,slices multigrain breads,,f,t,f,t,t
+bread,slices_rye_bread,slices rye bread,slices rye breads,,f,t,f,t,t
+bread,slices_sandwich_bread,slices sandwich bread,slices sandwich breads,,f,t,f,t,t
+bread,soft_bread_crumb,soft bread crumb,soft bread crumbs,,f,t,f,t,t
+bread,sourdough_bread,sourdough bread,sourdough breads,,f,t,f,t,t
+bread,white_bread,white bread,white breads,,f,t,f,t,t
+breadcrumb,italian_breadcrumb,italian breadcrumb,italian breadcrumbs,,f,t,f,t,t
+breadcrumb,panko_breadcrumb,panko breadcrumb,panko breadcrumbs,,f,t,f,t,t
+breadcrumb,white_breadcrumb,white breadcrumb,white breadcrumbs,,f,t,f,t,t
+bread_flour,strong_bread_flour,strong bread flour,strong bread flours,,f,t,f,t,t
+bread_flour,unbleached_bread_flour,unbleached bread flour,unbleached bread flours,,f,t,f,t,t
+bread_flour,white_bread_flour,white bread flour,white bread flours,,f,t,f,t,t
+breakfast_sausage,pork_breakfast_sausage,pork breakfast sausage,pork breakfast sausages,meat_and_deli,f,t,t,f,f
+brewed_coffee,strong_brewed_coffee,strong brewed coffee,strong brewed coffees,,f,t,t,t,t
+brie_cheese,round_brie_cheese,round brie cheese,round brie cheeses,dairy,f,f,t,f,t
+broccoli,broccoli_crown,broccoli crown,broccoli crowns,,f,t,t,t,t
+broccoli,broccoli_floret,broccoli floret,broccoli florets,,f,t,t,t,t
+broccoli,broccoli_floweret,broccoli floweret,broccoli flowerets,,f,t,t,t,t
+broccoli,broccoli_slaw,broccoli slaw,broccoli slaws,,f,t,t,t,t
+broccoli,package_broccoli_coleslaw_mix,package broccoli coleslaw mix,package broccoli coleslaw mixes,,f,t,t,t,t
+broccoli,purple_sprouting_broccoli,purple sprouting broccoli,purple sprouting broccolis,,f,t,t,t,t
+brown_mustard,spicy_brown_mustard,spicy brown mustard,spicy brown mustards,,f,t,t,t,t
+brown_rice,brown_rice_flour,brown rice flour,brown rice flours,,f,t,f,t,t
+brown_rice,brown_rice_syrup,brown rice syrup,brown rice syrups,,f,t,t,t,t
+brown_rice,puffed_brown_rice_cereal,puffed brown rice cereal,puffed brown rice cereals,,f,t,t,t,t
+brown_rice,short_grain_brown_rice,short-grain brown rice,short-grain brown rices,,f,t,t,t,t
+brown_sugar,golden_brown_sugar,golden brown sugar,golden brown sugars,,f,t,t,t,t
+brown_sugar,organic_brown_sugar,organic brown sugar,organic brown sugars,,f,t,t,t,t
+brown_sugar,soft_brown_sugar,soft brown sugar,soft brown sugars,,f,t,t,t,t
+brown_sugar,splenda_brown_sugar,splenda brown sugar,splenda brown sugars,,f,t,t,t,t
+bun,burger_bun,burger bun,burger buns,,f,t,t,t,t
+bun,hamburger_bun,hamburger bun,hamburger buns,,f,t,t,t,t
+bun,hot_dog_bun,hot dog bun,hot dog buns,,f,t,t,t,t
+bun,sandwich_bun,sandwich bun,sandwich buns,,f,t,t,t,t
+bun,slider_bun,slider bun,slider buns,,f,t,t,t,t
+bun,whole_hoagie_bun,whole hoagie bun,whole hoagie buns,,f,t,t,t,t
+butter,almond_butter,almond butter,almond butters,dairy,f,f,t,f,t
+butter,apple_butter,apple butter,apple butters,dairy,f,f,t,f,t
+butter,bread_and_butter_pickle,bread and butter pickle,bread and butter pickles,dairy,f,f,f,f,t
+butter,butter_bread,butter bread,butter breads,dairy,f,f,f,f,t
+butter,butter_extract,butter extract,butter extracts,dairy,f,f,t,f,t
+butter,butter_flavored_cooking_spray,butter flavored cooking spray,butter flavored cooking sprays,dairy,f,f,t,f,t
+butter,butter_flavored_crisco,butter flavored crisco,butter flavored criscoes,dairy,f,f,t,f,t
+butter,butter_milk,butter milk,butter milks,dairy,f,f,t,f,t
+butter,butter_or_shortening,butter or shortening,butter or shortenings,dairy,f,f,t,f,t
+butter,can_butter_bean,can butter bean,can butter beans,dairy,f,f,t,f,t
+butter,cashew_butter,cashew butter,cashew butters,dairy,f,f,t,f,t
+butter,chilled_butter,chilled butter,chilled butters,dairy,f,f,t,f,t
+butter,clarified_butter,clarified butter,clarified butters,dairy,f,f,t,f,t
+butter,coconut_butter,coconut butter,coconut butters,dairy,f,f,t,f,t
+butter,cookie_butter,cookie butter,cookie butters,dairy,f,f,t,f,t
+butter,ghee_or_butter,ghee or butter,ghee or butters,dairy,f,f,t,f,t
+butter,knob_butter,knob butter,knob butters,dairy,f,f,t,f,t
+butter,leaves_butter_lettuce,leaves butter lettuce,leaves butter lettuces,dairy,f,f,t,f,t
+butter,margarine_or_butter,margarine or butter,margarine or butters,dairy,f,f,t,f,t
+butter,organic_butter,organic butter,organic butters,dairy,f,f,t,f,t
+butter,peanut_butter,peanut butter,peanut butters,dairy,f,f,t,f,t
+butter,pumpkin_butter,pumpkin butter,pumpkin butters,dairy,f,f,t,f,t
+butter,real_butter,real butter,real butters,dairy,f,f,t,f,t
+butter,soft_butter,soft butter,soft butters,dairy,f,f,t,f,t
+butter,sweet_butter,sweet butter,sweet butters,dairy,f,f,t,f,t
+butter,sweet_cream_butter,sweet cream butter,sweet cream butters,dairy,f,f,t,f,t
+butter,unsalted_butter,unsalted butter,unsalted butters,dairy,f,f,t,f,t
+butter,vegan_butter,vegan butter,vegan butters,dairy,f,f,t,f,t
+buttermilk,cultured_buttermilk,cultured buttermilk,cultured buttermilks,,f,t,t,t,t
+buttermilk,fat_free_buttermilk,fat-free buttermilk,fat-free buttermilks,,f,t,t,t,t
+buttermilk,low_fat_buttermilk,low-fat buttermilk,low-fat buttermilks,,f,t,t,t,t
+buttermilk,lowfat_buttermilk,lowfat buttermilk,lowfat buttermilks,,f,t,t,t,t
+buttermilk,non_fat_buttermilk,non-fat buttermilk,non-fat buttermilks,,f,t,t,t,t
+buttermilk,powdered_buttermilk,powdered buttermilk,powdered buttermilks,,f,t,t,t,t
+buttermilk,well_shaken_buttermilk,well-shaken buttermilk,well-shaken buttermilks,,f,t,t,t,t
+butternut_squash,butternut_squash___peeled,butternut squash - peeled,butternut squash - peeleds,,f,t,t,t,t
+button_mushroom,white_button_mushroom,white button mushroom,white button mushrooms,,f,t,t,t,t
+cabbage,napa_cabbage,napa cabbage,napa cabbages,,f,t,t,t,t
+cabbage,purple_cabbage,purple cabbage,purple cabbages,,f,t,t,t,t
+cabbage,red_cabbage,red cabbage,red cabbages,,f,t,t,t,t
+cabbage,savoy_cabbage,savoy cabbage,savoy cabbages,,f,t,t,t,t
+cabbage,white_cabbage,white cabbage,white cabbages,,f,t,t,t,t
+cacao,cacao_nib,cacao nib,cacao nibs,,f,t,t,t,t
+cacao,cacao_powder,cacao powder,cacao powders,,f,t,t,t,t
+cacao,creme_de_cacao,creme de cacao,cremes de cacao,,f,t,t,t,t
+cake,cake_compressed_fresh_yeast,cake compressed fresh yeast,cake compressed fresh yeasts,,f,t,t,t,t
+cake,cake_mix,cake mix,cake mixes,,f,t,t,t,t
+cake,matzo_cake_meal,matzo cake meal,matzo cake meals,,f,t,t,t,t
+cake_mix,package_chocolate_cake_mix,package chocolate cake mix,package chocolate cake mixes,,f,t,t,t,t
+cake_mix,package_lemon_cake_mix,package lemon cake mix,package lemon cake mixes,,f,t,t,t,t
+cake_mix,red_velvet_cake_mix,red velvet cake mix,red velvet cake mixes,,f,t,t,t,t
+cake_mix,white_cake_mix,white cake mix,white cake mixes,,f,t,t,t,t
+cake_mix,yellow_cake_mix,yellow cake mix,yellow cake mixes,,f,t,t,t,t
+can_crescent_roll,cans_refrigerated_crescent_roll,cans refrigerated crescent roll,cans refrigerated crescent rolls,,f,t,t,t,t
+candy_cane,peppermint_candy_cane,peppermint candy cane,peppermint candy canes,,f,t,t,t,t
+cane_sugar,natural_cane_sugar,natural cane sugar,natural cane sugars,,f,t,t,t,t
+cane_sugar,organic_cane_sugar,organic cane sugar,organic cane sugars,,f,t,t,t,t
+can_frozen_lemonade_concentrate,can_frozen_pink_lemonade_concentrate,can frozen pink lemonade concentrate,can frozen pink lemonade concentrates,,f,t,t,t,t
+can_mandarin_orange,mandarin_orange_segment,mandarin orange segment,mandarin orange segments,,f,t,t,t,t
+caramel,caramel_bit,caramel bit,caramel bits,,f,t,t,t,t
+caramel,caramel_syrup,caramel syrup,caramel syrups,,f,t,t,t,t
+caramel,individually_wrapped_caramel,individually wrapped caramel,individually wrapped caramels,,f,t,t,t,t
+caramel_sauce,salted_caramel_sauce,salted caramel sauce,salted caramel sauces,,f,t,t,t,t
+cardamom,cardamom_pod,cardamom pod,cardamom pods,,f,t,t,t,t
+cardamom,cardamom_powder,cardamom powder,cardamom powders,,f,t,t,t,t
+cardamom,whole_black_cardamom,whole black cardamom,whole black cardamoms,,f,t,t,t,t
+cardamom_pod,green_cardamom_pod,green cardamom pod,green cardamom pods,,f,t,t,t,t
+carrot,carrot_juice,carrot juice,carrot juices,,f,t,t,t,t
+carrot,frozen_peas_and_carrot,frozen peas and carrot,frozen peas and carrots,,f,t,t,t,t
+carrot,julienned_carrot,julienned carrot,julienned carrots,,f,t,t,t,t
+carrot,matchstick_carrot,matchstick carrot,matchstick carrots,,f,t,t,t,t
+cashew,roasted_cashew,roasted cashew,roasted cashews,,f,t,t,t,t
+cashew,unsalted_cashew,unsalted cashew,unsalted cashews,,f,t,t,t,t
+caster_sugar,golden_caster_sugar,golden caster sugar,golden caster sugars,,f,t,t,t,t
+caster_sugar,white_caster_sugar,white caster sugar,white caster sugars,,f,t,t,t,t
+cauliflower,cauliflower_floret,cauliflower floret,cauliflower florets,,f,t,t,t,t
+cayenne,cayenne_powder,cayenne powder,cayenne powders,,f,t,t,t,t
+cayenne_pepper,cayenne_pepper_sauce,cayenne pepper sauce,cayenne pepper sauces,,f,t,t,t,t
+celery,celery_root,celery root,celery roots,,f,t,t,t,t
+celery,celery_seed,celery seed,celery seeds,,f,t,t,t,t
+cheddar,mature_cheddar,mature cheddar,mature cheddars,,f,t,t,t,t
+cheddar_cheese,extra_sharp_cheddar_cheese,extra-sharp cheddar cheese,extra-sharp cheddar cheeses,dairy,f,f,t,f,t
+cheddar_cheese,mature_cheddar_cheese,mature cheddar cheese,mature cheddar cheeses,dairy,f,f,t,f,t
+cheddar_cheese,shredded_mild_cheddar_cheese,shredded mild cheddar cheese,shredded mild cheddar cheeses,dairy,f,f,t,f,t
+cheddar_cheese,shredded_reduced_fat_cheddar_cheese,shredded reduced-fat cheddar cheese,shredded reduced-fat cheddar cheeses,dairy,f,f,t,f,t
+cheddar_cheese,white_cheddar_cheese,white cheddar cheese,white cheddar cheeses,dairy,f,f,t,f,t
+cheese,american_cheese,american cheese,american cheeses,dairy,f,f,t,f,t
+cheese,asiago_cheese,asiago cheese,asiago cheeses,dairy,f,f,t,f,t
+cheese,bleu_cheese,bleu cheese,bleu cheeses,dairy,f,f,t,f,t
+cheese,blue_cheese,blue cheese,blue cheeses,dairy,f,f,t,f,t
+cheese,brie_cheese,brie cheese,brie cheeses,dairy,f,f,t,f,t
+cheese,cheddar_cheese,cheddar cheese,cheddar cheeses,dairy,f,f,t,f,t
+cheese,cojita_cheese,cojita cheese,cojita cheeses,dairy,f,f,t,f,t
+cheese,colby_cheese,colby cheese,colby cheeses,dairy,f,f,t,f,t
+cheese,colby_jack_cheese,colby-jack cheese,colby-jack cheeses,dairy,f,f,t,f,t
+cheese,cotija_cheese,cotija cheese,cotija cheeses,dairy,f,f,t,f,t
+cheese,cottage_cheese,cottage cheese,cottage cheeses,dairy,f,f,t,f,t
+cheese,cream_cheese,cream cheese,cream cheeses,dairy,f,f,t,f,t
+cheese,feta_cheese,feta cheese,feta cheeses,dairy,f,f,t,f,t
+cheese,fontina_cheese,fontina cheese,fontina cheeses,dairy,f,f,t,f,t
+cheese,gorgonzola_cheese,gorgonzola cheese,gorgonzola cheeses,dairy,f,f,t,f,t
+cheese,gouda_cheese,gouda cheese,gouda cheeses,dairy,f,f,t,f,t
+cheese,gruyere_cheese,gruyere cheese,gruyere cheeses,dairy,f,f,t,f,t
+cheese,havarti_cheese,havarti cheese,havarti cheeses,dairy,f,f,t,f,t
+cheese,italian_cheese_blend,italian cheese blend,italian cheese blends,dairy,f,f,t,f,t
+cheese,jack_cheese,jack cheese,jack cheeses,dairy,f,f,t,f,t
+cheese,manchego_cheese,manchego cheese,manchego cheeses,dairy,f,f,t,f,t
+cheese,mascarpone_cheese,mascarpone cheese,mascarpone cheeses,dairy,f,f,t,f,t
+cheese,mexican_cheese,mexican cheese,mexican cheeses,dairy,f,f,t,f,t
+cheese,mozzarella_cheese,mozzarella cheese,mozzarella cheeses,dairy,f,f,t,f,t
+cheese,muenster_cheese,muenster cheese,muenster cheeses,dairy,f,f,t,f,t
+cheese,package_refrigerated_cheese_tortellini,package refrigerated cheese tortellini,package refrigerated cheese tortellinis,dairy,f,f,t,f,t
+cheese,parmesan_cheese,parmesan cheese,parmesan cheeses,dairy,f,f,t,f,t
+cheese,parmigiano_cheese,parmigiano cheese,parmigiano cheeses,dairy,f,f,t,f,t
+cheese,parmigiano_reggiano_cheese,parmigiano-reggiano cheese,parmigiano-reggiano cheeses,dairy,f,f,t,f,t
+cheese,pecorino_cheese,pecorino cheese,pecorino cheeses,dairy,f,f,t,f,t
+cheese,pepperjack_cheese,pepperjack cheese,pepperjack cheeses,dairy,f,f,t,f,t
+cheese,pimento_cheese,pimento cheese,pimento cheeses,dairy,f,f,t,f,t
+cheese,processed_cheese,processed cheese,processed cheeses,dairy,f,f,t,f,t
+cheese,provolone_cheese,provolone cheese,provolone cheeses,dairy,f,f,t,f,t
+cheese,ricotta_cheese,ricotta cheese,ricotta cheeses,dairy,f,f,t,f,t
+cheese,romano_cheese,romano cheese,romano cheeses,dairy,f,f,t,f,t
+cheese,soft_goat_cheese,soft goat cheese,soft goat cheeses,dairy,f,f,t,f,t
+cheese,sticks_string_cheese,sticks string cheese,sticks string cheeses,dairy,f,f,t,f,t
+cheese,stilton_cheese,stilton cheese,stilton cheeses,dairy,f,f,t,f,t
+cheese,swiss_cheese,swiss cheese,swiss cheeses,dairy,f,f,t,f,t
+cheese,velveeta_cheese,velveeta cheese,velveeta cheeses,dairy,f,f,t,f,t
+cheese,weight_chevre_style_goat_cheese,weight chevre-style goat cheese,weight chevre-style goat cheeses,dairy,f,f,t,f,t
+cheese,weight_neufchatel_cheese_softened,weight neufchatel cheese softened,weight neufchatel cheese softeneds,dairy,f,f,t,f,t
+cherry,cherry_brandy,cherry brandy,cherry brandies,,f,t,t,t,t
+cherry,cherry_jam,cherry jam,cherry jams,,f,t,t,t,t
+cherry,cherry_pie_filling,cherry pie filling,cherry pie fillings,,f,t,t,t,t
+cherry,cherry_preserve,cherry preserve,cherry preserves,,f,t,t,t,t
+cherry,glacé_cherry,glacé cherry,glacé cherries,,f,t,t,t,t
+cherry,maraschino_cherry,maraschino cherry,maraschino cherries,,f,t,t,t,t
+cherry,sour_cherry,sour cherry,sour cherries,,f,t,t,t,t
+cherry,sweet_cherry,sweet cherry,sweet cherries,,f,t,t,t,t
+cherry,tart_cherry,tart cherry,tart cherries,,f,t,t,t,t
+cherry_tomato,yellow_cherry_tomato,yellow cherry tomato,yellow cherry tomatoes,,f,t,t,t,t
+chicken,bone_in_chicken_piece,bone-in chicken piece,bone-in chicken pieces,meat_and_deli,f,t,t,f,f
+chicken,boneless_skinless_chicken,boneless skinless chicken,boneless skinless chickens,meat_and_deli,f,t,t,f,f
+chicken,chicken_base,chicken base,chicken bases,meat_and_deli,f,t,t,f,f
+chicken,chicken_breast,chicken breast,chicken breasts,meat_and_deli,f,t,t,f,f
+chicken,chicken_cutlet,chicken cutlet,chicken cutlets,meat_and_deli,f,t,t,f,f
+chicken,chicken_drumstick,chicken drumstick,chicken drumsticks,meat_and_deli,f,t,t,f,f
+chicken,chicken_gizzard,chicken gizzard,chicken gizzards,meat_and_deli,f,t,t,f,f
+chicken,chicken_leg,chicken leg,chicken legs,meat_and_deli,f,t,t,f,f
+chicken,chicken_liver,chicken liver,chicken livers,meat_and_deli,f,t,t,f,f
+chicken,chicken_part,chicken part,chicken parts,meat_and_deli,f,t,t,f,f
+chicken,chicken_sausage,chicken sausage,chicken sausages,meat_and_deli,f,t,t,f,f
+chicken,chicken_seasoning,chicken seasoning,chicken seasonings,meat_and_deli,f,t,t,f,f
+chicken,chicken_tender,chicken tender,chicken tenders,meat_and_deli,f,t,t,f,f
+chicken,chicken_tenderloin,chicken tenderloin,chicken tenderloins,meat_and_deli,f,t,t,f,f
+chicken,chicken_thigh,chicken thigh,chicken thighs,meat_and_deli,f,t,t,f,f
+chicken,chicken_wing,chicken wing,chicken wings,meat_and_deli,f,t,t,f,f
+chicken,ground_chicken_or_turkey,ground chicken or turkey,ground chicken or turkeys,meat_and_deli,f,t,t,f,f
+chicken,roasting_chicken,roasting chicken,roasting chickens,meat_and_deli,f,t,t,f,f
+chicken,whole_fryer_chicken,whole fryer chicken,whole fryer chickens,meat_and_deli,f,t,t,f,f
+chicken,whole_rotisserie_chicken,whole rotisserie chicken,whole rotisserie chickens,meat_and_deli,f,t,t,f,f
+chicken_bouillon,chicken_bouillon_powder,chicken bouillon powder,chicken bouillon powders,,f,t,f,t,t
+chicken_breast,boneless_chicken_breast,boneless chicken breast,boneless chicken breasts,meat_and_deli,f,t,t,f,f
+chicken_breast,chicken_breast_meat,chicken breast meat,chicken breast meats,meat_and_deli,f,t,t,f,f
+chicken_breast,chicken_breast_tender,chicken breast tender,chicken breast tenders,meat_and_deli,f,t,t,f,f
+chicken_breast,chicken_breast_tenderloin,chicken breast tenderloin,chicken breast tenderloins,meat_and_deli,f,t,t,f,f
+chicken_breast,skinless_chicken_breast,skinless chicken breast,skinless chicken breasts,meat_and_deli,f,t,t,f,f
+chicken_broth,carton_chicken_broth,carton chicken broth,carton chicken broths,,f,t,t,t,t
+chicken_broth,low_salt_chicken_broth,low-salt chicken broth,low-salt chicken broths,,f,t,t,t,t
+chicken_broth,low_sodium_chicken_broth,low-sodium chicken broth,low-sodium chicken broths,,f,t,t,t,t
+chicken_stock,homemade_chicken_stock,homemade chicken stock,homemade chicken stocks,,f,t,t,t,t
+chicken_stock,reduced_sodium_chicken_stock,reduced-sodium chicken stock,reduced-sodium chicken stocks,,f,t,t,t,t
+chicken_thigh,boneless_chicken_thigh,boneless chicken thigh,boneless chicken thighs,meat_and_deli,f,t,t,f,f
+chicken_thigh,skinless_chicken_thigh,skinless chicken thigh,skinless chicken thighs,meat_and_deli,f,t,t,f,f
+chile_powder,ancho_chile_powder,ancho chile powder,ancho chile powders,,f,t,t,t,t
+chile_powder,tablespoons_chile_powder,tablespoons chile powder,tablespoons chile powders,,f,t,t,t,t
+chili_pepper,chipotle_chili_pepper,chipotle chili pepper,chipotle chili peppers,,f,t,t,t,t
+chili_pepper,fresh_poblano_chili_pepper,fresh poblano chili pepper,fresh poblano chili peppers,,f,t,t,t,t
+chili_pepper,jalapeno_chili_pepper,jalapeno chili pepper,jalapeno chili peppers,,f,t,t,t,t
+chili_pepper,whole_serrano_chili_pepper,whole serrano chili pepper,whole serrano chili peppers,,f,t,t,t,t
+chili_powder,ancho_chili_powder,ancho chili powder,ancho chili powders,,f,t,t,t,t
+chili_powder,chipotle_chili_powder,chipotle chili powder,chipotle chili powders,,f,t,t,t,t
+chili_powder,kashmiri_chili_powder,kashmiri chili powder,kashmiri chili powders,,f,t,t,t,t
+chili_powder,mexican_chili_powder,mexican chili powder,mexican chili powders,,f,t,t,t,t
+chili_powder,mild_chili_powder,mild chili powder,mild chili powders,,f,t,t,t,t
+chili_powder,new_mexico_chili_powder,new mexico chili powder,new mexico chili powders,,f,t,t,t,t
+chili_powder,red_chili_powder,red chili powder,red chili powders,,f,t,t,t,t
+chili_sauce,garlic_chili_sauce,garlic chili sauce,garlic chili sauces,fruit_and_veg,f,t,t,t,t
+chili_sauce,sriracha_chili_sauce,sriracha chili sauce,sriracha chili sauces,,f,t,t,t,t
+chili_sauce,sweet_chili_sauce,sweet chili sauce,sweet chili sauces,,f,t,t,t,t
+chili_sauce,thai_chili_sauce,thai chili sauce,thai chili sauces,,f,t,t,t,t
+chili_sauce,tomato_based_chili_sauce,tomato-based chili sauce,tomato-based chili sauces,,f,t,t,t,t
+chily,ancho_chili,ancho chili,ancho chilis,,f,t,t,t,t
+chily,chili_powder,chili powder,chili powders,,f,t,t,t,t
+chily,chili_seasoning,chili seasoning,chili seasonings,,f,t,t,t,t
+chily,chipotle_chili_in_adobo_sauce,chipotle chili in adobo sauce,chipotle chilis,,f,t,t,t,t
+chily,green_chily,green chily,green chilies,,f,t,t,t,t
+chily,red_chili,red chili,red chilis,,f,t,t,t,t
+chily,whole_serrano_chili,whole serrano chili,whole serrano chilis,,f,t,t,t,t
+chipotle,chipotle_powder,chipotle powder,chipotle powders,,f,t,t,t,t
+chipotle,whole_chipotle_in_adobo,whole chipotle in adobo,whole chipotles in adobo,,f,t,t,t,t
+chive,snipped_chive,snipped chive,snipped chives,,f,t,t,t,t
+chocolate,bittersweet_chocolate,bittersweet chocolate,bittersweet chocolates,,f,t,t,t,t
+chocolate,chocolate_bar,chocolate bar,chocolate bars,,f,t,t,t,t
+chocolate,chocolate_cocoa,chocolate cocoa,chocolate cocoas,,f,t,t,t,t
+chocolate,chocolate_confectioners'_coating,chocolate confectioners' coating,chocolate confectioners' coatings,,f,t,t,t,t
+chocolate,chocolate_cookie_crumb,chocolate cookie crumb,chocolate cookie crumbs,,f,t,t,t,t
+chocolate,chocolate_curl,chocolate curl,chocolate curls,,f,t,t,t,t
+chocolate,chocolate_extract,chocolate extract,chocolate extracts,,f,t,t,t,t
+chocolate,chocolate_frosting,chocolate frosting,chocolate frostings,,f,t,t,t,t
+chocolate,chocolate_pudding_mix,chocolate pudding mix,chocolate pudding mixes,,f,t,t,t,t
+chocolate,chocolate_shaving,chocolate shaving,chocolate shavings,,f,t,t,t,t
+chocolate,chocolate_sprinkle,chocolate sprinkle,chocolate sprinkles,,f,t,t,t,t
+chocolate,chocolate_syrup,chocolate syrup,chocolate syrups,,f,t,t,t,t
+chocolate,powdered_chocolate_drink_mix,powdered chocolate drink mix,powdered chocolate drink mixes,,f,t,t,t,t
+chocolate,semi_sweet_chocolate,semi-sweet chocolate,semi-sweet chocolates,,f,t,t,t,t
+chocolate,semisweet_chocolate,semisweet chocolate,semisweet chocolates,,f,t,t,t,t
+chocolate,weight_chocolate_candy_coating,weight chocolate candy coating,weight chocolate candy coatings,,f,t,t,t,t
+chocolate,weight_semi_sweet_baking_chocolate,weight semi-sweet baking chocolate,weight semi-sweet baking chocolates,,f,t,t,t,t
+chocolate,weight_semi_sweet_chocolate_melted,weight semi sweet chocolate melted,weight semi sweet chocolate melteds,,f,t,t,t,t
+chocolate,weight_unsweetened_baking_chocolate,weight unsweetened baking chocolate,weight unsweetened baking chocolates,,f,t,t,t,t
+chocolate,weight_unsweetened_chocolate,weight unsweetened chocolate,weight unsweetened chocolates,,f,t,t,t,t
+chocolate,weight_white_baking_chocolate,weight white baking chocolate,weight white baking chocolates,,f,t,t,t,t
+chocolate,white_chocolate,white chocolate,white chocolates,,f,t,t,t,t
+chocolate,whole_chocolate_graham_cracker,whole chocolate graham cracker,whole chocolate graham crackers,,f,t,t,t,t
+chocolate,whole_chocolate_sandwich_cooky,whole chocolate sandwich cooky,whole chocolate sandwich cookies,,f,t,t,t,t
+chocolate_chip,bag_chocolate_chip,bag chocolate chip,bag chocolate chips,,f,t,t,t,t
+chocolate_chip,bittersweet_chocolate_chip,bittersweet chocolate chip,bittersweet chocolate chips,,f,t,t,t,t
+chocolate_chip,milk_chocolate_chip,milk chocolate chip,milk chocolate chips,dairy,f,f,t,f,t
+chocolate_chip,miniature_chocolate_chip,miniature chocolate chip,miniature chocolate chips,,f,t,t,t,t
+chocolate_chip,mini_chocolate_chip,mini chocolate chip,mini chocolate chips,,f,t,t,t,t
+chocolate_chip,mint_chocolate_chip,mint chocolate chip,mint chocolate chips,,f,t,t,t,t
+chocolate_chip,semi_sweet_chocolate_chip,semi-sweet chocolate chip,semi-sweet chocolate chips,,f,t,t,t,t
+chocolate_chip,semisweet_chocolate_chip,semisweet chocolate chip,semisweet chocolate chips,,f,t,t,t,t
+chocolate_chip,vegan_chocolate_chip,vegan chocolate chip,vegan chocolate chips,,f,t,t,t,t
+chocolate_chip,white_chocolate_chip,white chocolate chip,white chocolate chips,,f,t,t,t,t
+chocolate_pudding_mix,package_non_instant_chocolate_pudding_mix,package non-instant chocolate pudding mix,package non-instant chocolate pudding mixes,,f,t,t,t,t
+chuck,chuck_roast,chuck roast,chuck roasts,,f,t,t,t,t
+chuck_roast,boneless_chuck_roast,boneless chuck roast,boneless chuck roasts,,f,t,t,t,t
+cider_vinegar,apple_cider_vinegar,apple cider vinegar,apple cider vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+cilantro,cilantro_for_garnish,cilantro for garnish,cilantros for garnish,,f,t,t,t,t
+cilantro,cilantro_powder,cilantro powder,cilantro powders,,f,t,t,t,t
+cilantro,cilantro_seed,cilantro seed,cilantro seeds,,f,t,t,t,t
+cilantro,snipped_cilantro,snipped cilantro,snipped cilantros,,f,t,t,t,t
+cinnamon,cinnamon_applesauce,cinnamon applesauce,cinnamon applesauces,,f,t,t,t,t
+cinnamon,cinnamon_baking_chip,cinnamon baking chip,cinnamon baking chips,,f,t,t,t,t
+cinnamon,cinnamon_chip,cinnamon chip,cinnamon chips,,f,t,t,t,t
+cinnamon,cinnamon_graham_cracker_crumb,cinnamon graham cracker crumb,cinnamon graham cracker crumbs,,f,t,t,t,t
+cinnamon,cinnamon_powder,cinnamon powder,cinnamon powders,,f,t,t,t,t
+cinnamon,cinnamon_red_hot_candy,cinnamon red hot candy,cinnamon red hot candies,,f,t,t,t,t
+cinnamon,ground_cinnamon,ground cinnamon,ground cinnamons,,f,t,t,t,t
+cinnamon,saigon_cinnamon,saigon cinnamon,saigon cinnamons,,f,t,t,t,t
+cinnamon,vietnamese_cinnamon,vietnamese cinnamon,vietnamese cinnamons,,f,t,t,t,t
+cinnamon_sugar,cinnamon_sugar_mixture,cinnamon sugar mixture,cinnamon sugar mixtures,,f,t,t,t,t
+clam,littleneck_clam,littleneck clam,littleneck clams,,f,t,t,f,f
+clove,ground_clove,ground clove,ground cloves,,f,t,t,t,t
+cocoa,baking_cocoa,baking cocoa,baking cocoas,,f,t,t,t,t
+cocoa,cocoa_krispies_cereal,cocoa krispies cereal,cocoa krispies cereals,,f,t,t,t,t
+cocoa,cocoa_nib,cocoa nib,cocoa nibs,,f,t,t,t,t
+cocoa,cocoa_powder,cocoa powder,cocoa powders,,f,t,t,t,t
+cocoa,dutch_process_cocoa,dutch-process cocoa,dutch-process cocoas,,f,t,t,t,t
+cocoa,unsweetened_cocoa,unsweetened cocoa,unsweetened cocoas,,f,t,t,t,t
+cocoa_powder,chocolate_cocoa_powder,chocolate cocoa powder,chocolate cocoa powders,,f,t,t,t,t
+cocoa_powder,dutch_cocoa_powder,dutch cocoa powder,dutch cocoa powders,,f,t,t,t,t
+cocoa_powder,dutch_process_cocoa_powder,dutch process cocoa powder,dutch process cocoa powders,,f,t,t,t,t
+cocoa_powder,unsweetened_cocoa_powder,unsweetened cocoa powder,unsweetened cocoa powders,,f,t,t,t,t
+coconut,coconut_extract,coconut extract,coconut extracts,,f,t,t,t,t
+coconut,coconut_rum,coconut rum,coconut rums,,f,t,t,t,t
+coconut,desiccated_coconut,desiccated coconut,desiccated coconuts,,f,t,t,t,t
+coconut,sweetened_coconut,sweetened coconut,sweetened coconuts,,f,t,t,t,t
+coconut,unsweetened_coconut,unsweetened coconut,unsweetened coconuts,,f,t,t,t,t
+coconut_flour,organic_coconut_flour,organic coconut flour,organic coconut flours,,f,t,f,t,t
+coconut_milk,full_fat_coconut_milk,full-fat coconut milk,full-fat coconut milks,dairy,f,f,t,f,t
+coconut_milk,lite_coconut_milk,lite coconut milk,lite coconut milks,dairy,f,f,t,f,t
+coconut_milk,tin_coconut_milk,tin coconut milk,tin coconut milks,dairy,f,f,t,f,t
+coconut_milk,unsweetened_coconut_milk,unsweetened coconut milk,unsweetened coconut milks,dairy,f,f,t,f,t
+coconut_oil,unrefined_coconut_oil,unrefined coconut oil,unrefined coconut oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+coffee,brewed_coffee,brewed coffee,brewed coffees,,f,t,t,t,t
+coffee,coffee_extract,coffee extract,coffee extracts,,f,t,t,t,t
+coffee,coffee_powder,coffee powder,coffee powders,,f,t,t,t,t
+coffee,espresso_coffee,espresso coffee,espresso coffees,,f,t,t,t,t
+coffee,instant_coffee_crystal,instant coffee crystal,instant coffee crystals,,f,t,t,t,t
+coffee,jigger_coffee_flavored_liqueur,jigger coffee flavored liqueur,jigger coffee flavored liqueurs,,f,t,t,t,t
+coffee,strong_black_coffee,strong black coffee,strong black coffees,,f,t,t,t,t
+coffee,strong_coffee,strong coffee,strong coffees,,f,t,t,t,t
+cola,coca_cola,coca cola,coca colas,,f,t,t,t,t
+cooking_spray,nonstick_cooking_spray,nonstick cooking spray,nonstick cooking sprays,,f,t,t,t,t
+cooking_spray,non_stick_spray,non-stick spray,non-stick sprays,,f,t,t,t,t
+cooking_spray,serving_cooking_spray,serving cooking spray,serving cooking sprays,,f,t,t,t,t
+cooky,gingersnap_cooky,gingersnap cooky,gingersnap cookies,,f,t,t,t,t
+coriander,coriander_powder,coriander powder,coriander powders,,f,t,t,t,t
+coriander,ground_coriander,ground coriander,ground corianders,,f,t,t,t,t
+coriander,tablespoon_coriander,tablespoon coriander,tablespoon corianders,,f,t,t,t,t
+corianderleaf,small_handful_corianderleaf,small handful corianderleaf,small handful corianderleaves,,f,t,t,t,t
+coriander_powder,tablespoon_coriander_powder,tablespoon coriander powder,tablespoon coriander powders,,f,t,t,t,t
+coriander_seed,tablespoon_coriander_seed,tablespoon coriander seed,tablespoon coriander seeds,,f,t,t,t,t
+corn,can_cream_style_corn,can cream-style corn,can cream-style corns,,f,t,t,t,t
+corn,can_white_corn,can white corn,can white corns,,f,t,t,t,t
+corn,corn_chex,corn chex,corn chexes,,f,t,t,t,t
+corn,corned_beef,corned beef,corned beefs,meat_and_deli,f,t,t,f,f
+corn,corn_meal,corn meal,corn meals,,f,t,t,t,t
+corn,corn_syrup,corn syrup,corn syrups,,f,t,t,t,t
+corn,corn_tortilla,corn tortilla,corn tortillas,,f,t,t,t,t
+corn,ear_corn,ear corn,ear corns,,f,t,t,t,t
+corn,package_corn_muffin_mix,package corn muffin mix,package corn muffin mixes,,f,t,t,t,t
+corn,popping_corn,popping corn,popping corns,,f,t,t,t,t
+corn,sweet_corn,sweet corn,sweet corns,,f,t,t,t,t
+corned_beef,corned_beef_brisket,corned beef brisket,corned beef briskets,meat_and_deli,f,t,t,f,f
+corn_meal,yellow_corn_meal,yellow corn meal,yellow corn meals,,f,t,t,t,t
+cornmeal,self_rising_cornmeal,self-rising cornmeal,self-rising cornmeals,,f,t,t,t,t
+cornmeal,white_cornmeal,white cornmeal,white cornmeals,,f,t,t,t,t
+cornmeal,yellow_cornmeal,yellow cornmeal,yellow cornmeals,,f,t,t,t,t
+cornstarch,cornstarch_mixed_with_below_amount_of_water,cornstarch mixed with below amount of water,cornstarch mixeds with below amount of water,,f,t,t,t,t
+cornstarch,organic_cornstarch,organic cornstarch,organic cornstarches,,f,t,t,t,t
+corn_syrup,white_corn_syrup,white corn syrup,white corn syrups,,f,t,t,t,t
+corn_tortilla,corn_tortilla_chip,corn tortilla chip,corn tortilla chips,,f,t,t,t,t
+corn_tortilla,whole_white_corn_tortilla,whole white corn tortilla,whole white corn tortillas,,f,t,t,t,t
+corn_tortilla_chip,blue_corn_tortilla_chip,blue corn tortilla chip,blue corn tortilla chips,,f,t,t,t,t
+cottage_cheese,low_fat_cottage_cheese,low-fat cottage cheese,low-fat cottage cheeses,dairy,f,f,t,f,t
+cottage_cheese,small_curd_cottage_cheese,small curd cottage cheese,small curd cottage cheeses,dairy,f,f,t,f,t
+couscou,box_couscou,box couscou,box couscous,,f,t,t,t,t
+couscou,israeli_couscou,israeli couscou,israeli couscous,,f,t,t,t,t
+crab_meat,imitation_crab_meat,imitation crab meat,imitation crab meats,meat_and_deli,f,t,t,f,f
+crab_meat,lump_crab_meat,lump crab meat,lump crab meats,meat_and_deli,f,t,t,f,f
+crab_meat,white_crab_meat,white crab meat,white crab meats,meat_and_deli,f,t,t,f,f
+crabmeat,imitation_crabmeat,imitation crabmeat,imitation crabmeats,,f,t,t,t,t
+crabmeat,lump_crabmeat,lump crabmeat,lump crabmeats,,f,t,t,t,t
+crabmeat,white_crabmeat,white crabmeat,white crabmeats,,f,t,t,t,t
+cracker,buttery_round_cracker,buttery round cracker,buttery round crackers,,f,t,t,t,t
+cracker,oyster_cracker,oyster cracker,oyster crackers,,f,t,t,t,t
+cracker,ritz_cracker,ritz cracker,ritz crackers,,f,t,t,t,t
+cracker,saltine_cracker,saltine cracker,saltine crackers,,f,t,t,t,t
+cracker,whole_graham_cracker_sheet,whole graham cracker sheet,whole graham cracker sheets,,f,t,t,t,t
+cranberry,sweetened_dried_cranberry,sweetened dried cranberry,sweetened dried cranberries,,f,t,t,t,t
+cranberry_juice,cranberry_juice_cocktail,cranberry juice cocktail,cranberry juice cocktails,,f,t,t,t,t
+cranberry_sauce,can_jellied_cranberry_sauce,can jellied cranberry sauce,can jellied cranberry sauces,,f,t,t,t,t
+cranberry_sauce,whole_berry_cranberry_sauce,whole berry cranberry sauce,whole berry cranberry sauces,fruit_and_veg,f,t,t,t,t
+cream,can_condensed_cream_of_shrimp_soup,can condensed cream of shrimp soup,can condensed creams of shrimp soup,,f,t,t,f,f
+cream,can_cream_of_celery_soup,can cream of celery soup,can creams of celery soup,,f,t,t,t,t
+cream,cans_cream_of_potato_soup,cans cream of potato soup,cans creams of potato soup,,f,t,t,t,t
+cream,chilled_heavy_cream,chilled heavy cream,chilled heavy creams,,f,t,t,t,t
+cream,clotted_cream,clotted cream,clotted creams,,f,t,t,t,t
+cream,coconut_cream,coconut cream,coconut creams,,f,t,t,t,t
+cream,creamed_corn,creamed corn,creamed corns,,f,t,t,t,t
+cream,creamed_horseradish,creamed horseradish,creamed horseradishes,,f,t,t,t,t
+cream,cream_of_chicken_soup,cream of chicken soup,creams of chicken soup,,f,t,t,t,t
+cream,cream_of_mushroom_soup,cream of mushroom soup,creams of mushroom soup,,f,t,t,t,t
+cream,cream_of_tartar,cream of tartar,creams of tartar,,f,t,t,t,t
+cream,cream_sherry,cream sherry,cream sherries,,f,t,t,t,t
+cream,cream_soda,cream soda,cream sodas,,f,t,t,t,t
+cream,double_cream,double cream,double creams,,f,t,t,t,t
+cream,half_and_half_cream,half-and-half cream,half-and-half creams,,f,t,t,t,t
+cream,ice_cream,ice cream,ice creams,,f,t,t,t,t
+cream,irish_cream,irish cream,irish creams,,f,t,t,t,t
+cream,marshmallow_cream,marshmallow cream,marshmallow creams,,f,t,t,t,t
+cream,organic_heavy_cream,organic heavy cream,organic heavy creams,,f,t,t,t,t
+cream,pouring_cream,pouring cream,pouring creams,,f,t,t,t,t
+cream,single_cream,single cream,single creams,,f,t,t,t,t
+cream,sour_cream,sour cream,sour creams,,f,t,t,t,t
+cream,whipped_cream,whipped cream,whipped creams,,f,t,t,t,t
+cream_cheese,block_cream_cheese,block cream cheese,block cream cheeses,dairy,f,f,t,f,t
+cream_cheese,cream_cheese_frosting,cream cheese frosting,cream cheese frostings,dairy,f,f,t,f,t
+cream_cheese,fat_free_cream_cheese,fat-free cream cheese,fat-free cream cheeses,dairy,f,f,t,f,t
+cream_cheese,full_fat_cream_cheese,full-fat cream cheese,full-fat cream cheeses,dairy,f,f,t,f,t
+cream_cheese,low_fat_cream_cheese,low-fat cream cheese,low-fat cream cheeses,dairy,f,f,t,f,t
+cream_cheese,packages_philadelphia_brick_cream_cheese,packages philadelphia brick cream cheese,packages philadelphia brick cream cheeses,dairy,f,f,t,f,t
+cream_cheese,weight_philadelphia_cream_cheese,weight philadelphia cream cheese,weight philadelphia cream cheeses,dairy,f,f,t,f,t
+cream_cheese,weight_reduced_fat_cream_cheese_softened,weight reduced-fat cream cheese softened,weight reduced-fat cream cheese softeneds,dairy,f,f,t,f,t
+cream_cheese,weight_soft_cream_cheese,weight soft cream cheese,weight soft cream cheeses,dairy,f,f,t,f,t
+cream_cheese,whipped_cream_cheese,whipped cream cheese,whipped cream cheeses,dairy,f,f,t,f,t
+creme_de_cacao,white_creme_de_cacao,white creme de cacao,white cremes de cacao,,f,t,t,t,t
+crème_fraîche,full_fat_crème_fraîche,full-fat crème fraîche,full-fat crème fraîches,,f,t,t,t,t
+crust,can_refrigerated_pizza_crust_dough,can refrigerated pizza crust dough,can refrigerated pizza crust doughs,,f,t,t,t,t
+crust,double_crust_ready_to_use_pie_crust,double crust ready-to-use pie crust,double crust readies-to-use pie crust,,f,t,t,t,t
+crust,graham_cracker_crust,graham cracker crust,graham cracker crusts,,f,t,t,t,t
+crust,unbaked_pizza_crust,unbaked pizza crust,unbaked pizza crusts,,f,t,t,t,t
+crust,whole_pre_baked_pie_crust,whole pre-baked pie crust,whole pre-baked pie crusts,,f,t,t,t,t
+crust,whole_prepared_pie_crust,whole prepared pie crust,whole prepared pie crusts,,f,t,t,t,t
+crust,whole_refrigerated_pie_crust,whole refrigerated pie crust,whole refrigerated pie crusts,,f,t,t,t,t
+crusty_bread,loaf_crusty_bread,loaf crusty bread,loaf crusty breads,,f,t,f,t,t
+cube_vegetable_bouillon,vegetable_bouillon_powder,vegetable bouillon powder,vegetable bouillon powders,,f,t,f,t,t
+cucumber,cucumber___peeled,cucumber - peeled,cucumber - peeleds,,f,t,t,t,t
+cucumber,english_cucumber,english cucumber,english cucumbers,,f,t,t,t,t
+cumin,cumin_powder,cumin powder,cumin powders,,f,t,t,t,t
+cumin,cumin_seed,cumin seed,cumin seeds,,f,t,t,t,t
+cumin,ground_cumin,ground cumin,ground cumins,,f,t,t,t,t
+currant,red_currant_jelly,red currant jelly,red currant jellies,,f,t,t,t,t
+curry,curry_powder,curry powder,curry powders,,f,t,t,t,t
+curry,red_curry_paste,red curry paste,red curry pastes,,f,t,t,t,t
+curry,yellow_curry_paste,yellow curry paste,yellow curry pastes,,f,t,t,t,t
+curry_powder,madras_curry_powder,madras curry powder,madras curry powders,,f,t,t,t,t
+curry_powder,mild_curry_powder,mild curry powder,mild curry powders,,f,t,t,t,t
+curry_powder,red_curry_powder,red curry powder,red curry powders,,f,t,t,t,t
+curry_powder,yellow_curry_powder,yellow curry powder,yellow curry powders,,f,t,t,t,t
+custard,custard_powder,custard powder,custard powders,,f,t,t,t,t
+date,medjool_date,medjool date,medjool dates,,f,t,t,t,t
+dijon_mustard,coarse_grained_dijon_mustard,coarse-grained dijon mustard,coarse-grained dijon mustards,,f,t,t,t,t
+dijon_mustard,grainy_dijon_mustard,grainy dijon mustard,grainy dijon mustards,,f,t,t,t,t
+dijon_mustard,honey_dijon_mustard,honey dijon mustard,honey dijon mustards,,f,t,t,t,t
+dijon_style_mustard,prepared_dijon_style_mustard,prepared dijon-style mustard,prepared dijon-style mustards,,f,t,t,t,t
+dill,dill_pickle,dill pickle,dill pickles,,f,t,t,t,t
+dill,dill_weed,dill weed,dill weeds,,f,t,t,t,t
+dill_pickle,dill_pickle_juice,dill pickle juice,dill pickle juices,,f,t,t,t,t
+dill_pickle,dill_pickle_relish,dill pickle relish,dill pickle relishes,,f,t,t,t,t
+dill_pickle,dill_pickle_spear,dill pickle spear,dill pickle spears,,f,t,t,t,t
+distilled_vinegar,white_distilled_vinegar,white distilled vinegar,white distilled vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+dough,can_refrigerated_biscuit_dough,can refrigerated biscuit dough,can refrigerated biscuit doughs,,f,t,t,t,t
+dough,package_phyllo_dough,package phyllo dough,package phyllo doughs,,f,t,t,t,t
+dough,prepared_pizza_dough,prepared pizza dough,prepared pizza doughs,,f,t,t,t,t
+dressing,balsamic_dressing,balsamic dressing,balsamic dressings,,f,t,t,t,t
+dressing,caesar_dressing,caesar dressing,caesar dressings,,f,t,t,t,t
+dressing,catalina_dressing,catalina dressing,catalina dressings,,f,t,t,t,t
+dressing,dressing_ingredient,dressing ingredient,dressing ingredients,,f,t,t,t,t
+dressing,fat_free_italian_style_dressing,fat free italian-style dressing,fat free italian-style dressings,,f,t,t,t,t
+dressing,french_dressing,french dressing,french dressings,,f,t,t,t,t
+dressing,italian_dressing,italian dressing,italian dressings,,f,t,t,t,t
+dressing,package_dry_ranch_style_dressing_mix,package dry ranch-style dressing mix,package dry ranch-style dressing mixes,,f,t,t,t,t
+dressing,ranch_dressing,ranch dressing,ranch dressings,,f,t,t,t,t
+dressing,salad_dressing,salad dressing,salad dressings,,f,t,t,t,t
+dressing,thousand_island_dressing,thousand island dressing,thousand island dressings,,f,t,t,t,t
+duck_fat,duck_breast,duck breast,duck breasts,,f,t,t,t,t
+duck_fat,duck_leg,duck leg,duck legs,,f,t,t,t,t
+dulce_de_leche,dulce_de_leche_caramel,dulce de leche caramel,dulces de leche caramel,,f,t,t,t,t
+earth_balance,earth_balance_butter_substitute,earth balance butter substitute,earth balance butter substitutes,dairy,f,f,t,f,t
+earth_balance,earth_balance_buttery_spread,earth balance buttery spread,earth balance buttery spreads,,f,t,t,t,t
+earth_balance,earth_balance_margarine,earth balance margarine,earth balance margarines,,f,t,t,t,t
+egg,duck_egg,duck egg,duck eggs,dairy,f,f,t,f,t
+egg,egg_beater,egg beater,egg beaters,dairy,f,f,t,f,t
+egg,egg_nog,egg nog,egg nogs,dairy,f,f,t,f,t
+egg,egg_noodle,egg noodle,egg noodles,dairy,f,f,f,f,t
+egg,egg_roll_wrapper,egg roll wrapper,egg roll wrappers,dairy,f,f,t,f,t
+egg,egg_substitute,egg substitute,egg substitutes,dairy,f,f,t,f,t
+egg,egg_wash,egg wash,egg washes,dairy,f,f,t,f,t
+egg,egg_white,egg white,egg whites,dairy,f,f,t,f,t
+egg,egg_yolk,egg yolk,egg yolks,dairy,f,f,t,f,t
+egg,free_range_egg,free-range egg,free-range eggs,dairy,f,f,t,f,t
+egg,hard_cooked_egg,hard-cooked egg,hard-cooked eggs,dairy,f,f,t,f,t
+egg,quails’_egg,quails’ egg,quails’ eggs,dairy,f,f,t,f,t
+egg,whole_brown_egg,whole brown egg,whole brown eggs,dairy,f,f,t,f,t
+egg,whole_extra_large_egg_at_room_temperature,whole extra-large egg at room temperature,whole extra-large eggs at room temperature,dairy,f,f,t,f,t
+egg,whole_farm_fresh_egg,whole farm fresh egg,whole farm fresh eggs,dairy,f,f,t,f,t
+egg,whole_hardboiled_egg,whole hardboiled egg,whole hardboiled eggs,dairy,f,f,t,f,t
+egg,whole_jumbo_egg,whole jumbo egg,whole jumbo eggs,dairy,f,f,t,f,t
+egg,whole_organic_egg,whole organic egg,whole organic eggs,dairy,f,f,t,f,t
+egg_noodle,wide_egg_noodle,wide egg noodle,wide egg noodles,dairy,f,f,f,f,t
+egg_white,free_range_egg_white,free-range egg white,free-range egg whites,dairy,f,f,t,f,t
+egg_white,liquid_egg_white,liquid egg white,liquid egg whites,dairy,f,f,t,f,t
+egg_yolk,free_range_egg_yolk,free-range egg yolk,free-range egg yolks,dairy,f,f,t,f,t
+enchilada_sauce,green_enchilada_sauce,green enchilada sauce,green enchilada sauces,,f,t,t,t,t
+enchilada_sauce,red_enchilada_sauce,red enchilada sauce,red enchilada sauces,,f,t,t,t,t
+espresso,espresso_powder,espresso powder,espresso powders,,f,t,t,t,t
+evaporated_cane_juice,evaporated_cane_juice_sugar,evaporated cane juice sugar,evaporated cane juice sugars,,f,t,t,t,t
+evaporated_milk,fat_free_evaporated_milk,fat-free evaporated milk,fat-free evaporated milks,dairy,f,f,t,f,t
+evaporated_milk,nonfat_evaporated_milk,nonfat evaporated milk,nonfat evaporated milks,dairy,f,f,t,f,t
+extract,anise_extract,anise extract,anise extracts,,f,t,t,t,t
+extract,caramel_extract,caramel extract,caramel extracts,,f,t,t,t,t
+extract,maple_extract,maple extract,maple extracts,,f,t,t,t,t
+extract,peppermint_extract,peppermint extract,peppermint extracts,,f,t,t,t,t
+fennel,fennel_bulb,fennel bulb,fennel bulbs,,f,t,t,t,t
+fig,fig_jam,fig jam,fig jams,,f,t,t,t,t
+fig,fig_preserve,fig preserve,fig preserves,,f,t,t,t,t
+fish_sauce,asian_fish_sauce,asian fish sauce,asian fish sauces,,f,t,t,f,f
+fish_sauce,thai_fish_sauce,thai fish sauce,thai fish sauces,,f,t,t,f,f
+flank_steak,beef_flank_steak,beef flank steak,beef flank steaks,meat_and_deli,f,t,t,f,f
+flat_leaf_parsley,italian_flat_leaf_parsley,italian flat-leaf parsley,italian flat-leaf parsleys,,f,t,t,t,t
+flax,flax_meal,flax meal,flax meals,,f,t,t,t,t
+flax_seed,flax_seed_meal,flax seed meal,flax seed meals,,f,t,t,t,t
+flax_seed,milled_flax_seed,milled flax seed,milled flax seeds,,f,t,t,t,t
+flaxseed,flaxseed_meal,flaxseed meal,flaxseed meals,,f,t,t,t,t
+flaxseed,milled_flaxseed,milled flaxseed,milled flaxseeds,,f,t,t,t,t
+flour,all_pupose_flour,all-pupose flour,all-pupose flours,,f,t,f,t,t
+flour,all_purpose_baking_flour,all purpose baking flour,all purpose baking flours,,f,t,f,t,t
+flour,all_purpose_flour,all-purpose flour,all-purpose flours,,f,t,f,t,t
+flour,almond_flour,almond flour,almond flours,,f,t,f,t,t
+flour,ap_flour,ap flour,ap flours,,f,t,f,t,t
+flour,barley_flour,barley flour,barley flours,,f,t,f,t,t
+flour,bread_flour,bread flour,bread flours,,f,t,f,t,t
+flour,buckwheat_flour,buckwheat flour,buckwheat flours,,f,t,f,t,t
+flour,cake_flour,cake flour,cake flours,,f,t,f,t,t
+flour,chickpea_flour,chickpea flour,chickpea flours,,f,t,f,t,t
+flour,coconut_flour,coconut flour,coconut flours,,f,t,f,t,t
+flour,corn_flour,corn flour,corn flours,,f,t,f,t,t
+flour,cornstarch_or_flour,cornstarch or flour,cornstarch or flours,,f,t,f,t,t
+flour,flour_tortilla,flour tortilla,flour tortillas,,f,t,f,t,t
+flour,gluten_free_flour,gluten free flour,gluten free flours,,f,t,f,t,t
+flour,hazelnut_flour,hazelnut flour,hazelnut flours,,f,t,f,t,t
+flour,masa_flour,masa flour,masa flours,,f,t,f,t,t
+flour,millet_flour,millet flour,millet flours,,f,t,f,t,t
+flour,oat_flour,oat flour,oat flours,,f,t,f,t,t
+flour,pastry_flour,pastry flour,pastry flours,,f,t,f,t,t
+flour,peanut_flour,peanut flour,peanut flours,,f,t,f,t,t
+flour,potato_flour,potato flour,potato flours,,f,t,f,t,t
+flour,quinoa_flour,quinoa flour,quinoa flours,,f,t,f,t,t
+flour,rice_flour,rice flour,rice flours,,f,t,f,t,t
+flour,rye_flour,rye flour,rye flours,,f,t,f,t,t
+flour,seasoned_flour,seasoned flour,seasoned flours,,f,t,f,t,t
+flour,self_raising_flour,self-raising flour,self-raising flours,,f,t,f,t,t
+flour,self_rising_flour,self-rising flour,self-rising flours,,f,t,f,t,t
+flour,semolina_flour,semolina flour,semolina flours,,f,t,f,t,t
+flour,sorghum_flour,sorghum flour,sorghum flours,,f,t,f,t,t
+flour,spelt_flour,spelt flour,spelt flours,,f,t,f,t,t
+flour,tapioca_flour,tapioca flour,tapioca flours,,f,t,f,t,t
+flour,teff_flour,teff flour,teff flours,,f,t,f,t,t
+flour,unbleached_flour,unbleached flour,unbleached flours,,f,t,f,t,t
+flour,unsifted_flour,unsifted flour,unsifted flours,,f,t,f,t,t
+flour,white_flour,white flour,white flours,,f,t,f,t,t
+flour,wholemeal_flour,wholemeal flour,wholemeal flours,,f,t,f,t,t
+flour,wondra_flour,wondra flour,wondra flours,,f,t,f,t,t
+flour_tortilla,whole_burrito_sized_flour_tortilla,whole burrito-sized flour tortilla,whole burrito-sized flour tortillas,,f,t,f,t,t
+fluid_elderflower_liqueur,elderflower_cordial,elderflower cordial,elderflower cordials,,f,t,t,t,t
+fluid_elderflower_liqueur,fluid_st._germain_elderflower_liqueur,fluid st. germain elderflower liqueur,fluid st. germain elderflower liqueurs,,f,t,t,t,t
+fraîche,crème_fraîche,crème fraîche,crème fraîches,,f,t,t,t,t
+french_baguette,loaf_french_baguette,loaf french baguette,loaf french baguettes,,f,t,f,t,t
+french_bread,loaf_crusty_french_bread,loaf crusty french bread,loaf crusty french breads,,f,t,f,t,t
+french_bread,loaf_french_bread,loaf french bread,loaf french breads,,f,t,f,t,t
+french_bread,loaves_french_bread,loaves french bread,loaves french breads,,f,t,f,t,t
+frozen_hash_brown,package_frozen_hash_brown_potato,package frozen hash brown potato,package frozen hash brown potatoes,,f,t,t,t,t
+fruit,can_fruit_cocktail,can fruit cocktail,can fruit cocktails,,f,t,t,t,t
+fruit,fruit_preserve,fruit preserve,fruit preserves,,f,t,t,t,t
+fruit,package_powdered_fruit_pectin,package powdered fruit pectin,package powdered fruit pectins,,f,t,t,t,t
+fruit,passion_fruit,passion fruit,passion fruits,,f,t,t,t,t
+fruit,whole_kiwi_fruit,whole kiwi fruit,whole kiwi fruits,,f,t,t,t,t
+garam_masala,garam_masala_powder,garam masala powder,garam masala powders,,f,t,t,t,t
+garbanzo_bean,garbanzo_bean_flour,garbanzo bean flour,garbanzo bean flours,,f,t,f,t,t
+garlic,garlic_bread,garlic bread,garlic breads,fruit_and_veg,f,t,f,t,t
+garlic,garlic_bulb,garlic bulb,garlic bulbs,fruit_and_veg,f,t,t,t,t
+garlic,garlic_clove,garlic clove,garlic cloves,fruit_and_veg,f,t,t,t,t
+garlic,garlic_powder,garlic powder,garlic powders,fruit_and_veg,f,t,t,t,t
+garlic,garlic_scape,garlic scape,garlic scapes,fruit_and_veg,f,t,t,t,t
+garlic,roasted_garlic,roasted garlic,roasted garlics,fruit_and_veg,f,t,t,t,t
+garlic_and_herb_seasoning_blend,salt_free_herb_seasoning_blend,salt-free herb seasoning blend,salt-free herb seasoning blends,,f,t,t,t,t
+garlic_salt,lawry's_garlic_salt,lawry's garlic salt,lawry's garlic salts,fruit_and_veg,f,t,t,t,t
+gelatin,gelatin_powder,gelatin powder,gelatin powders,,f,t,t,t,t
+gelatin,sheets_leaf_gelatine,sheets leaf gelatine,sheets leaf gelatines,,f,t,t,t,t
+gelatin,unflavored_gelatin,unflavored gelatin,unflavored gelatins,,f,t,t,t,t
+gin,fluid_london_dry_gin,fluid london dry gin,fluid london dry gins,,f,t,t,t,t
+gin,sloe_gin,sloe gin,sloe gins,,f,t,t,t,t
+ginger,fluid_ginger_syrup,fluid ginger syrup,fluid ginger syrups,,f,t,t,t,t
+ginger,ginger_ale,ginger ale,ginger ales,,f,t,t,t,t
+ginger,ginger_beer,ginger beer,ginger beers,,f,t,f,t,t
+ginger,ginger_juice,ginger juice,ginger juices,,f,t,t,t,t
+ginger,ginger_powder,ginger powder,ginger powders,,f,t,t,t,t
+ginger,ginger_root,ginger root,ginger roots,,f,t,t,t,t
+ginger,ground_ginger,ground ginger,ground gingers,,f,t,t,t,t
+ginger,pickled_ginger,pickled ginger,pickled gingers,,f,t,t,t,t
+glaze,balsamic_glaze,balsamic glaze,balsamic glazes,,f,t,t,t,t
+glaze,glaze_ingredient,glaze ingredient,glaze ingredients,,f,t,t,t,t
+graham_wafer_crumb,box_nilla_wafer,box nilla wafer,box nilla wafers,,f,t,t,t,t
+grape,grape_jelly,grape jelly,grape jellies,,f,t,t,t,t
+grape,red_grape,red grape,red grapes,,f,t,t,t,t
+grape,seedless_grape,seedless grape,seedless grapes,,f,t,t,t,t
+grapefruit,grapefruit_zest,grapefruit zest,grapefruit zests,,f,t,t,t,t
+grapefruit_juice,pink_grapefruit_juice,pink grapefruit juice,pink grapefruit juices,,f,t,t,t,t
+grape_juice,white_grape_juice,white grape juice,white grape juices,,f,t,t,t,t
+grape_tomato,red_grape_tomato,red grape tomato,red grape tomatoes,,f,t,t,t,t
+gravy,gravy_browning,gravy browning,gravy brownings,,f,t,t,t,t
+green,bunch_collard_green,bunch collard green,bunch collard greens,,f,t,t,t,t
+green,can_diced_green_chile,can diced green chile,can diced green chiles,,f,t,t,t,t
+green,dandelion_green,dandelion green,dandelion greens,,f,t,t,t,t
+green,green_cabbage,green cabbage,green cabbages,,f,t,t,t,t
+green,green_cardamom,green cardamom,green cardamoms,,f,t,t,t,t
+green,green_chilly,green chilly,green chillies,,f,t,t,t,t
+green,green_curry_paste,green curry paste,green curry pastes,,f,t,t,t,t
+green,green_grape,green grape,green grapes,,f,t,t,t,t
+green,green_leaf_lettuce,green leaf lettuce,green leaf lettuces,,f,t,t,t,t
+green,green_lentil,green lentil,green lentils,,f,t,t,t,t
+green,green_olive,green olive,green olives,,f,t,t,t,t
+green,green_peppercorn,green peppercorn,green peppercorns,,f,t,t,t,t
+green,green_salsa,green salsa,green salsas,,f,t,t,t,t
+green,green_tea,green tea,green teas,,f,t,t,t,t
+green,micro_green,micro green,micro greens,,f,t,t,t,t
+green,salad_green,salad green,salad greens,,f,t,t,t,t
+green_chily,green_chili_pepper,green chili pepper,green chili peppers,,f,t,t,t,t
+green_curry_paste,thai_green_curry_paste,thai green curry paste,thai green curry pastes,,f,t,t,t,t
+green_grape,seedless_green_grape,seedless green grape,seedless green grapes,,f,t,t,t,t
+green_lentil,french_green_lentil,french green lentil,french green lentils,,f,t,t,t,t
+green_olive,pimento_stuffed_green_olive,pimento-stuffed green olive,pimento-stuffed green olives,,f,t,t,t,t
+grit,quick_cooking_grit,quick-cooking grit,quick-cooking grits,,f,t,t,t,t
+grit,quick_grit,quick grit,quick grits,,f,t,t,t,t
+grit,stone_ground_grit,stone ground grit,stone ground grits,,f,t,t,t,t
+ground,ground_ancho_chile,ground ancho chile,ground ancho chiles,,f,t,t,t,t
+ground,ground_bison,ground bison,ground bisons,,f,t,t,t,t
+ground,ground_cinammon,ground cinammon,ground cinammons,,f,t,t,t,t
+ground,ground_fenugreek,ground fenugreek,ground fenugreeks,,f,t,t,t,t
+ground,ground_round,ground round,ground rounds,,f,t,t,t,t
+ground_beef,extra_lean_ground_beef,extra-lean ground beef,extra-lean ground beefs,meat_and_deli,f,t,t,f,f
+ground_beef,lean_ground_beef_or_turkey,lean ground beef or turkey,lean ground beef or turkeys,meat_and_deli,f,t,t,f,f
+ground_cinnamon,level_tsp_ground_cinnamon,level tsp ground cinnamon,level tsp ground cinnamons,,f,t,t,t,t
+ground_coriander,ground_coriander_seed,ground coriander seed,ground coriander seeds,,f,t,t,t,t
+ground_coriander,tablespoon_ground_coriander,tablespoon ground coriander,tablespoon ground corianders,,f,t,t,t,t
+ground_turkey,extra_lean_ground_turkey,extra-lean ground turkey,extra-lean ground turkeys,meat_and_deli,f,t,t,f,f
+ground_turkey,lean_ground_turkey,lean ground turkey,lean ground turkeys,meat_and_deli,f,t,t,f,f
+guava_paste,guava_nectar,guava nectar,guava nectars,,f,t,t,t,t
+haddock_fillet,smoked_haddock,smoked haddock,smoked haddocks,,f,t,t,f,f
+half_and_half,fat_free_half_and_half,fat-free half-and-half,fat-free half-and-halves,,f,t,t,t,t
+halibut,halibut_steak,halibut steak,halibut steaks,meat_and_deli,f,t,t,f,f
+ham,bone_in_ham,bone-in ham,bone-in hams,meat_and_deli,f,t,t,f,f
+ham,boneless_ham,boneless ham,boneless hams,meat_and_deli,f,t,t,f,f
+ham,deli_ham,deli ham,deli hams,meat_and_deli,f,t,t,f,f
+ham,ham_bone,ham bone,ham bones,meat_and_deli,f,t,t,f,f
+ham,ham_hock,ham hock,ham hocks,meat_and_deli,f,t,t,f,f
+ham,prosciutto_ham,prosciutto ham,prosciutto hams,meat_and_deli,f,t,t,f,f
+ham,slices_black_forest_ham,slices black forest ham,slices black forest hams,meat_and_deli,f,t,t,f,f
+ham,slices_parma_ham,slices parma ham,slices parma hams,meat_and_deli,f,t,t,f,f
+ham,smoked_ham,smoked ham,smoked hams,meat_and_deli,f,t,t,f,f
+hamburger,lean_hamburger,lean hamburger,lean hamburgers,,f,t,t,t,t
+hamburger_bun,whole_kaiser_rolls_or_good_hamburger_bun,whole kaiser rolls or good hamburger bun,whole kaiser rolls or good hamburger buns,,f,t,t,t,t
+ham_hock,smoked_ham_hock,smoked ham hock,smoked ham hocks,meat_and_deli,f,t,t,f,f
+hazelnut,blanched_hazelnut,blanched hazelnut,blanched hazelnuts,,f,t,t,t,t
+hazelnut,hazelnut_extract,hazelnut extract,hazelnut extracts,,f,t,t,t,t
+hazelnut,hazelnut_meal,hazelnut meal,hazelnut meals,,f,t,t,t,t
+hazelnut,hazelnut_spread,hazelnut spread,hazelnut spreads,,f,t,t,t,t
+heaped_tbsp_plain_flour,heaped_tbsp_cornflour,heaped tbsp cornflour,heaped tbsp cornflours,,f,t,f,t,t
+herb,herbe_de_provence,herbe de provence,herbes de provence,,f,t,t,t,t
+herb,italian_herb,italian herb,italian herbs,,f,t,t,t,t
+honey,clear_honey,clear honey,clear honeys,,f,t,t,t,t
+honey,clover_honey,clover honey,clover honeys,,f,t,t,t,t
+honey,honey_ham,honey ham,honey hams,meat_and_deli,f,t,t,f,f
+honey,honey_maid_graham_crumb,honey maid graham crumb,honey maid graham crumbs,,f,t,t,t,t
+honey,honey_mustard,honey mustard,honey mustards,,f,t,t,t,t
+honey,honey_or_agave,honey or agave,honey or agaves,,f,t,t,t,t
+honey,liquid_honey,liquid honey,liquid honeys,,f,t,t,t,t
+honey,local_honey,local honey,local honeys,,f,t,t,t,t
+honey,orange_blossom_honey,orange blossom honey,orange blossom honeys,,f,t,t,t,t
+honey,organic_honey,organic honey,organic honeys,,f,t,t,t,t
+honey,runny_honey,runny honey,runny honeys,,f,t,t,t,t
+horseradish,prepared_horseradish,prepared horseradish,prepared horseradishes,,f,t,t,t,t
+hot_wing_sauce,buffalo_wing_sauce,buffalo wing sauce,buffalo wing sauces,,f,t,t,t,t
+hungarian_paprika,sweet_hungarian_paprika,sweet hungarian paprika,sweet hungarian paprikas,,f,t,t,t,t
+ice,crushed_ice_or_ice_cube,crushed ice or ice cube,crushed ice or ice cubes,,f,t,t,t,t
+ice,tray_ice_cube,tray ice cube,tray ice cubes,,f,t,t,t,t
+iceberg_lettuce,head_iceberg_lettuce___rinsed,head iceberg lettuce - rinsed,head iceberg lettuce - rinseds,,f,t,t,t,t
+ice_cream,caramel_ice_cream_topping,caramel ice cream topping,caramel ice cream toppings,,f,t,t,t,t
+ice_cream,chocolate_ice_cream,chocolate ice cream,chocolate ice creams,,f,t,t,t,t
+ice_cream,coffee_ice_cream,coffee ice cream,coffee ice creams,,f,t,t,t,t
+ice_cream,hot_fudge_ice_cream_topping,hot fudge ice cream topping,hot fudge ice cream toppings,,f,t,t,t,t
+ice_cream,peppermint_ice_cream,peppermint ice cream,peppermint ice creams,,f,t,t,t,t
+ice_cream,strawberry_ice_cream,strawberry ice cream,strawberry ice creams,,f,t,t,t,t
+ice_cream,vanilla_bean_ice_cream,vanilla bean ice cream,vanilla bean ice creams,,f,t,t,t,t
+ice_cream,vanilla_ice_cream,vanilla ice cream,vanilla ice creams,,f,t,t,t,t
+icing_sugar,fondant_icing_sugar,fondant icing sugar,fondant icing sugars,,f,t,t,t,t
+irish_whiskey,jigger_irish_whiskey,jigger irish whiskey,jigger irish whiskeys,,f,t,t,t,t
+italian_bread_crumb,loaf_italian_bread,loaf italian bread,loaf italian breads,,f,t,f,t,t
+italian_dressing,zesty_italian_dressing,zesty italian dressing,zesty italian dressings,,f,t,t,t,t
+italian_herb,italian_herb_seasoning,italian herb seasoning,italian herb seasonings,,f,t,t,t,t
+italian_sausage,bulk_italian_sausage,bulk italian sausage,bulk italian sausages,meat_and_deli,f,t,t,f,f
+italian_sausage,italian_sausage_link,italian sausage link,italian sausage links,meat_and_deli,f,t,t,f,f
+italian_sausage,mild_italian_sausage,mild italian sausage,mild italian sausages,meat_and_deli,f,t,t,f,f
+italian_sausage,spicy_italian_sausage,spicy italian sausage,spicy italian sausages,meat_and_deli,f,t,t,f,f
+italian_sausage,sweet_italian_sausage,sweet italian sausage,sweet italian sausages,meat_and_deli,f,t,t,f,f
+italian_seasoning,italian_seasoned_breadcrumb,italian seasoned breadcrumb,italian seasoned breadcrumbs,,f,t,f,t,t
+jack_cheese,cheddar_jack_cheese,cheddar jack cheese,cheddar jack cheeses,dairy,f,f,t,f,t
+jack_cheese,colby_monterey_jack_cheese,colby-monterey jack cheese,colby-monterey jack cheeses,dairy,f,f,t,f,t
+jack_cheese,pepper_jack_cheese,pepper jack cheese,pepper jack cheeses,dairy,f,f,t,f,t
+jack_cheese,shredded_cheddar_monterey_jack_cheese_blend,shredded cheddar-monterey jack cheese blend,shredded cheddar-monterey jack cheese blends,dairy,f,f,t,f,t
+jalapeño,pickled_jalapeño,pickled jalapeño,pickled jalapeñoes,,f,t,t,t,t
+jalapeño_pepper,pickled_jalapeno_pepper,pickled jalapeno pepper,pickled jalapeno peppers,,f,t,t,t,t
+jasmine_rice,brown_jasmine_rice,brown jasmine rice,brown jasmine rices,,f,t,t,t,t
+jelly,redcurrant_jelly,redcurrant jelly,redcurrant jellies,,f,t,t,t,t
+jerk_seasoning,jamaican_jerk_seasoning,jamaican jerk seasoning,jamaican jerk seasonings,,f,t,t,t,t
+juice,cherry_juice,cherry juice,cherry juices,,f,t,t,t,t
+juice,clam_juice,clam juice,clam juices,,f,t,t,f,f
+juice,cranberry_juice,cranberry juice,cranberry juices,,f,t,t,t,t
+juice,evaporated_cane_juice,evaporated cane juice,evaporated cane juices,,f,t,t,t,t
+juice,fluid_pear_juice,fluid pear juice,fluid pear juices,,f,t,t,t,t
+juice,fruit_juice,fruit juice,fruit juices,,f,t,t,t,t
+juice,grapefruit_juice,grapefruit juice,grapefruit juices,,f,t,t,t,t
+juice,grape_juice,grape juice,grape juices,,f,t,t,t,t
+juice,lime_juice,lime juice,lime juices,,f,t,t,t,t
+juice,mango_juice,mango juice,mango juices,,f,t,t,t,t
+juice,olive_juice,olive juice,olive juices,,f,t,t,t,t
+juice,peach_juice,peach juice,peach juices,,f,t,t,t,t
+juice,pickle_juice,pickle juice,pickle juices,,f,t,t,t,t
+juice,pineapple_juice,pineapple juice,pineapple juices,,f,t,t,t,t
+juice,pomegranate_juice,pomegranate juice,pomegranate juices,,f,t,t,t,t
+juice,raspberry_juice,raspberry juice,raspberry juices,,f,t,t,t,t
+juice,tamarind_juice,tamarind juice,tamarind juices,,f,t,t,t,t
+juice,tangerine_juice,tangerine juice,tangerine juices,,f,t,t,t,t
+juice,tomato_vegetable_juice_cocktail,tomato-vegetable juice cocktail,tomato-vegetable juice cocktails,,f,t,t,t,t
+karo_syrup,white_karo_syrup,white karo syrup,white karo syrups,,f,t,t,t,t
+ketchup,organic_ketchup,organic ketchup,organic ketchups,oil_and_vinegar_and_condiments,f,t,t,t,t
+lamb,lamb_shank,lamb shank,lamb shanks,meat_and_deli,f,t,t,f,f
+lamb,lamb_shoulder,lamb shoulder,lamb shoulders,meat_and_deli,f,t,t,f,f
+lamb,leg_of_lamb,leg of lamb,legs of lamb,meat_and_deli,f,t,t,f,f
+lasagna_noodle,no_boil_lasagna_noodle,no-boil lasagna noodle,no-boil lasagna noodles,,f,t,f,t,t
+lavender,lavender_flower,lavender flower,lavender flowers,,f,t,t,t,t
+lemon,lemon_curd,lemon curd,lemon curds,,f,t,t,t,t
+lemon,lemon___cut_into_wedges,lemon - cut into wedges,lemon - cuts into wedges,,f,t,t,t,t
+lemon,lemon_extract,lemon extract,lemon extracts,,f,t,t,t,t
+lemon,lemon_juice,lemon juice,lemon juices,,f,t,t,t,t
+lemon,lemon_rind,lemon rind,lemon rinds,,f,t,t,t,t
+lemon,lemon_thyme,lemon thyme,lemon thymes,,f,t,t,t,t
+lemon,lemon_twist,lemon twist,lemon twists,,f,t,t,t,t
+lemon,lemon_yogurt,lemon yogurt,lemon yogurts,dairy,f,f,t,f,t
+lemon,lemon_zest,lemon zest,lemon zests,,f,t,t,t,t
+lemon,package_instant_lemon_pudding_mix,package instant lemon pudding mix,package instant lemon pudding mixes,,f,t,t,t,t
+lemon,unwaxed_lemon,unwaxed lemon,unwaxed lemons,,f,t,t,t,t
+lemon,wedge_lemon,wedge lemon,wedge lemons,,f,t,t,t,t
+lemon,whole_meyer_lemon,whole meyer lemon,whole meyer lemons,,f,t,t,t,t
+lemonade,can_frozen_lemonade_concentrate,can frozen lemonade concentrate,can frozen lemonade concentrates,,f,t,t,t,t
+lemonade,prepared_lemonade,prepared lemonade,prepared lemonades,,f,t,t,t,t
+lemon_juice,fresh_squeezed_lemon_juice,fresh squeezed lemon juice,fresh squeezed lemon juices,,f,t,t,t,t
+lemon_juice,meyer_lemon_juice,meyer lemon juice,meyer lemon juices,,f,t,t,t,t
+lemon_lime_flavored_carbonated_beverage,cola_flavored_carbonated_beverage,cola-flavored carbonated beverage,cola-flavored carbonated beverages,,f,t,t,t,t
+lemon_zest,meyer_lemon_zest,meyer lemon zest,meyer lemon zests,,f,t,t,t,t
+lentil,brown_lentil,brown lentil,brown lentils,,f,t,t,t,t
+lentil,puy_lentil,puy lentil,puy lentils,,f,t,t,t,t
+lentil,red_lentil,red lentil,red lentils,,f,t,t,t,t
+lentil,skinned_split_black_lentil,skinned split black lentil,skinned split black lentils,,f,t,t,t,t
+lettuce,head_red_leaf_lettuce,head red leaf lettuce,head red leaf lettuces,,f,t,t,t,t
+lettuce,iceberg_lettuce,iceberg lettuce,iceberg lettuces,,f,t,t,t,t
+lettuce,little_gem_lettuce,little gem lettuce,little gem lettuces,,f,t,t,t,t
+lettuce,romaine_lettuce,romaine lettuce,romaine lettuces,,f,t,t,t,t
+lettuce,torn_lettuce,torn lettuce,torn lettuces,,f,t,t,t,t
+lime,kaffir_lime_leaf,kaffir lime leaf,kaffir lime leaves,,f,t,t,t,t
+lime,lime_wedge,lime wedge,lime wedges,,f,t,t,t,t
+lime,lime_zest,lime zest,lime zests,,f,t,t,t,t
+lime,whole_lime_squeezed,whole lime squeezed,whole lime squeezeds,,f,t,t,t,t
+limeade,can_frozen_limeade_concentrate,can frozen limeade concentrate,can frozen limeade concentrates,,f,t,t,t,t
+lime_juice,fresh_squeezed_lime_juice,fresh squeezed lime juice,fresh squeezed lime juices,,f,t,t,t,t
+lime_juice,key_lime_juice,key lime juice,key lime juices,,f,t,t,t,t
+lime_zest,key_lime_zest,key lime zest,key lime zests,,f,t,t,t,t
+liquid,drops_liquid_stevia,drops liquid stevia,drops liquid stevias,,f,t,t,t,t
+liquid,fluid_liquid_pectin,fluid liquid pectin,fluid liquid pectins,,f,t,t,t,t
+liquid,liquid_glucose,liquid glucose,liquid glucoses,,f,t,t,t,t
+liquid,liquid_smoke,liquid smoke,liquid smokes,,f,t,t,t,t
+liquid_smoke,hickory_flavored_liquid_smoke,hickory-flavored liquid smoke,hickory-flavored liquid smokes,,f,t,t,t,t
+liquid_smoke,hickory_liquid_smoke,hickory liquid smoke,hickory liquid smokes,,f,t,t,t,t
+loaf,loaf_baguette,loaf baguette,loaf baguettes,,f,t,f,t,t
+lobster,lobster_tail,lobster tail,lobster tails,,f,t,t,f,f
+long_grain_white_rice,regular_long_grain_white_rice,regular long-grain white rice,regular long-grain white rices,,f,t,t,t,t
+macaroni,elbow_macaroni,elbow macaroni,elbow macaronis,,f,t,t,t,t
+mango,mango_chutney,mango chutney,mango chutneys,,f,t,t,t,t
+mango,mango_nectar,mango nectar,mango nectars,,f,t,t,t,t
+mango,mango___peeled,mango - peeled,mango - peeleds,,f,t,t,t,t
+mango,mango_pulp,mango pulp,mango pulps,,f,t,t,t,t
+maple_syrup,good_quality_maple_syrup,good quality maple syrup,good quality maple syrups,,f,t,t,t,t
+maple_syrup,real_maple_syrup,real maple syrup,real maple syrups,,f,t,t,t,t
+maraschino_cherry,maraschino_cherry_juice,maraschino cherry juice,maraschino cherry juices,,f,t,t,t,t
+margarine,non_hydrogenated_margarine,non-hydrogenated margarine,non-hydrogenated margarines,,f,t,t,t,t
+margarine,vegan_margarine,vegan margarine,vegan margarines,,f,t,t,t,t
+marinara_sauce,prepared_marinara_sauce,prepared marinara sauce,prepared marinara sauces,,f,t,t,t,t
+marsala_wine,sweet_marsala_wine,sweet marsala wine,sweet marsala wines,,f,t,t,t,t
+marshmallow,marshmallow_creme,marshmallow creme,marshmallow cremes,,f,t,t,t,t
+marshmallow,marshmallow_fluff,marshmallow fluff,marshmallow fluffs,,f,t,t,t,t
+marshmallow,miniature_marshmallow,miniature marshmallow,miniature marshmallows,,f,t,t,t,t
+marshmallow,mini_marshmallow,mini marshmallow,mini marshmallows,,f,t,t,t,t
+masa,masa_harina,masa harina,masa harinas,,f,t,t,t,t
+mayonnaise,chipotle_mayonnaise,chipotle mayonnaise,chipotle mayonnaises,,f,t,t,t,t
+mayonnaise,hellman's_mayonnaise,hellman's mayonnaise,hellman's mayonnaises,,f,t,t,t,t
+mayonnaise,low_fat_mayonnaise,low-fat mayonnaise,low-fat mayonnaises,,f,t,t,t,t
+mayonnaise,ready_made_mayonnaise,ready-made mayonnaise,ready-made mayonnaises,,f,t,t,t,t
+mayonnaise,real_mayonnaise,real mayonnaise,real mayonnaises,,f,t,t,t,t
+mayonnaise,reduced_fat_mayonnaise,reduced-fat mayonnaise,reduced-fat mayonnaises,,f,t,t,t,t
+meat,beef_stew_meat,beef stew meat,beef stew meats,meat_and_deli,f,t,t,f,f
+meat,can_fully_cooked_luncheon_meat,can fully cooked luncheon meat,can fully cooked luncheon meats,meat_and_deli,f,t,t,t,t
+meat,chicken_meat,chicken meat,chicken meats,meat_and_deli,f,t,t,f,f
+meat,coconut_meat,coconut meat,coconut meats,meat_and_deli,f,t,t,t,t
+meat,crab_meat,crab meat,crab meats,meat_and_deli,f,t,t,f,f
+meat,hamburger_meat,hamburger meat,hamburger meats,meat_and_deli,f,t,t,t,t
+meat,lamb_stew_meat,lamb stew meat,lamb stew meats,meat_and_deli,f,t,t,f,f
+meat,lobster_meat,lobster meat,lobster meats,meat_and_deli,f,t,t,f,f
+meat,meat_tenderizer,meat tenderizer,meat tenderizers,meat_and_deli,f,t,t,t,t
+meat,sausage_meat,sausage meat,sausage meats,meat_and_deli,f,t,t,f,f
+meat,turkey_meat,turkey meat,turkey meats,meat_and_deli,f,t,t,f,f
+meat,venison_stew_meat,venison stew meat,venison stew meats,meat_and_deli,f,t,t,f,f
+melon_liqueur,honeydew_melon,honeydew melon,honeydew melons,,f,t,t,t,t
+mild_chili_powder,california_mild_chili_powder,california mild chili powder,california mild chili powders,,f,t,t,t,t
+mild_italian_sausage,bulk_mild_italian_sausage,bulk mild italian sausage,bulk mild italian sausages,meat_and_deli,f,t,t,f,f
+milk,almond_milk,almond milk,almond milks,dairy,f,f,t,f,t
+milk,coconut_milk,coconut milk,coconut milks,dairy,f,f,t,f,t
+milk,evaporated_milk,evaporated milk,evaporated milks,dairy,f,f,t,f,t
+milk,fat_free_or_low_fat_lactose_free_milk,fat-free or low-fat lactose-free milk,fat-free or low-fat lactose-free milks,dairy,f,f,t,f,t
+milk,full_cream_milk,full cream milk,full cream milks,dairy,f,f,t,f,t
+milk,full_fat_milk,full-fat milk,full-fat milks,dairy,f,f,t,f,t
+milk,low_fat_milk,low-fat milk,low-fat milks,dairy,f,f,t,f,t
+milk,lowfat_milk,lowfat milk,lowfat milks,dairy,f,f,t,f,t
+milk,lukewarm_milk,lukewarm milk,lukewarm milks,dairy,f,f,t,f,t
+milk,milk_alternative,milk alternative,milk alternatives,dairy,f,f,t,f,t
+milk,milk_chocolate,milk chocolate,milk chocolates,dairy,f,f,t,f,t
+milk,milk_of_choice,milk of choice,milks of choice,dairy,f,f,t,f,t
+milk,milk_or_buttermilk,milk or buttermilk,milk or buttermilks,dairy,f,f,t,f,t
+milk,milk_or_half_and_half,milk or half-and-half,milk or half-and-halves,dairy,f,f,t,f,t
+milk,milk_powder,milk powder,milk powders,dairy,f,f,t,f,t
+milk,non_dairy_milk,non-dairy milk,non-dairy milks,dairy,f,f,t,f,t
+milk,non_fat_milk,non-fat milk,non-fat milks,dairy,f,f,t,f,t
+milk,nonfat_milk,nonfat milk,nonfat milks,dairy,f,f,t,f,t
+milk,reduced_fat_milk,reduced-fat milk,reduced-fat milks,dairy,f,f,t,f,t
+milk,rice_milk,rice milk,rice milks,dairy,f,f,t,f,t
+milk,scalded_milk,scalded milk,scalded milks,dairy,f,f,t,f,t
+milk,semi_skimmed_milk,semi-skimmed milk,semi-skimmed milks,dairy,f,f,t,f,t
+milk,skim_milk,skim milk,skim milks,dairy,f,f,t,f,t
+milk,sour_milk,sour milk,sour milks,dairy,f,f,t,f,t
+milk,soymilk,soymilk,soymilks,,f,t,t,t,t
+milk,sweetened_condensed_milk,sweetened condensed milk,sweetened condensed milks,dairy,f,f,t,f,t
+milk,warm_milk,warm milk,warm milks,dairy,f,f,t,f,t
+milk,water_or_milk,water or milk,water or milks,dairy,f,f,t,f,t
+milk,whole_milk_ricotta,whole milk ricotta,whole milk ricottas,dairy,f,f,t,f,t
+milk_chocolate,milk_chocolate_morsel,milk chocolate morsel,milk chocolate morsels,dairy,f,f,t,f,t
+milk_powder,malted_milk_powder,malted milk powder,malted milk powders,dairy,f,f,t,f,t
+mini_marshmallow,bag_mini_marshmallow,bag mini marshmallow,bag mini marshmallows,,f,t,t,t,t
+mint,mint_extract,mint extract,mint extracts,,f,t,t,t,t
+miracle_whip,miracle_whip_dressing,miracle whip dressing,miracle whip dressings,,f,t,t,t,t
+miso,white_miso,white miso,white misoes,,f,t,t,t,t
+mixed,cole_slaw_mix,cole slaw mix,cole slaw mixes,,f,t,t,t,t
+mixed,ground_mixed_spice,ground mixed spice,ground mixed spices,,f,t,t,t,t
+mixed,margarita_mix,margarita mix,margarita mixes,,f,t,t,t,t
+mixed,package_brownie_mix,package brownie mix,package brownie mixes,,f,t,t,t,t
+mixed,package_instant_butterscotch_pudding_mix,package instant butterscotch pudding mix,package instant butterscotch pudding mixes,,f,t,t,t,t
+mixed,pancake_mix,pancake mix,pancake mixes,,f,t,t,t,t
+mixed,pina_colada_mix,pina colada mix,pina colada mixes,,f,t,t,t,t
+mixed,spring_mix,spring mix,spring mixes,,f,t,t,t,t
+mixed,sweet_and_sour_cocktail_mix,sweet-and-sour cocktail mix,sweet-and-sour cocktail mixes,,f,t,t,t,t
+mixed,sweet_and_sour_mix,sweet and sour mix,sweet and sour mixes,,f,t,t,t,t
+m&m,mini_m&m,mini m&m,mini m&ms,,f,t,t,t,t
+mola,blackstrap_mola,blackstrap mola,blackstrap molas,,f,t,t,t,t
+mola,pomegranate_mola,pomegranate mola,pomegranate molas,,f,t,t,t,t
+mola,unsulfured_mola,unsulfured mola,unsulfured molas,,f,t,t,t,t
+mola,unsulphured_mola,unsulphured mola,unsulphured molas,,f,t,t,t,t
+molas,blackstrap_molas,blackstrap molas,blackstrap molass,,f,t,t,t,t
+molas,pomegranate_molas,pomegranate molas,pomegranate molass,,f,t,t,t,t
+molas,unsulfured_molas,unsulfured molas,unsulfured molass,,f,t,t,t,t
+molas,unsulphured_molas,unsulphured molas,unsulphured molass,,f,t,t,t,t
+mozzarella,mozzarella_ball,mozzarella ball,mozzarella balls,,f,t,t,t,t
+mozzarella,mozzarella_pearl,mozzarella pearl,mozzarella pearls,,f,t,t,t,t
+mozzarella,part_skim_mozzarella,part skim mozzarella,part skim mozzarellas,,f,t,t,t,t
+mozzarella_cheese,shredded_part_skim_mozzarella_cheese,shredded part-skim mozzarella cheese,shredded part-skim mozzarella cheeses,dairy,f,f,t,f,t
+mushroom,baby_bella_mushroom,baby bella mushroom,baby bella mushrooms,,f,t,t,t,t
+mushroom,baby_portabella_mushroom,baby portabella mushroom,baby portabella mushrooms,,f,t,t,t,t
+mushroom,button_mushroom,button mushroom,button mushrooms,,f,t,t,t,t
+mushroom,can_condensed_golden_mushroom_soup,can condensed golden mushroom soup,can condensed golden mushroom soups,,f,t,t,t,t
+mushroom,chestnut_mushroom,chestnut mushroom,chestnut mushrooms,,f,t,t,t,t
+mushroom,cremini_mushroom,cremini mushroom,cremini mushrooms,,f,t,t,t,t
+mushroom,crimini_mushroom,crimini mushroom,crimini mushrooms,,f,t,t,t,t
+mushroom,enoki_mushroom,enoki mushroom,enoki mushrooms,,f,t,t,t,t
+mushroom,oyster_mushroom,oyster mushroom,oyster mushrooms,,f,t,t,t,t
+mushroom,porcini_mushroom,porcini mushroom,porcini mushrooms,,f,t,t,t,t
+mushroom,portobello_mushroom,portobello mushroom,portobello mushrooms,,f,t,t,t,t
+mushroom,shiitake_mushroom,shiitake mushroom,shiitake mushrooms,,f,t,t,t,t
+mushroom,white_mushroom,white mushroom,white mushrooms,,f,t,t,t,t
+mushroom,whole_portabello_mushroom,whole portabello mushroom,whole portabello mushrooms,,f,t,t,t,t
+mushroom,wild_mushroom,wild mushroom,wild mushrooms,,f,t,t,t,t
+mustard,brown_mustard,brown mustard,brown mustards,,f,t,t,t,t
+mustard,creole_mustard,creole mustard,creole mustards,,f,t,t,t,t
+mustard,dijion_mustard,dijion mustard,dijion mustards,,f,t,t,t,t
+mustard,dijon_mustard,dijon mustard,dijon mustards,,f,t,t,t,t
+mustard,dijon_style_mustard,dijon-style mustard,dijon-style mustards,,f,t,t,t,t
+mustard,english_mustard,english mustard,english mustards,,f,t,t,t,t
+mustard,grainy_mustard,grainy mustard,grainy mustards,,f,t,t,t,t
+mustard,grey_poupon_mustard,grey poupon mustard,grey poupon mustards,,f,t,t,t,t
+mustard,horseradish_mustard,horseradish mustard,horseradish mustards,,f,t,t,t,t
+mustard,mustard_powder,mustard powder,mustard powders,,f,t,t,t,t
+mustard,mustard_seed,mustard seed,mustard seeds,,f,t,t,t,t
+mustard,prepared_mustard,prepared mustard,prepared mustards,,f,t,t,t,t
+mustard,spicy_mustard,spicy mustard,spicy mustards,,f,t,t,t,t
+mustard,stone_ground_mustard,stone ground mustard,stone ground mustards,,f,t,t,t,t
+mustard,wholegrain_mustard,wholegrain mustard,wholegrain mustards,,f,t,t,t,t
+mustard,yellow_mustard,yellow mustard,yellow mustards,,f,t,t,t,t
+mustard_powder,english_mustard_powder,english mustard powder,english mustard powders,,f,t,t,t,t
+mustard_seed,black_mustard_seed,black mustard seed,black mustard seeds,,f,t,t,t,t
+mustard_seed,brown_mustard_seed,brown mustard seed,brown mustard seeds,,f,t,t,t,t
+mustard_seed,yellow_mustard_seed,yellow mustard seed,yellow mustard seeds,,f,t,t,t,t
+non_dairy_creamer,powdered_non_dairy_creamer,powdered non-dairy creamer,powdered non-dairy creamers,,f,t,t,t,t
+noodle,chow_mein_noodle,chow mein noodle,chow mein noodles,,f,t,f,t,t
+noodle,fettuccine_noodle,fettuccine noodle,fettuccine noodles,,f,t,f,t,t
+noodle,lasagna_noodle,lasagna noodle,lasagna noodles,,f,t,f,t,t
+noodle,macaroni_noodle,macaroni noodle,macaroni noodles,,f,t,f,t,t
+noodle,packages_chicken_flavored_ramen_noodle,packages chicken flavored ramen noodle,packages chicken flavored ramen noodles,meat_and_deli,f,t,f,f,f
+noodle,soba_noodle,soba noodle,soba noodles,,f,t,f,t,t
+noodle,spaghetti_noodle,spaghetti noodle,spaghetti noodles,,f,t,f,t,t
+noodle,weight_udon_noodle,weight udon noodle,weight udon noodles,,f,t,f,t,t
+nut,brazil_nut,brazil nut,brazil nuts,,f,t,t,t,t
+nut,cashew_nut,cashew nut,cashew nuts,,f,t,t,t,t
+nut,grape_nuts_cereal,grape nuts cereal,grape nuts cereals,,f,t,t,t,t
+nut,macadamia_nut,macadamia nut,macadamia nuts,,f,t,t,t,t
+nut,pine_nut,pine nut,pine nuts,,f,t,t,t,t
+nut,pistachio_nut,pistachio nut,pistachio nuts,,f,t,t,t,t
+nutella,nutella_spread,nutella spread,nutella spreads,,f,t,t,t,t
+nutmeg,freshly_ground_nutmeg,freshly-ground nutmeg,freshly-ground nutmegs,,f,t,t,t,t
+nutmeg,ground_nutmeg,ground nutmeg,ground nutmegs,,f,t,t,t,t
+nutmeg,nutmeg_powder,nutmeg powder,nutmeg powders,,f,t,t,t,t
+oat,gluten_free_oat,gluten free oat,gluten free oats,,f,t,t,t,t
+oat,oat_bran,oat bran,oat brans,,f,t,t,t,t
+oat,old_fashioned_oat,old-fashioned oat,old-fashioned oats,,f,t,t,t,t
+oat,organic_rolled_oat,organic rolled oat,organic rolled oats,,f,t,t,t,t
+oat,porridge_oat,porridge oat,porridge oats,,f,t,t,t,t
+oat,quick_cooking_oat,quick-cooking oat,quick-cooking oats,,f,t,t,t,t
+oat,quick_oat,quick oat,quick oats,,f,t,t,t,t
+oat,regular_oat,regular oat,regular oats,,f,t,t,t,t
+oat,steel_cut_oat,steel-cut oat,steel-cut oats,,f,t,t,t,t
+oat_flour,gluten_free_oat_flour,gluten-free oat flour,gluten-free oat flours,,f,t,f,t,t
+oatmeal,quick_oatmeal,quick oatmeal,quick oatmeals,,f,t,t,t,t
+oil,asian_sesame_oil,asian sesame oil,asian sesame oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,avocado_oil,avocado oil,avocado oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,canola_oil_spray,canola oil spray,canola oil sprays,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,chili_oil,chili oil,chili oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,cinnamon_oil,cinnamon oil,cinnamon oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,coconut_oil,coconut oil,coconut oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,corn_oil,corn oil,corn oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,crisco_oil,crisco oil,crisco oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,drops_peppermint_oil,drops peppermint oil,drops peppermint oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,extra_virgin_oil,extra-virgin oil,extra-virgin oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,garlic_oil,garlic oil,garlic oils,fruit_and_veg,f,t,t,t,t
+oil,grapeseed_oil,grapeseed oil,grapeseed oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,grapeseed_oil_or_other_flavorless_oil,grapeseed oil or other flavorless oil,grapeseed oil or other flavorless oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,groundnut_oil,groundnut oil,groundnut oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,hazelnut_oil,hazelnut oil,hazelnut oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,neutral_oil,neutral oil,neutral oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,oil_for_deep_frying,oil for deep frying,oils for deep frying,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,oilve_oil,oilve oil,oilve oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,olive_oil,olive oil,olive oils,oil_and_vinegar_and_condiments,t,t,t,t,t
+oil,peanut_oil,peanut oil,peanut oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,rapeseed_oil,rapeseed oil,rapeseed oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,roasted_sesame_oil,roasted sesame oil,roasted sesame oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,safflower_oil,safflower oil,safflower oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,salad_oil,salad oil,salad oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,seasame_oil,seasame oil,seasame oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,sesame_seed_oil,sesame seed oil,sesame seed oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,sunflower_oil,sunflower oil,sunflower oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,truffle_oil,truffle oil,truffle oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,vegetable_oil,vegetable oil,vegetable oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,veg._oil,veg. oil,veg. oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,vegtable_oil,vegtable oil,vegtable oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,walnut_oil,walnut oil,walnut oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+old_bay,old_fashioned_rolled_oat,old fashioned rolled oat,old fashioned rolled oats,,f,t,t,t,t
+old_fashioned_rolled_oat,old_fashioned_oatmeal,old fashioned oatmeal,old fashioned oatmeals,,f,t,t,t,t
+old_fashioned_rolled_oat,old_fashion_oat,old fashion oat,old fashion oats,,f,t,t,t,t
+olive,black_olive,black olive,black olives,,f,t,t,t,t
+olive,kalamata_olive,kalamata olive,kalamata olives,,f,t,t,t,t
+olive,olive_tapenade,olive tapenade,olive tapenades,,f,t,t,t,t
+olive_oil,extra_virgin_olive_oil,extra-virgin olive oil,extra-virgin olive oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+olive_oil,garlic_infused_olive_oil,garlic infused olive oil,garlic infused olive oils,fruit_and_veg,f,t,t,t,t
+olive_oil,good_olive_oil,good olive oil,good olive oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+olive_oil,good_quality_olive_oil,good quality olive oil,good quality olive oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+olive_oil,greek_imported_olive_oil,greek imported olive oil,greek imported olive oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+olive_oil,olive_oil_mayonnaise,olive oil mayonnaise,olive oil mayonnaises,oil_and_vinegar_and_condiments,f,t,t,t,t
+olive_oil,olive_oil_spray,olive oil spray,olive oil sprays,oil_and_vinegar_and_condiments,f,t,t,t,t
+onion,black_onion_seed,black onion seed,black onion seeds,fruit_and_veg,f,t,t,t,t
+onion,can_french_fried_onion,can french-fried onion,can french-fried onions,fruit_and_veg,f,t,t,t,t
+onion,caramelized_onion,caramelized onion,caramelized onions,fruit_and_veg,f,t,t,t,t
+onion,envelope_onion_soup_mix,envelope onion soup mix,envelope onion soup mixes,fruit_and_veg,f,t,t,t,t
+onion,french_fried_onion,french fried onion,french fried onions,fruit_and_veg,f,t,t,t,t
+onion,green_onion,green onion,green onions,fruit_and_veg,f,t,t,t,t
+onion,onion_juice,onion juice,onion juices,fruit_and_veg,f,t,t,t,t
+onion,onion_powder,onion powder,onion powders,fruit_and_veg,f,t,t,t,t
+onion,packet_dry_onion_soup_mix,packet dry onion soup mix,packet dry onion soup mixes,fruit_and_veg,f,t,t,t,t
+onion,pearl_onion,pearl onion,pearl onions,fruit_and_veg,f,t,t,t,t
+onion,purple_onion,purple onion,purple onions,fruit_and_veg,f,t,t,t,t
+onion,red_onion,red onion,red onions,fruit_and_veg,f,t,t,t,t
+onion,spanish_onion,spanish onion,spanish onions,fruit_and_veg,f,t,t,t,t
+onion,spring_onion,spring onion,spring onions,fruit_and_veg,f,t,t,t,t
+onion,sweet_onion,sweet onion,sweet onions,fruit_and_veg,f,t,t,t,t
+onion,vidalia_onion,vidalia onion,vidalia onions,fruit_and_veg,f,t,t,t,t
+onion,white_onion,white onion,white onions,fruit_and_veg,f,t,t,t,t
+onion,whole_big_onion,whole big onion,whole big onions,fruit_and_veg,f,t,t,t,t
+onion,whole_brown_onion,whole brown onion,whole brown onions,fruit_and_veg,f,t,t,t,t
+onion,whole_medium_sized_onion,whole medium-sized onion,whole medium-sized onions,,f,t,t,t,t
+onion,yellow_onion,yellow onion,yellow onions,fruit_and_veg,f,t,t,t,t
+orange,brandy_based_orange_liqueur,brandy-based orange liqueur,brandy-based orange liqueurs,,f,t,t,t,t
+orange,can_mandarin_orange,can mandarin orange,can mandarin oranges,,f,t,t,t,t
+orange,orange_extract,orange extract,orange extracts,,f,t,t,t,t
+orange,orange_juice,orange juice,orange juices,,f,t,t,t,t
+orange,orange_marmalade,orange marmalade,orange marmalades,,f,t,t,t,t
+orange,orange_rind,orange rind,orange rinds,,f,t,t,t,t
+orange,orange_sherbet,orange sherbet,orange sherbets,,f,t,t,t,t
+orange,orange_wedge,orange wedge,orange wedges,,f,t,t,t,t
+orange,orange_zest,orange zest,orange zests,,f,t,t,t,t
+orange,whole_blood_orange,whole blood orange,whole blood oranges,,f,t,t,t,t
+orange,whole_navel_orange,whole navel orange,whole navel oranges,,f,t,t,t,t
+orange_juice,blood_orange_juice,blood orange juice,blood orange juices,,f,t,t,t,t
+orange_juice,fresh_squeezed_orange_juice,fresh squeezed orange juice,fresh squeezed orange juices,,f,t,t,t,t
+orange_juice,mandarin_orange_juice,mandarin orange juice,mandarin orange juices,,f,t,t,t,t
+orange_juice,orange_juice_concentrate,orange juice concentrate,orange juice concentrates,,f,t,t,t,t
+orange_juice,pulp_free_orange_juice,pulp-free orange juice,pulp-free orange juices,,f,t,t,t,t
+orange_zest,blood_orange_zest,blood orange zest,blood orange zests,,f,t,t,t,t
+oregano,mexican_oregano,mexican oregano,mexican oreganos,,f,t,t,t,t
+oreo,oreo_cooky,oreo cooky,oreo cookies,,f,t,t,t,t
+package_chocolate_cake_mix,box_chocolate_cake_mix,box chocolate cake mix,box chocolate cake mixes,,f,t,t,t,t
+package_chocolate_cake_mix,package_german_chocolate_cake_mix,package german chocolate cake mix,package german chocolate cake mixes,,f,t,t,t,t
+package_phyllo_dough,sheets_phyllo_dough,sheets phyllo dough,sheets phyllo doughs,,f,t,t,t,t
+pale_ale,pale_ale_beer,pale ale beer,pale ale beers,,f,t,f,t,t
+palm_sugar,coconut_palm_sugar,coconut palm sugar,coconut palm sugars,,f,t,t,t,t
+panko_breadcrumb,japanese_panko_breadcrumb,japanese panko breadcrumb,japanese panko breadcrumbs,,f,t,f,t,t
+panko_breadcrumb,seasoned_panko_breadcrumb,seasoned panko breadcrumb,seasoned panko breadcrumbs,,f,t,f,t,t
+paprika,hungarian_paprika,hungarian paprika,hungarian paprikas,,f,t,t,t,t
+paprika,mild_paprika,mild paprika,mild paprikas,,f,t,t,t,t
+paprika,paprika_powder,paprika powder,paprika powders,,f,t,t,t,t
+paprika,smoked_paprika,smoked paprika,smoked paprikas,,f,t,t,t,t
+paprika,smoky_paprika,smoky paprika,smoky paprikas,,f,t,t,t,t
+paprika,spanish_paprika,spanish paprika,spanish paprikas,,f,t,t,t,t
+paprika,sweet_paprika,sweet paprika,sweet paprikas,,f,t,t,t,t
+parmesan,parmesan_shaving,parmesan shaving,parmesan shavings,,f,t,t,t,t
+parmesan_cheese,shaved_parmesan_cheese,shaved parmesan cheese,shaved parmesan cheeses,dairy,f,f,t,f,t
+parsley,chopped_parsley_for_garnish,chopped parsley for garnish,chopped parsleys for garnish,,f,t,t,t,t
+parsley,curly_parsley,curly parsley,curly parsleys,,f,t,t,t,t
+parsley,flat_leaf_parsley,flat-leaf parsley,flat-leaf parsleys,,f,t,t,t,t
+parsley,flatleaf_parsley,flatleaf parsley,flatleaf parsleys,,f,t,t,t,t
+parsley,italian_parsley,italian parsley,italian parsleys,,f,t,t,t,t
+passion_fruit,passion_fruit_juice,passion fruit juice,passion fruit juices,,f,t,t,t,t
+pasta,angel_hair_pasta,angel hair pasta,angel hair pastas,,f,t,f,t,t
+pasta,bow_tie_pasta,bow tie pasta,bow tie pastas,,f,t,f,t,t
+pasta,bowtie_pasta,bowtie pasta,bowtie pastas,,f,t,f,t,t
+pasta,ditalini_pasta,ditalini pasta,ditalini pastas,,f,t,f,t,t
+pasta,elbow_pasta,elbow pasta,elbow pastas,,f,t,f,t,t
+pasta,farfalle_pasta,farfalle pasta,farfalle pastas,,f,t,f,t,t
+pasta,fettuccine_pasta,fettuccine pasta,fettuccine pastas,,f,t,f,t,t
+pasta,fettuccini_pasta,fettuccini pasta,fettuccini pastas,,f,t,f,t,t
+pasta,fusilli_pasta,fusilli pasta,fusilli pastas,,f,t,f,t,t
+pasta,jumbo_pasta_shell,jumbo pasta shell,jumbo pasta shells,,f,t,f,t,t
+pasta,linguine_pasta,linguine pasta,linguine pastas,,f,t,f,t,t
+pasta,linguini_pasta,linguini pasta,linguini pastas,,f,t,f,t,t
+pasta,orecchiette_pasta,orecchiette pasta,orecchiette pastas,,f,t,f,t,t
+pasta,orzo_pasta,orzo pasta,orzo pastas,,f,t,f,t,t
+pasta,penne_pasta,penne pasta,penne pastas,,f,t,f,t,t
+pasta,rigatoni_pasta,rigatoni pasta,rigatoni pastas,,f,t,f,t,t
+pasta,rotelle_pasta,rotelle pasta,rotelle pastas,,f,t,f,t,t
+pasta,rotini_pasta,rotini pasta,rotini pastas,,f,t,f,t,t
+pasta,seashell_pasta,seashell pasta,seashell pastas,,f,t,f,t,t
+pasta,short_cut_pasta,short cut pasta,short cut pastas,,f,t,f,t,t
+pasta,spiral_pasta,spiral pasta,spiral pastas,,f,t,f,t,t
+pasta,uncooked_corkscrew_shaped_pasta,uncooked corkscrew-shaped pasta,uncooked corkscrew-shaped pastas,,f,t,f,t,t
+pasta,vermicelli_pasta,vermicelli pasta,vermicelli pastas,,f,t,f,t,t
+pasta,ziti_pasta,ziti pasta,ziti pastas,,f,t,f,t,t
+pasta_sauce,tomato_pasta_sauce,tomato pasta sauce,tomato pasta sauces,fruit_and_veg,f,t,f,t,t
+pasta_water,reserved_pasta_water,reserved pasta water,reserved pasta waters,,f,t,f,t,t
+pastry,puff_pastry,puff pastry,puff pastries,,f,t,t,t,t
+pastry,ready_made_shortcrust_pastry,ready-made shortcrust pastry,ready-made shortcrust pastries,,f,t,t,t,t
+pea,dry_black_eyed_pea,dry black-eyed pea,dry black-eyed peas,,f,t,t,t,t
+pea,english_pea,english pea,english peas,,f,t,t,t,t
+pea,green_pea,green pea,green peas,,f,t,t,t,t
+pea,pea_shoot,pea shoot,pea shoots,,f,t,t,t,t
+pea,petite_pea,petite pea,petite peas,,f,t,t,t,t
+pea,snap_pea,snap pea,snap peas,,f,t,t,t,t
+pea,snow_pea,snow pea,snow peas,,f,t,t,t,t
+pea,sweet_pea,sweet pea,sweet peas,,f,t,t,t,t
+pea,yellow_split_pea,yellow split pea,yellow split peas,,f,t,t,t,t
+peach,fresh_peaches___peeled,fresh peaches - peeled,fresh peaches - peeleds,,f,t,t,t,t
+peach,peach_nectar,peach nectar,peach nectars,,f,t,t,t,t
+peach,peach_preserve,peach preserve,peach preserves,,f,t,t,t,t
+peach,peach_schnapp,peach schnapp,peach schnapps,,f,t,t,t,t
+peach_schnapp,jigger_peach_schnapp,jigger peach schnapp,jigger peach schnapps,,f,t,t,t,t
+peanut,roasted_peanut,roasted peanut,roasted peanuts,,f,t,t,t,t
+peanut,spanish_peanut,spanish peanut,spanish peanuts,,f,t,t,t,t
+peanut,unsalted_peanut,unsalted peanut,unsalted peanuts,,f,t,t,t,t
+peanut_butter,chunky_peanut_butter,chunky peanut butter,chunky peanut butters,dairy,f,f,t,f,t
+peanut_butter,creamy_peanut_butter,creamy peanut butter,creamy peanut butters,dairy,f,f,t,f,t
+peanut_butter,crunchy_peanut_butter,crunchy peanut butter,crunchy peanut butters,dairy,f,f,t,f,t
+peanut_butter,natural_peanut_butter,natural peanut butter,natural peanut butters,dairy,f,f,t,f,t
+peanut_butter,peanut_butter_chip,peanut butter chip,peanut butter chips,dairy,f,f,t,f,t
+peanut_butter,peanut_butter_cup,peanut butter cup,peanut butter cups,dairy,f,f,t,f,t
+peanut_butter,smooth_peanut_butter,smooth peanut butter,smooth peanut butters,dairy,f,f,t,f,t
+pear,pears___peeled,pears - peeled,pears - peeleds,,f,t,t,t,t
+pear,whole_bosc_pear,whole bosc pear,whole bosc pears,,f,t,t,t,t
+pecan,walnuts_or_pecan,walnuts or pecan,walnuts or pecans,,f,t,t,t,t
+penne_pasta,box_penne_pasta,box penne pasta,box penne pastas,,f,t,f,t,t
+pepper,aleppo_pepper,aleppo pepper,aleppo peppers,,f,t,t,t,t
+pepper,banana_pepper,banana pepper,banana peppers,fruit_and_veg,f,t,t,t,t
+pepper,bell_pepper,bell pepper,bell peppers,,f,t,t,t,t
+pepper,black_pepper,black pepper,black peppers,,f,t,t,t,t
+pepper,cayenne_pepper,cayenne pepper,cayenne peppers,,f,t,t,t,t
+pepper,chili_pepper,chili pepper,chili peppers,,f,t,t,t,t
+pepper,chipotle_pepper,chipotle pepper,chipotle peppers,,f,t,t,t,t
+pepper,cracked_pepper,cracked pepper,cracked peppers,,f,t,t,t,t
+pepper,dr._pepper,dr. pepper,dr. peppers,,f,t,t,t,t
+pepper,garlic_pepper,garlic pepper,garlic peppers,fruit_and_veg,f,t,t,t,t
+pepper,green_pepper,green pepper,green peppers,,f,t,t,t,t
+pepper,habanero_pepper,habanero pepper,habanero peppers,,f,t,t,t,t
+pepper,hot_pepper_sauce,hot pepper sauce,hot pepper sauces,,f,t,t,t,t
+pepper,jalapeño_pepper,jalapeño pepper,jalapeño peppers,,f,t,t,t,t
+pepper,lemon_pepper,lemon pepper,lemon peppers,,f,t,t,t,t
+pepper,orange_pepper,orange pepper,orange peppers,,f,t,t,t,t
+pepper,pepper_jelly,pepper jelly,pepper jellies,,f,t,t,t,t
+pepper,pepperoncini_pepper,pepperoncini pepper,pepperoncini peppers,,f,t,t,t,t
+pepper,pimento_pepper,pimento pepper,pimento peppers,,f,t,t,t,t
+pepper,poblano_pepper,poblano pepper,poblano peppers,,f,t,t,t,t
+pepper,red_pepper,red pepper,red peppers,,f,t,t,t,t
+pepper,seasoned_pepper,seasoned pepper,seasoned peppers,,f,t,t,t,t
+pepper,serrano_pepper,serrano pepper,serrano peppers,,f,t,t,t,t
+pepper,white_pepper,white pepper,white peppers,,f,t,t,t,t
+pepper,yellow_pepper,yellow pepper,yellow peppers,,f,t,t,t,t
+peppercorn,black_peppercorn,black peppercorn,black peppercorns,,f,t,t,t,t
+peppercorn,pink_peppercorn,pink peppercorn,pink peppercorns,,f,t,t,t,t
+peppercorn,sichuan_peppercorn,sichuan peppercorn,sichuan peppercorns,,f,t,t,t,t
+peppercorn,white_peppercorn,white peppercorn,white peppercorns,,f,t,t,t,t
+peppermint,peppermint_schnapp,peppermint schnapp,peppermint schnapps,,f,t,t,t,t
+pesto,prepared_pesto,prepared pesto,prepared pestoes,,f,t,t,t,t
+pickle,pickle_relish,pickle relish,pickle relishes,,f,t,t,t,t
+pickle,sweet_pickle,sweet pickle,sweet pickles,,f,t,t,t,t
+pickled_jalapeño,pickled_jalapeno_juice,pickled jalapeno juice,pickled jalapeno juices,,f,t,t,t,t
+pickle_relish,sweet_pickle_relish,sweet pickle relish,sweet pickle relishes,,f,t,t,t,t
+pieces_tilapia,eaches_tilapia_fillet,eaches tilapia fillet,eaches tilapia fillets,,f,t,t,t,t
+pineapple,pineapple_preserve,pineapple preserve,pineapple preserves,,f,t,t,t,t
+pineapple,pineapple_ring,pineapple ring,pineapple rings,,f,t,t,t,t
+pineapple,pineapple_tidbit,pineapple tidbit,pineapple tidbits,,f,t,t,t,t
+pineapple_juice,unsweetened_pineapple_juice,unsweetened pineapple juice,unsweetened pineapple juices,,f,t,t,t,t
+pistachio,package_instant_pistachio_pudding_mix,package instant pistachio pudding mix,package instant pistachio pudding mixes,,f,t,t,t,t
+pistachio,unsalted_pistachio,unsalted pistachio,unsalted pistachios,,f,t,t,t,t
+pita_bread,pita_bread_round,pita bread round,pita bread rounds,,f,t,f,t,t
+plum,plum_jam,plum jam,plum jams,,f,t,t,t,t
+pomegranate,pomegranate_aril,pomegranate aril,pomegranate arils,,f,t,t,t,t
+popcorn,air_popped_popcorn,air-popped popcorn,air-popped popcorns,,f,t,t,t,t
+popcorn,popped_popcorn,popped popcorn,popped popcorns,,f,t,t,t,t
+popcorn,unpopped_popcorn,unpopped popcorn,unpopped popcorns,,f,t,t,t,t
+poppy_seed,poppy_seed_dressing,poppy seed dressing,poppy seed dressings,,f,t,t,t,t
+pork,bone_in_pork_chop,bone-in pork chop,bone-in pork chops,meat_and_deli,f,t,t,f,f
+pork,boneless_pork_chop,boneless pork chop,boneless pork chops,meat_and_deli,f,t,t,f,f
+pork,country_style_pork_rib,country style pork rib,country style pork ribs,meat_and_deli,f,t,t,f,f
+pork,lean_ground_pork,lean ground pork,lean ground porks,meat_and_deli,f,t,t,f,f
+pork,pork_baby_back_rib,pork baby back rib,pork baby back ribs,meat_and_deli,f,t,t,f,f
+pork,pork_belly,pork belly,pork bellies,meat_and_deli,f,t,t,f,f
+pork,pork_butt,pork butt,pork butts,meat_and_deli,f,t,t,f,f
+pork,pork_loin,pork loin,pork loins,meat_and_deli,f,t,t,f,f
+pork,pork_roast,pork roast,pork roasts,meat_and_deli,f,t,t,f,f
+pork,pork_sausage,pork sausage,pork sausages,meat_and_deli,f,t,t,f,f
+pork,pork_shoulder,pork shoulder,pork shoulders,meat_and_deli,f,t,t,f,f
+pork,pork_sparerib,pork sparerib,pork spareribs,meat_and_deli,f,t,t,f,f
+pork,pork_tenderloin,pork tenderloin,pork tenderloins,meat_and_deli,f,t,t,f,f
+pork_butt,pork_butt_roast,pork butt roast,pork butt roasts,meat_and_deli,f,t,t,f,f
+pork_loin,pork_loin_roast,pork loin roast,pork loin roasts,meat_and_deli,f,t,t,f,f
+pork_sausage,bulk_pork_sausage,bulk pork sausage,bulk pork sausages,meat_and_deli,f,t,t,f,f
+pork_sausage,italian_pork_sausage,italian pork sausage,italian pork sausages,meat_and_deli,f,t,t,f,f
+pork_sausage,mild_pork_sausage,mild pork sausage,mild pork sausages,meat_and_deli,f,t,t,f,f
+pork_sausage,pork_sausage_meat,pork sausage meat,pork sausage meats,meat_and_deli,f,t,t,f,f
+pork_sausage,sage_pork_sausage,sage pork sausage,sage pork sausages,meat_and_deli,f,t,t,f,f
+pork_sausage,spicy_pork_sausage,spicy pork sausage,spicy pork sausages,meat_and_deli,f,t,t,f,f
+pork_shoulder,pork_shoulder_roast,pork shoulder roast,pork shoulder roasts,meat_and_deli,f,t,t,f,f
+port,ruby_port,ruby port,ruby ports,,f,t,t,t,t
+portobello_mushroom,portobello_mushroom_cap,portobello mushroom cap,portobello mushroom caps,,f,t,t,t,t
+potato,baking_potato,baking potato,baking potatoes,,f,t,t,t,t
+potato,fingerling_potato,fingerling potato,fingerling potatoes,,f,t,t,t,t
+potato,floury_potato,floury potato,floury potatoes,,f,t,f,t,t
+potato,leftover_mashed_potato,leftover mashed potato,leftover mashed potatoes,,f,t,t,t,t
+potato,new_potato,new potato,new potatoes,,f,t,t,t,t
+potato,potato_chip,potato chip,potato chips,,f,t,t,t,t
+potato,potatoes___peeled_and_cubed,potatoes - peeled and cubed,potatoes - peeled and cubeds,,f,t,t,t,t
+potato,potato_starch,potato starch,potato starches,,f,t,t,t,t
+potato,prepared_mashed_potato,prepared mashed potato,prepared mashed potatoes,,f,t,t,t,t
+potato,red_potato,red potato,red potatoes,,f,t,t,t,t
+potato,russet_potato,russet potato,russet potatoes,,f,t,t,t,t
+potato,sweet_potato,sweet potato,sweet potatoes,,f,t,t,t,t
+potato,white_potato,white potato,white potatoes,,f,t,t,t,t
+potato,whole_idaho_potato,whole idaho potato,whole idaho potatoes,,f,t,t,t,t
+potato,whole_medium_sized_potato,whole medium-sized potato,whole medium-sized potatoes,,f,t,t,t,t
+potato,yellow_potato,yellow potato,yellow potatoes,,f,t,t,t,t
+potato,yukon_gold_potato,yukon gold potato,yukon gold potatoes,,f,t,t,t,t
+powder,arrowroot_powder,arrowroot powder,arrowroot powders,,f,t,t,t,t
+powder,asafoetida_powder,asafoetida powder,asafoetida powders,,f,t,t,t,t
+powder,carob_powder,carob powder,carob powders,,f,t,t,t,t
+powder,chile_powder,chile powder,chile powders,,f,t,t,t,t
+powder,chinese_five_spice_powder,chinese five-spice powder,chinese five-spice powders,,f,t,t,t,t
+powder,file_powder,file powder,file powders,,f,t,t,t,t
+powder,malt_powder,malt powder,malt powders,,f,t,t,t,t
+powder,matcha_powder,matcha powder,matcha powders,,f,t,t,t,t
+powder,meringue_powder,meringue powder,meringue powders,,f,t,t,t,t
+powder,protein_powder,protein powder,protein powders,,f,t,t,t,t
+powder,red_chile_powder,red-chile powder,red-chile powders,,f,t,t,t,t
+powder,wasabi_powder,wasabi powder,wasabi powders,,f,t,t,t,t
+powder_sugar,box_powdered_sugar,box powdered sugar,box powdered sugars,,f,t,t,t,t
+prawn,tiger_prawn,tiger prawn,tiger prawns,,f,t,t,t,t
+pretzel,mini_pretzel,mini pretzel,mini pretzels,,f,t,t,t,t
+processed_cheese,loaf_processed_cheese,loaf processed cheese,loaf processed cheeses,dairy,f,f,f,f,t
+processed_cheese,processed_cheese_sauce,processed cheese sauce,processed cheese sauces,dairy,f,f,t,f,t
+protein_powder,chocolate_protein_powder,chocolate protein powder,chocolate protein powders,,f,t,t,t,t
+protein_powder,chocolate_whey_protein_powder,chocolate whey protein powder,chocolate whey protein powders,,f,t,t,t,t
+protein_powder,vanilla_protein_powder,vanilla protein powder,vanilla protein powders,,f,t,t,t,t
+protein_powder,vanilla_whey_protein_powder,vanilla whey protein powder,vanilla whey protein powders,,f,t,t,t,t
+puff_pastry,ready_made_puff_pastry,ready-made puff pastry,ready-made puff pastries,,f,t,t,t,t
+puff_pastry,whole_sheet_puff_pastry,whole sheet puff pastry,whole sheet puff pastries,,f,t,t,t,t
+pumpkin,pumpkin_pie_filling,pumpkin pie filling,pumpkin pie fillings,,f,t,t,t,t
+pumpkin,pumpkin_seed,pumpkin seed,pumpkin seeds,,f,t,t,t,t
+pumpkin,roasted_pumpkin_puree,roasted pumpkin puree,roasted pumpkin purees,,f,t,t,t,t
+pumpkin,unsweetened_pumpkin_puree,unsweetened pumpkin puree,unsweetened pumpkin purees,,f,t,t,t,t
+pumpkin_seed,roasted_pumpkin_seed,roasted pumpkin seed,roasted pumpkin seeds,,f,t,t,t,t
+queso_fresco,queso_fresco_cheese,queso fresco cheese,queso fresco cheeses,dairy,f,f,t,f,t
+quinoa,black_quinoa,black quinoa,black quinoas,,f,t,t,t,t
+quinoa,red_quinoa,red quinoa,red quinoas,,f,t,t,t,t
+quinoa,white_quinoa,white quinoa,white quinoas,,f,t,t,t,t
+raisin,box_raisin,box raisin,box raisins,,f,t,t,t,t
+raisin,golden_raisin,golden raisin,golden raisins,,f,t,t,t,t
+raisin,raisins_cranberry,raisins cranberry,raisins cranberries,,f,t,t,t,t
+raisin,seedless_raisin,seedless raisin,seedless raisins,,f,t,t,t,t
+ranch_dressing,envelope_ranch_dressing_mix,envelope ranch dressing mix,envelope ranch dressing mixes,,f,t,t,t,t
+ranch_dressing,low_fat_ranch_dressing,low-fat ranch dressing,low-fat ranch dressings,,f,t,t,t,t
+ranch_dressing,powdered_ranch_dressing_mix,powdered ranch dressing mix,powdered ranch dressing mixes,,f,t,t,t,t
+raspberry,raspberry_extract,raspberry extract,raspberry extracts,,f,t,t,t,t
+raspberry,raspberry_jam,raspberry jam,raspberry jams,,f,t,t,t,t
+raspberry,raspberry_jelly,raspberry jelly,raspberry jellies,,f,t,t,t,t
+raspberry,raspberry_preserve,raspberry preserve,raspberry preserves,,f,t,t,t,t
+raspberry,raspberry_sherbet,raspberry sherbet,raspberry sherbets,,f,t,t,t,t
+raspberry,raspberry_sorbet,raspberry sorbet,raspberry sorbets,,f,t,t,t,t
+raspberry,raspberry_syrup,raspberry syrup,raspberry syrups,,f,t,t,t,t
+raspberry,raspberry_vinaigrette,raspberry vinaigrette,raspberry vinaigrettes,,f,t,t,t,t
+raspberry,raspberry_vodka,raspberry vodka,raspberry vodkas,,f,t,t,t,t
+raspberry_jam,seedless_raspberry_jam,seedless raspberry jam,seedless raspberry jams,,f,t,t,t,t
+red,red_chilly,red chilly,red chillies,,f,t,t,t,t
+red,red_food_colouring,red food colouring,red food colourings,,f,t,t,t,t
+red,red_gel_food_coloring,red gel food coloring,red gel food colorings,,f,t,t,t,t
+red,red_miso_paste,red miso paste,red miso pastes,,f,t,t,t,t
+red,red_snapper_fillet,red snapper fillet,red snapper fillets,,f,t,t,t,t
+red,tablespoon_red_food_coloring,tablespoon red food coloring,tablespoon red food colorings,,f,t,t,t,t
+red_bell_pepper,roasted_red_bell_pepper,roasted red bell pepper,roasted red bell peppers,,f,t,t,t,t
+red_chili,red_chili_pepper,red chili pepper,red chili peppers,,f,t,t,t,t
+red_chili,sweet_red_chili_sauce,sweet red chili sauce,sweet red chili sauces,,f,t,t,t,t
+red_curry_paste,thai_red_curry_paste,thai red curry paste,thai red curry pastes,,f,t,t,t,t
+red_grape,seedless_red_grape,seedless red grape,seedless red grapes,,f,t,t,t,t
+red_pepper,cayenne_(red_pepper,cayenne (red pepper,cayenne (red peppers,,f,t,t,t,t
+red_pepper,red_pepper_sauce,red pepper sauce,red pepper sauces,,f,t,t,t,t
+red_pepper,roasted_red_pepper,roasted red pepper,roasted red peppers,,f,t,t,t,t
+red_pepper,sweet_red_pepper,sweet red pepper,sweet red peppers,,f,t,t,t,t
+red_pepper,whole_red_pepper_julienned,whole red pepper julienned,whole red pepper julienneds,,f,t,t,t,t
+red_wine,hearty_red_wine,hearty red wine,hearty red wines,,f,t,t,t,t
+red_wine,splash_red_wine,splash red wine,splash red wines,,f,t,t,t,t
+red_wine,sweet_red_wine,sweet red wine,sweet red wines,,f,t,t,t,t
+rice,arborio_rice,arborio rice,arborio rices,,f,t,t,t,t
+rice,basmati_rice,basmati rice,basmati rices,,f,t,t,t,t
+rice,brown_rice,brown rice,brown rices,,f,t,t,t,t
+rice,crisp_rice_cereal,crisp rice cereal,crisp rice cereals,,f,t,t,t,t
+rice,jasmine_rice,jasmine rice,jasmine rices,,f,t,t,t,t
+rice,long_grain_rice,long-grain rice,long-grain rices,,f,t,t,t,t
+rice,minute_rice,minute rice,minute rices,,f,t,t,t,t
+rice,pudding_rice,pudding rice,pudding rices,,f,t,t,t,t
+rice,puffed_rice_cereal,puffed rice cereal,puffed rice cereals,,f,t,t,t,t
+rice,rice_chex,rice chex,rice chexes,,f,t,t,t,t
+rice,rice_crispy,rice crispy,rice crispies,,f,t,t,t,t
+rice,rice_krispy,rice krispy,rice krispies,,f,t,t,t,t
+rice,rice_noodle,rice noodle,rice noodles,,f,t,f,t,t
+rice,rice_wine,rice wine,rice wines,,f,t,t,t,t
+rice,risotto_rice,risotto rice,risotto rices,,f,t,t,t,t
+rice,short_grain_rice,short grain rice,short grain rices,,f,t,t,t,t
+rice,sushi_rice,sushi rice,sushi rices,,f,t,t,t,t
+rice,white_rice,white rice,white rices,,f,t,t,t,t
+rice,wild_rice,wild rice,wild rices,,f,t,t,t,t
+rice_flour,sweet_rice_flour,sweet rice flour,sweet rice flours,,f,t,f,t,t
+rice_vinegar,seasoned_rice_vinegar,seasoned rice vinegar,seasoned rice vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+rice_vinegar,unseasoned_rice_vinegar,unseasoned rice vinegar,unseasoned rice vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+rice_wine,chinese_rice_wine,chinese rice wine,chinese rice wines,,f,t,t,t,t
+rice_wine,shaoxing_rice_wine,shaoxing rice wine,shaoxing rice wines,,f,t,t,t,t
+rice_wine_vinegar,seasoned_rice_wine_vinegar,seasoned rice wine vinegar,seasoned rice wine vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+ricotta,ricotta_salata,ricotta salata,ricotta salatas,,f,t,t,t,t
+ricotta_cheese,carton_ricotta_cheese,carton ricotta cheese,carton ricotta cheeses,dairy,f,f,t,f,t
+ricotta_cheese,part_skim_ricotta_cheese,part-skim ricotta cheese,part-skim ricotta cheeses,dairy,f,f,t,f,t
+ricotta_cheese,whole_milk_ricotta_cheese,whole milk ricotta cheese,whole milk ricotta cheeses,dairy,f,f,t,f,t
+roasted,bottom_round_roast,bottom round roast,bottom round roasts,,f,t,t,t,t
+roasted,pot_roast,pot roast,pot roasts,,f,t,t,t,t
+roasted,prime_rib_roast,prime rib roast,prime rib roasts,,f,t,t,t,t
+roasted,rump_roast,rump roast,rump roasts,,f,t,t,t,t
+roasted,weight_canned_fire_roasted_diced_tomato,weight canned fire roasted diced tomato,weight canned fire roasted diced tomatoes,fruit_and_veg,f,t,t,t,t
+roasted_garlic,bulb_roasted_garlic,bulb roasted garlic,bulb roasted garlics,fruit_and_veg,f,t,t,t,t
+roasted_garlic,cloves_roasted_garlic,cloves roasted garlic,cloves roasted garlics,fruit_and_veg,f,t,t,t,t
+roasted_peanut,honey_roasted_peanut,honey roasted peanut,honey roasted peanuts,,f,t,t,t,t
+romaine_lettuce,torn_romaine_lettuce,torn romaine lettuce,torn romaine lettuces,,f,t,t,t,t
+romano_cheese,pecorino_romano_cheese,pecorino romano cheese,pecorino romano cheeses,dairy,f,f,t,f,t
+root_beer,root_beer_extract,root beer extract,root beer extracts,,f,t,f,t,t
+rotini_pasta,package_tri_color_rotini_pasta,package tri-color rotini pasta,package tri-color rotini pastas,,f,t,f,t,t
+round_steak,beef_round_steak,beef round steak,beef round steaks,meat_and_deli,f,t,t,f,f
+rum,coconut_flavored_rum,coconut-flavored rum,coconut-flavored rums,,f,t,t,t,t
+rum,rum_extract,rum extract,rum extracts,,f,t,t,t,t
+rum,white_rum,white rum,white rums,,f,t,t,t,t
+rump_roast,beef_rump_roast,beef rump roast,beef rump roasts,meat_and_deli,f,t,t,f,f
+saffron,saffron_powder,saffron powder,saffron powders,,f,t,t,t,t
+saffron,saffron_strand,saffron strand,saffron strands,,f,t,t,t,t
+saffron,saffron_thread,saffron thread,saffron threads,,f,t,t,t,t
+sage,rubbed_sage,rubbed sage,rubbed sages,,f,t,t,t,t
+salad_dressing,balsamic_vinaigrette_salad_dressing,balsamic vinaigrette salad dressing,balsamic vinaigrette salad dressings,,f,t,t,t,t
+salad_dressing,caesar_salad_dressing,caesar salad dressing,caesar salad dressings,,f,t,t,t,t
+salad_dressing,catalina_salad_dressing,catalina salad dressing,catalina salad dressings,,f,t,t,t,t
+salad_dressing,creamy_salad_dressing,creamy salad dressing,creamy salad dressings,,f,t,t,t,t
+salad_dressing,french_salad_dressing,french salad dressing,french salad dressings,,f,t,t,t,t
+salad_dressing,italian_salad_dressing,italian salad dressing,italian salad dressings,,f,t,t,t,t
+salad_dressing,italian_style_salad_dressing,italian-style salad dressing,italian-style salad dressings,,f,t,t,t,t
+salad_dressing,miracle_whip_salad_dressing,miracle whip salad dressing,miracle whip salad dressings,,f,t,t,t,t
+salad_dressing,ranch_salad_dressing,ranch salad dressing,ranch salad dressings,,f,t,t,t,t
+salad_dressing,ranch_style_salad_dressing,ranch-style salad dressing,ranch-style salad dressings,,f,t,t,t,t
+salad_dressing,raspberry_vinaigrette_salad_dressing,raspberry vinaigrette salad dressing,raspberry vinaigrette salad dressings,,f,t,t,t,t
+salad_dressing,thousand_island_salad_dressing,thousand island salad dressing,thousand island salad dressings,,f,t,t,t,t
+salami,genoa_salami,genoa salami,genoa salamis,,f,t,t,t,t
+salmon,smoked_salmon,smoked salmon,smoked salmon,,f,t,t,f,f
+salsa,chipotle_salsa,chipotle salsa,chipotle salsas,,f,t,t,t,t
+salsa,chunky_salsa,chunky salsa,chunky salsas,,f,t,t,t,t
+salsa,mango_salsa,mango salsa,mango salsas,,f,t,t,t,t
+salsa,mild_salsa,mild salsa,mild salsas,,f,t,t,t,t
+salsa,salsa_verde,salsa verde,salsa verdes,,f,t,t,t,t
+salsa,tomatillo_salsa,tomatillo salsa,tomatillo salsas,,f,t,t,t,t
+salt,black_salt,black salt,black salts,,f,t,t,t,t
+salt,canning_salt,canning salt,canning salts,,f,t,t,t,t
+salt,celery_salt,celery salt,celery salts,,f,t,t,t,t
+salt,celtic_sea_salt,celtic sea salt,celtic sea salts,,f,t,t,t,t
+salt,each_salt_and_black_pepper,each salt and black pepper,each salt and black peppers,,f,t,t,t,t
+salt,fine_grain_sea_salt,fine-grain sea salt,fine-grain sea salts,,f,t,t,t,t
+salt,flaky_sea_salt,flaky sea salt,flaky sea salts,,f,t,t,t,t
+salt,garlic_salt,garlic salt,garlic salts,fruit_and_veg,f,t,t,t,t
+salt,maldon_sea_salt,maldon sea salt,maldon sea salts,,f,t,t,t,t
+salt,onion_salt,onion salt,onion salts,fruit_and_veg,f,t,t,t,t
+salt,pickling_salt,pickling salt,pickling salts,,f,t,t,t,t
+salt,pink_himalayan_salt,pink himalayan salt,pink himalayan salts,,f,t,t,t,t
+salt,pink_salt,pink salt,pink salts,,f,t,t,t,t
+salt,pretzel_salt,pretzel salt,pretzel salts,,f,t,t,t,t
+salt,rock_salt,rock salt,rock salts,,f,t,t,t,t
+salt,salted_butter,salted butter,salted butters,dairy,f,f,t,f,t
+salt,salted_cashew,salted cashew,salted cashews,,f,t,t,t,t
+salt,salted_peanut,salted peanut,salted peanuts,,f,t,t,t,t
+salt,salt_pepper,salt pepper,salt peppers,,f,t,t,t,t
+salt,salt_pork,salt pork,salt porks,meat_and_deli,f,t,t,f,f
+salt,seasoned_salt,seasoned salt,seasoned salts,,f,t,t,t,t
+salt,table_salt,table salt,table salts,,f,t,t,t,t
+salt,truffle_salt,truffle salt,truffle salts,,f,t,t,t,t
+salt,unrefined_sea_salt,unrefined sea salt,unrefined sea salts,,f,t,t,t,t
+salt,vanilla_salt,vanilla salt,vanilla salts,,f,t,t,t,t
+salt_pepper,each_of_salt_and_pepper,each of salt and pepper,eaches of salt and pepper,,f,t,t,t,t
+sauce,adobo_sauce,adobo sauce,adobo sauces,,f,t,t,t,t
+sauce,alfredo_sauce,alfredo sauce,alfredo sauces,,f,t,t,t,t
+sauce,apple_sauce,apple sauce,apple sauces,,f,t,t,t,t
+sauce,barbecue_sauce,barbecue sauce,barbecue sauces,,f,t,t,t,t
+sauce,barbeque_sauce,barbeque sauce,barbeque sauces,,f,t,t,t,t
+sauce,bbq_sauce,bbq sauce,bbq sauces,,f,t,t,t,t
+sauce,brown_sauce,brown sauce,brown sauces,,f,t,t,t,t
+sauce,buffalo_sauce,buffalo sauce,buffalo sauces,,f,t,t,t,t
+sauce,caramel_sauce,caramel sauce,caramel sauces,,f,t,t,t,t
+sauce,chile_garlic_sauce,chile-garlic sauce,chile-garlic sauces,,f,t,t,t,t
+sauce,chili_sauce,chili sauce,chili sauces,,f,t,t,t,t
+sauce,chipotle_sauce,chipotle sauce,chipotle sauces,,f,t,t,t,t
+sauce,chocolate_sauce,chocolate sauce,chocolate sauces,,f,t,t,t,t
+sauce,cholula_hot_sauce,cholula hot sauce,cholula hot sauces,,f,t,t,t,t
+sauce,cocktail_sauce,cocktail sauce,cocktail sauces,,f,t,t,t,t
+sauce,cranberry_sauce,cranberry sauce,cranberry sauces,,f,t,t,t,t
+sauce,enchilada_sauce,enchilada sauce,enchilada sauces,,f,t,t,t,t
+sauce,fish_sauce,fish sauce,fish sauces,,f,t,t,f,f
+sauce,hoisin_sauce,hoisin sauce,hoisin sauces,,f,t,t,t,t
+sauce,hoison_sauce,hoison sauce,hoison sauces,,f,t,t,t,t
+sauce,horseradish_sauce,horseradish sauce,horseradish sauces,,f,t,t,t,t
+sauce,hot_wing_sauce,hot wing sauce,hot wing sauces,,f,t,t,t,t
+sauce,louisiana_hot_sauce,louisiana hot sauce,louisiana hot sauces,,f,t,t,t,t
+sauce,louisiana_style_hot_sauce,louisiana-style hot sauce,louisiana-style hot sauces,,f,t,t,t,t
+sauce,marinara_sauce,marinara sauce,marinara sauces,,f,t,t,t,t
+sauce,oyster_sauce,oyster sauce,oyster sauces,,f,t,t,t,t
+sauce,pasta_sauce,pasta sauce,pasta sauces,,f,t,f,t,t
+sauce,peanut_sauce,peanut sauce,peanut sauces,,f,t,t,t,t
+sauce,pesto_sauce,pesto sauce,pesto sauces,,f,t,t,t,t
+sauce,picante_sauce,picante sauce,picante sauces,,f,t,t,t,t
+sauce,plum_sauce,plum sauce,plum sauces,,f,t,t,t,t
+sauce,ponzu_sauce,ponzu sauce,ponzu sauces,,f,t,t,t,t
+sauce,red_hot_sauce,red hot sauce,red hot sauces,,f,t,t,t,t
+sauce,soy_sauce,soy sauce,soy sauces,oil_and_vinegar_and_condiments,f,t,f,t,t
+sauce,spaghetti_sauce,spaghetti sauce,spaghetti sauces,,f,t,t,t,t
+sauce,sriracha_sauce,sriracha sauce,sriracha sauces,,f,t,t,t,t
+sauce,steak_sauce,steak sauce,steak sauces,meat_and_deli,f,t,t,f,f
+sauce,sweet_and_sour_sauce,sweet and sour sauce,sweet and sour sauces,,f,t,t,t,t
+sauce,tabasco_sauce,tabasco sauce,tabasco sauces,,f,t,t,t,t
+sauce,taco_sauce,taco sauce,taco sauces,,f,t,t,t,t
+sauce,tahini_sauce,tahini sauce,tahini sauces,,f,t,t,t,t
+sauce,tamari_sauce,tamari sauce,tamari sauces,,f,t,t,t,t
+sauce,teriyaki_sauce,teriyaki sauce,teriyaki sauces,,f,t,t,t,t
+sauce,worcestershire_sauce,worcestershire sauce,worcestershire sauces,,f,t,t,t,t
+sausage,andouille_sausage,andouille sausage,andouille sausages,meat_and_deli,f,t,t,f,f
+sausage,breakfast_sausage,breakfast sausage,breakfast sausages,meat_and_deli,f,t,t,f,f
+sausage,bulk_sausage,bulk sausage,bulk sausages,meat_and_deli,f,t,t,f,f
+sausage,chorizo_sausage,chorizo sausage,chorizo sausages,meat_and_deli,f,t,t,f,f
+sausage,italian_sausage,italian sausage,italian sausages,meat_and_deli,f,t,t,f,f
+sausage,kielbasa_sausage,kielbasa sausage,kielbasa sausages,meat_and_deli,f,t,t,f,f
+sausage,pepperoni_sausage,pepperoni sausage,pepperoni sausages,meat_and_deli,f,t,t,f,f
+sausage,sausage_link,sausage link,sausage links,meat_and_deli,f,t,t,f,f
+sausage,smoked_sausage,smoked sausage,smoked sausages,meat_and_deli,f,t,t,f,f
+sausage,turkey_sausage,turkey sausage,turkey sausages,meat_and_deli,f,t,t,f,f
+savory,dried_summer_savory,dried summer savory,dried summer savories,,f,t,t,t,t
+seasoned_bread_crumb,italian_style_seasoned_bread_crumb,italian-style seasoned bread crumb,italian-style seasoned bread crumbs,,f,t,f,t,t
+seasoned_salt,lawry's_seasoned_salt,lawry's seasoned salt,lawry's seasoned salts,,f,t,t,t,t
+seasoning,accent_seasoning,accent seasoning,accent seasonings,,f,t,t,t,t
+seasoning,adobo_seasoning,adobo seasoning,adobo seasonings,,f,t,t,t,t
+seasoning,bbq_seasoning,bbq seasoning,bbq seasonings,,f,t,t,t,t
+seasoning,beau_monde_seasoning,beau monde seasoning,beau monde seasonings,,f,t,t,t,t
+seasoning,blackening_seasoning,blackening seasoning,blackening seasonings,,f,t,t,t,t
+seasoning,cajun_seasoning,cajun seasoning,cajun seasonings,,f,t,t,t,t
+seasoning,cavender's_seasoning,cavender's seasoning,cavender's seasonings,,f,t,t,t,t
+seasoning,chipotle_seasoning,chipotle seasoning,chipotle seasonings,,f,t,t,t,t
+seasoning,creole_seasoning,creole seasoning,creole seasonings,,f,t,t,t,t
+seasoning,creole_style_seasoning,creole-style seasoning,creole-style seasonings,,f,t,t,t,t
+seasoning,fajita_seasoning,fajita seasoning,fajita seasonings,,f,t,t,t,t
+seasoning,garlic_and_herb_seasoning_blend,garlic and herb seasoning blend,garlic and herb seasoning blends,fruit_and_veg,f,t,t,t,t
+seasoning,grill_seasoning,grill seasoning,grill seasonings,,f,t,t,t,t
+seasoning,italian_seasoning,italian seasoning,italian seasonings,,f,t,t,t,t
+seasoning,italian_style_seasoning,italian-style seasoning,italian-style seasonings,,f,t,t,t,t
+seasoning,jerk_seasoning,jerk seasoning,jerk seasonings,,f,t,t,t,t
+seasoning,lemon_pepper_seasoning,lemon-pepper seasoning,lemon-pepper seasonings,,f,t,t,t,t
+seasoning,nature's_seasoning,nature's seasoning,nature's seasonings,,f,t,t,t,t
+seasoning,old_bay_seasoning,old bay seasoning,old bay seasonings,,f,t,t,t,t
+seasoning,old_bay_seasoning_tm,old bay seasoning tm,old bay seasoning tms,,f,t,t,t,t
+seasoning,poultry_seasoning,poultry seasoning,poultry seasonings,,f,t,t,t,t
+seasoning,ranch_seasoning,ranch seasoning,ranch seasonings,,f,t,t,t,t
+seasoning,salad_seasoning_mix,salad seasoning mix,salad seasoning mixes,,f,t,t,t,t
+seasoning,salt_free_seasoning_blend,salt-free seasoning blend,salt-free seasoning blends,,f,t,t,t,t
+seasoning,seafood_seasoning,seafood seasoning,seafood seasonings,,f,t,t,t,t
+seasoning,seasoned_breadcrumb,seasoned breadcrumb,seasoned breadcrumbs,,f,t,f,t,t
+seasoning,seasoned_crouton,seasoned crouton,seasoned croutons,,f,t,t,t,t
+seasoning,steak_seasoning,steak seasoning,steak seasonings,meat_and_deli,f,t,t,f,f
+seasoning,taco_seasoning,taco seasoning,taco seasonings,,f,t,t,t,t
+seed,ajwain_seed,ajwain seed,ajwain seeds,,f,t,t,t,t
+seed,anise_seed,anise seed,anise seeds,,f,t,t,t,t
+seed,black_sesame_seed,black sesame seed,black sesame seeds,,f,t,t,t,t
+seed,caraway_seed,caraway seed,caraway seeds,,f,t,t,t,t
+seed,cardamom_seed,cardamom seed,cardamom seeds,,f,t,t,t,t
+seed,carom_seed,carom seed,carom seeds,,f,t,t,t,t
+seed,chia_seed,chia seed,chia seeds,,f,t,t,t,t
+seed,coriander_seed,coriander seed,coriander seeds,,f,t,t,t,t
+seed,cubed_seeded_watermelon,cubed seeded watermelon,cubed seeded watermelons,,f,t,t,t,t
+seed,dill_seed,dill seed,dill seeds,,f,t,t,t,t
+seed,fennel_seed,fennel seed,fennel seeds,,f,t,t,t,t
+seed,fenugreek_seed,fenugreek seed,fenugreek seeds,,f,t,t,t,t
+seed,flax_seed,flax seed,flax seeds,,f,t,t,t,t
+seed,hemp_seed,hemp seed,hemp seeds,,f,t,t,t,t
+seed,nigella_seed,nigella seed,nigella seeds,,f,t,t,t,t
+seed,pomegranate_seed,pomegranate seed,pomegranate seeds,,f,t,t,t,t
+seed,poppy_seed,poppy seed,poppy seeds,,f,t,t,t,t
+seed,roasted_sesame_seed,roasted sesame seed,roasted sesame seeds,,f,t,t,t,t
+seed,sunflower_seed,sunflower seed,sunflower seeds,,f,t,t,t,t
+seed,white_sesame_seed,white sesame seed,white sesame seeds,,f,t,t,t,t
+self_raising_flour,wholemeal_self_raising_flour,wholemeal self-raising flour,wholemeal self-raising flours,,f,t,f,t,t
+semi_sweet_chocolate,semi_sweet_chocolate_morsel,semi-sweet chocolate morsel,semi-sweet chocolate morsels,,f,t,t,t,t
+semisweet_chocolate,square_semisweet_chocolate,square semisweet chocolate,square semisweet chocolates,,f,t,t,t,t
+semi_sweet_chocolate_chip,bag_semi_sweet_chocolate_chip,bag semi-sweet chocolate chip,bag semi-sweet chocolate chips,,f,t,t,t,t
+semi_sweet_chocolate_chip,mini_semi_sweet_chocolate_chip,mini semi-sweet chocolate chip,mini semi-sweet chocolate chips,,f,t,t,t,t
+semisweet_chocolate_chip,bag_semisweet_chocolate_chip,bag semisweet chocolate chip,bag semisweet chocolate chips,,f,t,t,t,t
+semisweet_chocolate_chip,miniature_semisweet_chocolate_chip,miniature semisweet chocolate chip,miniature semisweet chocolate chips,,f,t,t,t,t
+semisweet_chocolate_chip,mini_semisweet_chocolate_chip,mini semisweet chocolate chip,mini semisweet chocolate chips,,f,t,t,t,t
+sesame_seed_oil,grape_seed_oil,grape seed oil,grape seed oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+shallot,bulb_shallot,bulb shallot,bulb shallots,,f,t,t,t,t
+shortening,butter_flavored_shortening,butter-flavored shortening,butter-flavored shortenings,,f,t,t,t,t
+shortening,crisco_shortening,crisco shortening,crisco shortenings,,f,t,t,t,t
+shortening,solid_shortening,solid shortening,solid shortenings,,f,t,t,t,t
+shortening,vegan_shortening,vegan shortening,vegan shortenings,,f,t,t,t,t
+shrimp,jumbo_shrimp,jumbo shrimp,jumbo shrimps,,f,t,t,f,f
+shrimp,large_shrimp___peeled_and_deveined,large shrimp - peeled and deveined,large shrimp - peeled and deveineds,,f,t,t,f,f
+shrimp,peeled_and_deveined_shrimp,peeled and deveined shrimp,peeled and deveined shrimps,,f,t,t,f,f
+shrimp,salad_shrimp,salad shrimp,salad shrimps,,f,t,t,f,f
+sirloin_steak,beef_sirloin_steak,beef sirloin steak,beef sirloin steaks,meat_and_deli,f,t,t,f,f
+sirloin_steak,top_sirloin_steak,top sirloin steak,top sirloin steaks,meat_and_deli,f,t,t,f,f
+skewer,bamboo_skewer,bamboo skewer,bamboo skewers,,f,t,t,t,t
+skewer,wooden_skewer,wooden skewer,wooden skewers,,f,t,t,t,t
+slices_ciabatta_bread,loaf_ciabatta_bread,loaf ciabatta bread,loaf ciabatta breads,,f,t,f,t,t
+slices_sandwich_bread,slices_white_sandwich_bread,slices white sandwich bread,slices white sandwich breads,,f,t,f,t,t
+smoked_paprika,spanish_smoked_paprika,spanish smoked paprika,spanish smoked paprikas,,f,t,t,t,t
+smoked_paprika,sweet_smoked_paprika,sweet smoked paprika,sweet smoked paprikas,,f,t,t,t,t
+snap_pea,sugar_snap_pea,sugar snap pea,sugar snap peas,,f,t,t,t,t
+soda,baking_soda,baking soda,baking sodas,,f,t,t,t,t
+soda,bicarbonate_of_soda,bicarbonate of soda,bicarbonates of soda,,f,t,t,t,t
+soda,club_soda,club soda,club sodas,,f,t,t,t,t
+soda,lemon_lime_soda,lemon-lime soda,lemon-lime sodas,,f,t,t,t,t
+soft_butter,very_soft_butter,very soft butter,very soft butters,dairy,f,f,t,f,t
+sour_cream,carton_sour_cream,carton sour cream,carton sour creams,,f,t,t,t,t
+sour_cream,daisy_brand_sour_cream,daisy brand sour cream,daisy brand sour creams,,f,t,t,t,t
+sour_cream,fat_free_sour_cream,fat-free sour cream,fat-free sour creams,,f,t,t,t,t
+sour_cream,reduced_fat_sour_cream,reduced-fat sour cream,reduced-fat sour creams,,f,t,t,t,t
+sourdough_bread,loaf_sourdough_bread,loaf sourdough bread,loaf sourdough breads,,f,t,f,t,t
+soymilk,vanilla_soy_milk,vanilla soy milk,vanilla soy milks,dairy,f,f,t,f,t
+soy_sauce,lite_soy_sauce,lite soy sauce,lite soy sauces,,f,t,f,t,t
+soy_sauce,low_sodium_soy_sauce,low-sodium soy sauce,low-sodium soy sauces,,f,t,f,t,t
+soy_sauce,reduced_sodium_soy_sauce,reduced-sodium soy sauce,reduced-sodium soy sauces,,f,t,f,t,t
+soy_sauce,sweet_soy_sauce,sweet soy sauce,sweet soy sauces,,f,t,f,t,t
+spelt_flour,white_spelt_flour,white spelt flour,white spelt flours,,f,t,f,t,t
+spinach,bag_baby_spinach,bag baby spinach,bag baby spinaches,,f,t,t,t,t
+sprinkle,garnish:_candy_sprinkle,garnish: candy sprinkle,garnish: candy sprinkles,,f,t,t,t,t
+sprinkle,halloween_sprinkle,halloween sprinkle,halloween sprinkles,,f,t,t,t,t
+sprinkle,multicolored_candy_sprinkle,multicolored candy sprinkle,multicolored candy sprinkles,,f,t,t,t,t
+sprinkle,rainbow_sprinkle,rainbow sprinkle,rainbow sprinkles,,f,t,t,t,t
+sprout,alfalfa_sprout,alfalfa sprout,alfalfa sprouts,,f,t,t,t,t
+sprout,brussels_sprout,brussels sprout,brussels sprouts,,f,t,t,t,t
+squash,acorn_squash,acorn squash,acorn squashes,,f,t,t,t,t
+squash,butternut_squash,butternut squash,butternut squashes,,f,t,t,t,t
+squash,delicata_squash,delicata squash,delicata squashes,,f,t,t,t,t
+squash,spaghetti_squash,spaghetti squash,spaghetti squashes,,f,t,t,t,t
+squash,whole_summer_squash,whole summer squash,whole summer squashes,,f,t,t,t,t
+squash,yellow_squash,yellow squash,yellow squashes,,f,t,t,t,t
+star_anise,whole_star_anise_pod,whole star anise pod,whole star anise pods,,f,t,t,t,t
+steak,flank_steak,flank steak,flank steaks,meat_and_deli,f,t,t,f,f
+steak,flat_iron_steak,flat iron steak,flat iron steaks,meat_and_deli,f,t,t,f,f
+steak,ham_steak,ham steak,ham steaks,meat_and_deli,f,t,t,f,f
+steak,montreal_steak_spice,montreal steak spice,montreal steak spices,meat_and_deli,f,t,t,f,f
+steak,new_york_strip_steak,new york strip steak,new york strip steaks,meat_and_deli,f,t,t,f,f
+steak,rib_eye_steak,rib-eye steak,rib-eye steaks,meat_and_deli,f,t,t,f,f
+steak,round_steak,round steak,round steaks,meat_and_deli,f,t,t,f,f
+steak,salmon_steak,salmon steak,salmon steaks,meat_and_deli,f,t,t,f,f
+steak,sirloin_steak,sirloin steak,sirloin steaks,meat_and_deli,f,t,t,f,f
+steak,skirt_steak,skirt steak,skirt steaks,meat_and_deli,f,t,t,f,f
+steak,swordfish_steak,swordfish steak,swordfish steaks,meat_and_deli,f,t,t,f,f
+steak,tri_tip_steak,tri-tip steak,tri-tip steaks,meat_and_deli,f,t,t,f,f
+steak,venison_steak,venison steak,venison steaks,meat_and_deli,f,t,t,f,f
+steak,whole_ribeye_steak,whole ribeye steak,whole ribeye steaks,meat_and_deli,f,t,t,f,f
+steak_seasoning,montreal_steak_seasoning,montreal steak seasoning,montreal steak seasonings,meat_and_deli,f,t,t,f,f
+stevia,stevia_powder,stevia powder,stevia powders,,f,t,t,t,t
+stock,beef_bouillon,beef bouillon,beef bouillons,,f,t,f,t,t
+stock,beef_broth,beef broth,beef broths,,f,t,t,t,t
+stock,beef_stock,beef stock,beef stocks,,f,t,t,t,t
+stock,broth,broth,broths,,f,t,t,t,t
+stock,chicken_bouillon,chicken bouillon,chicken bouillons,,f,t,f,t,t
+stock,chicken_broth,chicken broth,chicken broths,,f,t,t,t,t
+stock,chicken_stock,chicken stock,chicken stocks,,f,t,t,t,t
+stock,cubes_bouillon,cubes bouillon,cubes bouillons,,f,t,f,t,t
+stock,cube_vegetable_bouillon,cube vegetable bouillon,cube vegetable bouillons,,f,t,f,t,t
+stock,fish_stock,fish stock,fish stocks,,f,t,t,f,f
+stock,lamb_stock,lamb stock,lamb stocks,,f,t,t,t,t
+stock,seafood_stock,seafood stock,seafood stocks,,f,t,t,t,t
+stock,shrimp_stock,shrimp stock,shrimp stocks,,f,t,t,f,f
+stock,turkey_broth,turkey broth,turkey broths,,f,t,t,t,t
+stock,turkey_stock,turkey stock,turkey stocks,,f,t,t,t,t
+stock,veal_stock,veal stock,veal stocks,,f,t,t,t,t
+stock,vegetable_broth,vegetable broth,vegetable broths,,f,t,t,t,t
+stock,vegetable_stock,vegetable stock,vegetable stocks,,f,t,t,t,t
+stock,veggie_broth,veggie broth,veggie broths,,f,t,t,t,t
+stock,water_or_broth,water or broth,water or broths,,f,t,t,t,t
+stock,water_or_stock,water or stock,water or stocks,,f,t,t,t,t
+stout_beer,irish_stout_beer,irish stout beer,irish stout beers,,f,t,f,t,t
+strawberry,hulled_strawberry,hulled strawberry,hulled strawberries,,f,t,t,t,t
+strawberry,strawberry_extract,strawberry extract,strawberry extracts,,f,t,t,t,t
+strawberry,strawberry_jam,strawberry jam,strawberry jams,,f,t,t,t,t
+strawberry,strawberry_jelly,strawberry jelly,strawberry jellies,,f,t,t,t,t
+strawberry,strawberry_preserve,strawberry preserve,strawberry preserves,,f,t,t,t,t
+strawberry,weight_strawberry_yogurt,weight strawberry yogurt,weight strawberry yogurts,dairy,f,f,t,f,t
+stuffing,leftover_stuffing,leftover stuffing,leftover stuffings,,f,t,t,t,t
+stuffing,prepared_stuffing,prepared stuffing,prepared stuffings,,f,t,t,t,t
+sugar,additional_sugar,additional sugar,additional sugars,,f,t,t,t,t
+sugar,brown_sugar,brown sugar,brown sugars,,t,t,t,t,t
+sugar,cane_sugar,cane sugar,cane sugars,,f,t,t,t,t
+sugar,caster_sugar,caster sugar,caster sugars,,f,t,t,t,t
+sugar,castor_sugar,castor sugar,castor sugars,,f,t,t,t,t
+sugar,cinnamon_sugar,cinnamon sugar,cinnamon sugars,,f,t,t,t,t
+sugar,coconut_sugar,coconut sugar,coconut sugars,,f,t,t,t,t
+sugar,confectionary_sugar,confectionary sugar,confectionary sugars,,f,t,t,t,t
+sugar,confectioners_sugar,confectioners sugar,confectioners sugars,,f,t,t,t,t
+sugar,demerara_sugar,demerara sugar,demerara sugars,,f,t,t,t,t
+sugar,green_decorator_sugar,green decorator sugar,green decorator sugars,,f,t,t,t,t
+sugar,icing_sugar,icing sugar,icing sugars,,f,t,t,t,t
+sugar,jam_sugar,jam sugar,jam sugars,,f,t,t,t,t
+sugar,lavender_sugar,lavender sugar,lavender sugars,,f,t,t,t,t
+sugar,maple_sugar,maple sugar,maple sugars,,f,t,t,t,t
+sugar,muscovado_sugar,muscovado sugar,muscovado sugars,,f,t,t,t,t
+sugar,organic_sugar,organic sugar,organic sugars,,f,t,t,t,t
+sugar,package_refrigerated_sugar_cookie_dough,package refrigerated sugar cookie dough,package refrigerated sugar cookie doughs,,f,t,t,t,t
+sugar,palm_sugar,palm sugar,palm sugars,,f,t,t,t,t
+sugar,pearl_sugar,pearl sugar,pearl sugars,,f,t,t,t,t
+sugar,powder_sugar,powder sugar,powder sugars,,f,t,t,t,t
+sugar,powered_sugar,powered sugar,powered sugars,,f,t,t,t,t
+sugar,sanding_sugar,sanding sugar,sanding sugars,,f,t,t,t,t
+sugar,sugar_crystal,sugar crystal,sugar crystals,,f,t,t,t,t
+sugar,sugar_in_the_raw,sugar in the raw,sugars in the raw,,f,t,t,t,t
+sugar,sugar_or_honey,sugar or honey,sugar or honeys,,f,t,t,t,t
+sugar,sugar_or_splenda,sugar or splenda,sugar or splendas,,f,t,t,t,t
+sugar,sugar_pumpkin,sugar pumpkin,sugar pumpkins,,f,t,t,t,t
+sugar,sugar_sprinkle,sugar sprinkle,sugar sprinkles,,f,t,t,t,t
+sugar,sugar_substitute,sugar substitute,sugar substitutes,,f,t,t,t,t
+sugar,sugar_syrup,sugar syrup,sugar syrups,,f,t,t,t,t
+sugar,super_fine_sugar,super fine sugar,super fine sugars,,f,t,t,t,t
+sugar,superfine_sugar,superfine sugar,superfine sugars,,f,t,t,t,t
+sugar,turbinado_sugar,turbinado sugar,turbinado sugars,,f,t,t,t,t
+sugar,unrefined_sugar,unrefined sugar,unrefined sugars,,f,t,t,t,t
+sugar,vanilla_sugar,vanilla sugar,vanilla sugars,,f,t,t,t,t
+sugar,white_sugar,white sugar,white sugars,,f,t,t,t,t
+sun_dried_tomato,oil_packed_sun_dried_tomato,oil-packed sun-dried tomato,oil-packed sun-dried tomatoes,fruit_and_veg,f,t,t,t,t
+sun_dried_tomato,sun_dried_tomato_pesto,sun-dried tomato pesto,sun-dried tomato pestoes,fruit_and_veg,f,t,t,t,t
+sunflower_oil,unrefined_sunflower_oil,unrefined sunflower oil,unrefined sunflower oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+sunflower_seed,roasted_sunflower_seed,roasted sunflower seed,roasted sunflower seeds,,f,t,t,t,t
+sunflower_seed,sunflower_seed_oil,sunflower seed oil,sunflower seed oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+sunflower_seed,unsalted_sunflower_seed,unsalted sunflower seed,unsalted sunflower seeds,,f,t,t,t,t
+sweet_chili_sauce,thai_sweet_chili_sauce,thai sweet chili sauce,thai sweet chili sauces,,f,t,t,t,t
+sweet_corn,ears_sweet_corn,ears sweet corn,ears sweet corns,,f,t,t,t,t
+sweetener,granular_no_calorie_sucralose_sweetener,granular no-calorie sucralose sweetener,granular no-calorie sucralose sweeteners,,f,t,t,t,t
+sweetener,granular_sucrolose_sweetener,granular sucrolose sweetener,granular sucrolose sweeteners,,f,t,t,t,t
+sweet_italian_sausage,links_sweet_italian_sausage,links sweet italian sausage,links sweet italian sausages,meat_and_deli,f,t,t,f,f
+sweet_pickle,sweet_pickle_juice,sweet pickle juice,sweet pickle juices,,f,t,t,t,t
+sweet_potato,whole_medium_sized_sweet_potato,whole medium sized sweet potato,whole medium sized sweet potatoes,,f,t,t,t,t
+syrup,agave_syrup,agave syrup,agave syrups,,f,t,t,t,t
+syrup,cane_syrup,cane syrup,cane syrups,,f,t,t,t,t
+syrup,golden_syrup,golden syrup,golden syrups,,f,t,t,t,t
+syrup,grenadine_syrup,grenadine syrup,grenadine syrups,,f,t,t,t,t
+syrup,karo_syrup,karo syrup,karo syrups,,f,t,t,t,t
+syrup,maple_syrup,maple syrup,maple syrups,,f,t,t,t,t
+syrup,pancake_syrup,pancake syrup,pancake syrups,,f,t,t,t,t
+syrup,simple_syrup,simple syrup,simple syrups,,f,t,t,t,t
+syrup,warm_syrup,warm syrup,warm syrups,,f,t,t,t,t
+taco_seasoning,envelope_taco_seasoning,envelope taco seasoning,envelope taco seasonings,,f,t,t,t,t
+taco_seasoning,packet_taco_seasoning_mix,packet taco seasoning mix,packet taco seasoning mixes,,f,t,t,t,t
+tamari,gluten_free_tamari,gluten free tamari,gluten free tamaris,,f,t,t,t,t
+tamarind_paste,tamarind_pulp,tamarind pulp,tamarind pulps,,f,t,t,t,t
+tapioca,minute_tapioca,minute tapioca,minute tapiocas,,f,t,t,t,t
+tapioca,quick_cooking_tapioca,quick-cooking tapioca,quick-cooking tapiocas,,f,t,t,t,t
+tapioca,tapioca_pearl,tapioca pearl,tapioca pearls,,f,t,t,t,t
+tapioca,tapioca_starch,tapioca starch,tapioca starches,,f,t,t,t,t
+tea,tea_bag,tea bag,tea bags,,f,t,t,t,t
+tea_bag,black_tea_bag,black tea bag,black tea bags,,f,t,t,t,t
+tea_bag,chai_tea_bag,chai tea bag,chai tea bags,,f,t,t,t,t
+tequila,gold_tequila,gold tequila,gold tequilas,,f,t,t,t,t
+tequila,silver_tequila,silver tequila,silver tequilas,,f,t,t,t,t
+tequila,white_tequila,white tequila,white tequilas,,f,t,t,t,t
+thymesprig,few_thymesprig,few thymesprig,few thymesprigs,,f,t,t,t,t
+toffee_bit,heath_toffee_bit,heath toffee bit,heath toffee bits,,f,t,t,t,t
+toffee_piece,toffee_bit,toffee bit,toffee bits,,f,t,t,t,t
+tofu,firm_tofu,firm tofu,firm tofus,,f,t,t,t,t
+tofu,silken_tofu,silken tofu,silken tofus,,f,t,t,t,t
+tofu,soft_tofu,soft tofu,soft tofus,,f,t,t,t,t
+tomato,can_fire_roasted_diced_tomato,can fire-roasted diced tomato,can fire-roasted diced tomatoes,,f,t,t,t,t
+tomato,can_italian_style_diced_tomato,can italian-style diced tomato,can italian-style diced tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,can_mexican_style_stewed_tomato,can mexican-style stewed tomato,can mexican-style stewed tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,cans_petite_diced_tomato,cans petite diced tomato,cans petite diced tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,cherry_tomato,cherry tomato,cherry tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,grape_tomato,grape tomato,grape tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,green_tomato,green tomato,green tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,heirloom_tomato,heirloom tomato,heirloom tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,large_tomatoes___peeled,large tomatoes - peeled,large tomatoes - peeleds,,f,t,t,t,t
+tomato,plum_tomato,plum tomato,plum tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,sun_dried_tomato,sun-dried tomato,sun-dried tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,tin_chopped_tomato,tin chopped tomato,tin chopped tomatoes,fruit_and_veg,f,t,t,t,t
+tomato,tomato_chutney,tomato chutney,tomato chutneys,fruit_and_veg,f,t,t,t,t
+tomato,tomato_juice,tomato juice,tomato juices,fruit_and_veg,f,t,t,t,t
+tomato,tomato_ketchup,tomato ketchup,tomato ketchups,fruit_and_veg,f,t,t,t,t
+tomato,tomato_passata,tomato passata,tomato passatas,fruit_and_veg,f,t,t,t,t
+tomato,tomato_salsa,tomato salsa,tomato salsas,fruit_and_veg,f,t,t,t,t
+tomato,tomato_sauce,tomato sauce,tomato sauces,fruit_and_veg,f,t,t,t,t
+tomato,whole_vine_ripened_tomato,whole vine-ripened tomato,whole vine-ripened tomatoes,fruit_and_veg,f,t,t,t,t
+toothpick,box_toothpick,box toothpick,box toothpicks,,f,t,t,t,t
+topping,burger_topping,burger topping,burger toppings,,f,t,t,t,t
+topping,caramel_topping,caramel topping,caramel toppings,,f,t,t,t,t
+topping,hot_fudge_topping,hot fudge topping,hot fudge toppings,,f,t,t,t,t
+topping,topping_ingredient,topping ingredient,topping ingredients,,f,t,t,t,t
+topping,whipped_topping,whipped topping,whipped toppings,,f,t,t,t,t
+top_sirloin_steak,beef_top_sirloin_steak,beef top sirloin steak,beef top sirloin steaks,meat_and_deli,f,t,t,f,f
+tortilla,whole_burrito_sized_tortilla,whole burrito sized tortilla,whole burrito sized tortillas,,f,t,t,t,t
+tortilla,whole_tortilla_wrap,whole tortilla wrap,whole tortilla wraps,,f,t,t,t,t
+tortilla_chip,bag_tortilla_chip,bag tortilla chip,bag tortilla chips,,f,t,t,t,t
+truffle_oil,white_truffle_oil,white truffle oil,white truffle oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+tuna,tuna_steak,tuna steak,tuna steaks,meat_and_deli,f,t,t,f,f
+tuna_steak,ahi_tuna_steak,ahi tuna steak,ahi tuna steaks,meat_and_deli,f,t,t,f,f
+turkey,ground_turkey,ground turkey,ground turkeys,meat_and_deli,f,t,t,f,f
+turkey,slices_smoked_turkey,slices smoked turkey,slices smoked turkeys,meat_and_deli,f,t,t,f,f
+turkey,turkey_breast,turkey breast,turkey breasts,meat_and_deli,f,t,t,f,f
+turkey,turkey_dripping,turkey dripping,turkey drippings,meat_and_deli,f,t,t,f,f
+turkey,turkey_gravy,turkey gravy,turkey gravies,meat_and_deli,f,t,t,f,f
+turkey,turkey_leg,turkey leg,turkey legs,meat_and_deli,f,t,t,f,f
+turkey,whole_turkey_cutlet,whole turkey cutlet,whole turkey cutlets,meat_and_deli,f,t,t,f,f
+turkey_bacon,strips_turkey_bacon,strips turkey bacon,strips turkey bacons,meat_and_deli,f,t,t,f,f
+turkey_breast,boneless_turkey_breast,boneless turkey breast,boneless turkey breasts,meat_and_deli,f,t,t,f,f
+turkey_sausage,italian_turkey_sausage,italian turkey sausage,italian turkey sausages,meat_and_deli,f,t,t,f,f
+turmeric,turmeric_powder,turmeric powder,turmeric powders,,f,t,t,t,t
+unbleached_flour,white_unbleached_flour,white unbleached flour,white unbleached flours,,f,t,f,t,t
+unflavored_gelatin,envelope_unflavored_gelatin,envelope unflavored gelatin,envelope unflavored gelatins,,f,t,t,t,t
+unflavored_gelatin,unflavored_gelatin_powder,unflavored gelatin powder,unflavored gelatin powders,,f,t,t,t,t
+unsalted_butter,soft_unsalted_butter,soft unsalted butter,soft unsalted butters,dairy,f,f,t,f,t
+unsweetened_cocoa_powder,natural_unsweetened_cocoa_powder,natural unsweetened cocoa powder,natural unsweetened cocoa powders,,f,t,t,t,t
+unsweetened_coconut,unsweetened_coconut_cream,unsweetened coconut cream,unsweetened coconut creams,,f,t,t,t,t
+vanilla,madagascar_vanilla,madagascar vanilla,madagascar vanillas,,f,t,t,t,t
+vanilla,non_fat_vanilla_greek_yogurt,non-fat vanilla greek yogurt,non-fat vanilla greek yogurts,dairy,f,f,t,f,t
+vanilla,nonfat_vanilla_greek_yogurt,nonfat vanilla greek yogurt,nonfat vanilla greek yogurts,dairy,f,f,t,f,t
+vanilla,prepared_vanilla_pudding,prepared vanilla pudding,prepared vanilla puddings,,f,t,t,t,t
+vanilla,real_vanilla,real vanilla,real vanillas,,f,t,t,t,t
+vanilla,vanilla_bean,vanilla bean,vanilla beans,,f,t,t,t,t
+vanilla,vanilla_essence,vanilla essence,vanilla essences,,f,t,t,t,t
+vanilla,vanilla_extract,vanilla extract,vanilla extracts,,f,t,t,t,t
+vanilla,vanilla_pod,vanilla pod,vanilla pods,,f,t,t,t,t
+vanilla,vanilla_powder,vanilla powder,vanilla powders,,f,t,t,t,t
+vanilla,vanilla_pudding_mix,vanilla pudding mix,vanilla pudding mixes,,f,t,t,t,t
+vanilla,vanilla_stevia,vanilla stevia,vanilla stevias,,f,t,t,t,t
+vanilla,vanilla_vodka,vanilla vodka,vanilla vodkas,,f,t,t,t,t
+vanilla,vanilla_wafer,vanilla wafer,vanilla wafers,,f,t,t,t,t
+vanilla,vanilla_yogurt,vanilla yogurt,vanilla yogurts,dairy,f,f,t,f,t
+vanilla_almond_milk,unsweetened_vanilla_almond_milk,unsweetened vanilla almond milk,unsweetened vanilla almond milks,dairy,f,f,t,f,t
+vanilla_bean,vanilla_bean_pod,vanilla bean pod,vanilla bean pods,,f,t,t,t,t
+vanilla_bean,vanilla_bean_sugar,vanilla bean sugar,vanilla bean sugars,,f,t,t,t,t
+vanilla_extract,clear_vanilla_extract,clear vanilla extract,clear vanilla extracts,,f,t,t,t,t
+vanilla_extract,good_quality_vanilla_extract,good quality vanilla extract,good quality vanilla extracts,,f,t,t,t,t
+vanilla_extract,good_vanilla_extract,good vanilla extract,good vanilla extracts,,f,t,t,t,t
+vanilla_extract,real_vanilla_extract,real vanilla extract,real vanilla extracts,,f,t,t,t,t
+vanilla_ice_cream,french_vanilla_ice_cream,french vanilla ice cream,french vanilla ice creams,,f,t,t,t,t
+vanilla_ice_cream,scoops_vanilla_ice_cream,scoops vanilla ice cream,scoops vanilla ice creams,,f,t,t,t,t
+vanilla_pudding_mix,package_instant_french_vanilla_pudding_mix,package instant french vanilla pudding mix,package instant french vanilla pudding mixes,,f,t,t,t,t
+vanilla_pudding_mix,package_instant_sugar_free_vanilla_pudding_mix,package instant sugar-free vanilla pudding mix,package instant sugar-free vanilla pudding mixes,,f,t,t,t,t
+vanilla_wafer,box_vanilla_wafer,box vanilla wafer,box vanilla wafers,,f,t,t,t,t
+vanilla_wafer,vanilla_wafer_cooky,vanilla wafer cooky,vanilla wafer cookies,,f,t,t,t,t
+vanilla_yogurt,fat_free_vanilla_yogurt,fat-free vanilla yogurt,fat-free vanilla yogurts,dairy,f,f,t,f,t
+vanilla_yogurt,low_fat_vanilla_yogurt,low-fat vanilla yogurt,low-fat vanilla yogurts,dairy,f,f,t,f,t
+vanilla_yogurt,nonfat_vanilla_yogurt,nonfat vanilla yogurt,nonfat vanilla yogurts,dairy,f,f,t,f,t
+vegetable,package_frozen_stir_fry_vegetable,package frozen stir-fry vegetable,package frozen stir-fry vegetables,,f,t,t,t,t
+vegetable,vegetable_cooking_spray,vegetable cooking spray,vegetable cooking sprays,,f,t,t,t,t
+vegetable,vegetable_shortening,vegetable shortening,vegetable shortenings,,f,t,t,t,t
+venison,venison_roast,venison roast,venison roasts,meat_and_deli,f,t,t,f,f
+vermouth,sweet_vermouth,sweet vermouth,sweet vermouths,,f,t,t,t,t
+vinaigrette,balsamic_vinaigrette,balsamic vinaigrette,balsamic vinaigrettes,,f,t,t,t,t
+vinegar,balsalmic_vinegar,balsalmic vinegar,balsalmic vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,balsamic_vinegar,balsamic vinegar,balsamic vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,cabernet_sauvignon_vinegar,cabernet sauvignon vinegar,cabernet sauvignon vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,champagne_vinegar,champagne vinegar,champagne vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,cider_vinegar,cider vinegar,cider vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,distilled_vinegar,distilled vinegar,distilled vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,malt_vinegar,malt vinegar,malt vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,raspberry_vinegar,raspberry vinegar,raspberry vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,rice_vinegar,rice vinegar,rice vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,sherry_vinegar,sherry vinegar,sherry vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,tarragon_vinegar,tarragon vinegar,tarragon vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,white_vinegar,white vinegar,white vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vinegar,wine_vinegar,wine vinegar,wine vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+vodka,citron_vodka,citron vodka,citron vodkas,,f,t,t,t,t
+vodka,jigger_vodka,jigger vodka,jigger vodkas,,f,t,t,t,t
+walnut,black_walnut,black walnut,black walnuts,,f,t,t,t,t
+warm_water,luke_warm_water,luke warm water,luke warm waters,,f,t,t,t,t
+warm_water,very_warm_water,very warm water,very warm waters,,f,t,t,t,t
+water,cans_tuna_in_water,cans tuna in water,cans tuna in water,,f,t,t,f,f
+water,carbonated_water,carbonated water,carbonated waters,,f,t,t,t,t
+water,coconut_water,coconut water,coconut waters,,f,t,t,t,t
+water,filtered_water,filtered water,filtered waters,,f,t,t,t,t
+water,ice_cold_water,ice-cold water,ice-cold waters,,f,t,t,t,t
+water,ice_water,ice water,ice waters,,f,t,t,t,t
+water,just_boiled_water,just-boiled water,just-boiled waters,,f,t,t,t,t
+water,lukewarm_water,lukewarm water,lukewarm waters,,f,t,t,t,t
+water,mineral_water,mineral water,mineral waters,,f,t,t,t,t
+water,orange_blossom_water,orange blossom water,orange blossom waters,,f,t,t,t,t
+water,orange_flower_water,orange flower water,orange flower waters,,f,t,t,t,t
+water,pasta_water,pasta water,pasta waters,,f,t,f,t,t
+water,rose_water,rose water,rose waters,,f,t,t,t,t
+water,seltzer_water,seltzer water,seltzer waters,,f,t,t,t,t
+water,soda_water,soda water,soda waters,,f,t,t,t,t
+water,sparkling_water,sparkling water,sparkling waters,,f,t,t,t,t
+water,tap_water,tap water,tap waters,,f,t,t,t,t
+water,tepid_water,tepid water,tepid waters,,f,t,t,t,t
+water,tonic_water,tonic water,tonic waters,,f,t,t,t,t
+water,very_hot_water,very hot water,very hot waters,,f,t,t,t,t
+water,warm_water,warm water,warm waters,,f,t,t,t,t
+watercres,bag_watercres,bag watercres,bag watercress,,f,t,t,t,t
+watermelon,seedless_watermelon,seedless watermelon,seedless watermelons,,f,t,t,t,t
+weight_good_quality_dark_chocolate,fluid_good_quality_vodka,fluid good quality vodka,fluid good quality vodkas,,f,t,t,t,t
+weight_unsweetened_baking_chocolate,squares_unsweetened_baking_chocolate,squares unsweetened baking chocolate,squares unsweetened baking chocolates,,f,t,t,t,t
+weight_unsweetened_chocolate,square_unsweetened_chocolate,square unsweetened chocolate,square unsweetened chocolates,,f,t,t,t,t
+whip,miracle_whip,miracle whip,miracle whips,,f,t,t,t,t
+whip,tub_cool_whip,tub cool whip,tub cool whips,,f,t,t,t,t
+whip,weight_extra_creamy_cool_whip,weight extra creamy cool whip,weight extra creamy cool whips,,f,t,t,t,t
+whipped_cream,sweetened_whipped_cream,sweetened whipped cream,sweetened whipped creams,,f,t,t,t,t
+whipped_topping,lite_whipped_topping,lite whipped topping,lite whipped toppings,,f,t,t,t,t
+whipped_topping,thawed_cool_whip_whipped_topping,thawed cool whip whipped topping,thawed cool whip whipped toppings,,f,t,t,t,t
+whiskey,irish_whiskey,irish whiskey,irish whiskeys,,f,t,t,t,t
+whiskey,jigger_whiskey,jigger whiskey,jigger whiskeys,,f,t,t,t,t
+whiskey,rye_whiskey,rye whiskey,rye whiskeys,,f,t,t,t,t
+whiskey,scotch_whiskey,scotch whiskey,scotch whiskeys,,f,t,t,t,t
+white,can_white_hominy,can white hominy,can white hominies,,f,t,t,t,t
+white,white_fish,white fish,white fish,,f,t,t,f,f
+white_bread,loaf_white_bread,loaf white bread,loaf white breads,,f,t,f,t,t
+white_bread_flour,strong_white_bread_flour,strong white bread flour,strong white bread flours,,f,t,f,t,t
+white_cake_mix,box_white_cake_mix,box white cake mix,box white cake mixes,,f,t,t,t,t
+white_chocolate,white_chocolate_morsel,white chocolate morsel,white chocolate morsels,,f,t,t,t,t
+white_flour,strong_white_flour,strong white flour,strong white flours,,f,t,f,t,t
+white_pepper,white_pepper_powder,white pepper powder,white pepper powders,,f,t,t,t,t
+white_rice,long_grain_white_rice,long-grain white rice,long-grain white rices,,f,t,t,t,t
+white_rice,uncooked_short_grain_white_rice,uncooked short-grain white rice,uncooked short-grain white rices,,f,t,t,t,t
+white_rice,white_rice_flour,white rice flour,white rice flours,,f,t,f,t,t
+white_wine,splash_white_wine,splash white wine,splash white wines,,f,t,t,t,t
+white_wine,sweet_white_wine,sweet white wine,sweet white wines,,f,t,t,t,t
+whole_fryer_chicken,whole_cut_up_fryer_chicken,whole cut up fryer chicken,whole cut up fryer chickens,meat_and_deli,f,t,t,f,f
+whole_hoagie_bun,italian_style_hoagie_bun,italian-style hoagie bun,italian-style hoagie buns,,f,t,t,t,t
+whole_rotisserie_chicken,shredded_deli_rotisserie_chicken,shredded deli rotisserie chicken,shredded deli rotisserie chickens,meat_and_deli,f,t,t,f,f
+whole_tangerine,tangerine_zest,tangerine zest,tangerine zests,,f,t,t,t,t
+wine,burgundy_wine,burgundy wine,burgundy wines,,f,t,t,t,t
+wine,chardonnay_wine,chardonnay wine,chardonnay wines,,f,t,t,t,t
+wine,chinese_cooking_wine,chinese cooking wine,chinese cooking wines,,f,t,t,t,t
+wine,madeira_wine,madeira wine,madeira wines,,f,t,t,t,t
+wine,marsala_wine,marsala wine,marsala wines,,f,t,t,t,t
+wine,merlot_wine,merlot wine,merlot wines,,f,t,t,t,t
+wine,port_wine,port wine,port wines,,f,t,t,t,t
+wine,red_wine,red wine,red wines,,f,t,t,t,t
+wine,shaoxing_wine,shaoxing wine,shaoxing wines,,f,t,t,t,t
+wine,sherry_wine,sherry wine,sherry wines,,f,t,t,t,t
+wine,white_wine,white wine,white wines,,f,t,t,t,t
+wine,white_zinfandel_wine,white zinfandel wine,white zinfandel wines,,f,t,t,t,t
+wine_vinegar,red_wine_vinegar,red wine vinegar,red wine vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+wine_vinegar,rice_wine_vinegar,rice wine vinegar,rice wine vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+wine_vinegar,sherry_wine_vinegar,sherry wine vinegar,sherry wine vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+wine_vinegar,white_wine_vinegar,white wine vinegar,white wine vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
+worcestershire_sauce,splash_worcestershire_sauce,splash worcestershire sauce,splash worcestershire sauces,,f,t,t,t,t
+worcestershire_sauce,vegetarian_worcestershire_sauce,vegetarian worcestershire sauce,vegetarian worcestershire sauces,,f,t,t,t,t
+yeast,active_yeast,active yeast,active yeasts,,f,t,t,t,t
+yeast,fast_action_yeast,fast-action yeast,fast-action yeasts,,f,t,t,t,t
+yeast,nutritional_yeast,nutritional yeast,nutritional yeasts,,f,t,t,t,t
+yeast,package_rapid_rise_yeast,package rapid rise yeast,package rapid rise yeasts,,f,t,t,t,t
+yeast,rapid_rise_yeast,rapid-rise yeast,rapid-rise yeasts,,f,t,t,t,t
+yellow_cake_mix,box_yellow_cake_mix,box yellow cake mix,box yellow cake mixes,,f,t,t,t,t
+yellow_mustard,prepared_yellow_mustard,prepared yellow mustard,prepared yellow mustards,,f,t,t,t,t
+yellow_onion,whole_medium_sized_yellow_onion,whole medium sized yellow onion,whole medium sized yellow onions,fruit_and_veg,f,t,t,t,t
+yellow_onion,whole_sweet_yellow_onion,whole sweet yellow onion,whole sweet yellow onions,fruit_and_veg,f,t,t,t,t
+yoghurt,natural_yoghurt,natural yoghurt,natural yoghurts,,f,t,t,t,t
+yogurt,fat_free_plain_yogurt,fat-free plain yogurt,fat-free plain yogurts,dairy,f,f,t,f,t
+yogurt,greek_style_yogurt,greek-style yogurt,greek-style yogurts,dairy,f,f,t,f,t
+yogurt,lowfat_plain_yogurt,lowfat plain yogurt,lowfat plain yogurts,dairy,f,f,t,f,t
+yogurt,natural_yogurt,natural yogurt,natural yogurts,dairy,f,f,t,f,t
+yogurt,plain_low_fat_yogurt,plain low-fat yogurt,plain low-fat yogurts,dairy,f,f,t,f,t
+yogurt,plain_non_fat_yogurt,plain non-fat yogurt,plain non-fat yogurts,dairy,f,f,t,f,t
+yogurt,plain_nonfat_yogurt,plain nonfat yogurt,plain nonfat yogurts,dairy,f,f,t,f,t
+yogurt,yogurt_covered_raisin,yogurt covered raisin,yogurt covered raisins,dairy,f,f,t,f,t
+zesty_italian_dressing,kraft_zesty_italian_dressing,kraft zesty italian dressing,kraft zesty italian dressings,,f,t,t,t,t
+zucchini,grated_unpeeled_zucchini,grated unpeeled zucchini,grated unpeeled zucchinis,,f,t,t,t,t
+zucchini,whole_medium_sized_zucchini,whole medium sized zucchini,whole medium sized zucchinis,,f,t,t,t,t
+zucchini,whole_zucchini_squash,whole zucchini squash,whole zucchini squashes,,f,t,t,t,t
