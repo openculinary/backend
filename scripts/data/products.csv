@@ -100,7 +100,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,chestnut,chestnut,chestnuts,,f,t,t,t,t
 ,chicken,chicken,chickens,meat_and_deli,f,t,t,f,f
 ,chickpea,chickpea,chickpeas,,f,t,t,t,t
-,chily,chily,chilies,,f,t,t,t,t
+,chili,chili,chilies,,f,t,t,t,t
 ,chinese_five_spice,chinese five spice,chinese five spices,,f,t,t,t,t
 ,chipotle,chipotle,chipotles,,f,t,t,t,t
 ,chive,chive,chives,,f,t,t,t,t
@@ -130,7 +130,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,coleslaw,coleslaw,coleslaws,,f,t,t,t,t
 ,condiment,condiment,condiments,,f,t,t,t,t
 ,cooking_spray,cooking spray,cooking sprays,,f,t,t,t,t
-,cooky,cooky,cookies,,f,t,t,t,t
+,cookie,cookie,cookies,,f,t,t,t,t
 ,coriander,coriander,corianders,,f,t,t,t,t
 ,corianderleaf,corianderleaf,corianderleaves,,f,t,t,t,t
 ,corn,corn,corns,,f,t,t,t,t
@@ -159,7 +159,6 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,creme_de_menthe,creme de menthe,cremes de menthe,,f,t,t,t,t
 ,crisco,crisco,criscoes,,f,t,t,t,t
 ,crouton,crouton,croutons,,f,t,t,t,t
-,crushed_dried_chilly,crushed dried chilly,crushed dried chillies,,f,t,t,t,t
 ,crust,crust,crusts,,f,t,t,t,t
 ,cubed_honeydew,cubed honeydew,cubed honeydews,,f,t,t,t,t
 ,cucumber,cucumber,cucumbers,,f,t,t,t,t
@@ -1024,13 +1023,13 @@ chili_sauce,sriracha_chili_sauce,sriracha chili sauce,sriracha chili sauces,,f,t
 chili_sauce,sweet_chili_sauce,sweet chili sauce,sweet chili sauces,,f,t,t,t,t
 chili_sauce,thai_chili_sauce,thai chili sauce,thai chili sauces,,f,t,t,t,t
 chili_sauce,tomato_based_chili_sauce,tomato-based chili sauce,tomato-based chili sauces,,f,t,t,t,t
-chily,ancho_chili,ancho chili,ancho chilis,,f,t,t,t,t
-chily,chili_powder,chili powder,chili powders,,f,t,t,t,t
-chily,chili_seasoning,chili seasoning,chili seasonings,,f,t,t,t,t
-chily,chipotle_chili_in_adobo_sauce,chipotle chili in adobo sauce,chipotle chilis,,f,t,t,t,t
-chily,green_chily,green chily,green chilies,,f,t,t,t,t
-chily,red_chili,red chili,red chilis,,f,t,t,t,t
-chily,whole_serrano_chili,whole serrano chili,whole serrano chilis,,f,t,t,t,t
+chili,ancho_chili,ancho chili,ancho chilis,,f,t,t,t,t
+chili,chili_powder,chili powder,chili powders,,f,t,t,t,t
+chili,chili_seasoning,chili seasoning,chili seasonings,,f,t,t,t,t
+chili,chipotle_chili_in_adobo_sauce,chipotle chili in adobo sauce,chipotle chilis,,f,t,t,t,t
+chili,green_chili,green chili,green chilies,,f,t,t,t,t
+chili,red_chili,red chili,red chilis,,f,t,t,t,t
+chili,whole_serrano_chili,whole serrano chili,whole serrano chilis,,f,t,t,t,t
 chipotle,chipotle_powder,chipotle powder,chipotle powders,,f,t,t,t,t
 chipotle,whole_chipotle_in_adobo,whole chipotle in adobo,whole chipotles in adobo,,f,t,t,t,t
 chive,snipped_chive,snipped chive,snipped chives,,f,t,t,t,t
@@ -1057,7 +1056,7 @@ chocolate,weight_unsweetened_chocolate,weight unsweetened chocolate,weight unswe
 chocolate,weight_white_baking_chocolate,weight white baking chocolate,weight white baking chocolates,,f,t,t,t,t
 chocolate,white_chocolate,white chocolate,white chocolates,,f,t,t,t,t
 chocolate,whole_chocolate_graham_cracker,whole chocolate graham cracker,whole chocolate graham crackers,,f,t,t,t,t
-chocolate,whole_chocolate_sandwich_cooky,whole chocolate sandwich cooky,whole chocolate sandwich cookies,,f,t,t,t,t
+chocolate,whole_chocolate_sandwich_cookie,whole chocolate sandwich cookie,whole chocolate sandwich cookies,,f,t,t,t,t
 chocolate_chip,bag_chocolate_chip,bag chocolate chip,bag chocolate chips,,f,t,t,t,t
 chocolate_chip,bittersweet_chocolate_chip,bittersweet chocolate chip,bittersweet chocolate chips,,f,t,t,t,t
 chocolate_chip,milk_chocolate_chip,milk chocolate chip,milk chocolate chips,dairy,f,f,t,f,t
@@ -1121,7 +1120,7 @@ cola,coca_cola,coca cola,coca colas,,f,t,t,t,t
 cooking_spray,nonstick_cooking_spray,nonstick cooking spray,nonstick cooking sprays,,f,t,t,t,t
 cooking_spray,non_stick_spray,non-stick spray,non-stick sprays,,f,t,t,t,t
 cooking_spray,serving_cooking_spray,serving cooking spray,serving cooking sprays,,f,t,t,t,t
-cooky,gingersnap_cooky,gingersnap cooky,gingersnap cookies,,f,t,t,t,t
+cookie,gingersnap_cookie,gingersnap cookie,gingersnap cookies,,f,t,t,t,t
 coriander,coriander_powder,coriander powder,coriander powders,,f,t,t,t,t
 coriander,ground_coriander,ground coriander,ground corianders,,f,t,t,t,t
 coriander,tablespoon_coriander,tablespoon coriander,tablespoon corianders,,f,t,t,t,t
@@ -1393,7 +1392,6 @@ green,can_diced_green_chile,can diced green chile,can diced green chiles,,f,t,t,
 green,dandelion_green,dandelion green,dandelion greens,,f,t,t,t,t
 green,green_cabbage,green cabbage,green cabbages,,f,t,t,t,t
 green,green_cardamom,green cardamom,green cardamoms,,f,t,t,t,t
-green,green_chilly,green chilly,green chillies,,f,t,t,t,t
 green,green_curry_paste,green curry paste,green curry pastes,,f,t,t,t,t
 green,green_grape,green grape,green grapes,,f,t,t,t,t
 green,green_leaf_lettuce,green leaf lettuce,green leaf lettuces,,f,t,t,t,t
@@ -1404,7 +1402,7 @@ green,green_salsa,green salsa,green salsas,,f,t,t,t,t
 green,green_tea,green tea,green teas,,f,t,t,t,t
 green,micro_green,micro green,micro greens,,f,t,t,t,t
 green,salad_green,salad green,salad greens,,f,t,t,t,t
-green_chily,green_chili_pepper,green chili pepper,green chili peppers,,f,t,t,t,t
+green_chili,green_chili_pepper,green chili pepper,green chili peppers,,f,t,t,t,t
 green_curry_paste,thai_green_curry_paste,thai green curry paste,thai green curry pastes,,f,t,t,t,t
 green_grape,seedless_green_grape,seedless green grape,seedless green grapes,,f,t,t,t,t
 green_lentil,french_green_lentil,french green lentil,french green lentils,,f,t,t,t,t
@@ -1808,7 +1806,7 @@ orange_juice,orange_juice_concentrate,orange juice concentrate,orange juice conc
 orange_juice,pulp_free_orange_juice,pulp-free orange juice,pulp-free orange juices,,f,t,t,t,t
 orange_zest,blood_orange_zest,blood orange zest,blood orange zests,,f,t,t,t,t
 oregano,mexican_oregano,mexican oregano,mexican oreganos,,f,t,t,t,t
-oreo,oreo_cooky,oreo cooky,oreo cookies,,f,t,t,t,t
+oreo,oreo_cookie,oreo cookie,oreo cookies,,f,t,t,t,t
 package_chocolate_cake_mix,box_chocolate_cake_mix,box chocolate cake mix,box chocolate cake mixes,,f,t,t,t,t
 package_chocolate_cake_mix,package_german_chocolate_cake_mix,package german chocolate cake mix,package german chocolate cake mixes,,f,t,t,t,t
 package_phyllo_dough,sheets_phyllo_dough,sheets phyllo dough,sheets phyllo doughs,,f,t,t,t,t
@@ -2026,7 +2024,6 @@ raspberry,raspberry_syrup,raspberry syrup,raspberry syrups,,f,t,t,t,t
 raspberry,raspberry_vinaigrette,raspberry vinaigrette,raspberry vinaigrettes,,f,t,t,t,t
 raspberry,raspberry_vodka,raspberry vodka,raspberry vodkas,,f,t,t,t,t
 raspberry_jam,seedless_raspberry_jam,seedless raspberry jam,seedless raspberry jams,,f,t,t,t,t
-red,red_chilly,red chilly,red chillies,,f,t,t,t,t
 red,red_food_colouring,red food colouring,red food colourings,,f,t,t,t,t
 red,red_gel_food_coloring,red gel food coloring,red gel food colorings,,f,t,t,t,t
 red,red_miso_paste,red miso paste,red miso pastes,,f,t,t,t,t
@@ -2505,7 +2502,7 @@ vanilla_ice_cream,scoops_vanilla_ice_cream,scoops vanilla ice cream,scoops vanil
 vanilla_pudding_mix,package_instant_french_vanilla_pudding_mix,package instant french vanilla pudding mix,package instant french vanilla pudding mixes,,f,t,t,t,t
 vanilla_pudding_mix,package_instant_sugar_free_vanilla_pudding_mix,package instant sugar-free vanilla pudding mix,package instant sugar-free vanilla pudding mixes,,f,t,t,t,t
 vanilla_wafer,box_vanilla_wafer,box vanilla wafer,box vanilla wafers,,f,t,t,t,t
-vanilla_wafer,vanilla_wafer_cooky,vanilla wafer cooky,vanilla wafer cookies,,f,t,t,t,t
+vanilla_wafer,vanilla_wafer_cookie,vanilla wafer cookie,vanilla wafer cookies,,f,t,t,t,t
 vanilla_yogurt,fat_free_vanilla_yogurt,fat-free vanilla yogurt,fat-free vanilla yogurts,dairy,f,f,t,f,t
 vanilla_yogurt,low_fat_vanilla_yogurt,low-fat vanilla yogurt,low-fat vanilla yogurts,dairy,f,f,t,f,t
 vanilla_yogurt,nonfat_vanilla_yogurt,nonfat vanilla yogurt,nonfat vanilla yogurts,dairy,f,f,t,f,t

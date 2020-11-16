@@ -356,7 +356,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 4.2,26,0.3,,1.8,chili_seasoning
 0.6,744,82.2,0,0.6,chilled_butter
 1.7,496,53.7,0,1.6,chilled_heavy_cream
-4.2,26,0.3,,1.8,chily
+4.2,26,0.3,,1.8,chili
 0.6,75,0,0,0.1,chinese_cooking_wine
 0,0,14.3,34.8,13.5,chinese_five_spice_powder
 83.7,351,0.5,1.1,8.1,chinese_rice_wine
@@ -725,8 +725,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 0.7,20,0.6,0,2.9,green_cardamom
 68.47,311,6.7,28,10.76,green_cardamom_pod
 0.7,20,0.6,0,2.9,green_chili_pepper
-0.7,20,0.6,0,2.9,green_chilly
-0.7,20,0.6,0,2.9,green_chily
+0.7,20,0.6,0,2.9,green_chili
 0.7,20,0.6,0,2.9,green_curry_paste
 105,394,0,0,0,green_decorator_sugar
 19.16,93,0.93,2.2,1.93,green_enchilada_sauce
@@ -1348,7 +1347,6 @@ carbohydrates,energy,fat,fibre,protein,product_id
 4.2,26,0.3,,1.8,red_chili
 4.2,26,0.3,,1.8,red_chili_pepper
 0,0,14.3,34.8,13.5,red_chili_powder
-4.2,26,0.3,,1.8,red_chilly
 67.8,267,0.4,,2.3,red_currant_jelly
 13.3,97,1.3,,7.9,red_curry_paste
 26.1,233,10.8,0,9.5,red_curry_powder
@@ -1796,7 +1794,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 105,394,0,0,0,vanilla_sugar
 22,169,8.2,0.2,3.2,vanilla_vodka
 22,169,8.2,0.2,3.2,vanilla_wafer
-22,169,8.2,0.2,3.2,vanilla_wafer_cooky
+22,169,8.2,0.2,3.2,vanilla_wafer_cookie
 0,0,14.3,34.8,13.5,vanilla_whey_protein_powder
 22,169,8.2,0.2,3.2,vanilla_yogurt
 0,106,1.7,0,22.7,veal
@@ -1917,7 +1915,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 53.9,285,5.7,3.6,7.8,whole_burrito_sized_tortilla
 4.2,26,0.3,,1.8,whole_chipotle_in_adobo
 63.5,510,28,0,5,whole_chocolate_graham_cracker
-63.5,510,28,0,5,whole_chocolate_sandwich_cooky
+63.5,510,28,0,5,whole_chocolate_sandwich_cookie
 0,108,2.1,0,22.3,whole_cut_up_fryer_chicken
 0,131,9,0,12.6,whole_extra_large_egg_at_room_temperature
 0,131,9,0,12.6,whole_farm_fresh_egg
