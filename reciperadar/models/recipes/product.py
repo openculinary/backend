@@ -2,7 +2,6 @@ from sqlalchemy.dialects import postgresql
 
 from reciperadar import db
 from reciperadar.models.base import Storable
-from reciperadar.models.recipes.nutrition import ProductNutrition
 
 
 class Product(Storable):
