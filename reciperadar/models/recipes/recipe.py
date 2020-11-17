@@ -184,7 +184,7 @@ class Recipe(Storable, Searchable):
         data['contents'] = self.contents
         data['product_count'] = len(self.products)
         data['hidden'] = self.hidden
-        data['nutrition'] = self.nutrition.to_dict() \
+        data['nutrition'] = self.nutrition.to_doc() \
             if self.nutrition else self.aggregate_ingredient_nutrition,
         data['is_dairy_free'] = self.is_dairy_free
         data['is_gluten_free'] = self.is_gluten_free
