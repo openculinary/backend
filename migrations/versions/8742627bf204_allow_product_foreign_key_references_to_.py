@@ -22,6 +22,8 @@ def upgrade():
     op.create_foreign_key('ingredient_products_product_id_fkey', 'ingredient_products', 'products', ['product_id'], ['id'], deferrable=True)
     op.drop_constraint('product_nutrition_product_id_fkey', 'product_nutrition', type_='foreignkey')
     op.create_foreign_key('product_nutrition_product_id_fkey', 'product_nutrition', 'products', ['product_id'], ['id'], deferrable=True)
+    op.drop_constraint('products_parent_id_fkey', 'products', type_='foreignkey')
+    op.create_foreign_key('products_parent_id_fkey', 'products', 'products', ['parent_id'], ['id'], deferrable=True)
     # ### end Alembic commands ###
 
 
@@ -31,4 +33,6 @@ def downgrade():
     op.create_foreign_key('product_nutrition_product_id_fkey', 'product_nutrition', 'products', ['product_id'], ['id'], ondelete='CASCADE')
     op.drop_constraint('ingredient_products_product_id_fkey', 'ingredient_products', type_='foreignkey')
     op.create_foreign_key('ingredient_products_product_id_fkey', 'ingredient_products', 'products', ['product_id'], ['id'], ondelete='CASCADE')
+    op.drop_constraint('products_parent_id_fkey', 'products', type_='foreignkey')
+    op.create_foreign_key('products_parent_id_fkey', 'products', 'products', ['parent_id'], ['id'], ondelete='CASCADE')
     # ### end Alembic commands ###
