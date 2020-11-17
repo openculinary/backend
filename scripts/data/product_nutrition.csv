@@ -296,7 +296,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 31.7,318,17.3,,12,cayenne_pepper
 31.7,318,17.3,,12,cayenne_pepper_sauce
 31.7,318,17.3,,12,cayenne_powder
-4.3,21,0.2,2.2,0.8,cayenne_(red_pepper
+4.3,21,0.2,2.2,0.8,cayenne_red_pepper
 0.9,7,0.2,0,0.5,celery
 0.9,7,0.2,0,0.5,celery_root
 0,0,0,0,0,celery_salt
@@ -491,7 +491,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 1.7,496,53.7,0,1.6,cream_sherry
 1.7,496,53.7,0,1.6,cream_soda
 13.1,607,51.8,6.6,22.8,creamy_peanut_butter
-2.4,378,40,0,2.2,crème_fraîche
+2.4,378,40,0,2.2,creme_fraiche
 0.3,7,0.2,0.7,1,cremini_mushroom
 4.2,140,10.2,0,8.2,creole_mustard
 0.3,7,0.2,0.7,1,crimini_mushroom
@@ -538,7 +538,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 15.7,92,0.6,0,6.9,dried_red_bean
 0,899,99.9,0,0,drops_peppermint_oil
 6.8,30,0.1,0,0.8,drops_pink_food_coloring
-4.3,21,0.2,2.2,0.8,dr._pepper
+4.3,21,0.2,2.2,0.8,dr_pepper
 11.3,83,1.5,5.3,6.9,dry_black_eyed_pea
 15.7,92,0.6,0,6.9,dry_great_northern_bean
 0,137,6.5,0,19.7,duck_breast
@@ -624,7 +624,6 @@ carbohydrates,energy,fat,fibre,protein,product_id
 1.6,7,0,0,0.3,fluid_pear_juice
 105,394,0,0,0,fondant_icing_sugar
 0.1,381,31.8,0,23.7,fontina_cheese
-2.4,378,40,0,2.2,fraîche
 0,131,9,0,12.6,free_range_egg
 0,43,0,0,10.8,free_range_egg_white
 0,347,31.3,0,16.4,free_range_egg_yolk
@@ -645,7 +644,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 4.7,46,1.7,0,3.5,full_cream_milk
 4.9,22,0.3,,0.3,full_fat_coconut_milk
 0.1,381,31.8,0,23.7,full_fat_cream_cheese
-2.4,378,40,0,2.2,full_fat_crème_fraîche
+2.4,378,40,0,2.2,full_fat_creme_fraiche
 4.7,46,1.7,0,3.5,full_fat_milk
 75.6,343,1.6,0,11.3,fusilli_pasta
 45.2,379,15.1,0,15.6,garam_masala
@@ -674,7 +673,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 8.1,44,0.8,2,1.8,ginger_juice
 8.1,44,0.8,2,1.8,ginger_powder
 8.1,44,0.8,2,1.8,ginger_root
-11.5,48,0.1,0,0.9,glacé_cherry
+11.5,48,0.1,0,0.9,glace_cherry
 80.9,352,1.4,4,9.1,gluten_free_all_purpose_flour
 37.8,163,0,0,5.2,gluten_free_baking_powder
 80.9,352,1.4,4,9.1,gluten_free_flour
@@ -827,9 +826,9 @@ carbohydrates,energy,fat,fibre,protein,product_id
 47,230,2.3,2.8,8.3,italian_style_seasoned_bread_crumb
 9.6,309,25,2.8,11.9,italian_turkey_sausage
 0.1,381,31.8,0,23.7,jack_cheese
-4.2,26,0.3,,1.8,jalapeño
+4.2,26,0.3,,1.8,jalapeno
 4.2,26,0.3,,1.8,jalapeno_chili_pepper
-4.3,21,0.2,2.2,0.8,jalapeño_pepper
+4.3,21,0.2,2.2,0.8,jalapeno_pepper
 69,261,0,0,0.6,jam
 105,394,0,0,0,jam_sugar
 2.7,18,0.2,,2.8,jar_marinated_artichoke_heart
@@ -1184,7 +1183,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 11.3,83,1.5,5.3,6.9,petite_pea
 19.16,93,0.93,2.2,1.93,picante_sauce
 8.1,44,0.8,2,1.8,pickled_ginger
-4.2,26,0.3,,1.8,pickled_jalapeño
+4.2,26,0.3,,1.8,pickled_jalapeno
 4.2,26,0.3,,1.8,pickled_jalapeno_juice
 4.3,21,0.2,2.2,0.8,pickled_jalapeno_pepper
 1.6,7,0,0,0.3,pickle_juice
@@ -1289,7 +1288,7 @@ carbohydrates,energy,fat,fibre,protein,product_id
 8,35,0.1,2.2,1,purple_onion
 3.2,34,0.6,4,4.3,purple_sprouting_broccoli
 48.8,297,1.9,,24.3,puy_lentil
-0,131,9,0,12.6,quails’_egg
+0,131,9,0,12.6,quails_egg
 70.7,381,8.1,7.8,10.9,quick_cooking_oat
 95,359,0.1,,0.4,quick_cooking_tapioca
 70.7,381,8.1,7.8,10.9,quick_oat
@@ -1795,7 +1794,6 @@ carbohydrates,energy,fat,fibre,protein,product_id
 0.93,5,0.07,0,0.24,vegetable_stock
 28.3,113,0.1,0,1.4,vegetarian_worcestershire_sauce
 0.2,12,0.2,0.3,2.3,veggie_broth
-0,899,99.9,0,0,veg._oil
 0,899,99.9,0,0,vegtable_oil
 0.1,381,31.8,0,23.7,velveeta_cheese
 0,103,1.6,,22.2,venison

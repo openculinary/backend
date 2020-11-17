@@ -157,6 +157,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,cream,cream,creams,,f,t,t,t,t
 ,creme_de_cassis_liqueur,creme de cassis liqueur,cremes de cassis liqueur,,f,t,t,t,t
 ,creme_de_menthe,creme de menthe,cremes de menthe,,f,t,t,t,t
+,creme_fraiche,crème fraîche,crème fraîches,,f,t,t,t,t
 ,crisco,crisco,criscoes,,f,t,t,t,t
 ,crouton,crouton,croutons,,f,t,t,t,t
 ,crust,crust,crusts,,f,t,t,t,t
@@ -206,7 +207,6 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,fluid_elderflower_liqueur,fluid elderflower liqueur,fluid elderflower liqueurs,,f,t,t,t,t
 ,food_colouring,food colouring,food colourings,,f,t,t,t,t
 ,for_meatball,for meatball,for meatballs,,f,t,t,t,t
-,fraîche,fraîche,fraîches,,f,t,t,t,t
 ,frito,frito,fritoes,,f,t,t,t,t
 ,frosting,frosting,frostings,,f,t,t,t,t
 ,frozen_hash_brown,frozen hash brown,frozen hash browns,,f,t,t,t,t
@@ -262,7 +262,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,ice,ice,ices,,f,t,t,t,t
 ,inch,inch,inches,,f,t,t,t,t
 ,ingredient,ingredient,ingredients,,f,t,t,t,t
-,jalapeño,jalapeño,jalapeñoes,,f,t,t,t,t
+,jalapeno,jalapeño,jalapeñoes,,f,t,t,t,t
 ,jam,jam,jams,,f,t,t,t,t
 ,jars_pint_sized_canning_jar,jars pint-sized canning jar,jars pint-sized canning jars,,f,t,t,t,t
 ,jelly,jelly,jellies,,f,t,t,t,t
@@ -339,13 +339,12 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,miso,miso,misoes,,f,t,t,t,t
 ,mixed,mixed,mixeds,,f,t,t,t,t
 ,mizuna_leaf,mizuna leaf,mizuna leaves,,f,t,t,t,t
-,m&m,m&m,m&ms,,f,t,t,t,t
+,mm,m&m,m&ms,,f,t,t,t,t
 ,mola,mola,molas,,f,t,t,t,t
 ,molas,molas,molass,,f,t,t,t,t
 ,monosodium_glutamate,monosodium glutamate,monosodium glutamates,,f,t,t,t,t
 ,monterey_jack,monterey jack,monterey jacks,,f,t,t,t,t
 ,mozzarella,mozzarella,mozzarellas,,f,t,t,t,t
-,mrs._dash,mrs. dash,mrs. dashes,,f,t,t,t,t
 ,mushroom,mushroom,mushrooms,,f,t,t,t,t
 ,mussel,mussel,mussels,,f,t,t,f,f
 ,mustard,mustard,mustards,,f,t,t,t,t
@@ -961,7 +960,7 @@ cherry,cherry_brandy,cherry brandy,cherry brandies,,f,t,t,t,t
 cherry,cherry_jam,cherry jam,cherry jams,,f,t,t,t,t
 cherry,cherry_pie_filling,cherry pie filling,cherry pie fillings,,f,t,t,t,t
 cherry,cherry_preserve,cherry preserve,cherry preserves,,f,t,t,t,t
-cherry,glacé_cherry,glacé cherry,glacé cherries,,f,t,t,t,t
+cherry,glace_cherry,glacé cherry,glacé cherries,,f,t,t,t,t
 cherry,maraschino_cherry,maraschino cherry,maraschino cherries,,f,t,t,t,t
 cherry,sour_cherry,sour cherry,sour cherries,,f,t,t,t,t
 cherry,sweet_cherry,sweet cherry,sweet cherries,,f,t,t,t,t
@@ -1197,7 +1196,7 @@ cream_cheese,weight_reduced_fat_cream_cheese_softened,weight reduced-fat cream c
 cream_cheese,weight_soft_cream_cheese,weight soft cream cheese,weight soft cream cheeses,dairy,f,f,t,f,t
 cream_cheese,whipped_cream_cheese,whipped cream cheese,whipped cream cheeses,dairy,f,f,t,f,t
 creme_de_cacao,white_creme_de_cacao,white creme de cacao,white cremes de cacao,,f,t,t,t,t
-crème_fraîche,full_fat_crème_fraîche,full-fat crème fraîche,full-fat crème fraîches,,f,t,t,t,t
+creme_fraiche,full_fat_creme_fraiche,full-fat crème fraîche,full-fat crème fraîches,,f,t,t,t,t
 crust,can_refrigerated_pizza_crust_dough,can refrigerated pizza crust dough,can refrigerated pizza crust doughs,,f,t,t,t,t
 crust,double_crust_ready_to_use_pie_crust,double crust ready-to-use pie crust,double crust readies-to-use pie crust,,f,t,t,t,t
 crust,graham_cracker_crust,graham cracker crust,graham cracker crusts,,f,t,t,t,t
@@ -1262,7 +1261,7 @@ egg,egg_white,egg white,egg whites,dairy,f,f,t,f,t
 egg,egg_yolk,egg yolk,egg yolks,dairy,f,f,t,f,t
 egg,free_range_egg,free-range egg,free-range eggs,dairy,f,f,t,f,t
 egg,hard_cooked_egg,hard-cooked egg,hard-cooked eggs,dairy,f,f,t,f,t
-egg,quails’_egg,quails’ egg,quails’ eggs,dairy,f,f,t,f,t
+egg,quails_egg,quails egg,quails eggs,dairy,f,f,t,f,t
 egg,whole_brown_egg,whole brown egg,whole brown eggs,dairy,f,f,t,f,t
 egg,whole_extra_large_egg_at_room_temperature,whole extra-large egg at room temperature,whole extra-large eggs at room temperature,dairy,f,f,t,f,t
 egg,whole_farm_fresh_egg,whole farm fresh egg,whole farm fresh eggs,dairy,f,f,t,f,t
@@ -1335,8 +1334,6 @@ flour,wholemeal_flour,wholemeal flour,wholemeal flours,,f,t,f,t,t
 flour,wondra_flour,wondra flour,wondra flours,,f,t,f,t,t
 flour_tortilla,whole_burrito_sized_flour_tortilla,whole burrito-sized flour tortilla,whole burrito-sized flour tortillas,,f,t,f,t,t
 fluid_elderflower_liqueur,elderflower_cordial,elderflower cordial,elderflower cordials,,f,t,t,t,t
-fluid_elderflower_liqueur,fluid_st._germain_elderflower_liqueur,fluid st. germain elderflower liqueur,fluid st. germain elderflower liqueurs,,f,t,t,t,t
-fraîche,crème_fraîche,crème fraîche,crème fraîches,,f,t,t,t,t
 french_baguette,loaf_french_baguette,loaf french baguette,loaf french baguettes,,f,t,f,t,t
 french_bread,loaf_crusty_french_bread,loaf crusty french bread,loaf crusty french breads,,f,t,f,t,t
 french_bread,loaf_french_bread,loaf french bread,loaf french breads,,f,t,f,t,t
@@ -1477,8 +1474,8 @@ jack_cheese,cheddar_jack_cheese,cheddar jack cheese,cheddar jack cheeses,dairy,f
 jack_cheese,colby_monterey_jack_cheese,colby-monterey jack cheese,colby-monterey jack cheeses,dairy,f,f,t,f,t
 jack_cheese,pepper_jack_cheese,pepper jack cheese,pepper jack cheeses,dairy,f,f,t,f,t
 jack_cheese,shredded_cheddar_monterey_jack_cheese_blend,shredded cheddar-monterey jack cheese blend,shredded cheddar-monterey jack cheese blends,dairy,f,f,t,f,t
-jalapeño,pickled_jalapeño,pickled jalapeño,pickled jalapeñoes,,f,t,t,t,t
-jalapeño_pepper,pickled_jalapeno_pepper,pickled jalapeno pepper,pickled jalapeno peppers,,f,t,t,t,t
+jalapeno,pickled_jalapeno,pickled jalapeño,pickled jalapeñoes,,f,t,t,t,t
+jalapeno_pepper,pickled_jalapeno_pepper,pickled jalapeno pepper,pickled jalapeno peppers,,f,t,t,t,t
 jasmine_rice,brown_jasmine_rice,brown jasmine rice,brown jasmine rices,,f,t,t,t,t
 jelly,redcurrant_jelly,redcurrant jelly,redcurrant jellies,,f,t,t,t,t
 jerk_seasoning,jamaican_jerk_seasoning,jamaican jerk seasoning,jamaican jerk seasonings,,f,t,t,t,t
@@ -1633,7 +1630,7 @@ mixed,pina_colada_mix,pina colada mix,pina colada mixes,,f,t,t,t,t
 mixed,spring_mix,spring mix,spring mixes,,f,t,t,t,t
 mixed,sweet_and_sour_cocktail_mix,sweet-and-sour cocktail mix,sweet-and-sour cocktail mixes,,f,t,t,t,t
 mixed,sweet_and_sour_mix,sweet and sour mix,sweet and sour mixes,,f,t,t,t,t
-m&m,mini_m&m,mini m&m,mini m&ms,,f,t,t,t,t
+mm,mini_mm,mini m&m,mini m&ms,,f,t,t,t,t
 mola,blackstrap_mola,blackstrap mola,blackstrap molas,,f,t,t,t,t
 mola,pomegranate_mola,pomegranate mola,pomegranate molas,,f,t,t,t,t
 mola,unsulfured_mola,unsulfured mola,unsulfured molas,,f,t,t,t,t
@@ -1740,7 +1737,7 @@ oil,sesame_seed_oil,sesame seed oil,sesame seed oils,oil_and_vinegar_and_condime
 oil,sunflower_oil,sunflower oil,sunflower oils,oil_and_vinegar_and_condiments,f,t,t,t,t
 oil,truffle_oil,truffle oil,truffle oils,oil_and_vinegar_and_condiments,f,t,t,t,t
 oil,vegetable_oil,vegetable oil,vegetable oils,oil_and_vinegar_and_condiments,f,t,t,t,t
-oil,veg._oil,veg. oil,veg. oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+oil,veg_oil,veg. oil,veg. oils,oil_and_vinegar_and_condiments,f,t,t,t,t
 oil,vegtable_oil,vegtable oil,vegtable oils,oil_and_vinegar_and_condiments,f,t,t,t,t
 oil,walnut_oil,walnut oil,walnut oils,oil_and_vinegar_and_condiments,f,t,t,t,t
 old_bay,old_fashioned_rolled_oat,old fashioned rolled oat,old fashioned rolled oats,,f,t,t,t,t
@@ -1880,12 +1877,12 @@ pepper,cayenne_pepper,cayenne pepper,cayenne peppers,,f,t,t,t,t
 pepper,chili_pepper,chili pepper,chili peppers,,f,t,t,t,t
 pepper,chipotle_pepper,chipotle pepper,chipotle peppers,,f,t,t,t,t
 pepper,cracked_pepper,cracked pepper,cracked peppers,,f,t,t,t,t
-pepper,dr._pepper,dr. pepper,dr. peppers,,f,t,t,t,t
+pepper,dr_pepper,dr pepper,dr peppers,,f,t,t,t,t
 pepper,garlic_pepper,garlic pepper,garlic peppers,fruit_and_veg,f,t,t,t,t
 pepper,green_pepper,green pepper,green peppers,,f,t,t,t,t
 pepper,habanero_pepper,habanero pepper,habanero peppers,,f,t,t,t,t
 pepper,hot_pepper_sauce,hot pepper sauce,hot pepper sauces,,f,t,t,t,t
-pepper,jalapeño_pepper,jalapeño pepper,jalapeño peppers,,f,t,t,t,t
+pepper,jalapeno_pepper,jalapeño pepper,jalapeño peppers,,f,t,t,t,t
 pepper,lemon_pepper,lemon pepper,lemon peppers,,f,t,t,t,t
 pepper,orange_pepper,orange pepper,orange peppers,,f,t,t,t,t
 pepper,pepper_jelly,pepper jelly,pepper jellies,,f,t,t,t,t
@@ -1905,7 +1902,7 @@ peppermint,peppermint_schnapp,peppermint schnapp,peppermint schnapps,,f,t,t,t,t
 pesto,prepared_pesto,prepared pesto,prepared pestoes,,f,t,t,t,t
 pickle,pickle_relish,pickle relish,pickle relishes,,f,t,t,t,t
 pickle,sweet_pickle,sweet pickle,sweet pickles,,f,t,t,t,t
-pickled_jalapeño,pickled_jalapeno_juice,pickled jalapeno juice,pickled jalapeno juices,,f,t,t,t,t
+pickled_jalapeno,pickled_jalapeno_juice,pickled jalapeno juice,pickled jalapeno juices,,f,t,t,t,t
 pickle_relish,sweet_pickle_relish,sweet pickle relish,sweet pickle relishes,,f,t,t,t,t
 pieces_tilapia,eaches_tilapia_fillet,eaches tilapia fillet,eaches tilapia fillets,,f,t,t,t,t
 pineapple,pineapple_preserve,pineapple preserve,pineapple preserves,,f,t,t,t,t
@@ -2020,7 +2017,7 @@ red_chili,red_chili_pepper,red chili pepper,red chili peppers,,f,t,t,t,t
 red_chili,sweet_red_chili_sauce,sweet red chili sauce,sweet red chili sauces,,f,t,t,t,t
 red_curry_paste,thai_red_curry_paste,thai red curry paste,thai red curry pastes,,f,t,t,t,t
 red_grape,seedless_red_grape,seedless red grape,seedless red grapes,,f,t,t,t,t
-red_pepper,cayenne_(red_pepper,cayenne (red pepper,cayenne (red peppers,,f,t,t,t,t
+red_pepper,cayenne_red_pepper,cayenne red pepper,cayenne red peppers,,f,t,t,t,t
 red_pepper,red_pepper_sauce,red pepper sauce,red pepper sauces,,f,t,t,t,t
 red_pepper,roasted_red_pepper,roasted red pepper,roasted red peppers,,f,t,t,t,t
 red_pepper,sweet_red_pepper,sweet red pepper,sweet red peppers,,f,t,t,t,t
@@ -2270,7 +2267,7 @@ soy_sauce,reduced_sodium_soy_sauce,reduced-sodium soy sauce,reduced-sodium soy s
 soy_sauce,sweet_soy_sauce,sweet soy sauce,sweet soy sauces,,f,t,f,t,t
 spelt_flour,white_spelt_flour,white spelt flour,white spelt flours,,f,t,f,t,t
 spinach,bag_baby_spinach,bag baby spinach,bag baby spinaches,,f,t,t,t,t
-sprinkle,garnish:_candy_sprinkle,garnish: candy sprinkle,garnish: candy sprinkles,,f,t,t,t,t
+sprinkle,candy_sprinkle,candy sprinkle,candy sprinkles,,f,t,t,t,t
 sprinkle,halloween_sprinkle,halloween sprinkle,halloween sprinkles,,f,t,t,t,t
 sprinkle,multicolored_candy_sprinkle,multicolored candy sprinkle,multicolored candy sprinkles,,f,t,t,t,t
 sprinkle,rainbow_sprinkle,rainbow sprinkle,rainbow sprinkles,,f,t,t,t,t
