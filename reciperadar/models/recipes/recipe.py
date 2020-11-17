@@ -180,7 +180,7 @@ class Recipe(Storable, Searchable):
         data['ingredients'] = [
             ingredient.to_doc()
             for ingredient in self.ingredients
-            if ingredient.product
+            if ingredient.product.product
         ]
         data['contents'] = self.contents
         data['product_count'] = len(self.products)
