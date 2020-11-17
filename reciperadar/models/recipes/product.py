@@ -53,7 +53,7 @@ class IngredientProduct(Storable):
     ingredient_fk = db.ForeignKey('recipe_ingredients.id', ondelete='cascade')
     ingredient_id = db.Column(db.String, ingredient_fk, index=True)
 
-    product_fk = db.ForeignKey('products.id', ondelete='cascade')
+    product_fk = db.ForeignKey('products.id', deferrable=True)
     product_id = db.Column(db.String, product_fk, index=True)
 
     id = db.Column(db.String, primary_key=True)
