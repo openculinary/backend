@@ -24,7 +24,6 @@ def upgrade():
     sa.Column('singular', sa.String(), nullable=True),
     sa.Column('plural', sa.String(), nullable=True),
     sa.Column('category', sa.String(), nullable=True),
-    sa.Column('contents', postgresql.ARRAY(sa.String()), nullable=True),
     sa.Column('is_kitchen_staple', sa.Boolean(), nullable=True),
     sa.Column('is_dairy_free', sa.Boolean(), nullable=True),
     sa.Column('is_gluten_free', sa.Boolean(), nullable=True),
