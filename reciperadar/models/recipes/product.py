@@ -7,6 +7,9 @@ from reciperadar.models.recipes.nutrition import ProductNutrition
 
 class Product(Storable):
     __tablename__ = 'products'
+    __table_args__ = (
+        db.CheckConstraint("id ~ '^[a-z_]+$'", name='ck_products_id_keyword'),
+    )
 
     parent_fk = db.ForeignKey('products.id', deferrable=True)
     parent_id = db.Column(db.String, parent_fk, index=True)
