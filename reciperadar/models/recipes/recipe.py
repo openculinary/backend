@@ -57,12 +57,15 @@ class Recipe(Storable, Searchable):
         unique_products = {
             ingredient.product.product.singular: ingredient.product.product
             for ingredient in self.ingredients
+            if ingredient.product.product
         }
         return list(unique_products.values())
 
     @property
     def hidden(self):
         for ingredient in self.ingredients:
+            if not ingredient.product.product:
+                return True
             if not ingredient.product.product.singular:
                 return True
         return False
@@ -148,6 +151,7 @@ class Recipe(Storable, Searchable):
         return all([
             ingredient.product.product.is_dairy_free
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     @property
@@ -155,6 +159,7 @@ class Recipe(Storable, Searchable):
         return all([
             ingredient.product.product.is_gluten_free
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     @property
@@ -162,6 +167,7 @@ class Recipe(Storable, Searchable):
         return all([
             ingredient.product.product.is_vegan
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     @property
@@ -169,6 +175,7 @@ class Recipe(Storable, Searchable):
         return all([
             ingredient.product.product.is_vegetarian
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     def to_doc(self):
