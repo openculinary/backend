@@ -37,7 +37,7 @@ class Product(Storable):
         results = set()
         product = self
         while product:
-            results.add(product.id)
+            results.add(product.singular)
             product = product.parent
         return results
 
