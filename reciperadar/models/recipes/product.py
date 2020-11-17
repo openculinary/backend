@@ -8,7 +8,7 @@ from reciperadar.models.recipes.nutrition import ProductNutrition
 class Product(Storable):
     __tablename__ = 'products'
 
-    parent_fk = db.ForeignKey('products.id', ondelete='cascade')
+    parent_fk = db.ForeignKey('products.id', deferrable=True)
     parent_id = db.Column(db.String, parent_fk, index=True)
 
     id = db.Column(db.String, primary_key=True)
