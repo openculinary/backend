@@ -1,5 +1,3 @@
-from sqlalchemy.dialects import postgresql
-
 from reciperadar import db
 from reciperadar.models.base import Storable
 
@@ -29,6 +27,19 @@ class Product(Storable):
         uselist=False,
         passive_deletes='all'
     )
+    parent = db.relationship(
+        'Product',
+        remote_side=[id]
+    )
+
+    @property
+    def contents(self):
+        results = set()
+        product = self
+        while product:
+            results.add(product.id)
+            product = product.parent
+        return results
 
 
 class IngredientProduct(Storable):
@@ -40,46 +51,23 @@ class IngredientProduct(Storable):
     product_fk = db.ForeignKey('products.id', deferrable=True)
     product_id = db.Column(db.String, product_fk, index=True)
 
+    product = db.relationship('Product')
+
     id = db.Column(db.String, primary_key=True)
-    product = db.Column(db.String)
     product_parser = db.Column(db.String)
     is_plural = db.Column(db.Boolean)
-    singular = db.Column(db.String)
-    plural = db.Column(db.String)
-    category = db.Column(db.String)
-    contents = db.Column(postgresql.ARRAY(db.String))
-    is_kitchen_staple = db.Column(db.Boolean)
-    is_dairy_free = db.Column(db.Boolean)
-    is_gluten_free = db.Column(db.Boolean)
-    is_vegan = db.Column(db.Boolean)
-    is_vegetarian = db.Column(db.Boolean)
 
     STATE_AVAILABLE = 'available'
     STATE_REQUIRED = 'required'
 
     @staticmethod
     def from_doc(doc):
-        product_id = doc.get('id') or IngredientProduct.generate_id()
-        contents = list(set(
-            [doc.get('product')] +
-            (doc.get('contents') or []) +
-            (doc.get('ancestors') or [])
-        ))
+        id = doc.get('id') or IngredientProduct.generate_id()
         return IngredientProduct(
-            id=product_id,
+            id=id,
             product_id=doc.get('product_id'),
-            product=doc.get('product'),
             product_parser=doc.get('product_parser'),
             is_plural=doc.get('is_plural'),
-            singular=doc.get('singular'),
-            plural=doc.get('plural'),
-            category=doc.get('category'),
-            contents=contents,
-            is_kitchen_staple=doc.get('is_kitchen_staple'),
-            is_dairy_free=doc.get('is_dairy_free'),
-            is_gluten_free=doc.get('is_gluten_free'),
-            is_vegan=doc.get('is_vegan'),
-            is_vegetarian=doc.get('is_vegetarian'),
         )
 
     def state(self, include):
