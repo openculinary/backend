@@ -18,16 +18,6 @@ class ProductNutrition(Nutrition):
     fk = db.ForeignKey('products.id', deferrable=True)
     product_id = db.Column(db.String, fk, primary_key=True)
 
-    @staticmethod
-    def from_doc(doc):
-        return ProductNutrition(
-            carbohydrates=doc.get('carbohydrates'),
-            energy=doc.get('energy'),
-            fat=doc.get('fat'),
-            fibre=doc.get('fibre'),
-            protein=doc.get('protein'),
-        )
-
 
 class IngredientNutrition(Nutrition):
     __tablename__ = 'ingredient_nutrition'
