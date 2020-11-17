@@ -4,14 +4,43 @@ from reciperadar import db
 from reciperadar.models.base import Storable
 
 
+class Product(Storable):
+    __tablename__ = 'products'
+    __table_args__ = (
+        db.CheckConstraint("id ~ '^[a-z_]+$'", name='ck_products_id_keyword'),
+    )
+
+    parent_fk = db.ForeignKey('products.id', deferrable=True)
+    parent_id = db.Column(db.String, parent_fk, index=True)
+
+    id = db.Column(db.String, primary_key=True)
+    singular = db.Column(db.String)
+    plural = db.Column(db.String)
+    category = db.Column(db.String)
+    is_kitchen_staple = db.Column(db.Boolean)
+    is_dairy_free = db.Column(db.Boolean)
+    is_gluten_free = db.Column(db.Boolean)
+    is_vegan = db.Column(db.Boolean)
+    is_vegetarian = db.Column(db.Boolean)
+
+    nutrition = db.relationship(
+        'ProductNutrition',
+        backref='product',
+        uselist=False,
+        passive_deletes='all'
+    )
+
+
 class IngredientProduct(Storable):
     __tablename__ = 'ingredient_products'
 
-    fk = db.ForeignKey('recipe_ingredients.id', ondelete='cascade')
-    ingredient_id = db.Column(db.String, fk, index=True)
+    ingredient_fk = db.ForeignKey('recipe_ingredients.id', ondelete='cascade')
+    ingredient_id = db.Column(db.String, ingredient_fk, index=True)
+
+    product_fk = db.ForeignKey('products.id', deferrable=True)
+    product_id = db.Column(db.String, product_fk, index=True)
 
     id = db.Column(db.String, primary_key=True)
-    product_id = db.Column(db.String)
     product = db.Column(db.String)
     product_parser = db.Column(db.String)
     is_plural = db.Column(db.Boolean)
