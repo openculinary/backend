@@ -14,7 +14,7 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
     assert recipe.directions[0].utensils[0].utensil == 'skewer'
 
     assert recipe.ingredients[0].product.product.singular == 'one'
-    expected_contents = ['one', 'ancestor_of_one']
+    expected_contents = ['one', 'ancestor-of-one']
     actual_contents = recipe.ingredients[0].product.product.contents
 
     assert all([content in actual_contents for content in expected_contents])
