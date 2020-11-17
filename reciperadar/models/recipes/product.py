@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from reciperadar import db
 from reciperadar.models.base import Storable
 
@@ -33,13 +35,78 @@ class Product(Storable):
     )
 
     @property
-    def contents(self):
+    @lru_cache(maxsize=4096)
+    def ancestors(self):
         results = set()
         product = self
         while product:
             results.add(product.singular)
             product = product.parent
         return results
+
+    @property
+    @lru_cache(maxsize=4096)
+    def contents(self):
+        # NB: Use singular noun forms to retain query-time compatibility
+        content_graph = {
+            'baguette': 'bread',
+            'bread': 'bread',
+            'loaf': 'bread',
+
+            'butter': 'dairy',
+            'cheese': 'dairy',
+            'milk': 'dairy',
+            'yoghurt': 'dairy',
+            'yogurt': 'dairy',
+
+            'anchovy': 'seafood',
+            'clam': 'seafood',
+            'cod': 'seafood',
+            'crab': 'seafood',
+            'fish': 'seafood',
+            'haddock': 'seafood',
+            'halibut': 'seafood',
+            'lobster': 'seafood',
+            'mackerel': 'seafood',
+            'mussel': 'seafood',
+            'prawn': 'seafood',
+            'salmon': 'seafood',
+            'sardine': 'seafood',
+            'shellfish': 'seafood',
+            'shrimp': 'seafood',
+            'squid': 'seafood',
+            'tuna': 'seafood',
+
+            'bacon': 'meat',
+            'beef': 'meat',
+            'chicken': 'meat',
+            'ham': 'meat',
+            'lamb': 'meat',
+            'pork': 'meat',
+            'sausage': 'meat',
+            'steak': 'meat',
+            'turkey': 'meat',
+            'venison': 'meat',
+        }
+        exclusion_graph = {
+            'meat': ['stock', 'broth', 'tomato', 'bouillon', 'soup', 'egg'],
+            'bread': ['crumb'],
+            'fruit_and_veg': ['green tomato'],
+        }
+
+        contents = self.ancestors
+        for content in content_graph:
+            if content in self.singular.split():
+                excluded = False
+                fields = [content, content_graph[content]]
+                for field in fields:
+                    for excluded_term in exclusion_graph.get(field, []):
+                        excluded = excluded or excluded_term in self.singular
+                if excluded:
+                    continue
+                for field in fields:
+                    contents.add(field)
+        return list(contents)
 
 
 class IngredientProduct(Storable):

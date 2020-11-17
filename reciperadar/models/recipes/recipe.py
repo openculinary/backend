@@ -58,6 +58,7 @@ class Recipe(Storable, Searchable):
             ingredient.product.product.singular: ingredient.product.product
             for ingredient in self.ingredients
             if ingredient.product.product
+            and ingredient.product.product.singular
         }
         return list(unique_products.values())
 
