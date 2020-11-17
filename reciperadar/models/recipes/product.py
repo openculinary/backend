@@ -70,6 +70,12 @@ class IngredientProduct(Storable):
             is_plural=doc.get('is_plural'),
         )
 
+    def to_doc(self):
+        return {
+            **super().to_doc(),
+            **self.product.to_doc(),
+        }
+
     def state(self, include):
         states = {
             True: IngredientProduct.STATE_AVAILABLE,
