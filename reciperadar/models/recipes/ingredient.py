@@ -17,7 +17,11 @@ class RecipeIngredient(Storable, Searchable):
     description = db.Column(db.String)
     markup = db.Column(db.String)
 
-    product = db.relationship('Product')
+    product = db.relationship(
+        'Product',
+        uselist=False,
+        passive_deletes='all'
+    )
     nutrition = db.relationship(
         'IngredientNutrition',
         backref='recipe_ingredient',
