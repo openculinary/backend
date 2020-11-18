@@ -1,25 +1,23 @@
 from reciperadar import db
 from reciperadar.models.base import Searchable, Storable
-from reciperadar.models.recipes.product import IngredientProduct
 from reciperadar.models.recipes.nutrition import IngredientNutrition
 
 
 class RecipeIngredient(Storable, Searchable):
     __tablename__ = 'recipe_ingredients'
 
-    fk = db.ForeignKey('recipes.id', ondelete='cascade')
-    recipe_id = db.Column(db.String, fk, index=True)
+    recipe_fk = db.ForeignKey('recipes.id', ondelete='cascade')
+    recipe_id = db.Column(db.String, recipe_fk, index=True)
+
+    product_fk = db.ForeignKey('products.id', deferrable=True)
+    product_id = db.Column(db.String, product_fk, index=True)
 
     id = db.Column(db.String, primary_key=True)
     index = db.Column(db.Integer)
     description = db.Column(db.String)
     markup = db.Column(db.String)
-    product = db.relationship(
-        'IngredientProduct',
-        backref='recipe_ingredient',
-        uselist=False,
-        passive_deletes='all'
-    )
+
+    product = db.relationship('Product')
     nutrition = db.relationship(
         'IngredientNutrition',
         backref='recipe_ingredient',
@@ -31,6 +29,8 @@ class RecipeIngredient(Storable, Searchable):
     magnitude_parser = db.Column(db.String)
     units = db.Column(db.String)
     units_parser = db.Column(db.String)
+    product_is_plural = db.Column(db.Boolean)
+    product_parser = db.Column(db.String)
     relative_density = db.Column(db.Float)
     verb = db.Column(db.String)
 
@@ -50,7 +50,9 @@ class RecipeIngredient(Storable, Searchable):
             index=doc['index'],
             description=doc['description'].strip(),
             markup=doc.get('markup'),
-            product=IngredientProduct.from_doc(doc['product']),
+            product_id=doc['product'].get('product_id'),
+            product_is_plural=doc['product'].get('is_plural'),
+            product_parser=doc['product'].get('product_parser'),
             nutrition=IngredientNutrition.from_doc(nutrition)
             if nutrition else None,
             relative_density=doc.get('relative_density'),
@@ -63,6 +65,6 @@ class RecipeIngredient(Storable, Searchable):
 
     def to_doc(self):
         data = super().to_doc()
-        data['product'] = self.product.to_doc()
+        data['product'] = self.product.to_doc() if self.product else None
         data['nutrition'] = self.nutrition.to_doc() if self.nutrition else None
         return data
