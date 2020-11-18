@@ -46,7 +46,7 @@ def test_hidden_recipe(db_session, raw_recipe_hit):
     db_session.add(recipe)
     db_session.commit()
 
-    recipe.ingredients[0].product.product.singular = None
+    recipe.ingredients[0].product.product = None
 
     doc = recipe.to_doc()
 

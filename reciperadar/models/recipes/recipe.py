@@ -58,7 +58,6 @@ class Recipe(Storable, Searchable):
             ingredient.product.product.singular: ingredient.product.product
             for ingredient in self.ingredients
             if ingredient.product.product
-            and ingredient.product.product.singular
         }
         return list(unique_products.values())
 
@@ -66,8 +65,6 @@ class Recipe(Storable, Searchable):
     def hidden(self):
         for ingredient in self.ingredients:
             if not ingredient.product.product:
-                return True
-            if not ingredient.product.product.singular:
                 return True
         return False
 
