@@ -63,10 +63,10 @@ class Recipe(Storable, Searchable):
 
     @property
     def hidden(self):
-        for ingredient in self.ingredients:
-            if not ingredient.product:
-                return True
-        return False
+        return not all([
+            ingredient.product
+            for ingredient in self.ingredients
+        ])
 
     @property
     def recipe_url(self):

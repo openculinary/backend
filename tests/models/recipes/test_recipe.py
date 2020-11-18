@@ -10,6 +10,7 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
     db_session.commit()
 
     assert recipe.author == 'example'
+    assert not recipe.hidden
 
     assert recipe.directions[0].appliances[0].appliance == 'oven'
     assert recipe.directions[0].utensils[0].utensil == 'skewer'
@@ -51,7 +52,6 @@ def test_hidden_recipe(db_session, raw_recipe_hit):
     recipe.ingredients[0].product = None
 
     doc = recipe.to_doc()
-
     assert doc.get('hidden') is True
 
 
