@@ -1,4 +1,4 @@
-from functools import lru_cache
+from functools import cached_property
 
 from reciperadar import db
 from reciperadar.models.base import Storable
@@ -34,8 +34,7 @@ class Product(Storable):
         remote_side=[id]
     )
 
-    @property
-    @lru_cache(maxsize=4096)
+    @cached_property
     def ancestors(self):
         results = set()
         product = self
@@ -44,8 +43,7 @@ class Product(Storable):
             product = product.parent
         return results
 
-    @property
-    @lru_cache(maxsize=4096)
+    @cached_property
     def contents(self):
         # NB: Use singular noun forms to retain query-time compatibility
         content_graph = {
