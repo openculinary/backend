@@ -127,9 +127,6 @@ class IngredientProduct(Storable):
     product_parser = db.Column(db.String)
     is_plural = db.Column(db.Boolean)
 
-    STATE_AVAILABLE = 'available'
-    STATE_REQUIRED = 'required'
-
     @staticmethod
     def from_doc(doc):
         id = doc.get('id') or IngredientProduct.generate_id()
