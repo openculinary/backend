@@ -108,6 +108,11 @@ class Product(Storable):
                     contents.add(field)
         return list(contents)
 
+    def to_doc(self):
+        data = super().to_doc()
+        data['contents'] = self.contents
+        return data
+
 
 class IngredientProduct(Storable):
     __tablename__ = 'ingredient_products'
