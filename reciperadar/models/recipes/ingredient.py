@@ -54,10 +54,8 @@ class RecipeIngredient(Storable, Searchable):
             nutrition=IngredientNutrition.from_doc(nutrition)
             if nutrition else None,
             relative_density=doc.get('relative_density'),
-            magnitude=doc.get('magnitude') or doc.get('quantity'),  # TODO
-            magnitude_parser=(
-                doc.get('magnitude_parser') or doc.get('quantity_parser')
-            ),  # TODO
+            magnitude=doc.get('magnitude'),
+            magnitude_parser=doc.get('magnitude_parser'),
             units=doc.get('units'),
             units_parser=doc.get('units_parser'),
             verb=doc.get('verb'),
