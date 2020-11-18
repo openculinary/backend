@@ -14,9 +14,9 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
     assert recipe.directions[0].appliances[0].appliance == 'oven'
     assert recipe.directions[0].utensils[0].utensil == 'skewer'
 
-    assert recipe.ingredients[0].product.product.singular == 'one'
+    assert recipe.ingredients[0].product.singular == 'one'
     expected_contents = ['one', 'ancestor-of-one']
-    actual_contents = recipe.ingredients[0].product.product.contents
+    actual_contents = recipe.ingredients[0].product.contents
 
     assert all([content in actual_contents for content in expected_contents])
 
@@ -32,8 +32,8 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
         'protein': 0.03,
     }
 
-    assert recipe.ingredients[0].product.product.is_vegan
-    assert not recipe.ingredients[1].product.product.is_gluten_free
+    assert recipe.ingredients[0].product.is_vegan
+    assert not recipe.ingredients[1].product.is_gluten_free
 
     assert not recipe.is_gluten_free
     assert not recipe.is_vegan
@@ -48,7 +48,7 @@ def test_hidden_recipe(db_session, raw_recipe_hit):
     db_session.add(recipe)
     db_session.commit()
 
-    recipe.ingredients[0].product.product = None
+    recipe.ingredients[0].product = None
 
     doc = recipe.to_doc()
 

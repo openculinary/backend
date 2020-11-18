@@ -3,16 +3,9 @@ import json
 from flask import Response
 
 from reciperadar import app, db
-from reciperadar.models.recipes.ingredient import (
-    RecipeIngredient,
-)
-from reciperadar.models.recipes.nutrition import (
-    ProductNutrition,
-)
-from reciperadar.models.recipes.product import (
-    IngredientProduct,
-    Product,
-)
+from reciperadar.models.recipes.ingredient import RecipeIngredient
+from reciperadar.models.recipes.nutrition import ProductNutrition
+from reciperadar.models.recipes.product import Product
 from reciperadar.search.products import ProductSearch
 
 
@@ -69,10 +62,9 @@ def hierarchy():
             Product,
             ProductNutrition,
             db.func.count(),
-            db.func.sum(IngredientProduct.is_plural.cast(db.Integer)),
+            db.func.sum(RecipeIngredient.product_is_plural.cast(db.Integer)),
         )
         .join(ProductNutrition, isouter=True)
-        .join(IngredientProduct, isouter=True)
         .join(RecipeIngredient, isouter=True)
         .group_by(
             Product,

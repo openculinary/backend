@@ -110,35 +110,3 @@ class Product(Storable):
         data = super().to_doc()
         data['contents'] = self.contents
         return data
-
-
-class IngredientProduct(Storable):
-    __tablename__ = 'ingredient_products'
-
-    ingredient_fk = db.ForeignKey('recipe_ingredients.id', ondelete='cascade')
-    ingredient_id = db.Column(db.String, ingredient_fk, index=True)
-
-    product_fk = db.ForeignKey('products.id', deferrable=True)
-    product_id = db.Column(db.String, product_fk, index=True)
-
-    product = db.relationship('Product')
-
-    id = db.Column(db.String, primary_key=True)
-    product_parser = db.Column(db.String)
-    is_plural = db.Column(db.Boolean)
-
-    @staticmethod
-    def from_doc(doc):
-        id = doc.get('id') or IngredientProduct.generate_id()
-        return IngredientProduct(
-            id=id,
-            product_id=doc.get('product_id'),
-            product_parser=doc.get('product_parser'),
-            is_plural=doc.get('is_plural'),
-        )
-
-    def to_doc(self):
-        return {
-            **super().to_doc(),
-            **self.product.to_doc(),
-        }
