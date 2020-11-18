@@ -5,6 +5,7 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
     recipe = Recipe().from_doc(raw_recipe_hit['_source'])
 
     # Commit recipe to the session; performs db object relationship resolution
+    # TODO: find a more robust way to ensure that related objects are loaded
     db_session.add(recipe)
     db_session.commit()
 
@@ -43,6 +44,7 @@ def test_hidden_recipe(db_session, raw_recipe_hit):
     recipe = Recipe().from_doc(raw_recipe_hit['_source'])
 
     # Commit recipe to the session; performs db object relationship resolution
+    # TODO: find a more robust way to ensure that related objects are loaded
     db_session.add(recipe)
     db_session.commit()
 
@@ -57,6 +59,7 @@ def test_nutritional_filtering(db_session, raw_recipe_hit):
     recipe = Recipe().from_doc(raw_recipe_hit['_source'])
 
     # Commit recipe to the session; performs db object relationship resolution
+    # TODO: find a more robust way to ensure that related objects are loaded
     db_session.add(recipe)
     db_session.commit()
 
