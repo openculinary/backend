@@ -1,4 +1,4 @@
-from sqlalchemy.dialects import postgresql
+from functools import cached_property
 
 from reciperadar import db
 from reciperadar.models.base import Storable
@@ -29,6 +29,87 @@ class Product(Storable):
         uselist=False,
         passive_deletes='all'
     )
+    parent = db.relationship(
+        'Product',
+        remote_side=[id]
+    )
+
+    @cached_property
+    def ancestors(self):
+        results = set()
+        product = self
+        while product:
+            results.add(product.singular)
+            product = product.parent
+        return results
+
+    @cached_property
+    def contents(self):
+        # NB: Use singular noun forms to retain query-time compatibility
+        content_graph = {
+            'baguette': 'bread',
+            'bread': 'bread',
+            'loaf': 'bread',
+
+            'butter': 'dairy',
+            'cheese': 'dairy',
+            'milk': 'dairy',
+            'yoghurt': 'dairy',
+            'yogurt': 'dairy',
+
+            'anchovy': 'seafood',
+            'clam': 'seafood',
+            'cod': 'seafood',
+            'crab': 'seafood',
+            'fish': 'seafood',
+            'haddock': 'seafood',
+            'halibut': 'seafood',
+            'lobster': 'seafood',
+            'mackerel': 'seafood',
+            'mussel': 'seafood',
+            'prawn': 'seafood',
+            'salmon': 'seafood',
+            'sardine': 'seafood',
+            'shellfish': 'seafood',
+            'shrimp': 'seafood',
+            'squid': 'seafood',
+            'tuna': 'seafood',
+
+            'bacon': 'meat',
+            'beef': 'meat',
+            'chicken': 'meat',
+            'ham': 'meat',
+            'lamb': 'meat',
+            'pork': 'meat',
+            'sausage': 'meat',
+            'steak': 'meat',
+            'turkey': 'meat',
+            'venison': 'meat',
+        }
+        exclusion_graph = {
+            'meat': ['stock', 'broth', 'tomato', 'bouillon', 'soup', 'egg'],
+            'bread': ['crumb'],
+            'fruit_and_veg': ['green tomato'],
+        }
+
+        contents = self.ancestors
+        for content in content_graph:
+            if content in self.singular.split():
+                excluded = False
+                fields = [content, content_graph[content]]
+                for field in fields:
+                    for excluded_term in exclusion_graph.get(field, []):
+                        excluded = excluded or excluded_term in self.singular
+                if excluded:
+                    continue
+                for field in fields:
+                    contents.add(field)
+        return list(contents)
+
+    def to_doc(self):
+        data = super().to_doc()
+        data['contents'] = self.contents
+        return data
 
 
 class IngredientProduct(Storable):
@@ -40,52 +121,24 @@ class IngredientProduct(Storable):
     product_fk = db.ForeignKey('products.id', deferrable=True)
     product_id = db.Column(db.String, product_fk, index=True)
 
+    product = db.relationship('Product')
+
     id = db.Column(db.String, primary_key=True)
-    product = db.Column(db.String)
     product_parser = db.Column(db.String)
     is_plural = db.Column(db.Boolean)
-    singular = db.Column(db.String)
-    plural = db.Column(db.String)
-    category = db.Column(db.String)
-    contents = db.Column(postgresql.ARRAY(db.String))
-    is_kitchen_staple = db.Column(db.Boolean)
-    is_dairy_free = db.Column(db.Boolean)
-    is_gluten_free = db.Column(db.Boolean)
-    is_vegan = db.Column(db.Boolean)
-    is_vegetarian = db.Column(db.Boolean)
-
-    STATE_AVAILABLE = 'available'
-    STATE_REQUIRED = 'required'
 
     @staticmethod
     def from_doc(doc):
-        product_id = doc.get('id') or IngredientProduct.generate_id()
-        contents = list(set(
-            [doc.get('product')] +
-            (doc.get('contents') or []) +
-            (doc.get('ancestors') or [])
-        ))
+        id = doc.get('id') or IngredientProduct.generate_id()
         return IngredientProduct(
-            id=product_id,
+            id=id,
             product_id=doc.get('product_id'),
-            product=doc.get('product'),
             product_parser=doc.get('product_parser'),
             is_plural=doc.get('is_plural'),
-            singular=doc.get('singular'),
-            plural=doc.get('plural'),
-            category=doc.get('category'),
-            contents=contents,
-            is_kitchen_staple=doc.get('is_kitchen_staple'),
-            is_dairy_free=doc.get('is_dairy_free'),
-            is_gluten_free=doc.get('is_gluten_free'),
-            is_vegan=doc.get('is_vegan'),
-            is_vegetarian=doc.get('is_vegetarian'),
         )
 
-    def state(self, include):
-        states = {
-            True: IngredientProduct.STATE_AVAILABLE,
-            False: IngredientProduct.STATE_REQUIRED,
+    def to_doc(self):
+        return {
+            **super().to_doc(),
+            **self.product.to_doc(),
         }
-        available = bool(set(self.contents or []) & set(include or []))
-        return states[available]

@@ -55,15 +55,18 @@ class Recipe(Storable, Searchable):
     @property
     def products(self):
         unique_products = {
-            ingredient.product.singular: ingredient.product
+            # TODO: cleanup product.product access patterns
+            ingredient.product.product.singular: ingredient.product.product
             for ingredient in self.ingredients
+            if ingredient.product.product
         }
         return list(unique_products.values())
 
     @property
     def hidden(self):
         for ingredient in self.ingredients:
-            if not ingredient.product.singular:
+            # TODO: cleanup product.product access patterns
+            if not ingredient.product.product:
                 return True
         return False
 
@@ -146,29 +149,37 @@ class Recipe(Storable, Searchable):
     @property
     def is_dairy_free(self):
         return all([
-            ingredient.product.is_dairy_free
+            # TODO: cleanup product.product access patterns
+            ingredient.product.product.is_dairy_free
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     @property
     def is_gluten_free(self):
         return all([
-            ingredient.product.is_gluten_free
+            # TODO: cleanup product.product access patterns
+            ingredient.product.product.is_gluten_free
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     @property
     def is_vegan(self):
         return all([
-            ingredient.product.is_vegan
+            # TODO: cleanup product.product access patterns
+            ingredient.product.product.is_vegan
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     @property
     def is_vegetarian(self):
         return all([
-            ingredient.product.is_vegetarian
+            # TODO: cleanup product.product access patterns
+            ingredient.product.product.is_vegetarian
             for ingredient in self.ingredients
+            if ingredient.product.product
         ])
 
     def to_doc(self):
@@ -180,6 +191,8 @@ class Recipe(Storable, Searchable):
         data['ingredients'] = [
             ingredient.to_doc()
             for ingredient in self.ingredients
+            # TODO: cleanup product.product access patterns
+            if ingredient.product.product
         ]
         data['contents'] = self.contents
         data['product_count'] = len(self.products)
