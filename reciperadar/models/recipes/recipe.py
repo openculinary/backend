@@ -55,6 +55,7 @@ class Recipe(Storable, Searchable):
     @property
     def products(self):
         unique_products = {
+            # TODO: cleanup product.product access patterns
             ingredient.product.product.singular: ingredient.product.product
             for ingredient in self.ingredients
             if ingredient.product.product
@@ -64,6 +65,7 @@ class Recipe(Storable, Searchable):
     @property
     def hidden(self):
         for ingredient in self.ingredients:
+            # TODO: cleanup product.product access patterns
             if not ingredient.product.product:
                 return True
         return False
@@ -147,6 +149,7 @@ class Recipe(Storable, Searchable):
     @property
     def is_dairy_free(self):
         return all([
+            # TODO: cleanup product.product access patterns
             ingredient.product.product.is_dairy_free
             for ingredient in self.ingredients
             if ingredient.product.product
@@ -155,6 +158,7 @@ class Recipe(Storable, Searchable):
     @property
     def is_gluten_free(self):
         return all([
+            # TODO: cleanup product.product access patterns
             ingredient.product.product.is_gluten_free
             for ingredient in self.ingredients
             if ingredient.product.product
@@ -163,6 +167,7 @@ class Recipe(Storable, Searchable):
     @property
     def is_vegan(self):
         return all([
+            # TODO: cleanup product.product access patterns
             ingredient.product.product.is_vegan
             for ingredient in self.ingredients
             if ingredient.product.product
@@ -171,6 +176,7 @@ class Recipe(Storable, Searchable):
     @property
     def is_vegetarian(self):
         return all([
+            # TODO: cleanup product.product access patterns
             ingredient.product.product.is_vegetarian
             for ingredient in self.ingredients
             if ingredient.product.product
@@ -185,6 +191,7 @@ class Recipe(Storable, Searchable):
         data['ingredients'] = [
             ingredient.to_doc()
             for ingredient in self.ingredients
+            # TODO: cleanup product.product access patterns
             if ingredient.product.product
         ]
         data['contents'] = self.contents
