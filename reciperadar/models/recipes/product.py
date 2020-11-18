@@ -145,11 +145,3 @@ class IngredientProduct(Storable):
             **super().to_doc(),
             **self.product.to_doc(),
         }
-
-    def state(self, include):
-        states = {
-            True: IngredientProduct.STATE_AVAILABLE,
-            False: IngredientProduct.STATE_REQUIRED,
-        }
-        available = bool(set(self.contents or []) & set(include or []))
-        return states[available]
