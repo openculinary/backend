@@ -73,7 +73,7 @@ class RecipeDirection(Storable):
         equipment = RecipeDirection._parse_equipment(doc['markup'])
         return RecipeDirection(
             id=direction_id,
-            index=doc.get('index'),  # TODO
+            index=doc['index'],
             description=doc['description'],
             markup=doc['markup'],
             **equipment
@@ -92,8 +92,3 @@ class RecipeDirection(Storable):
             for vessel in self.vessels
         ]
         return data
-
-    def to_dict(self):
-        return {
-            'markup': self.markup,
-        }

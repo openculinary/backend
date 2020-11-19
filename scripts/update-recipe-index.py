@@ -60,26 +60,27 @@ mapping = {
             'properties': {
                 'product': {
                     'properties': {
-                        'product_id': {'type': 'keyword'},
-                        'product': {
-                            'type': 'keyword',
-                            'fields': {
-                                'autocomplete': {
-                                    'type': 'text',
-                                    'analyzer': 'autocomplete_analyze',
-                                    'search_analyzer': 'autocomplete_search'
-                                }
-                            }
-                        },
+                        'id': {'type': 'keyword'},
                         'category': {'type': 'keyword'},
-                        'is_plural': {'type': 'boolean'},
                         'singular': {'type': 'keyword'},
                         'plural': {'type': 'keyword'},
+                    }
+                },
+                'product_is_plural': {'type': 'boolean'},
+                'product_name': {
+                    'type': 'keyword',
+                    'fields': {
+                        'autocomplete': {
+                            'type': 'text',
+                            'analyzer': 'autocomplete_analyze',
+                            'search_analyzer': 'autocomplete_search'
+                        }
                     }
                 }
             }
         },
-        'contents': {'type': 'keyword'}
+        'contents': {'type': 'keyword'},
+        'domain': {'type': 'keyword'}
     }
 }
 

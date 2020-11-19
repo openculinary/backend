@@ -24,5 +24,6 @@ db = create_db(app)
 migrate = Migrate(app, db)
 
 
+import reciperadar.api.domains
 import reciperadar.api.products
 import reciperadar.api.recipes

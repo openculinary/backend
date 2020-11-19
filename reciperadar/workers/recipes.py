@@ -1,5 +1,6 @@
 from reciperadar import db
 from reciperadar.models.recipes import Recipe
+from reciperadar.models.domain import Domain
 from reciperadar.models.url import CrawlURL, RecipeURL
 from reciperadar.workers.broker import celery
 
@@ -125,8 +126,14 @@ def crawl_recipe(url):
     recipe_data['dst'] = latest_crawl.resolves_to
     recipe = Recipe.from_doc(recipe_data)
 
+    domain = (
+        db.session.query(Domain).get(recipe.domain)
+        or Domain(domain=recipe.domain)
+    )
+
     db.session.query(Recipe).filter_by(id=recipe.id).delete()
     db.session.add(recipe)
+    db.session.add(domain)
     db.session.commit()
 
     process_recipe.delay(recipe.id)
