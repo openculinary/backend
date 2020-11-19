@@ -19,17 +19,14 @@ class RecipeDirection(Storable):
     markup = db.Column(db.String)
     appliances = db.relationship(
         'DirectionAppliance',
-        backref='recipe_directions',
         passive_deletes='all'
     )
     utensils = db.relationship(
         'DirectionUtensil',
-        backref='recipe_directions',
         passive_deletes='all'
     )
     vessels = db.relationship(
         'DirectionVessel',
-        backref='recipe_directions',
         passive_deletes='all'
     )
 

@@ -19,12 +19,10 @@ class RecipeIngredient(Storable, Searchable):
 
     product = db.relationship(
         'Product',
-        uselist=False,
-        passive_deletes='all'
+        uselist=False
     )
     nutrition = db.relationship(
         'IngredientNutrition',
-        backref='recipe_ingredient',
         uselist=False,
         passive_deletes='all'
     )

@@ -27,17 +27,14 @@ class Recipe(Storable, Searchable):
     rating = db.Column(db.Float)
     ingredients = db.relationship(
         'RecipeIngredient',
-        backref='recipe',
         passive_deletes='all'
     )
     directions = db.relationship(
         'RecipeDirection',
-        backref='recipe',
         passive_deletes='all'
     )
     nutrition = db.relationship(
         'RecipeNutrition',
-        backref='recipe',
         uselist=False,
         passive_deletes='all'
     )
