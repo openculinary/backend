@@ -16,7 +16,7 @@ def create_db(app):
     db = SQLAlchemy(app, session_options={
         'autoflush': False
     })
-    # Workaround:
+    # TODO: Remove workaround required for sqlalchemy + pg8000 v1.16.6
     # https://github.com/sqlalchemy/sqlalchemy/issues/5645#issuecomment-707879323
     db.engine.dialect.description_encoding = None
     return db
