@@ -45,6 +45,13 @@ class RecipeIngredient(Storable, Searchable):
         if self.units == 'ml':
             return self.magnitude / self.relative_density
 
+    @property
+    def product_name(self):
+        if self.product_is_plural:
+            return self.product.plural
+        else:
+            return self.product.singular
+
     @staticmethod
     def from_doc(doc):
         ingredient_id = doc.get('id') or RecipeIngredient.generate_id()
@@ -70,5 +77,6 @@ class RecipeIngredient(Storable, Searchable):
     def to_doc(self):
         data = super().to_doc()
         data['product'] = self.product.to_doc() if self.product else None
+        data['product_name'] = self.product_name if self.product else None
         data['nutrition'] = self.nutrition.to_doc() if self.nutrition else None
         return data
