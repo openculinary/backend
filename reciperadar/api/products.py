@@ -6,7 +6,6 @@ from reciperadar import app, db
 from reciperadar.models.recipes.ingredient import RecipeIngredient
 from reciperadar.models.recipes.nutrition import ProductNutrition
 from reciperadar.models.recipes.product import Product
-from reciperadar.search.products import ProductSearch
 
 
 # Custom streaming method
@@ -14,12 +13,6 @@ def stream(items):
     for item in items:
         line = json.dumps(item, ensure_ascii=False)
         yield f'{line}\n'
-
-
-@app.route('/products')
-def products():
-    products = ProductSearch().products()
-    return Response(stream(products), content_type='application/x-ndjson')
 
 
 def _product_map(products):
