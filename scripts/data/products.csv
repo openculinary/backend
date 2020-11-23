@@ -24,7 +24,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,bacon,bacon,bacons,meat_and_deli,f,t,t,f,f
 ,baguette,baguette,baguettes,,f,t,f,t,t
 ,baking_mix,baking mix,baking mixes,,f,t,t,t,t
-,baking_powder,baking powder,baking powders,,f,t,t,t,t
+,baking_powder,baking powder,baking powders,,t,t,t,t,t
 ,bamboo_shoot,bamboo shoot,bamboo shoots,,f,t,t,t,t
 ,banana,banana,bananas,fruit_and_veg,f,t,t,t,t
 ,banana_chip,banana chip,banana chips,fruit_and_veg,f,t,t,t,t
@@ -356,7 +356,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,nutmeg,nutmeg,nutmegs,,f,t,t,t,t
 ,oat,oat,oats,,f,t,t,t,t
 ,oatmeal,oatmeal,oatmeals,,f,t,t,t,t
-,oil,oil,oils,oil_and_vinegar_and_condiments,f,t,t,t,t
+,oil,oil,oils,oil_and_vinegar_and_condiments,t,t,t,t,t
 ,okra,okra,okras,,f,t,t,t,t
 ,old_bay,old bay,old bays,,f,t,t,t,t
 ,olive,olive,olives,,f,t,t,t,t
@@ -758,7 +758,7 @@ blackberry,blackberry_jam,blackberry jam,blackberry jams,,f,t,t,t,t
 black_pepper,black_pepper_powder,black pepper powder,black pepper powders,,f,t,t,t,t
 black_pepper,cracked_black_pepper,cracked black pepper,cracked black peppers,,f,t,t,t,t
 black_pepper,fresh_ground_black_pepper,fresh-ground black pepper,fresh-ground black peppers,,f,t,t,t,t
-black_pepper,ground_black_pepper,ground black pepper,ground black peppers,,f,t,t,t,t
+black_pepper,ground_black_pepper,ground black pepper,ground black peppers,,t,t,t,t,t
 black_pepper,salt_black_pepper,salt black pepper,salt black peppers,,f,t,t,t,t
 black_peppercorn,cracked_black_peppercorn,cracked black peppercorn,cracked black peppercorns,,f,t,t,t,t
 blanched_almond,blanched_almond_flour,blanched almond flour,blanched almond flours,,f,t,f,t,t
@@ -1290,7 +1290,7 @@ flaxseed,flaxseed_meal,flaxseed meal,flaxseed meals,,f,t,t,t,t
 flaxseed,milled_flaxseed,milled flaxseed,milled flaxseeds,,f,t,t,t,t
 flour,all_pupose_flour,all-pupose flour,all-pupose flours,,f,t,f,t,t
 flour,all_purpose_baking_flour,all purpose baking flour,all purpose baking flours,,f,t,f,t,t
-flour,all_purpose_flour,all-purpose flour,all-purpose flours,,f,t,f,t,t
+flour,all_purpose_flour,all-purpose flour,all-purpose flours,,t,t,f,t,t
 flour,almond_flour,almond flour,almond flours,,f,t,f,t,t
 flour,ap_flour,ap flour,ap flours,,f,t,f,t,t
 flour,barley_flour,barley flour,barley flours,,f,t,f,t,t
@@ -2242,7 +2242,7 @@ slices_sandwich_bread,slices_white_sandwich_bread,slices white sandwich bread,sl
 smoked_paprika,spanish_smoked_paprika,spanish smoked paprika,spanish smoked paprikas,,f,t,t,t,t
 smoked_paprika,sweet_smoked_paprika,sweet smoked paprika,sweet smoked paprikas,,f,t,t,t,t
 snap_pea,sugar_snap_pea,sugar snap pea,sugar snap peas,,f,t,t,t,t
-soda,baking_soda,baking soda,baking sodas,,f,t,t,t,t
+soda,baking_soda,baking soda,baking sodas,,t,t,t,t,t
 soda,bicarbonate_of_soda,bicarbonate of soda,bicarbonates of soda,,f,t,t,t,t
 soda,club_soda,club soda,club sodas,,f,t,t,t,t
 soda,lemon_lime_soda,lemon-lime soda,lemon-lime sodas,,f,t,t,t,t
@@ -2354,7 +2354,7 @@ sugar,superfine_sugar,superfine sugar,superfine sugars,,f,t,t,t,t
 sugar,turbinado_sugar,turbinado sugar,turbinado sugars,,f,t,t,t,t
 sugar,unrefined_sugar,unrefined sugar,unrefined sugars,,f,t,t,t,t
 sugar,vanilla_sugar,vanilla sugar,vanilla sugars,,f,t,t,t,t
-sugar,white_sugar,white sugar,white sugars,,f,t,t,t,t
+sugar,white_sugar,white sugar,white sugars,,t,t,t,t,t
 sun_dried_tomato,oil_packed_sun_dried_tomato,oil-packed sun-dried tomato,oil-packed sun-dried tomatoes,fruit_and_veg,f,t,t,t,t
 sun_dried_tomato,sun_dried_tomato_pesto,sun-dried tomato pesto,sun-dried tomato pestoes,fruit_and_veg,f,t,t,t,t
 sunflower_oil,unrefined_sunflower_oil,unrefined sunflower oil,unrefined sunflower oils,oil_and_vinegar_and_condiments,f,t,t,t,t
