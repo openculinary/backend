@@ -1000,7 +1000,6 @@ chicken_stock,reduced_sodium_chicken_stock,reduced-sodium chicken stock,reduced-
 chicken_thigh,boneless_chicken_thigh,boneless chicken thigh,boneless chicken thighs,meat_and_deli,f,t,t,f,f
 chicken_thigh,skinless_chicken_thigh,skinless chicken thigh,skinless chicken thighs,meat_and_deli,f,t,t,f,f
 chile_powder,ancho_chile_powder,ancho chile powder,ancho chile powders,,f,t,t,t,t
-chile_powder,tablespoons_chile_powder,tablespoons chile powder,tablespoons chile powders,,f,t,t,t,t
 chili_pepper,chipotle_chili_pepper,chipotle chili pepper,chipotle chili peppers,,f,t,t,t,t
 chili_pepper,fresh_poblano_chili_pepper,fresh poblano chili pepper,fresh poblano chili peppers,,f,t,t,t,t
 chili_pepper,jalapeno_chili_pepper,jalapeno chili pepper,jalapeno chili peppers,,f,t,t,t,t
@@ -1113,14 +1112,9 @@ coffee,strong_coffee,strong coffee,strong coffees,,f,t,t,t,t
 cola,coca_cola,coca cola,coca colas,,f,t,t,t,t
 cooking_spray,nonstick_cooking_spray,nonstick cooking spray,nonstick cooking sprays,,f,t,t,t,t
 cooking_spray,non_stick_spray,non-stick spray,non-stick sprays,,f,t,t,t,t
-cooking_spray,serving_cooking_spray,serving cooking spray,serving cooking sprays,,f,t,t,t,t
 cookie,gingersnap_cookie,gingersnap cookie,gingersnap cookies,,f,t,t,t,t
 coriander,coriander_powder,coriander powder,coriander powders,,f,t,t,t,t
 coriander,ground_coriander,ground coriander,ground corianders,,f,t,t,t,t
-coriander,tablespoon_coriander,tablespoon coriander,tablespoon corianders,,f,t,t,t,t
-corianderleaf,small_handful_corianderleaf,small handful corianderleaf,small handful corianderleaves,,f,t,t,t,t
-coriander_powder,tablespoon_coriander_powder,tablespoon coriander powder,tablespoon coriander powders,,f,t,t,t,t
-coriander_seed,tablespoon_coriander_seed,tablespoon coriander seed,tablespoon coriander seeds,,f,t,t,t,t
 corn,can_cream_style_corn,can cream-style corn,can cream-style corns,,f,t,t,t,t
 corn,can_white_corn,can white corn,can white corns,,f,t,t,t,t
 corn,corn_chex,corn chex,corn chexes,,f,t,t,t,t
@@ -1409,7 +1403,6 @@ ground_beef,extra_lean_ground_beef,extra-lean ground beef,extra-lean ground beef
 ground_beef,lean_ground_beef_or_turkey,lean ground beef or turkey,lean ground beef or turkeys,meat_and_deli,f,t,t,f,f
 ground_cinnamon,level_tsp_ground_cinnamon,level tsp ground cinnamon,level tsp ground cinnamons,,f,t,t,t,t
 ground_coriander,ground_coriander_seed,ground coriander seed,ground coriander seeds,,f,t,t,t,t
-ground_coriander,tablespoon_ground_coriander,tablespoon ground coriander,tablespoon ground corianders,,f,t,t,t,t
 ground_turkey,extra_lean_ground_turkey,extra-lean ground turkey,extra-lean ground turkeys,meat_and_deli,f,t,t,f,f
 ground_turkey,lean_ground_turkey,lean ground turkey,lean ground turkeys,meat_and_deli,f,t,t,f,f
 guava_paste,guava_nectar,guava nectar,guava nectars,,f,t,t,t,t
@@ -2011,7 +2004,6 @@ red,red_food_colouring,red food colouring,red food colourings,,f,t,t,t,t
 red,red_gel_food_coloring,red gel food coloring,red gel food colorings,,f,t,t,t,t
 red,red_miso_paste,red miso paste,red miso pastes,,f,t,t,t,t
 red,red_snapper_fillet,red snapper fillet,red snapper fillets,,f,t,t,t,t
-red,tablespoon_red_food_coloring,tablespoon red food coloring,tablespoon red food colorings,,f,t,t,t,t
 red_bell_pepper,roasted_red_bell_pepper,roasted red bell pepper,roasted red bell peppers,,f,t,t,t,t
 red_chili,red_chili_pepper,red chili pepper,red chili peppers,,f,t,t,t,t
 red_chili,sweet_red_chili_sauce,sweet red chili sauce,sweet red chili sauces,,f,t,t,t,t
