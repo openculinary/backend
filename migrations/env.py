@@ -77,6 +77,7 @@ def run_migrations_online():
         prefix='sqlalchemy.',
         poolclass=pool.NullPool,
     )
+    connectable.engine.dialect.description_encoding = None
 
     with connectable.connect() as connection:
         context.configure(
