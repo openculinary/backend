@@ -130,7 +130,7 @@ class Recipe(Storable, Searchable):
         totals = {
             c.name: 0
             for c in IngredientNutrition.__table__.columns
-            if not c.primary_key and not c.foreign_keys
+            if f'{c.name}_units' in IngredientNutrition.__table__.columns
         }
         for ingredient in self.ingredients:
             if not ingredient.nutrition:
