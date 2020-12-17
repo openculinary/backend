@@ -13,13 +13,9 @@ def create_app(db_uri='postgresql+pg8000://api@postgresql/api'):
 
 
 def create_db(app):
-    db = SQLAlchemy(app, session_options={
+    return SQLAlchemy(app, session_options={
         'autoflush': False
     })
-    # TODO: Remove workaround required for sqlalchemy + pg8000 v1.16.6
-    # https://github.com/sqlalchemy/sqlalchemy/issues/5645#issuecomment-707879323
-    db.engine.dialect.description_encoding = None
-    return db
 
 
 app = create_app()
