@@ -46,6 +46,14 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
     assert recipe.is_vegetarian
 
 
+def test_nutrition_source(raw_recipe_hit):
+    recipe = Recipe().from_doc(raw_recipe_hit['_source'])
+    doc = recipe.to_doc()
+
+    assert 'nutrition_source' in doc
+    assert doc['nutrition_source'] == 'aggregation'
+
+
 def test_hidden_recipe(db_session, raw_recipe_hit):
     recipe = Recipe().from_doc(raw_recipe_hit['_source'])
 

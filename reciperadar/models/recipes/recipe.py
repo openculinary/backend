@@ -198,6 +198,8 @@ class Recipe(Storable, Searchable):
         data['hidden'] = self.hidden
         data['nutrition'] = self.nutrition.to_doc() \
             if self.nutrition else self.aggregate_ingredient_nutrition
+        data['nutrition_source'] = 'crawler' \
+            if self.nutrition else 'aggregation'
         data['is_dairy_free'] = self.is_dairy_free
         data['is_gluten_free'] = self.is_gluten_free
         data['is_vegan'] = self.is_vegan
