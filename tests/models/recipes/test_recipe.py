@@ -27,10 +27,15 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
 
     assert recipe.aggregate_ingredient_nutrition == {
         'carbohydrates': 0,
+        'carbohydrates_units': 'g',
         'energy': 0,
+        'energy_units': 'cal',
         'fat': 0.01,
+        'fat_units': 'g',
         'fibre': 0.33,
+        'fibre_units': 'g',
         'protein': 0.03,
+        'protein_units': 'g',
     }
 
     assert recipe.ingredients[0].product.is_vegan

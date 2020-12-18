@@ -71,10 +71,15 @@ def raw_recipe_hit(products):
                     "units": "ml",
                     "nutrition": {
                         "carbohydrates": 0,
+                        "carbohydrates_units": "g",
                         "energy": 0,
+                        "energy_units": "cal",
                         "fat": 0.01,
+                        "fat_units": "g",
                         "fibre": 0.65,
-                        "protein": 0.05
+                        "fibre_units": "g",
+                        "protein": 0.05,
+                        "protein_units": "g"
                     },
                     "relative_density": 0.5
                 },

@@ -127,6 +127,7 @@ class Recipe(Storable, Searchable):
         if ingredients_with_nutrition_mass < all_ingredients_mass * 0.9:
             return None
 
+        units = {}
         totals = {
             c.name: 0
             for c in IngredientNutrition.__table__.columns
@@ -136,10 +137,19 @@ class Recipe(Storable, Searchable):
             if not ingredient.nutrition:
                 continue
             for nutrient in totals.keys():
-                totals[nutrient] += getattr(ingredient.nutrition, nutrient)
+                magnitude = getattr(ingredient.nutrition, nutrient)
+                unit = getattr(ingredient.nutrition, f'{nutrient}_units')
+                # TODO: Handle mixed nutritional units within recipes (pint?)
+                if nutrient in units and units[nutrient] != unit:
+                    return None
+                totals[nutrient] += magnitude
+                units[nutrient] = unit
         for nutrient in totals.keys():
             totals[nutrient] = round(totals[nutrient] / self.servings, 2)
-        return totals
+        return {
+            **{f'{nutrient}': total for nutrient, total in totals.items()},
+            **{f'{nutrient}_units': unit for nutrient, unit in units.items()},
+        }
 
     @property
     def is_dairy_free(self):
