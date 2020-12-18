@@ -1,0 +1,5 @@
+--requirement requirements.txt
+flake8
+pytest
+responses
+pytest-flask-sqlalchemy
