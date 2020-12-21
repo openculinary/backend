@@ -155,7 +155,13 @@ def crawl_url(url):
         db.session.add(crawl_url)
         db.session.commit()
 
-    recipe_url = db.session.query(RecipeURL).get(url) or RecipeURL(url=url)
+    existing_url = db.session.query(RecipeURL).get(url)
+
+    # Prevent cross-domain URL references from recrawling existing content
+    if existing_url and existing_url.domain != crawl_url.domain:
+        return
+
+    recipe_url = existing_url or RecipeURL(url=url)
     db.session.add(recipe_url)
     db.session.commit()
 
