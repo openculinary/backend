@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod, abstractproperty
-from base58 import b58encode
+from basest.core import encode
 from datetime import datetime
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import NotFoundError
@@ -11,11 +11,23 @@ from reciperadar import db
 class Storable(db.Model):
     __abstract__ = True
 
+    ID_SYMBOL_TABLE = [
+        s for s in
+        '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+    ]
+
     @staticmethod
     def generate_id(input_bytes=None):
-        if not input_bytes:
-            input_bytes = uuid4().bytes
-        return b58encode(input_bytes).decode('utf-8')
+        return str().join(encode(
+            input_data=input_bytes or uuid4().bytes,
+            input_base=256,
+            input_symbol_table=[b for b in range(256)],
+            output_base=58,
+            output_symbol_table=Storable.ID_SYMBOL_TABLE,
+            output_padding='',
+            input_ratio=16,
+            output_ratio=22
+        ))
 
     def to_doc(self):
         # Index all database fields by default

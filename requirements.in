@@ -1,4 +1,4 @@
-base58==2.0.1
+basest==0.7.3
 celery==5.0.5
 elasticsearch==7.10.1
 flask==1.1.2

@@ -6,9 +6,9 @@ amqp==5.0.2 \
     --hash=sha256:5b9062d5c0812335c75434bf17ce33d7a20ecfedaa0733faec7379868eb4068a \
     --hash=sha256:fcd5b3baeeb7fc19b3486ff6d10543099d40ae1f5c9196eae695d1cde1b2f784 \
     # via kombu
-base58==2.0.1 \
-    --hash=sha256:365c9561d9babac1b5f18ee797508cd54937a724b6e419a130abad69cec5ca79 \
-    --hash=sha256:447adc750d6b642987ffc6d397ecd15a799852d5f6a1d308d384500243825058 \
+basest==0.7.3 \
+    --hash=sha256:57468bcff59306dde1943fb3e3839aafd8f9e11ad29909e4768b93e8bdf213a9 \
+    --hash=sha256:77449eaa031182a205c69811d341830a16a9d9e258e10fd5504b89b23ad8066f \
     # via -r requirements.in
 billiard==3.6.3.0 \
     --hash=sha256:bff575450859a6e0fbc2f9877d9b715b0bbc07c3565bb7ed2280526a0cdf5ede \
@@ -120,9 +120,9 @@ pg8000==1.16.5 \
     --hash=sha256:3d646b11227d94a3130a765a981dc6323bc959a3cd6ed54421d174b2ef256087 \
     --hash=sha256:8af70cdfcc1fadafa32468a6af563e1c0b5271c4dcc99a4490030a128cb295a3 \
     # via -r requirements.in
-prompt-toolkit==3.0.8 \
-    --hash=sha256:25c95d2ac813909f813c93fde734b6e44406d1477a9faef7c915ff37d39c0a8c \
-    --hash=sha256:7debb9a521e0b1ee7d2fe96ee4bd60ef03c6492784de0547337ca4433e46aa63 \
+prompt-toolkit==3.0.10 \
+    --hash=sha256:ac329c69bd8564cb491940511957312c7b8959bb5b3cf3582b406068a51d5bb7 \
+    --hash=sha256:b8b3d0bde65da350290c46a8f54f336b3cbf5464a4ac11239668d986852e79d5 \
     # via click-repl
 pymmh3==0.0.5 \
     --hash=sha256:c47e9e735518501a3c9b719dbd795aa5d5a1dba48d9c85bae1777ab9ae6c7c45 \
@@ -136,9 +136,9 @@ python-editor==1.0.4 \
     --hash=sha256:51fda6bcc5ddbbb7063b2af7509e43bd84bfc32a4ff71349ec7847713882327b \
     --hash=sha256:5f98b069316ea1c2ed3f67e7f5df6c0d8f10b689964a4a811ff64f0106819ec8 \
     # via alembic
-pytz==2020.4 \
-    --hash=sha256:3e6b7dd2d1e0a59084bcee14a17af60c5c562cdc16d828e8eba2e683d3a7e268 \
-    --hash=sha256:5c55e189b682d420be27c6995ba6edce0c0a77dd67bfbe2ae6607134d5851ffd \
+pytz==2020.5 \
+    --hash=sha256:16962c5fb8db4a8f63a26646d8886e9d769b6c511543557bc84e9569fb9a9cb4 \
+    --hash=sha256:180befebb1927b16f6b57101720075a984c019ac16b1b7575673bea42c6c3da5 \
     # via celery
 requests==2.25.1 \
     --hash=sha256:27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804 \
@@ -219,7 +219,7 @@ werkzeug==1.0.1 \
     # via flask
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==51.0.0 \
-    --hash=sha256:029c49fd713e9230f6a41c0298e6e1f5839f2cde7104c0ad5e053a37777e7688 \
-    --hash=sha256:8c177936215945c9a37ef809ada0fab365191952f7a123618432bbfac353c529 \
+setuptools==51.1.2 \
+    --hash=sha256:4fa149145ba5dcd4aaa89912ec92393a31170eaf17fe0268b1429538bad1f85a \
+    --hash=sha256:67d8af2fc9f33e48f8f4387321700a79b27090a5cff154e5ce1a8c72c2eea54f \
     # via gunicorn
