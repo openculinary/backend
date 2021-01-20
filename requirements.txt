@@ -52,9 +52,9 @@ elasticsearch==7.10.1 \
     --hash=sha256:4ebd34fd223b31c99d9f3b6b6236d3ac18b3046191a37231e8235b06ae7db955 \
     --hash=sha256:a725dd923d349ca0652cf95d6ce23d952e2153740cf4ab6daf4a2d804feeed48
     # via -r requirements.in
-flask-migrate==2.5.3 \
-    --hash=sha256:4dc4a5cce8cbbb06b8dc963fd86cf8136bd7d875aabe2d840302ea739b243732 \
-    --hash=sha256:a69d508c2e09d289f6e55a417b3b8c7bfe70e640f53d2d9deb0d056a384f37ee
+flask-migrate==2.6.0 \
+    --hash=sha256:8626af845e6071ef80c70b0dc16d373f761c981f0ad61bb143a529cab649e725 \
+    --hash=sha256:c1601dfd46b9204233935e5d73473cd7fa959db7a4b0e894c7aa7a9e8aeebf0e
     # via -r requirements.in
 flask-sqlalchemy==2.4.4 \
     --hash=sha256:05b31d2034dd3f2a685cbbae4cfc4ed906b2a733cff7964ada450fd5e462b84e \
