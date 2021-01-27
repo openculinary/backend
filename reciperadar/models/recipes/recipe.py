@@ -27,17 +27,14 @@ class Recipe(Storable, Searchable):
     rating = db.Column(db.Float)
     ingredients = db.relationship(
         'RecipeIngredient',
-        backref='recipe',
         passive_deletes='all'
     )
     directions = db.relationship(
         'RecipeDirection',
-        backref='recipe',
         passive_deletes='all'
     )
     nutrition = db.relationship(
         'RecipeNutrition',
-        backref='recipe',
         uselist=False,
         passive_deletes='all'
     )
@@ -130,19 +127,29 @@ class Recipe(Storable, Searchable):
         if ingredients_with_nutrition_mass < all_ingredients_mass * 0.9:
             return None
 
+        units = {}
         totals = {
             c.name: 0
             for c in IngredientNutrition.__table__.columns
-            if not c.primary_key and not c.foreign_keys
+            if f'{c.name}_units' in IngredientNutrition.__table__.columns
         }
         for ingredient in self.ingredients:
             if not ingredient.nutrition:
                 continue
             for nutrient in totals.keys():
-                totals[nutrient] += getattr(ingredient.nutrition, nutrient)
+                magnitude = getattr(ingredient.nutrition, nutrient)
+                unit = getattr(ingredient.nutrition, f'{nutrient}_units')
+                # TODO: Handle mixed nutritional units within recipes (pint?)
+                if nutrient in units and units[nutrient] != unit:
+                    return None
+                totals[nutrient] += magnitude
+                units[nutrient] = unit
         for nutrient in totals.keys():
             totals[nutrient] = round(totals[nutrient] / self.servings, 2)
-        return totals
+        return {
+            **{f'{nutrient}': total for nutrient, total in totals.items()},
+            **{f'{nutrient}_units': unit for nutrient, unit in units.items()},
+        }
 
     @property
     def is_dairy_free(self):
@@ -191,6 +198,8 @@ class Recipe(Storable, Searchable):
         data['hidden'] = self.hidden
         data['nutrition'] = self.nutrition.to_doc() \
             if self.nutrition else self.aggregate_ingredient_nutrition
+        data['nutrition_source'] = 'crawler' \
+            if self.nutrition else 'aggregation'
         data['is_dairy_free'] = self.is_dairy_free
         data['is_gluten_free'] = self.is_gluten_free
         data['is_vegan'] = self.is_vegan

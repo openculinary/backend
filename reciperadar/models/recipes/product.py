@@ -25,12 +25,11 @@ class Product(Storable):
 
     nutrition = db.relationship(
         'ProductNutrition',
-        backref='product',
-        uselist=False,
-        passive_deletes='all'
+        uselist=False
     )
     parent = db.relationship(
         'Product',
+        uselist=False,
         remote_side=[id]
     )
 

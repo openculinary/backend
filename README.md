@@ -21,7 +21,6 @@ Make sure to follow the RecipeRadar [infrastructure](https://www.github.com/open
 To install development tools and run linting and tests locally, execute the following commands:
 
 ```sh
-$ pipenv install --dev
 $ make lint tests
 ```
 
@@ -42,7 +41,7 @@ For the search engine to correctly index recipe data, an Elasticsearch mapping n
 
 ```sh
 # For an Elasticsearch instance running on 'localhost' on the default port
-$ pipenv run python scripts/update-recipe-index.py --hostname localhost --index recipes
+$ venv/bin/python scripts/update-recipe-index.py --hostname localhost --index recipes
 ```
 
 ### Pausing background workers

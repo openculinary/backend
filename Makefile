@@ -1,4 +1,4 @@
-.PHONY: build lint tests
+.PHONY: build deploy image lint tests
 
 SERVICE=$(shell basename $(shell git rev-parse --show-toplevel))
 REGISTRY=registry.openculinary.org
@@ -8,30 +8,45 @@ IMAGE_NAME=${REGISTRY}/${PROJECT}/${SERVICE}
 IMAGE_COMMIT := $(shell git rev-parse --short HEAD)
 IMAGE_TAG := $(strip $(if $(shell git status --porcelain --untracked-files=no), latest, ${IMAGE_COMMIT}))
 
-build: lint tests image
+build: image
 
 deploy:
 	kubectl apply -f k8s
 	kubectl set image deployments -l app=${SERVICE} ${SERVICE}=${IMAGE_NAME}:${IMAGE_TAG}
 
 image:
-	$(eval container=$(shell buildah from docker.io/library/python:3.8-alpine))
+	$(eval container=$(shell buildah from docker.io/library/python:3.9-alpine))
 	buildah copy $(container) 'reciperadar' 'reciperadar'
-	buildah copy $(container) 'Pipfile'
+	buildah copy $(container) 'requirements.txt'
 	buildah run $(container) -- adduser -h /srv/ -s /sbin/nologin -D -H gunicorn --
 	buildah run $(container) -- chown gunicorn /srv/ --
-	buildah run --user gunicorn $(container) -- pip install --user pipenv --
-	buildah run --user gunicorn $(container) -- /srv/.local/bin/pipenv install --skip-lock --
+	buildah run --user gunicorn $(container) -- pip install --no-warn-script-location --progress-bar off --requirement requirements.txt --user --
 	# Begin: HACK: For rootless compatibility across podman and k8s environments, unset file ownership and grant read+exec to binaries
 	buildah run $(container) -- chown -R nobody:nobody /srv/ --
 	buildah run $(container) -- chmod -R a+rx /srv/.local/bin/ --
 	buildah run $(container) -- find /srv/ -type d -exec chmod a+rx {} \;
 	# End: HACK
-	buildah config --port 8000 --user gunicorn --entrypoint '/srv/.local/bin/pipenv run gunicorn reciperadar:app --bind :8000 --timeout 60' $(container)
-	buildah commit --squash --rm $(container) ${IMAGE_NAME}:${IMAGE_TAG}
+	buildah config --cmd '/srv/.local/bin/gunicorn reciperadar:app --bind :8000' --port 8000 --user gunicorn $(container)
+	buildah commit --quiet --rm --squash $(container) ${IMAGE_NAME}:${IMAGE_TAG}
 
-lint:
-	pipenv run flake8
+# Virtualenv Makefile pattern derived from https://github.com/bottlepy/bottle/
+venv: venv/.installed requirements.txt requirements-dev.txt
+	venv/bin/pip install --requirement requirements-dev.txt --quiet
+	touch venv
+venv/.installed:
+	python3 -m venv venv
+	venv/bin/pip install pip-tools
+	touch venv/.installed
 
-tests:
-	pipenv run pytest tests
+requirements.txt: requirements.in
+	venv/bin/pip-compile --allow-unsafe --generate-hashes --no-header --quiet requirements.in
+
+requirements-dev.txt: requirements.txt requirements-dev.in
+	venv/bin/pip-compile --allow-unsafe --generate-hashes --no-header --quiet requirements-dev.in
+
+lint: venv
+	venv/bin/flake8 tests
+	venv/bin/flake8 reciperadar
+
+tests: venv
+	venv/bin/pytest tests

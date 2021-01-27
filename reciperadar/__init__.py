@@ -13,10 +13,9 @@ def create_app(db_uri='postgresql+pg8000://api@postgresql/api'):
 
 
 def create_db(app):
-    db = SQLAlchemy(app, session_options={
+    return SQLAlchemy(app, session_options={
         'autoflush': False
     })
-    return db
 
 
 app = create_app()

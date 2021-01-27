@@ -33,6 +33,7 @@ def crawl_recipe(url):
 
     try:
         response = recipe_url.crawl()
+        response.raise_for_status()
     except RecipeURL.BackoffException:
         print(f'Backoff: {recipe_url.error_message} for url={url}')
         return
@@ -42,9 +43,6 @@ def crawl_recipe(url):
     finally:
         db.session.add(recipe_url)
         db.session.commit()
-
-    if not response.ok:
-        return
 
     try:
         recipe_data = response.json()['recipe']
@@ -145,6 +143,7 @@ def crawl_url(url):
 
     try:
         response = crawl_url.crawl()
+        response.raise_for_status()
         url = crawl_url.resolves_to
     except RecipeURL.BackoffException:
         print(f'Backoff: {crawl_url.error_message} for url={crawl_url.url}')
@@ -156,10 +155,13 @@ def crawl_url(url):
         db.session.add(crawl_url)
         db.session.commit()
 
-    if not response.ok:
+    existing_url = db.session.query(RecipeURL).get(url)
+
+    # Prevent cross-domain URL references from recrawling existing content
+    if existing_url and existing_url.domain != crawl_url.domain:
         return
 
-    recipe_url = db.session.query(RecipeURL).get(url) or RecipeURL(url=url)
+    recipe_url = existing_url or RecipeURL(url=url)
     db.session.add(recipe_url)
     db.session.commit()
 

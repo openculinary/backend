@@ -19,5 +19,5 @@ spec:
       - image: registry.openculinary.org/reciperadar/backend
         imagePullPolicy: IfNotPresent
         name: backend
-        command: ['/srv/.local/bin/pipenv']
-        args: ['run', 'celery', '-A', 'reciperadar.workers', 'worker', '-Q', 'celery,crawl_url,crawl_recipe,process_recipe,index_recipe,recrawl_search']
+        command: ['/srv/.local/bin/celery']
+        args: ['-A', 'reciperadar.workers', 'worker', '-Q', 'celery,crawl_url,crawl_recipe,process_recipe,index_recipe,recrawl_search']

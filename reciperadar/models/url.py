@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 import requests
-from tldextract import TLDExtract
+from tld import get_tld
 
 from reciperadar import db
 from reciperadar.models.base import Storable
@@ -28,15 +28,14 @@ class BaseURL(Storable):
         598: 'Network read timeout error',
     }
 
-    # By default TLDExtract pulls a subdomain suffix list from the web;
-    # here we disable that behaviour - it falls back to a built-in snapshot
-    tldextract = TLDExtract(suffix_list_urls=None)
-
     def __init__(self, *args, **kwargs):
         if 'url' in kwargs:
-            url_info = self.tldextract(kwargs['url'])
-            domain = f'{url_info.domain}.{url_info.suffix}'
-            kwargs['domain'] = domain
+            url_info = get_tld(
+                kwargs['url'],
+                as_object=True,
+                search_private=False
+            )
+            kwargs['domain'] = url_info.fld
         super().__init__(*args, **kwargs)
 
     url = db.Column(db.String, primary_key=True)
