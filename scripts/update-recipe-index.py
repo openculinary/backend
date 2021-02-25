@@ -38,19 +38,10 @@ mapping = {
     'properties': {
         'directions': {
             'properties': {
-                'appliances': {
-                    'properties': {
-                        'appliance': {'type': 'keyword'}
-                    }
-                },
-                'utensils': {
-                    'properties': {
-                        'utensil': {'type': 'keyword'}
-                    }
-                },
                 'equipment': {
                     'properties': {
-                        'equipment': {'type': 'keyword'}
+                        'equipment': {'type': 'keyword'},
+                        'name': {'type': 'keyword'}
                     }
                 }
             }
