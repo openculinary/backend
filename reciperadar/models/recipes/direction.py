@@ -23,7 +23,6 @@ class RecipeDirection(Storable):
     @staticmethod
     def from_doc(doc, matches=None):
         direction_id = doc.get('id') or RecipeDirection.generate_id()
-        equipment = RecipeDirection._parse_equipment(doc['markup'])
         return RecipeDirection(
             id=direction_id,
             index=doc['index'],
