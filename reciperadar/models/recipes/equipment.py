@@ -20,3 +20,9 @@ class DirectionEquipment(Storable):
             name=doc['name'],
             category=doc['category'],
         )
+
+    def to_doc(self):
+        data = super().to_doc()
+        # TODO: Remove backwards-compatible search index field
+        data['equipment'] = self.name
+        return data
