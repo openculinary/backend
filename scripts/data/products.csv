@@ -174,7 +174,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,deselect_all,deselect all,deselect alls,,f,t,t,t,t
 ,dijon,dijon,dijons,,f,t,t,t,t
 ,dill,dill,dills,,f,t,t,t,t
-,dough,dough,doughs,,f,t,t,t,t
+,dough,dough,doughs,,f,t,f,t,t
 ,dressing,dressing,dressings,,f,t,t,t,t
 ,dripping,dripping,drippings,,f,t,t,t,t
 ,drops_pink_food_coloring,drops pink food coloring,drops pink food colorings,,f,t,t,t,t
@@ -492,7 +492,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,soda,soda,sodas,,f,t,t,t,t
 ,sofrito,sofrito,sofritoes,,f,t,t,t,t
 ,sole_fillet,sole fillet,sole fillets,,f,t,t,t,t
-,sourdough_starter,sourdough starter,sourdough starters,,f,t,t,t,t
+,sourdough_starter,sourdough starter,sourdough starters,,f,t,f,t,t
 ,soy_creamer,soy creamer,soy creamers,,f,t,t,t,t
 ,spaghetti,spaghetti,spaghettis,,f,t,t,t,t
 ,spaghettini,spaghettini,spaghettinis,,f,t,t,t,t
@@ -588,7 +588,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,whole_large_butternut,whole large butternut,whole large butternuts,,f,t,t,t,t
 ,whole_mini_pretzel_twist,whole mini-pretzel twist,whole mini-pretzel twists,,f,t,t,t,t
 ,whole_rolo_candy,whole rolo candy,whole rolo candies,,f,t,t,t,t
-,whole_store_bought_pizza_dough,whole store bought pizza dough,whole store bought pizza doughs,,f,t,t,t,t
+,whole_store_bought_pizza_dough,whole store bought pizza dough,whole store bought pizza doughs,,f,t,f,t,t
 ,whole_tangerine,whole tangerine,whole tangerines,,f,t,t,t,t
 ,whole_tostada_shell,whole tostada shell,whole tostada shells,,f,t,t,t,t
 ,whole_unbaked_pie_shell,whole unbaked pie shell,whole unbaked pie shells,,f,t,t,t,t
@@ -1191,7 +1191,7 @@ cream_cheese,weight_soft_cream_cheese,weight soft cream cheese,weight soft cream
 cream_cheese,whipped_cream_cheese,whipped cream cheese,whipped cream cheeses,dairy,f,f,t,f,t
 creme_de_cacao,white_creme_de_cacao,white creme de cacao,white cremes de cacao,,f,t,t,t,t
 creme_fraiche,full_fat_creme_fraiche,full-fat crème fraîche,full-fat crème fraîches,,f,t,t,t,t
-crust,can_refrigerated_pizza_crust_dough,can refrigerated pizza crust dough,can refrigerated pizza crust doughs,,f,t,t,t,t
+crust,can_refrigerated_pizza_crust_dough,can refrigerated pizza crust dough,can refrigerated pizza crust doughs,,f,t,f,t,t
 crust,double_crust_ready_to_use_pie_crust,double crust ready-to-use pie crust,double crust readies-to-use pie crust,,f,t,t,t,t
 crust,graham_cracker_crust,graham cracker crust,graham cracker crusts,,f,t,t,t,t
 crust,unbaked_pizza_crust,unbaked pizza crust,unbaked pizza crusts,,f,t,t,t,t
@@ -1224,9 +1224,9 @@ dill_pickle,dill_pickle_juice,dill pickle juice,dill pickle juices,,f,t,t,t,t
 dill_pickle,dill_pickle_relish,dill pickle relish,dill pickle relishes,,f,t,t,t,t
 dill_pickle,dill_pickle_spear,dill pickle spear,dill pickle spears,,f,t,t,t,t
 distilled_vinegar,white_distilled_vinegar,white distilled vinegar,white distilled vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
-dough,can_refrigerated_biscuit_dough,can refrigerated biscuit dough,can refrigerated biscuit doughs,,f,t,t,t,t
-dough,package_phyllo_dough,package phyllo dough,package phyllo doughs,,f,t,t,t,t
-dough,prepared_pizza_dough,prepared pizza dough,prepared pizza doughs,,f,t,t,t,t
+dough,can_refrigerated_biscuit_dough,can refrigerated biscuit dough,can refrigerated biscuit doughs,,f,t,f,t,t
+dough,package_phyllo_dough,package phyllo dough,package phyllo doughs,,f,t,f,t,t
+dough,prepared_pizza_dough,prepared pizza dough,prepared pizza doughs,,f,t,f,t,t
 dressing,balsamic_dressing,balsamic dressing,balsamic dressings,,f,t,t,t,t
 dressing,caesar_dressing,caesar dressing,caesar dressings,,f,t,t,t,t
 dressing,catalina_dressing,catalina dressing,catalina dressings,,f,t,t,t,t
@@ -1788,7 +1788,7 @@ oregano,mexican_oregano,mexican oregano,mexican oreganos,,f,t,t,t,t
 oreo,oreo_cookie,oreo cookie,oreo cookies,,f,t,t,t,t
 package_chocolate_cake_mix,box_chocolate_cake_mix,box chocolate cake mix,box chocolate cake mixes,,f,t,t,t,t
 package_chocolate_cake_mix,package_german_chocolate_cake_mix,package german chocolate cake mix,package german chocolate cake mixes,,f,t,t,t,t
-package_phyllo_dough,sheets_phyllo_dough,sheets phyllo dough,sheets phyllo doughs,,f,t,t,t,t
+package_phyllo_dough,sheets_phyllo_dough,sheets phyllo dough,sheets phyllo doughs,,f,t,f,t,t
 pale_ale,pale_ale_beer,pale ale beer,pale ale beers,,f,t,f,t,t
 palm_sugar,coconut_palm_sugar,coconut palm sugar,coconut palm sugars,,f,t,t,t,t
 panko_breadcrumb,japanese_panko_breadcrumb,japanese panko breadcrumb,japanese panko breadcrumbs,,f,t,f,t,t
@@ -2335,7 +2335,7 @@ sugar,lavender_sugar,lavender sugar,lavender sugars,,f,t,t,t,t
 sugar,maple_sugar,maple sugar,maple sugars,,f,t,t,t,t
 sugar,muscovado_sugar,muscovado sugar,muscovado sugars,,f,t,t,t,t
 sugar,organic_sugar,organic sugar,organic sugars,,f,t,t,t,t
-sugar,package_refrigerated_sugar_cookie_dough,package refrigerated sugar cookie dough,package refrigerated sugar cookie doughs,,f,t,t,t,t
+sugar,package_refrigerated_sugar_cookie_dough,package refrigerated sugar cookie dough,package refrigerated sugar cookie doughs,,f,t,f,t,t
 sugar,palm_sugar,palm sugar,palm sugars,,f,t,t,t,t
 sugar,pearl_sugar,pearl sugar,pearl sugars,,f,t,t,t,t
 sugar,powder_sugar,powder sugar,powder sugars,,f,t,t,t,t
