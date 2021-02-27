@@ -40,7 +40,6 @@ mapping = {
             'properties': {
                 'equipment': {
                     'properties': {
-                        'equipment': {'type': 'keyword'},
                         'name': {'type': 'keyword'}
                     }
                 }
