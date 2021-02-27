@@ -1,5 +1,3 @@
-from xml.etree import ElementTree
-
 from reciperadar import db
 from reciperadar.models.base import Storable
 from reciperadar.models.recipes.equipment import DirectionEquipment
