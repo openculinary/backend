@@ -237,7 +237,11 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,green,green,greens,,f,t,t,t,t
 ,grenadine,grenadine,grenadines,,f,t,t,t,t
 ,grit,grit,grits,,f,t,t,t,t
-,ground,ground,grounds,,f,t,t,t,t
+,ground_ancho_chile,ground ancho chile,ground ancho chiles,,f,t,t,t,t
+,ground_bison,ground bison,ground bisons,,f,t,t,t,t
+,ground_cinammon,ground cinammon,ground cinammons,,f,t,t,t,t
+,ground_fenugreek,ground fenugreek,ground fenugreeks,,f,t,t,t,t
+,ground_round,ground round,ground rounds,,f,t,t,t,t
 ,grouper_fillet,grouper fillet,grouper fillets,,f,t,t,t,t
 ,gruyere,gruyere,gruyeres,,f,t,t,t,t
 ,guacamole,guacamole,guacamoles,,f,t,t,t,t
@@ -1394,11 +1398,6 @@ green_olive,pimento_stuffed_green_olive,pimento-stuffed green olive,pimento-stuf
 grit,quick_cooking_grit,quick-cooking grit,quick-cooking grits,,f,t,t,t,t
 grit,quick_grit,quick grit,quick grits,,f,t,t,t,t
 grit,stone_ground_grit,stone ground grit,stone ground grits,,f,t,t,t,t
-ground,ground_ancho_chile,ground ancho chile,ground ancho chiles,,f,t,t,t,t
-ground,ground_bison,ground bison,ground bisons,,f,t,t,t,t
-ground,ground_cinammon,ground cinammon,ground cinammons,,f,t,t,t,t
-ground,ground_fenugreek,ground fenugreek,ground fenugreeks,,f,t,t,t,t
-ground,ground_round,ground round,ground rounds,,f,t,t,t,t
 ground_beef,extra_lean_ground_beef,extra-lean ground beef,extra-lean ground beefs,meat_and_deli,f,t,t,f,f
 ground_beef,lean_ground_beef_or_turkey,lean ground beef or turkey,lean ground beef or turkeys,meat_and_deli,f,t,t,f,f
 ground_cinnamon,level_tsp_ground_cinnamon,level tsp ground cinnamon,level tsp ground cinnamons,,f,t,t,t,t
