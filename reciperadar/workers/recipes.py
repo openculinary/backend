@@ -159,6 +159,7 @@ def crawl_url(url):
 
     # Prevent cross-domain URL references from recrawling existing content
     if existing_url and existing_url.domain != crawl_url.domain:
+        print(f'Skipping cross-domain crawl: {existing_url.domain} != {crawl_url.domain}')
         return
 
     recipe_url = existing_url or RecipeURL(url=url)
