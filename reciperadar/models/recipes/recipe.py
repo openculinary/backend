@@ -137,6 +137,9 @@ class Recipe(Storable, Searchable):
             if not ingredient.nutrition:
                 continue
             for nutrient in totals.keys():
+                # TODO: Find a neater way to ignore unit fields during loop
+                if nutrient.endswith('_units'):
+                    continue
                 magnitude = getattr(ingredient.nutrition, nutrient)
                 unit = getattr(ingredient.nutrition, f'{nutrient}_units')
                 # TODO: Handle mixed nutritional units within recipes (pint?)
