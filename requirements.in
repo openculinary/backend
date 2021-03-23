@@ -1,12 +1,12 @@
 basest==0.7.3
 celery==5.0.5
-elasticsearch==7.11.0
+elasticsearch==7.12.0
 flask==1.1.2
 flask-migrate==2.7.0
-flask-sqlalchemy==2.4.4
+flask-sqlalchemy==2.5.1
 gunicorn==20.0.4
 pg8000==1.18.0
 pymmh3==0.0.5
 requests==2.25.1
-sqlalchemy==1.4.0
+sqlalchemy==1.4.2
 tld==0.12.5
