@@ -5,8 +5,8 @@ flask==1.1.2
 flask-migrate==2.7.0
 flask-sqlalchemy==2.5.1
 gunicorn==20.1.0
-pg8000==1.19.1
+pg8000==1.19.2
 pymmh3==0.0.5
 requests==2.25.1
-sqlalchemy==1.4.5
+sqlalchemy==1.4.7
 tld==0.12.5
