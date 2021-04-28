@@ -52,9 +52,9 @@ click==7.1.2 \
     #   click-plugins
     #   click-repl
     #   flask
-elasticsearch==7.12.0 \
-    --hash=sha256:9a77172be02bc4855210d83f0f1346a1e7d421e3cb2ca47ba81ac0c5a717b3a0 \
-    --hash=sha256:c67b0f6541eda6de9f92eaea319c070aa2710c5d4d4ee5e3dfa3c21bd95aa378
+elasticsearch==7.12.1 \
+    --hash=sha256:1840fea8c305224b8c28acabc8697f739cdfb03618f2d2427b42838971a787f6 \
+    --hash=sha256:df35d8c638f946f098a74681b18611bdf27ba469fa2063e3dfc8bdc290b11419
     # via -r requirements.in
 flask-migrate==2.7.0 \
     --hash=sha256:26871836a4e46d2d590cf8e558c6d60039e1c003079b240689d845726b6b57c0 \
@@ -119,6 +119,7 @@ greenlet==1.0.0 \
     --hash=sha256:f97d83049715fd9dec7911860ecf0e17b48d8725de01e45de07d8ac0bd5bc378
     # via sqlalchemy
 gunicorn==20.1.0 \
+    --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
     --hash=sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
     # via -r requirements.in
 idna==2.10 \
@@ -197,9 +198,9 @@ markupsafe==1.1.1 \
     # via
     #   jinja2
     #   mako
-pg8000==1.19.2 \
-    --hash=sha256:44cbb4d3c912f2da167ca02bf98a0040f7e93260e4ef114c28d5d6152012ea07 \
-    --hash=sha256:53924c8d7566cc66aaf4aecb3d8128703ef4054a510602290d62e607398e8d72
+pg8000==1.19.3 \
+    --hash=sha256:2f9599f455f813e9298982a741f40b62b7bdcf6816e51031d4adc2deda6525e1 \
+    --hash=sha256:f547572d12de77b65888e4e72922e8ad55b88791c486df93f3d71207aea7f25f
     # via -r requirements.in
 prompt-toolkit==3.0.18 \
     --hash=sha256:bf00f22079f5fadc949f42ae8ff7f05702826a97059ffcc6281036ad40ac6f04 \

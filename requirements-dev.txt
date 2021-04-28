@@ -74,9 +74,9 @@ click==7.1.2 \
     #   click-plugins
     #   click-repl
     #   flask
-elasticsearch==7.12.0 \
-    --hash=sha256:9a77172be02bc4855210d83f0f1346a1e7d421e3cb2ca47ba81ac0c5a717b3a0 \
-    --hash=sha256:c67b0f6541eda6de9f92eaea319c070aa2710c5d4d4ee5e3dfa3c21bd95aa378
+elasticsearch==7.12.1 \
+    --hash=sha256:1840fea8c305224b8c28acabc8697f739cdfb03618f2d2427b42838971a787f6 \
+    --hash=sha256:df35d8c638f946f098a74681b18611bdf27ba469fa2063e3dfc8bdc290b11419
     # via -r requirements.txt
 flake8==3.9.1 \
     --hash=sha256:1aa8990be1e689d96c745c5682b687ea49f2e05a443aff1f8251092b0014e378 \
@@ -148,6 +148,7 @@ greenlet==1.0.0 \
     #   -r requirements.txt
     #   sqlalchemy
 gunicorn==20.1.0 \
+    --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
     --hash=sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
     # via -r requirements.txt
 idna==2.10 \
@@ -251,9 +252,9 @@ packaging==20.9 \
     # via
     #   pytest
     #   pytest-flask-sqlalchemy
-pg8000==1.19.2 \
-    --hash=sha256:44cbb4d3c912f2da167ca02bf98a0040f7e93260e4ef114c28d5d6152012ea07 \
-    --hash=sha256:53924c8d7566cc66aaf4aecb3d8128703ef4054a510602290d62e607398e8d72
+pg8000==1.19.3 \
+    --hash=sha256:2f9599f455f813e9298982a741f40b62b7bdcf6816e51031d4adc2deda6525e1 \
+    --hash=sha256:f547572d12de77b65888e4e72922e8ad55b88791c486df93f3d71207aea7f25f
     # via -r requirements.txt
 pluggy==0.13.1 \
     --hash=sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0 \
@@ -288,9 +289,9 @@ pytest-flask-sqlalchemy==1.0.2 \
     --hash=sha256:19cad31d654c2301dd2dd70d06a62e5dc4ea380500f4b89bbcb3d59a475f0cf6 \
     --hash=sha256:34fa0f9a63c3892f54a8d11ab67f907c0e0911ac609e3cff5d518c3af6b897cd
     # via -r requirements-dev.in
-pytest-mock==3.5.1 \
-    --hash=sha256:379b391cfad22422ea2e252bdfc008edd08509029bcde3c25b2c0bd741e0424e \
-    --hash=sha256:a1e2aba6af9560d313c642dae7e00a2a12b022b80301d9d7fc8ec6858e1dd9fc
+pytest-mock==3.6.0 \
+    --hash=sha256:952139a535b5b48ac0bb2f90b5dd36b67c7e1ba92601f3a8012678c4bd7f0bcc \
+    --hash=sha256:f7c3d42d6287f4e45846c8231c31902b6fa2bea98735af413a43da4cf5b727f1
     # via pytest-flask-sqlalchemy
 pytest==6.2.3 \
     --hash=sha256:671238a46e4df0f3498d1c3270e5deb9b32d25134c99b7d75370a68cfbe9b634 \
@@ -324,9 +325,9 @@ requests==2.25.1 \
     # via
     #   -r requirements.txt
     #   responses
-responses==0.13.2 \
-    --hash=sha256:0f0ab4717728d33dae8e66deea61eecc1e38f0398e35249e3963ff74cfc8d0d8 \
-    --hash=sha256:75529f9bea08276cea43545dcb6129f137c299d6a12269485a753785c869e0e2
+responses==0.13.3 \
+    --hash=sha256:18a5b88eb24143adbf2b4100f328a2f5bfa72fbdacf12d97d41f07c26c45553d \
+    --hash=sha256:b54067596f331786f5ed094ff21e8d79e6a1c68ef625180a7d34808d6f36c11b
     # via -r requirements-dev.in
 scramp==1.4.0 \
     --hash=sha256:27349d6839038fe3b56c641ea2a8703df065c1d605fdee67275857c0a82122b4 \
