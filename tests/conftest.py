@@ -2,7 +2,7 @@ import pytest
 
 from sqlalchemy import event
 
-from reciperadar import app, db as app_db
+from reciperadar import app, db
 from reciperadar.models.recipes.product import Product
 
 
@@ -12,17 +12,12 @@ def client():
 
 
 @pytest.fixture
-def db():
-    return app_db
-
-
-@pytest.fixture
-def connection(db):
+def connection():
     return db.engine.connect()
 
 
 @pytest.fixture
-def db_session(db, connection):
+def db_session(connection):
     """
     Sourced from https://github.com/jeancochrane/pytest-flask-sqlalchemy/issues/46#issuecomment-829694672  # noqa
     """
