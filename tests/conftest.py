@@ -23,8 +23,10 @@ def connection(db):
 
 @pytest.fixture
 def db_session(db, connection):
+    db_session_options = {"bind": connection, "binds": {}}
+
     transaction = connection.begin()
-    db.session = db.create_scoped_session(options={"bind": connection, "binds": {}})
+    db.session = db.create_scoped_session(options=db_session_options)
     db.session.begin_nested()
 
     # for handling tests that actually call "session.rollback()"
