@@ -23,6 +23,9 @@ def connection(db):
 
 @pytest.fixture
 def db_session(db, connection):
+    """
+    Sourced from https://github.com/jeancochrane/pytest-flask-sqlalchemy/issues/46#issuecomment-829694672  # noqa
+    """
     db_session_options = {"bind": connection, "binds": {}}
 
     transaction = connection.begin()
