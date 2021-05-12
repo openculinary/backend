@@ -2,7 +2,7 @@ import pytest
 
 from sqlalchemy import event
 
-from reciperadar import app, create_db
+from reciperadar import app, db as app_db
 from reciperadar.models.recipes.product import Product
 
 
@@ -13,7 +13,7 @@ def client():
 
 @pytest.fixture
 def db():
-    return create_db(app)
+    return app_db
 
 
 @pytest.fixture
