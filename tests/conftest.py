@@ -1,6 +1,8 @@
 import pytest
 
-from reciperadar import app, create_db
+from sqlalchemy import event
+
+from reciperadar import app, db
 from reciperadar.models.recipes.product import Product
 
 
@@ -10,11 +12,33 @@ def client():
 
 
 @pytest.fixture
-def _db():
-    # TODO: Restore db isolation testing after pytest-flask-sqlalchemy
-    # introduces support for sqlalchemy 1.4
-    pytest.skip()
-    return create_db(app)
+def connection():
+    return db.engine.connect()
+
+
+@pytest.fixture
+def db_session(connection):
+    """
+    Sourced from https://github.com/jeancochrane/pytest-flask-sqlalchemy/issues/46#issuecomment-829694672  # noqa
+    """
+    db_session_options = {"bind": connection, "binds": {}}
+
+    transaction = connection.begin()
+    db.session = db.create_scoped_session(options=db_session_options)
+    db.session.begin_nested()
+
+    # for handling tests that actually call "session.rollback()"
+    # https://docs.sqlalchemy.org/en/13/orm/session_transaction.html#joining-a-session-into-an-external-transaction-such-as-for-test-suites
+    @event.listens_for(db.session, "after_transaction_end")
+    def restart_savepoint(session, transaction_in):
+        if transaction_in.nested and not transaction_in._parent.nested:
+            session.expire_all()
+            session.begin_nested()
+
+    yield db.session
+
+    db.session.close()
+    transaction.rollback()
 
 
 @pytest.fixture

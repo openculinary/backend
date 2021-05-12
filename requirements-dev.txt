@@ -91,7 +91,6 @@ flask-sqlalchemy==2.5.1 \
     # via
     #   -r requirements.txt
     #   flask-migrate
-    #   pytest-flask-sqlalchemy
 flask==1.1.2 \
     --hash=sha256:4efa1ae2d7c9865af48986de8aeb8504bf32c7f3d6fdc9353d34b21f4b127060 \
     --hash=sha256:8a4fdd8936eba2512e9c85df320a37e694c93945b33ef33c89946a340a238557
@@ -254,9 +253,7 @@ mccabe==0.6.1 \
 packaging==20.9 \
     --hash=sha256:5b327ac1320dc863dca72f4514ecc086f31186744b84a230374cc1fd776feae5 \
     --hash=sha256:67714da7f7bc052e064859c05c595155bd1ee9f69f76557e21f051443c20947a
-    # via
-    #   pytest
-    #   pytest-flask-sqlalchemy
+    # via pytest
 pg8000==1.19.4 \
     --hash=sha256:510db12be8ad85488289bd0b97bc340202cf6749da08cf8588032a047fb5d0ba \
     --hash=sha256:7c9c6d57541b0f2153e23a8d759ceb3d7cb9308918fba6ad9e92f8e0e5a90bc8
@@ -290,21 +287,10 @@ pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
     --hash=sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b
     # via packaging
-pytest-flask-sqlalchemy==1.0.2 \
-    --hash=sha256:19cad31d654c2301dd2dd70d06a62e5dc4ea380500f4b89bbcb3d59a475f0cf6 \
-    --hash=sha256:34fa0f9a63c3892f54a8d11ab67f907c0e0911ac609e3cff5d518c3af6b897cd
-    # via -r requirements-dev.in
-pytest-mock==3.6.1 \
-    --hash=sha256:30c2f2cc9759e76eee674b81ea28c9f0b94f8f0445a1b87762cadf774f0df7e3 \
-    --hash=sha256:40217a058c52a63f1042f0784f62009e976ba824c418cced42e88d5f40ab0e62
-    # via pytest-flask-sqlalchemy
 pytest==6.2.4 \
     --hash=sha256:50bcad0a0b9c5a72c8e4e7c9855a3ad496ca6a881a3641b4260605450772c54b \
     --hash=sha256:91ef2131a9bd6be8f76f1f08eac5c5317221d6ad1e143ae03894b862e8976890
-    # via
-    #   -r requirements-dev.in
-    #   pytest-flask-sqlalchemy
-    #   pytest-mock
+    # via -r requirements-dev.in
 python-dateutil==2.8.1 \
     --hash=sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c \
     --hash=sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a
@@ -383,7 +369,6 @@ sqlalchemy==1.4.14 \
     #   -r requirements.txt
     #   alembic
     #   flask-sqlalchemy
-    #   pytest-flask-sqlalchemy
 tld==0.12.5 \
     --hash=sha256:1a69b2cd4053da5377a0b27e048e97871120abf9cd7a62ff270915d0c11369d6 \
     --hash=sha256:1b63094d893657eadfd61e49580b4225ce958ca3b8013dbb9485372cde5a3434 \
