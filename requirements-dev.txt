@@ -81,9 +81,9 @@ flake8==3.9.2 \
     --hash=sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b \
     --hash=sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907
     # via -r requirements-dev.in
-flask-migrate==2.7.0 \
-    --hash=sha256:26871836a4e46d2d590cf8e558c6d60039e1c003079b240689d845726b6b57c0 \
-    --hash=sha256:ae2f05671588762dd83a21d8b18c51fe355e86783e24594995ff8d7380dffe38
+flask-migrate==3.0.0 \
+    --hash=sha256:a6607e66bf1d68489b2281ead5caa6fdf7a21b71984fae922ef5f915ac45bbcb \
+    --hash=sha256:fadbc9cbf782e95cf7cea63ceff11972d55f534bef86dae4d9d0ab9372bd62dd
     # via -r requirements.txt
 flask-sqlalchemy==2.5.1 \
     --hash=sha256:2bda44b43e7cacb15d4e05ff3cc1f8bc97936cc464623424102bfc2c35e95912 \
