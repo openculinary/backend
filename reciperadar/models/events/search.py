@@ -7,6 +7,7 @@ from reciperadar.models.events.base import BaseEvent
 class SearchEvent(BaseEvent):
     __tablename__ = 'searches'
 
+    path = db.Column(db.String)
     include = db.Column(postgresql.ARRAY(db.String))
     exclude = db.Column(postgresql.ARRAY(db.String))
     equipment = db.Column(postgresql.ARRAY(db.String))
