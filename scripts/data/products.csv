@@ -68,6 +68,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,cabbage,cabbage,cabbages,,f,t,t,t,t
 ,cabernet_sauvignon,cabernet sauvignon,cabernet sauvignons,,f,t,t,t,t
 ,cacao,cacao,cacaos,,f,t,t,t,t
+,cachaca,cachaça,cachaça,,f,t,t,t,t
 ,cajun_spice,cajun spice,cajun spices,,f,t,t,t,t
 ,cake,cake,cakes,,f,t,t,t,t
 ,calorie_controlled_cooking_oil_spray,calorie controlled cooking oil spray,calorie controlled cooking oil sprays,oil_and_vinegar_and_condiments,f,t,t,t,t
