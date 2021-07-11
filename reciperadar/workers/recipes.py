@@ -171,7 +171,10 @@ def crawl_url(url):
 
     # Prevent cross-domain URL references from recrawling existing content
     if existing_url and existing_url.domain != crawl_url.domain:
-        print(f'Skipping cross-domain crawl: {existing_url.domain} != {crawl_url.domain}')
+        print(
+            'Skipping cross-domain crawl: '
+            f'{existing_url.domain} != {crawl_url.domain}'
+        )
         db.session.close()
         return
 
