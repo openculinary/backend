@@ -139,11 +139,14 @@ def crawl_recipe(url):
     db.session.query(Recipe).filter_by(id=recipe.id).delete()
     db.session.add(recipe)
     db.session.add(domain)
-    db.session.commit()
 
-    process_recipe.delay(recipe.id)
-
-    db.session.close()
+    try:
+        db.session.commit()
+        process_recipe.delay(recipe.id)
+    except Exception:
+        db.session.rollback()
+    finally:
+        db.session.close()
 
 
 @celery.task(queue='crawl_url')
@@ -174,8 +177,11 @@ def crawl_url(url):
 
     recipe_url = existing_url or RecipeURL(url=url)
     db.session.add(recipe_url)
-    db.session.commit()
 
-    crawl_recipe.delay(url)
-
-    db.session.close()
+    try:
+        db.session.commit()
+        crawl_recipe.delay(url)
+    except Exception:
+        db.session.rollback()
+    finally:
+        db.session.close()
