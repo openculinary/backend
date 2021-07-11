@@ -10,11 +10,14 @@ def index_recipe(recipe_id):
     recipe = db.session.query(Recipe).get(recipe_id)
     if not recipe:
         print('Could not find recipe to index')
+        db.session.close()
         return
 
     if recipe.index():
         print(f'Indexed {recipe.id} for url={recipe.src}')
         db.session.commit()
+
+    db.session.close()
 
 
 @celery.task(queue='process_recipe')
@@ -22,9 +25,12 @@ def process_recipe(recipe_id):
     recipe = db.session.query(Recipe).get(recipe_id)
     if not recipe:
         print('Could not find recipe to process')
+        db.session.close()
         return
 
     index_recipe.delay(recipe.id)
+
+    db.session.close()
 
 
 @celery.task(queue='crawl_recipe')
@@ -48,6 +54,7 @@ def crawl_recipe(url):
         recipe_data = response.json()['recipe']
     except Exception as e:
         print(f'Failed to load crawler result for url={url} - {e}')
+        db.session.close()
         return
 
     '''
@@ -136,6 +143,8 @@ def crawl_recipe(url):
 
     process_recipe.delay(recipe.id)
 
+    db.session.close()
+
 
 @celery.task(queue='crawl_url')
 def crawl_url(url):
@@ -160,6 +169,7 @@ def crawl_url(url):
     # Prevent cross-domain URL references from recrawling existing content
     if existing_url and existing_url.domain != crawl_url.domain:
         print(f'Skipping cross-domain crawl: {existing_url.domain} != {crawl_url.domain}')
+        db.session.close()
         return
 
     recipe_url = existing_url or RecipeURL(url=url)
@@ -167,3 +177,5 @@ def crawl_url(url):
     db.session.commit()
 
     crawl_recipe.delay(url)
+
+    db.session.close()

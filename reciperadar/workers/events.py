@@ -18,3 +18,4 @@ def store_event(event_table, event_data):
 
     db.session.add(event)
     db.session.commit()
+    db.session.close()
