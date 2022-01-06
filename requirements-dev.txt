@@ -4,9 +4,9 @@ alembic==1.7.3 \
     # via
     #   -r requirements.txt
     #   flask-migrate
-amqp==5.0.6 \
-    --hash=sha256:03e16e94f2b34c31f8bf1206d8ddd3ccaa4c315f7f6a1879b7b1210d229568c2 \
-    --hash=sha256:493a2ac6788ce270a2f6a765b017299f60c1998f5a8617908ee9be082f7300fb
+amqp==5.0.9 \
+    --hash=sha256:1e5f707424e544078ca196e72ae6a14887ce74e02bd126be54b7c03c971bef18 \
+    --hash=sha256:9cd81f7b023fc04bbb108718fbac674f06901b77bfcdce85b10e2a5d0ee91be5
     # via
     #   -r requirements.txt
     #   kombu
@@ -30,9 +30,9 @@ billiard==3.6.4.0 \
     # via
     #   -r requirements.txt
     #   celery
-celery==5.2.0 \
-    --hash=sha256:1664b8cf5051c86188e86f1afb85213927f92b8818e2315e34b010da0d767b98 \
-    --hash=sha256:4d858a8fe53c07a9f0cbf8cf1da28e8abe5464d0aba5713bf83908e74277734b
+celery==5.2.2 \
+    --hash=sha256:2844eb040e915398623a43253a8e1016723442ece6b0751a3c416d8a2b34216f \
+    --hash=sha256:5a68a351076cfac4f678fa5ffd898105c28825a2224902da006970005196d061
     # via -r requirements.txt
 certifi==2021.5.30 \
     --hash=sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee \
@@ -180,9 +180,9 @@ jinja2==3.0.1 \
     # via
     #   -r requirements.txt
     #   flask
-kombu==5.2.1 \
-    --hash=sha256:31bd287191bf56b1addba54a28eced8d6b6b5ba57ad184f48b065578f73c8e33 \
-    --hash=sha256:f262a2adc71b53e5b7dad4933bbdee65d8766ca4df6a9043b13edaad2144aaec
+kombu==5.2.3 \
+    --hash=sha256:81a90c1de97e08d3db37dbf163eaaf667445e1068c98bfd89f051a40e9f6dbbd \
+    --hash=sha256:eeaeb8024f3a5cfc71c9250e45cddb8493f269d74ada2f74909a93c59c4b4179
     # via
     #   -r requirements.txt
     #   celery
