@@ -57,9 +57,9 @@ elasticsearch==7.13.4 \
     --hash=sha256:52dda85f76eeb85ec873bf9ffe0ba6849e544e591f66d4048a5e48016de268e0 \
     --hash=sha256:5920df0ab2630778680376d86bea349dc99860977eec9b6d2bd0860f337313f2
     # via -r requirements.in
-flask==2.0.2 \
-    --hash=sha256:7b2fb8e934ddd50731893bdcdb00fc8c0315916f9fcd50d22c7cc1a95ab634e2 \
-    --hash=sha256:cb90f62f1d8e4dc4621f52106613488b5ba826b2e1e10a33eac92f723093ab6a
+flask==2.0.3 \
+    --hash=sha256:59da8a3170004800a2837844bfa84d49b022550616070f7cb1a659682b2e7c9f \
+    --hash=sha256:e1120c228ca2f553b470df4a5fa927ab66258467526069981b3eb0a91902687d
     # via
     #   -r requirements.in
     #   flask-migrate
@@ -228,9 +228,9 @@ markupsafe==2.0.1 \
     # via
     #   jinja2
     #   mako
-pg8000==1.24.0 \
-    --hash=sha256:06c6b0b068d07ce366f7bcedadf76a0b5da6a61f86302c8caff690b7fc5dfedb \
-    --hash=sha256:ffb00d2b57ebca825aa696996196f58f394e01f4e35238e20d43b63c0a7bfc97
+pg8000==1.24.1 \
+    --hash=sha256:291222c5ddfd66a3fc0d321700cf591c8b0f930d2fc848777d6cfcff55443ce6 \
+    --hash=sha256:7eb6f78630f3116cc77e1a49abed6d1a542751b69666cf51a3188b7f94d2c908
     # via -r requirements.in
 prompt-toolkit==3.0.28 \
     --hash=sha256:30129d870dcb0b3b6a53efdc9d0a83ea96162ffd28ffe077e94215b233dc670c \
