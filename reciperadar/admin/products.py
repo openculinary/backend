@@ -26,7 +26,7 @@ class ProductAdmin(ModelView):
         super().__init__(Product, db.session)
 
     def on_model_change(self, form, model, is_created):
-        model.id = model.singular
+        model.id = model.singular.replace(' ', '_')
 
 
 admin_app.add_view(ProductAdmin())
