@@ -8,6 +8,8 @@ class ProductAdmin(ModelView):
 
     list_template = "admin/products.html"
 
+    column_editable_list = ["parent"]
+
     form_columns = [
         "parent",
         "singular",
