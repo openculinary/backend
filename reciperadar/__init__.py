@@ -1,4 +1,5 @@
 from flask import Flask
+from flask.sessions import SessionMixin
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
@@ -18,7 +19,16 @@ def create_db(app):
     })
 
 
+class EphemeralSession(dict, SessionMixin):
+    def open_session(self, app, request):
+        return EphemeralSession()
+
+    def is_null_session(self, obj):
+        return True
+
+
 app = create_app()
+app.session_interface = EphemeralSession()
 db = create_db(app)
 migrate = Migrate(app, db)
 
