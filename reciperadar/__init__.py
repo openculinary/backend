@@ -1,5 +1,6 @@
 from flask import Flask
 from flask.sessions import SessionMixin
+from flask_admin import Admin
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
@@ -31,8 +32,10 @@ app = create_app()
 app.session_interface = EphemeralSession()
 db = create_db(app)
 migrate = Migrate(app, db)
+admin_app = Admin(app)
 
 
+import reciperadar.admin.products
 import reciperadar.api.domains
 import reciperadar.api.products
 import reciperadar.api.recipes
