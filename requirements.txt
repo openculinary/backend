@@ -62,8 +62,12 @@ flask==2.1.2 \
     --hash=sha256:fad5b446feb0d6db6aec0c3184d16a8c1f6c3e464b511649c8918a9be100b4fe
     # via
     #   -r requirements.in
+    #   flask-admin
     #   flask-migrate
     #   flask-sqlalchemy
+flask-admin==1.6.0 \
+    --hash=sha256:424ffc79b7b0dfff051555686ea12e86e48dffacac14beaa319fb4502ac40988
+    # via -r requirements.in
 flask-migrate==3.1.0 \
     --hash=sha256:57d6060839e3a7f150eaab6fe4e726d9e3e7cffe2150fb223d73f92421c6d1d9 \
     --hash=sha256:a6498706241aba6be7a251078de9cf166d74307bca41a4ca3e403c9d39e2f897
@@ -203,6 +207,7 @@ markupsafe==2.1.1 \
     # via
     #   jinja2
     #   mako
+    #   wtforms
 pg8000==1.28.3 \
     --hash=sha256:5d5c35514f6a3dc8da15f2505bb9110d4096dc393abaebbac819fe6c68db07dd \
     --hash=sha256:d61037b3f21f7fc7d5cfe4eea683789259e7ccb9eef5f7229cbc62f31ea6ba32
@@ -301,6 +306,10 @@ werkzeug==2.1.2 \
     --hash=sha256:1ce08e8093ed67d638d63879fd1ba3735817f7a80de3674d293f5984f25fb6e6 \
     --hash=sha256:72a4b735692dd3135217911cbeaa1be5fa3f62bffb8745c5215420a03dc55255
     # via flask
+wtforms==3.0.1 \
+    --hash=sha256:6b351bbb12dd58af57ffef05bc78425d08d1914e0fd68ee14143b7ade023c5bc \
+    --hash=sha256:837f2f0e0ca79481b92884962b914eba4e72b7a2daaf1f939c890ed0124b834b
+    # via flask-admin
 zipp==3.8.0 \
     --hash=sha256:56bf8aadb83c24db6c4b577e13de374ccfb67da2078beba1d037c17980bf43ad \
     --hash=sha256:c4f6e5bbf48e74f7a38e7cc5b0480ff42b0ae5178957d564d18932525d5cf099
