@@ -10,6 +10,18 @@ class ProductAdmin(ModelView):
 
     column_editable_list = ["parent"]
 
+    column_list = [
+        "parent_id",
+        "singular",
+        "plural",
+        "category",
+        "is_kitchen_staple",
+        "is_dairy_free",
+        "is_gluten_free",
+        "is_vegan",
+        "is_vegetarian",
+    ]
+
     form_columns = [
         "parent",
         "singular",
