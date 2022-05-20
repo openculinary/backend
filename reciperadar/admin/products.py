@@ -22,6 +22,8 @@ class ProductAdmin(ModelView):
         "is_vegetarian",
     ]
 
+    page_size = 0
+
     def __init__(self):
         super().__init__(Product, db.session)
 
