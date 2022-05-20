@@ -33,6 +33,9 @@ class Product(Storable):
         remote_side=[id]
     )
 
+    def __str__(self):
+        return self.id
+
     @cached_property
     def ancestors(self):
         results = set()

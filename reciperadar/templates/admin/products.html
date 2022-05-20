@@ -1,0 +1,89 @@
+{% extends 'admin/model/list.html' %}
+
+{% block head_css %}
+    {{ super() }}
+    <link href="{{ url_for('static', filename='jquery-ui.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='jquery.treetable.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block list_header %}
+    {{ super() }}
+{% endblock %}
+
+{% block list_row %}
+    {{ super() }}
+{% endblock %}
+
+{% block tail_js %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='jquery-ui.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='jquery.treetable.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(function() {
+        // Assign ID data attributes to nodes in the tree
+        $('table.model-list tr').map(function() {
+          var nodeId = $(this).find('input.action-checkbox').val();
+          $(this).data('tt-id', nodeId);
+
+          var parentId = $(this).find('.col-parent').text().trim();
+          $(this).data('tt-parent-id', parentId);
+        })
+
+        // Remove the 'parent' column from the table (only rendered for purposes of ID retrieval)
+        $('table.model-list .col-parent').remove();
+
+        // Prevent wrapping within the item checkbox selection column
+        $('table.model-list td input.action-checkbox').parent().css('white-space', 'nowrap');
+
+        // Re-render the table nodes in tree format
+        $('table.model-list').treetable({
+          expandable: true,
+          initialState: 'expanded',
+          indenterTemplate: '<span class="indent"></span>',
+          indent: 32,
+        });
+
+        // Sort each root branch of the tree on the client; display order may differ
+        // from the HTML element ordering rendered onto the page by the server
+        $('table.model-list tr.branch').each(function() {
+          var node = $('table.model-list').treetable('node', $(this).data('tt-id'));
+          $('table.model-list').treetable('sortBranch', node);
+        });
+
+        var applyExpansionIcons = function() {
+          var expand = $(this).attr('title') === 'Expand';
+          $(this).removeClass().addClass(expand ? 'icon-plus' : 'icon-minus');
+        };
+
+        // Apply icons for node expand and collapse buttons
+        $('table.model-list td span.indent a').click(applyExpansionIcons);
+        $('table.model-list td span.indent a').each(applyExpansionIcons);
+
+        // Allow each table row to be dragged
+        $('table.model-list tr').draggable({
+          helper: 'clone',
+        });
+
+        // Allow each table row to be a drop target
+        $('table.model-list tr').each(function() {
+          $(this).droppable({
+            drop: function(e, ui) {
+              var dragNodeId = $(ui.draggable).data('tt-id');
+              var dropNodeId = $(this).data('tt-id');
+              $.post('ajax/update/', {
+                list_form_pk: dragNodeId,
+                parent: dropNodeId,
+              }).done(function() {
+                location.reload();
+              })
+            },
+            over: function(e, ui) {
+              if ($(this).is($(ui.draggable)) && !$(this).is('.expanded')) {
+                $('table.model-list').treetable('expandNode', $(this).data('tt-id'));
+              }
+            }
+          });
+        });
+    })
+    </script>
+{% endblock %}
