@@ -1,3 +1,5 @@
+from collections import deque
+
 from flask_admin.contrib.sqla import ModelView
 
 from reciperadar import admin_app, db
@@ -38,6 +40,16 @@ class ProductAdmin(ModelView):
 
     def __init__(self):
         super().__init__(Product, db.session)
+
+    def get_list(self, page, sort_column, sort_desc, search, filters,
+                 execute=True, page_size=None):
+        results = []
+        sources = deque(Product.query.filter(Product.parent_id == None))
+        while sources:
+            product = sources.popleft()
+            results.append(product)
+            sources.extendleft(product.get_children())
+        return len(results), results
 
     def on_model_change(self, form, model, is_created):
         model.id = model.singular.replace(' ', '_')
