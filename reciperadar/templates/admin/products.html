@@ -4,6 +4,14 @@
     {{ super() }}
     <link href="{{ url_for('static', filename='jquery-ui.css') }}" rel="stylesheet" />
     <link href="{{ url_for('static', filename='jquery.treetable.css') }}" rel="stylesheet" />
+    <style>
+    .col-parent_id {
+        display: none;
+    }
+    table.model-list td span.indent {
+        white-space: no-wrap;
+    }
+    </style>
 {% endblock %}
 
 {% block list_header %}
@@ -29,25 +37,12 @@
           $(this).data('tt-parent-id', parentId);
         })
 
-        // Remove the parent ID column from the table
-        $('table.model-list .col-parent_id').remove();
-
-        // Prevent wrapping within the item checkbox selection column
-        $('table.model-list td input.action-checkbox').parent().css('white-space', 'nowrap');
-
         // Re-render the table nodes in tree format
         $('table.model-list').treetable({
           expandable: true,
           initialState: 'expanded',
           indenterTemplate: '<span class="indent"></span>',
           indent: 32,
-        });
-
-        // Sort each root branch of the tree on the client; display order may differ
-        // from the HTML element ordering rendered onto the page by the server
-        $('table.model-list tr.branch').each(function() {
-          var node = $('table.model-list').treetable('node', $(this).data('tt-id'));
-          $('table.model-list').treetable('sortBranch', node);
         });
 
         var applyExpansionIcons = function() {
