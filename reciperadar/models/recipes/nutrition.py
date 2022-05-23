@@ -20,7 +20,7 @@ class Nutrition(Storable):
 class ProductNutrition(Nutrition):
     __tablename__ = 'product_nutrition'
 
-    fk = db.ForeignKey('products.id', deferrable=True)
+    fk = db.ForeignKey('products.id', deferrable=True, ondelete='cascade')
     product_id = db.Column(db.String, fk, primary_key=True)
 
 
