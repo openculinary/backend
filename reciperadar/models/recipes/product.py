@@ -37,7 +37,7 @@ class Product(Storable):
         return self.id
 
     def get_children(self):
-        return Product.query.filter(Product.parent_id == self.id)
+        return Product.query.filter(Product.parent_id == self.id).order_by(Product.id)
 
     @cached_property
     def ancestors(self):
