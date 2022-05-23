@@ -25,7 +25,8 @@ class Product(Storable):
 
     nutrition = db.relationship(
         'ProductNutrition',
-        uselist=False
+        uselist=False,
+        passive_deletes='all'
     )
     parent = db.relationship(
         'Product',
