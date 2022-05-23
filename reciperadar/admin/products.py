@@ -1,6 +1,7 @@
 from collections import deque
 
 from flask_admin.contrib.sqla import ModelView
+from sqlalchemy.orm import joinedload
 
 from reciperadar import admin_app, db
 from reciperadar.models.recipes.product import Product
@@ -44,15 +45,12 @@ class ProductAdmin(ModelView):
     def get_list(self, page, sort_column, sort_desc, search, filters,
                  execute=True, page_size=None):
         results = []
-        sources = deque(
-            Product.query.filter(Product.parent_id == None).order_by(Product.id)
-        )
+        products = Product.query.options(joinedload(Product.children)).order_by(Product.id)
+        sources = deque([product for product in products if product.parent is None])
         while sources:
             product = sources.popleft()
             results.append(product)
-            children = list(product.get_children())
-            children.reverse()  # counteract the reverse-insertion-order of deque.extendleft
-            sources.extendleft(children)
+            sources.extendleft(sorted(product.children, key=lambda p: p.id, reverse=True))
         return len(results), results
 
     def on_model_change(self, form, model, is_created):

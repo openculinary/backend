@@ -31,14 +31,12 @@ class Product(Storable):
     parent = db.relationship(
         'Product',
         uselist=False,
-        remote_side=[id]
+        remote_side=[id],
+        backref='children'
     )
 
     def __str__(self):
         return self.id
-
-    def get_children(self):
-        return Product.query.filter(Product.parent_id == self.id).order_by(Product.id)
 
     @cached_property
     def ancestors(self):
