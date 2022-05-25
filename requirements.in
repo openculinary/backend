@@ -8,6 +8,6 @@ flask-sqlalchemy==2.5.1
 gunicorn==20.1.0
 pg8000==1.28.3
 pymmh3==0.0.5
-requests==2.27.1
+requests[use_chardet_on_py3]==2.27.1
 sqlalchemy==1.4.36
 tld==0.12.6
