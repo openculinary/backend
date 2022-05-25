@@ -54,7 +54,8 @@ class ProductAdmin(ModelView):
         return len(results), results
 
     def on_model_change(self, form, model, is_created):
-        model.id = model.singular.replace(' ', '_').replace('-', '_')
+        if is_created:
+            model.id = model.singular.replace(' ', '_').replace('-', '_')
 
 
 admin_app.add_view(ProductAdmin())
