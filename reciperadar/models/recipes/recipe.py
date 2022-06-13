@@ -137,7 +137,7 @@ class Recipe(Storable, Searchable):
             if not ingredient.nutrition:
                 continue
             for nutrient in totals.keys():
-                magnitude = getattr(ingredient.nutrition, nutrient)
+                magnitude = getattr(ingredient.nutrition, nutrient) or 0
                 unit = getattr(ingredient.nutrition, f'{nutrient}_units')
                 # TODO: Handle mixed nutritional units within recipes (pint?)
                 if nutrient in units and units[nutrient] != unit:
