@@ -135,7 +135,6 @@ sour_cream,creme_fraiche,crème fraîche,crème fraîches,dairy,f,f,t,f,t
 ,cracked_wheat,cracked wheat,cracked wheats,,f,t,t,t,t
 ,cracker,cracker,crackers,,f,t,t,t,t
 ,crawfish_tail,crawfish tail,crawfish tails,,f,t,t,t,t
-,cream,cream,creams,,f,t,t,t,t
 ,creme_de_cassis_liqueur,creme de cassis liqueur,cremes de cassis liqueur,,f,t,t,t,t
 ,creme_de_menthe,creme de menthe,cremes de menthe,,f,t,t,t,t
 ,crouton,crouton,croutons,,f,t,t,t,t
@@ -205,6 +204,7 @@ berry,huckleberry,huckleberry,huckleberries,,f,t,t,t,t
 soda,lemonade,lemonade,lemonades,,f,t,t,t,t
 ,garam_masala,garam masala,garam masalas,,f,t,t,t,t
 ,garlic,garlic,garlics,fruit_and_veg,f,t,t,t,t
+,cream,cream,creams,,f,f,t,f,t
 dripping,goose_fat,goose fat,goose fats,,f,t,t,f,f
 ,gelatin,gelatin,gelatins,,f,t,t,t,t
 meat,ham,ham,hams,meat_and_deli,f,t,t,f,f
@@ -1041,6 +1041,7 @@ cornmeal,yellow_cornmeal,yellow cornmeal,yellow cornmeals,,f,t,t,t,t
 cornstarch,cornstarch_mixed_with_below_amount_of_water,cornstarch mixed with below amount of water,cornstarch mixeds with below amount of water,,f,t,t,t,t
 cornstarch,organic_cornstarch,organic cornstarch,organic cornstarches,,f,t,t,t,t
 corn_syrup,white_corn_syrup,white corn syrup,white corn syrups,,f,t,t,t,t
+eggnog,egg_nog,egg nog,egg nogs,dairy,f,f,t,f,t
 cottage_cheese,low_fat_cottage_cheese,low-fat cottage cheese,low-fat cottage cheeses,dairy,f,f,t,f,t
 flour,all_pupose_flour,all-pupose flour,all-pupose flours,,f,t,f,t,t
 coconut_milk,lite_coconut_milk,lite coconut milk,lite coconut milks,,f,t,t,t,t
@@ -1075,18 +1076,7 @@ cracker,ritz_cracker,ritz cracker,ritz crackers,,f,t,t,t,t
 cracker,saltine_cracker,saltine cracker,saltine crackers,,f,t,t,t,t
 cranberry,sweetened_dried_cranberry,sweetened dried cranberry,sweetened dried cranberries,,f,t,t,t,t
 cranberry_juice,cranberry_juice_cocktail,cranberry juice cocktail,cranberry juice cocktails,,f,t,t,t,t
-cream,chilled_heavy_cream,chilled heavy cream,chilled heavy creams,,f,t,t,t,t
-cream,clotted_cream,clotted cream,clotted creams,,f,t,t,t,t
 cream,coconut_cream,coconut cream,coconut creams,,f,t,t,t,t
-cream,double_cream,double cream,double creams,,f,t,t,t,t
-cream,half_and_half_cream,half-and-half cream,half-and-half creams,,f,t,t,t,t
-cream,irish_cream,irish cream,irish creams,,f,t,t,t,t
-cream,marshmallow_cream,marshmallow cream,marshmallow creams,,f,t,t,t,t
-cream,organic_heavy_cream,organic heavy cream,organic heavy creams,,f,t,t,t,t
-cream,pouring_cream,pouring cream,pouring creams,,f,t,t,t,t
-cream,single_cream,single cream,single creams,,f,t,t,t,t
-cream,sour_cream,sour cream,sour creams,,f,t,t,t,t
-cream,whipped_cream,whipped cream,whipped creams,,f,t,t,t,t
 cream_cheese,block_cream_cheese,block cream cheese,block cream cheeses,dairy,f,f,t,f,t
 cream_cheese,fat_free_cream_cheese,fat-free cream cheese,fat-free cream cheeses,dairy,f,f,t,f,t
 cream_cheese,full_fat_cream_cheese,full-fat cream cheese,full-fat cream cheeses,dairy,f,f,t,f,t
@@ -1095,7 +1085,6 @@ cream_cheese,weight_reduced_fat_cream_cheese_softened,weight reduced-fat cream c
 cream_cheese,weight_soft_cream_cheese,weight soft cream cheese,weight soft cream cheeses,dairy,f,f,t,f,t
 cream_cheese,whipped_cream_cheese,whipped cream cheese,whipped cream cheeses,dairy,f,f,t,f,t
 creme_de_cacao,white_creme_de_cacao,white creme de cacao,white cremes de cacao,,f,t,t,t,t
-creme_fraiche,full_fat_creme_fraiche,full-fat crème fraîche,full-fat crème fraîches,,f,t,t,t,t
 crust,double_crust_ready_to_use_pie_crust,double crust ready-to-use pie crust,double crust readies-to-use pie crust,,f,t,t,t,t
 crust,unbaked_pizza_crust,unbaked pizza crust,unbaked pizza crusts,,f,t,t,t,t
 crust,whole_pre_baked_pie_crust,whole pre-baked pie crust,whole pre-baked pie crusts,,f,t,t,t,t
@@ -1113,6 +1102,17 @@ curry,yellow_curry_paste,yellow curry paste,yellow curry pastes,,f,t,t,t,t
 curry_powder,madras_curry_powder,madras curry powder,madras curry powders,,f,t,t,t,t
 curry_powder,mild_curry_powder,mild curry powder,mild curry powders,,f,t,t,t,t
 graham_cracker,whole_graham_cracker_sheet,whole graham cracker sheet,whole graham cracker sheets,,f,t,t,t,t
+mushroom,button_mushroom,button mushroom,button mushrooms,,f,t,t,t,t
+cream,clotted_cream,clotted cream,clotted creams,,f,f,t,f,t
+cream,double_cream,double cream,double creams,,f,f,t,f,t
+cream,irish_cream,irish cream,irish creams,,f,f,t,f,t
+cream,organic_heavy_cream,organic heavy cream,organic heavy creams,,f,f,t,f,t
+cream,marshmallow_cream,marshmallow cream,marshmallow creams,,f,f,t,f,t
+cream,pouring_cream,pouring cream,pouring creams,,f,f,t,f,t
+cream,single_cream,single cream,single creams,,f,f,t,f,t
+cream,sour_cream,sour cream,sour creams,,f,f,t,f,t
+creme_fraiche,full_fat_creme_fraiche,full-fat crème fraîche,full-fat crème fraîches,,f,f,t,f,t
+cream,whipped_cream,whipped cream,whipped creams,,f,f,t,f,t
 graham_cracker,graham_cracker_crust,graham cracker crust,graham cracker crusts,,f,t,t,t,t
 ,can_condensed_cream_of_shrimp_soup,can condensed cream of shrimp soup,can condensed creams of shrimp soup,,f,t,t,f,f
 ,can_cream_of_celery_soup,can cream of celery soup,can creams of celery soup,,f,t,t,t,t
@@ -1189,7 +1189,6 @@ duck,duck_breast,duck breast,duck breasts,meat_and_deli,f,t,t,f,f
 duck,duck_leg,duck leg,duck legs,meat_and_deli,f,t,t,f,f
 noodle,egg_noodle,egg noodle,egg noodles,dairy,f,f,f,f,t
 ,egg_wash,egg wash,egg washes,dairy,f,f,t,f,t
-eggnog,egg_nog,egg nog,egg nogs,dairy,f,f,t,f,t
 coffee_powder,espresso_powder,espresso powder,espresso powders,,f,t,t,t,t
 jam,fig_jam,fig jam,fig jams,,f,t,t,t,t
 fig_jam,fig_preserve,fig preserve,fig preserves,,f,t,t,t,t
@@ -1342,6 +1341,7 @@ italian_seasoning,italian_seasoned_breadcrumb,italian seasoned breadcrumb,italia
 jack_cheese,cheddar_jack_cheese,cheddar jack cheese,cheddar jack cheeses,dairy,f,f,t,f,t
 jack_cheese,colby_monterey_jack_cheese,colby-monterey jack cheese,colby-monterey jack cheeses,dairy,f,f,t,f,t
 jack_cheese,pepper_jack_cheese,pepper jack cheese,pepper jack cheeses,dairy,f,f,t,f,t
+marshmallow,marshmallow_fluff,marshmallow fluff,marshmallow fluffs,,f,t,t,t,t
 jack_cheese,shredded_cheddar_monterey_jack_cheese_blend,shredded cheddar-monterey jack cheese blend,shredded cheddar-monterey jack cheese blends,dairy,f,f,t,f,t
 jalapeno,pickled_jalapeno,pickled jalapeño,pickled jalapeñoes,,f,t,t,t,t
 jalapeno_pepper,pickled_jalapeno_pepper,pickled jalapeno pepper,pickled jalapeno peppers,,f,t,t,t,t
@@ -1419,7 +1419,6 @@ margarine,vegan_margarine,vegan margarine,vegan margarines,,f,t,t,t,t
 marinara_sauce,prepared_marinara_sauce,prepared marinara sauce,prepared marinara sauces,,f,t,t,t,t
 marsala_wine,sweet_marsala_wine,sweet marsala wine,sweet marsala wines,,f,t,t,t,t
 marshmallow,marshmallow_creme,marshmallow creme,marshmallow cremes,,f,t,t,t,t
-marshmallow,marshmallow_fluff,marshmallow fluff,marshmallow fluffs,,f,t,t,t,t
 marshmallow,miniature_marshmallow,miniature marshmallow,miniature marshmallows,,f,t,t,t,t
 marshmallow,mini_marshmallow,mini marshmallow,mini marshmallows,,f,t,t,t,t
 masa,masa_harina,masa harina,masa harinas,,f,t,t,t,t
@@ -1499,7 +1498,6 @@ molas,unsulphured_molas,unsulphured molas,unsulphured molass,,f,t,t,t,t
 mozzarella_cheese,shredded_part_skim_mozzarella_cheese,shredded part-skim mozzarella cheese,shredded part-skim mozzarella cheeses,dairy,f,f,t,f,t
 mushroom,baby_bella_mushroom,baby bella mushroom,baby bella mushrooms,,f,t,t,t,t
 mushroom,baby_portabella_mushroom,baby portabella mushroom,baby portabella mushrooms,,f,t,t,t,t
-mushroom,button_mushroom,button mushroom,button mushrooms,,f,t,t,t,t
 mushroom,chestnut_mushroom,chestnut mushroom,chestnut mushrooms,,f,t,t,t,t
 mushroom,cremini_mushroom,cremini mushroom,cremini mushrooms,,f,t,t,t,t
 mushroom,crimini_mushroom,crimini mushroom,crimini mushrooms,,f,t,t,t,t
@@ -1648,6 +1646,7 @@ pale_ale,pale_ale_beer,pale ale beer,pale ale beers,,f,t,f,t,t
 palm_sugar,coconut_palm_sugar,coconut palm sugar,coconut palm sugars,,f,t,t,t,t
 panko_breadcrumb,japanese_panko_breadcrumb,japanese panko breadcrumb,japanese panko breadcrumbs,,f,t,f,t,t
 panko_breadcrumb,seasoned_panko_breadcrumb,seasoned panko breadcrumb,seasoned panko breadcrumbs,,f,t,f,t,t
+pepper,seasoned_pepper,seasoned pepper,seasoned peppers,,f,t,t,t,t
 paprika,hungarian_paprika,hungarian paprika,hungarian paprikas,,f,t,t,t,t
 paprika,mild_paprika,mild paprika,mild paprikas,,f,t,t,t,t
 paprika,paprika_powder,paprika powder,paprika powders,,f,t,t,t,t
@@ -1730,7 +1729,6 @@ pepper,pepperoncini_pepper,pepperoncini pepper,pepperoncini peppers,,f,t,t,t,t
 pepper,pimento_pepper,pimento pepper,pimento peppers,,f,t,t,t,t
 pepper,poblano_pepper,poblano pepper,poblano peppers,,f,t,t,t,t
 pepper,red_pepper,red pepper,red peppers,,f,t,t,t,t
-pepper,seasoned_pepper,seasoned pepper,seasoned peppers,,f,t,t,t,t
 pepper,serrano_pepper,serrano pepper,serrano peppers,,f,t,t,t,t
 pepper,white_pepper,white pepper,white peppers,,f,t,t,t,t
 pepper,yellow_pepper,yellow pepper,yellow peppers,,f,t,t,t,t
@@ -2035,6 +2033,7 @@ seasoning,ranch_seasoning,ranch seasoning,ranch seasonings,,f,t,t,t,t
 seasoning,salad_seasoning_mix,salad seasoning mix,salad seasoning mixes,,f,t,t,t,t
 seasoning,salt_free_seasoning_blend,salt-free seasoning blend,salt-free seasoning blends,,f,t,t,t,t
 seasoning,seafood_seasoning,seafood seasoning,seafood seasonings,,f,t,t,t,t
+water,warm_water,warm water,warm waters,,f,t,t,t,t
 seasoning,seasoned_breadcrumb,seasoned breadcrumb,seasoned breadcrumbs,,f,t,f,t,t
 seasoning,seasoned_crouton,seasoned crouton,seasoned croutons,,f,t,t,t,t
 seasoning,steak_seasoning,steak seasoning,steak seasonings,meat_and_deli,f,t,t,f,f
@@ -2089,10 +2088,6 @@ snap_pea,sugar_snap_pea,sugar snap pea,sugar snap peas,,f,t,t,t,t
 soda,club_soda,club soda,club sodas,,f,t,t,t,t
 soda,lemon_lime_soda,lemon-lime soda,lemon-lime sodas,,f,t,t,t,t
 soft_butter,very_soft_butter,very soft butter,very soft butters,dairy,f,f,t,f,t
-sour_cream,carton_sour_cream,carton sour cream,carton sour creams,,f,t,t,t,t
-sour_cream,daisy_brand_sour_cream,daisy brand sour cream,daisy brand sour creams,,f,t,t,t,t
-sour_cream,fat_free_sour_cream,fat-free sour cream,fat-free sour creams,,f,t,t,t,t
-sour_cream,reduced_fat_sour_cream,reduced-fat sour cream,reduced-fat sour creams,,f,t,t,t,t
 sourdough_bread,loaf_sourdough_bread,loaf sourdough bread,loaf sourdough breads,,f,t,f,t,t
 soymilk,vanilla_soy_milk,vanilla soy milk,vanilla soy milks,dairy,f,f,t,f,t
 soy_sauce,lite_soy_sauce,lite soy sauce,lite soy sauces,,f,t,f,t,t
@@ -2108,6 +2103,9 @@ sprinkle,rainbow_sprinkle,rainbow sprinkle,rainbow sprinkles,,f,t,t,t,t
 sprout,alfalfa_sprout,alfalfa sprout,alfalfa sprouts,,f,t,t,t,t
 sprout,brussels_sprout,brussels sprout,brussels sprouts,,f,t,t,t,t
 squash,acorn_squash,acorn squash,acorn squashes,,f,t,t,t,t
+sour_cream,daisy_brand_sour_cream,daisy brand sour cream,daisy brand sour creams,,f,f,t,f,t
+sour_cream,fat_free_sour_cream,fat-free sour cream,fat-free sour creams,,f,f,t,f,t
+sour_cream,reduced_fat_sour_cream,reduced-fat sour cream,reduced-fat sour creams,,f,f,t,f,t
 squash,butternut_squash,butternut squash,butternut squashes,,f,t,t,t,t
 squash,delicata_squash,delicata squash,delicata squashes,,f,t,t,t,t
 squash,spaghetti_squash,spaghetti squash,spaghetti squashes,,f,t,t,t,t
@@ -2188,6 +2186,7 @@ sunflower_oil,unrefined_sunflower_oil,unrefined sunflower oil,unrefined sunflowe
 sunflower_seed,roasted_sunflower_seed,roasted sunflower seed,roasted sunflower seeds,,f,t,t,t,t
 sunflower_seed,sunflower_seed_oil,sunflower seed oil,sunflower seed oils,oil_and_vinegar_and_condiments,f,t,t,t,t
 sunflower_seed,unsalted_sunflower_seed,unsalted sunflower seed,unsalted sunflower seeds,,f,t,t,t,t
+watercres,bag_watercres,bag watercres,bag watercress,,f,t,t,t,t
 sweet_chili_sauce,thai_sweet_chili_sauce,thai sweet chili sauce,thai sweet chili sauces,,f,t,t,t,t
 sweet_corn,ears_sweet_corn,ears sweet corn,ears sweet corns,,f,t,t,t,t
 sweetener,granular_no_calorie_sucralose_sweetener,granular no-calorie sucralose sweetener,granular no-calorie sucralose sweeteners,,f,t,t,t,t
@@ -2261,6 +2260,7 @@ turmeric,turmeric_powder,turmeric powder,turmeric powders,,f,t,t,t,t
 unbleached_flour,white_unbleached_flour,white unbleached flour,white unbleached flours,,f,t,f,t,t
 unflavored_gelatin,unflavored_gelatin_powder,unflavored gelatin powder,unflavored gelatin powders,,f,t,t,t,t
 unsalted_butter,soft_unsalted_butter,soft unsalted butter,soft unsalted butters,dairy,f,f,t,f,t
+watermelon,seedless_watermelon,seedless watermelon,seedless watermelons,,f,t,t,t,t
 unsweetened_cocoa_powder,natural_unsweetened_cocoa_powder,natural unsweetened cocoa powder,natural unsweetened cocoa powders,,f,t,t,t,t
 vanilla,madagascar_vanilla,madagascar vanilla,madagascar vanillas,,f,t,t,t,t
 vanilla,prepared_vanilla_pudding,prepared vanilla pudding,prepared vanilla puddings,,f,t,t,t,t
@@ -2333,9 +2333,6 @@ water,tap_water,tap water,tap waters,,f,t,t,t,t
 water,tepid_water,tepid water,tepid waters,,f,t,t,t,t
 water,tonic_water,tonic water,tonic waters,,f,t,t,t,t
 water,very_hot_water,very hot water,very hot waters,,f,t,t,t,t
-water,warm_water,warm water,warm waters,,f,t,t,t,t
-watercres,bag_watercres,bag watercres,bag watercress,,f,t,t,t,t
-watermelon,seedless_watermelon,seedless watermelon,seedless watermelons,,f,t,t,t,t
 pudding_mix,vanilla_pudding_mix,vanilla pudding mix,vanilla pudding mixes,,f,t,t,t,t
 stevia,vanilla_stevia,vanilla stevia,vanilla stevias,,f,t,t,t,t
 extract,vanilla_extract,vanilla extract,vanilla extracts,,f,t,t,t,t
@@ -2350,7 +2347,6 @@ weight_unsweetened_chocolate,square_unsweetened_chocolate,square unsweetened cho
 whip,miracle_whip,miracle whip,miracle whips,,f,t,t,t,t
 whip,tub_cool_whip,tub cool whip,tub cool whips,,f,t,t,t,t
 whip,weight_extra_creamy_cool_whip,weight extra creamy cool whip,weight extra creamy cool whips,,f,t,t,t,t
-whipped_cream,sweetened_whipped_cream,sweetened whipped cream,sweetened whipped creams,,f,t,t,t,t
 whipped_topping,lite_whipped_topping,lite whipped topping,lite whipped toppings,,f,t,t,t,t
 whipped_topping,thawed_cool_whip_whipped_topping,thawed cool whip whipped topping,thawed cool whip whipped toppings,,f,t,t,t,t
 whiskey,irish_whiskey,irish whiskey,irish whiskeys,,f,t,t,t,t
@@ -2459,3 +2455,7 @@ salad,salad_green,salad green,salad greens,,f,t,t,t,t
 ,baking_soda,baking soda,baking sodas,,t,t,t,t,t
 baking_soda,bicarbonate_of_soda,bicarbonate of soda,bicarbonates of soda,,f,t,t,t,t
 topping,caramel_ice_cream_topping,caramel ice cream topping,caramel ice cream toppings,,f,f,t,f,t
+cream,chilled_heavy_cream,chilled heavy cream,chilled heavy creams,,f,f,t,f,t
+cream,half_and_half_cream,half-and-half cream,half-and-half creams,,f,f,t,f,t
+sour_cream,carton_sour_cream,carton sour cream,carton sour creams,,f,f,t,f,t
+whipped_cream,sweetened_whipped_cream,sweetened whipped cream,sweetened whipped creams,,f,f,t,f,t
