@@ -45,12 +45,20 @@ class ProductAdmin(ModelView):
     def get_list(self, page, sort_column, sort_desc, search, filters,
                  execute=True, page_size=None):
         results = []
-        products = Product.query.options(joinedload(Product.children)).order_by(Product.id)
-        sources = deque([product for product in products if product.parent is None])
+        products = (
+            Product.query.options(joinedload(Product.children))
+            .order_by(Product.id)
+        )
+        sources = deque(filter(lambda x: x.parent is None, products))
         while sources:
             product = sources.popleft()
+            children = sorted(
+                product.children,
+                key=lambda p: p.id,
+                reverse=True
+            )
             results.append(product)
-            sources.extendleft(sorted(product.children, key=lambda p: p.id, reverse=True))
+            sources.extendleft(children)
         return len(results), results
 
     def on_model_change(self, form, model, is_created):
