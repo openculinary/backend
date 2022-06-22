@@ -14,6 +14,7 @@ class Product(Storable):
         'products.id',
         deferrable=True,
         ondelete='cascade',
+        onupdate='cascade',
     )
     parent_id = db.Column(db.String, parent_fk, index=True)
 

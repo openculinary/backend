@@ -24,6 +24,7 @@ class ProductNutrition(Nutrition):
         'products.id',
         deferrable=True,
         ondelete='cascade',
+        onupdate='cascade',
     )
     product_id = db.Column(db.String, fk, primary_key=True)
 
