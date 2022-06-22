@@ -27,6 +27,7 @@ class ProductAdmin(ModelView):
 
     form_columns = [
         "parent",
+        "id",
         "singular",
         "plural",
         "category",
