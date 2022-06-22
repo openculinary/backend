@@ -13,6 +13,7 @@ class Product(Storable):
     parent_fk = db.ForeignKey(
         'products.id',
         deferrable=True,
+        ondelete='cascade',
     )
     parent_id = db.Column(db.String, parent_fk, index=True)
 
