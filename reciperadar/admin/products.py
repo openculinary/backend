@@ -11,7 +11,14 @@ class ProductAdmin(ModelView):
 
     list_template = "admin/products.html"
 
-    column_editable_list = ["parent"]
+    column_editable_list = [
+        "parent",
+        "is_kitchen_staple",
+        "is_dairy_free",
+        "is_gluten_free",
+        "is_vegan",
+        "is_vegetarian",
+    ]
 
     column_list = [
         "parent_id",
