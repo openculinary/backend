@@ -1,13 +1,13 @@
 from flask import abort, jsonify, request
 
-from reciperadar import app
+from reciperadar import app, db
 from reciperadar.models.recipes import Recipe
 from reciperadar.workers.recipes import crawl_url, index_recipe
 
 
 @app.route('/recipes/<recipe_id>')
 def recipe_get(recipe_id):
-    recipe = Recipe.query.get(recipe_id)
+    recipe = db.session.get(Recipe, recipe_id)
     if not recipe:
         return abort(404)
     return jsonify(recipe.to_doc())
@@ -15,7 +15,7 @@ def recipe_get(recipe_id):
 
 @app.route('/recipes/<recipe_id>/history')
 def recipe_diagnostics(recipe_id):
-    recipe = Recipe.query.get(recipe_id)
+    recipe = db.session.get(Recipe, recipe_id)
     if not recipe:
         return abort(404)
 

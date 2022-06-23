@@ -67,7 +67,7 @@ class Recipe(Storable, Searchable):
 
     @property
     def recipe_url(self):
-        return db.session.query(RecipeURL).get(self.dst)
+        return db.session.get(RecipeURL, self.dst)
 
     @staticmethod
     def from_doc(doc):

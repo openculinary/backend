@@ -7,7 +7,7 @@ from reciperadar.workers.broker import celery
 
 @celery.task(queue='index_recipe')
 def index_recipe(recipe_id):
-    recipe = db.session.query(Recipe).get(recipe_id)
+    recipe = db.session.get(Recipe, recipe_id)
     if not recipe:
         print('Could not find recipe to index')
         db.session.close()
@@ -22,7 +22,7 @@ def index_recipe(recipe_id):
 
 @celery.task(queue='process_recipe')
 def process_recipe(recipe_id):
-    recipe = db.session.query(Recipe).get(recipe_id)
+    recipe = db.session.get(Recipe, recipe_id)
     if not recipe:
         print('Could not find recipe to process')
         db.session.close()
@@ -35,7 +35,7 @@ def process_recipe(recipe_id):
 
 @celery.task(queue='crawl_recipe')
 def crawl_recipe(url):
-    recipe_url = db.session.query(RecipeURL).get(url) or RecipeURL(url=url)
+    recipe_url = db.session.get(RecipeURL, url) or RecipeURL(url=url)
 
     try:
         response = recipe_url.crawl()
@@ -132,8 +132,7 @@ def crawl_recipe(url):
     recipe = Recipe.from_doc(recipe_data)
 
     domain = (
-        db.session.query(Domain).get(recipe.domain)
-        or Domain(domain=recipe.domain)
+        db.session.get(Domain, recipe.domain) or Domain(domain=recipe.domain)
     )
 
     db.session.query(Recipe).filter_by(id=recipe.id).delete()
@@ -151,7 +150,7 @@ def crawl_recipe(url):
 
 @celery.task(queue='crawl_url')
 def crawl_url(url):
-    crawl_url = db.session.query(CrawlURL).get(url) or CrawlURL(url=url)
+    crawl_url = db.session.get(CrawlURL, url) or CrawlURL(url=url)
 
     try:
         response = crawl_url.crawl()
@@ -167,7 +166,7 @@ def crawl_url(url):
         db.session.add(crawl_url)
         db.session.commit()
 
-    existing_url = db.session.query(RecipeURL).get(url)
+    existing_url = db.session.get(RecipeURL, url)
 
     # Prevent cross-domain URL references from recrawling existing content
     if existing_url and existing_url.domain != crawl_url.domain:
