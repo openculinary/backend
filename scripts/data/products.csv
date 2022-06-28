@@ -2400,3 +2400,7 @@ rice,white_rice,white rice,white rice,,f,t,t,t,t
 rice,wild_rice,wild rice,wild rice,,f,t,t,t,t
 sherry,sherry_wine,sherry wine,sherry wines,,f,t,t,f,t
 guinness_beer,guinnes,guinnes,guinneses,,f,t,t,f,t
+lentil,urid_dal,urid dal,urid dal,,f,t,t,t,t
+bean,mung_bean,mung bean,mung beans,,f,t,t,t,t
+mung_bean,green_gram,green gram,green grams,,f,t,t,t,t
+urid_dal,urad_dal,urad dal,urad dal,,f,t,t,t,t
