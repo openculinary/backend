@@ -2,21 +2,21 @@ from reciperadar.models.recipes import Recipe
 
 
 def test_recipe_from_doc(db_session, raw_recipe_hit):
-    recipe = Recipe().from_doc(raw_recipe_hit['_source'])
+    recipe = Recipe().from_doc(raw_recipe_hit["_source"])
 
     # Commit recipe to the session; performs db object relationship resolution
     # TODO: find a more robust way to ensure that related objects are loaded
     db_session.add(recipe)
     db_session.commit()
 
-    assert recipe.author == 'example'
+    assert recipe.author == "example"
     assert not recipe.hidden
 
-    assert recipe.directions[0].equipment[0].name == 'skewer'
-    assert recipe.directions[0].equipment[1].name == 'oven'
+    assert recipe.directions[0].equipment[0].name == "skewer"
+    assert recipe.directions[0].equipment[1].name == "oven"
 
-    assert recipe.ingredients[0].product.singular == 'one'
-    expected_contents = ['one', 'ancestor-of-one']
+    assert recipe.ingredients[0].product.singular == "one"
+    expected_contents = ["one", "ancestor-of-one"]
     actual_contents = recipe.ingredients[0].product.contents
 
     assert all([content in actual_contents for content in expected_contents])
@@ -26,16 +26,16 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
     assert recipe.ingredients[0].relative_density == 0.5
 
     assert recipe.aggregate_ingredient_nutrition == {
-        'carbohydrates': 0,
-        'carbohydrates_units': 'g',
-        'energy': 0,
-        'energy_units': 'cal',
-        'fat': 0.01,
-        'fat_units': 'g',
-        'fibre': 0.33,
-        'fibre_units': 'g',
-        'protein': 0.03,
-        'protein_units': 'g',
+        "carbohydrates": 0,
+        "carbohydrates_units": "g",
+        "energy": 0,
+        "energy_units": "cal",
+        "fat": 0.01,
+        "fat_units": "g",
+        "fibre": 0.33,
+        "fibre_units": "g",
+        "protein": 0.03,
+        "protein_units": "g",
     }
 
     assert recipe.ingredients[0].product.is_vegan
@@ -47,15 +47,15 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
 
 
 def test_nutrition_source(raw_recipe_hit):
-    recipe = Recipe().from_doc(raw_recipe_hit['_source'])
+    recipe = Recipe().from_doc(raw_recipe_hit["_source"])
     doc = recipe.to_doc()
 
-    assert 'nutrition_source' in doc
-    assert doc['nutrition_source'] == 'aggregation'
+    assert "nutrition_source" in doc
+    assert doc["nutrition_source"] == "aggregation"
 
 
 def test_hidden_recipe(db_session, raw_recipe_hit):
-    recipe = Recipe().from_doc(raw_recipe_hit['_source'])
+    recipe = Recipe().from_doc(raw_recipe_hit["_source"])
 
     # Commit recipe to the session; performs db object relationship resolution
     # TODO: find a more robust way to ensure that related objects are loaded
@@ -65,11 +65,11 @@ def test_hidden_recipe(db_session, raw_recipe_hit):
     recipe.ingredients[0].product = None
 
     doc = recipe.to_doc()
-    assert doc.get('hidden') is True
+    assert doc.get("hidden") is True
 
 
 def test_nutritional_filtering(db_session, raw_recipe_hit):
-    recipe = Recipe().from_doc(raw_recipe_hit['_source'])
+    recipe = Recipe().from_doc(raw_recipe_hit["_source"])
 
     # Commit recipe to the session; performs db object relationship resolution
     # TODO: find a more robust way to ensure that related objects are loaded

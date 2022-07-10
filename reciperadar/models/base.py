@@ -12,22 +12,23 @@ class Storable(db.Model):
     __abstract__ = True
 
     ID_SYMBOL_TABLE = [
-        s for s in
-        '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+        s for s in "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
     ]
 
     @staticmethod
     def generate_id(input_bytes=None):
-        return str().join(encode(
-            input_data=input_bytes or uuid4().bytes,
-            input_base=256,
-            input_symbol_table=[b for b in range(256)],
-            output_base=58,
-            output_symbol_table=Storable.ID_SYMBOL_TABLE,
-            output_padding='',
-            input_ratio=16,
-            output_ratio=22
-        ))
+        return str().join(
+            encode(
+                input_data=input_bytes or uuid4().bytes,
+                input_base=256,
+                input_symbol_table=[b for b in range(256)],
+                output_base=58,
+                output_symbol_table=Storable.ID_SYMBOL_TABLE,
+                output_padding="",
+                input_ratio=16,
+                output_ratio=22,
+            )
+        )
 
     def to_doc(self):
         # Index all database fields by default
@@ -41,7 +42,7 @@ class Storable(db.Model):
 class Searchable(object):
     __metaclass__ = ABC
 
-    es = Elasticsearch('elasticsearch')
+    es = Elasticsearch("elasticsearch")
 
     @abstractmethod
     def from_doc(doc):
@@ -56,10 +57,10 @@ class Searchable(object):
             doc = self.es.get(index=self.noun, id=id)
         except NotFoundError:
             return None
-        return self.from_doc(doc['_source'])
+        return self.from_doc(doc["_source"])
 
     def index(self):
-        if hasattr(self, 'indexed_at'):
+        if hasattr(self, "indexed_at"):
             self.indexed_at = datetime.utcnow()
         self.es.index(
             index=self.noun,

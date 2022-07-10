@@ -5,16 +5,16 @@ from reciperadar.models.base import Storable
 
 
 class Product(Storable):
-    __tablename__ = 'products'
+    __tablename__ = "products"
     __table_args__ = (
-        db.CheckConstraint("id ~ '^[a-z_]+$'", name='ck_products_id_keyword'),
+        db.CheckConstraint("id ~ '^[a-z_]+$'", name="ck_products_id_keyword"),
     )
 
     parent_fk = db.ForeignKey(
-        'products.id',
+        "products.id",
         deferrable=True,
-        ondelete='cascade',
-        onupdate='cascade',
+        ondelete="cascade",
+        onupdate="cascade",
     )
     parent_id = db.Column(db.String, parent_fk, index=True)
 
@@ -29,15 +29,10 @@ class Product(Storable):
     is_vegetarian = db.Column(db.Boolean)
 
     nutrition = db.relationship(
-        'ProductNutrition',
-        uselist=False,
-        passive_deletes='all'
+        "ProductNutrition", uselist=False, passive_deletes="all"
     )
     parent = db.relationship(
-        'Product',
-        uselist=False,
-        remote_side=[id],
-        backref='children'
+        "Product", uselist=False, remote_side=[id], backref="children"
     )
 
     def __str__(self):
@@ -56,49 +51,46 @@ class Product(Storable):
     def contents(self):
         # NB: Use singular noun forms to retain query-time compatibility
         content_graph = {
-            'baguette': 'bread',
-            'bread': 'bread',
-            'loaf': 'bread',
-
-            'butter': 'dairy',
-            'cheese': 'dairy',
-            'milk': 'dairy',
-            'yoghurt': 'dairy',
-            'yogurt': 'dairy',
-
-            'anchovy': 'seafood',
-            'clam': 'seafood',
-            'cod': 'seafood',
-            'crab': 'seafood',
-            'fish': 'seafood',
-            'haddock': 'seafood',
-            'halibut': 'seafood',
-            'lobster': 'seafood',
-            'mackerel': 'seafood',
-            'mussel': 'seafood',
-            'prawn': 'seafood',
-            'salmon': 'seafood',
-            'sardine': 'seafood',
-            'shellfish': 'seafood',
-            'shrimp': 'seafood',
-            'squid': 'seafood',
-            'tuna': 'seafood',
-
-            'bacon': 'meat',
-            'beef': 'meat',
-            'chicken': 'meat',
-            'ham': 'meat',
-            'lamb': 'meat',
-            'pork': 'meat',
-            'sausage': 'meat',
-            'steak': 'meat',
-            'turkey': 'meat',
-            'venison': 'meat',
+            "baguette": "bread",
+            "bread": "bread",
+            "loaf": "bread",
+            "butter": "dairy",
+            "cheese": "dairy",
+            "milk": "dairy",
+            "yoghurt": "dairy",
+            "yogurt": "dairy",
+            "anchovy": "seafood",
+            "clam": "seafood",
+            "cod": "seafood",
+            "crab": "seafood",
+            "fish": "seafood",
+            "haddock": "seafood",
+            "halibut": "seafood",
+            "lobster": "seafood",
+            "mackerel": "seafood",
+            "mussel": "seafood",
+            "prawn": "seafood",
+            "salmon": "seafood",
+            "sardine": "seafood",
+            "shellfish": "seafood",
+            "shrimp": "seafood",
+            "squid": "seafood",
+            "tuna": "seafood",
+            "bacon": "meat",
+            "beef": "meat",
+            "chicken": "meat",
+            "ham": "meat",
+            "lamb": "meat",
+            "pork": "meat",
+            "sausage": "meat",
+            "steak": "meat",
+            "turkey": "meat",
+            "venison": "meat",
         }
         exclusion_graph = {
-            'meat': ['stock', 'broth', 'tomato', 'bouillon', 'soup', 'egg'],
-            'bread': ['crumb'],
-            'fruit_and_veg': ['green tomato'],
+            "meat": ["stock", "broth", "tomato", "bouillon", "soup", "egg"],
+            "bread": ["crumb"],
+            "fruit_and_veg": ["green tomato"],
         }
 
         contents = self.ancestors
@@ -117,5 +109,5 @@ class Product(Storable):
 
     def to_doc(self):
         data = super().to_doc()
-        data['contents'] = self.contents
+        data["contents"] = self.contents
         return data

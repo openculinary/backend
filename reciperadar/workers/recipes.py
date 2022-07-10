@@ -5,26 +5,26 @@ from reciperadar.models.url import CrawlURL, RecipeURL
 from reciperadar.workers.broker import celery
 
 
-@celery.task(queue='index_recipe')
+@celery.task(queue="index_recipe")
 def index_recipe(recipe_id):
     recipe = db.session.get(Recipe, recipe_id)
     if not recipe:
-        print('Could not find recipe to index')
+        print("Could not find recipe to index")
         db.session.close()
         return
 
     if recipe.index():
-        print(f'Indexed {recipe.id} for url={recipe.src}')
+        print(f"Indexed {recipe.id} for url={recipe.src}")
         db.session.commit()
 
     db.session.close()
 
 
-@celery.task(queue='process_recipe')
+@celery.task(queue="process_recipe")
 def process_recipe(recipe_id):
     recipe = db.session.get(Recipe, recipe_id)
     if not recipe:
-        print('Could not find recipe to process')
+        print("Could not find recipe to process")
         db.session.close()
         return
 
@@ -33,7 +33,7 @@ def process_recipe(recipe_id):
     db.session.close()
 
 
-@celery.task(queue='crawl_recipe')
+@celery.task(queue="crawl_recipe")
 def crawl_recipe(url):
     recipe_url = db.session.get(RecipeURL, url) or RecipeURL(url=url)
 
@@ -41,23 +41,23 @@ def crawl_recipe(url):
         response = recipe_url.crawl()
         response.raise_for_status()
     except RecipeURL.BackoffException:
-        print(f'Backoff: {recipe_url.error_message} for url={url}')
+        print(f"Backoff: {recipe_url.error_message} for url={url}")
         return
     except Exception:
-        print(f'{recipe_url.error_message} for url={url}')
+        print(f"{recipe_url.error_message} for url={url}")
         return
     finally:
         db.session.add(recipe_url)
         db.session.commit()
 
     try:
-        recipe_data = response.json()['recipe']
+        recipe_data = response.json()["recipe"]
     except Exception as e:
-        print(f'Failed to load crawler result for url={url} - {e}')
+        print(f"Failed to load crawler result for url={url} - {e}")
         db.session.close()
         return
 
-    '''
+    """
     Due to the fluid nature of the world wide web, a visit to a specific URL
     that previously contained recipe contents may result in a redirect to a
     different web address.
@@ -113,27 +113,25 @@ def crawl_recipe(url):
     to find the earliest graph node that can reach the target.  We use this as
     our source URL, and this is implemented by the `find_earliest_crawl`
     method.
-    '''
+    """
 
     # Find any more-recent crawls of this URL, allowing detection of duplicates
     latest_crawl = recipe_url.find_latest_crawl()
     if not latest_crawl:
-        print(f'Failed to find latest crawl for url={url}')
+        print(f"Failed to find latest crawl for url={url}")
         return
 
     # Find the first-known crawl for the latest URL, and consider it the origin
     earliest_crawl = recipe_url.find_earliest_crawl()
     if not earliest_crawl:
-        print(f'Failed to find earliest crawl for url={url}')
+        print(f"Failed to find earliest crawl for url={url}")
         return
 
-    recipe_data['src'] = earliest_crawl.url
-    recipe_data['dst'] = latest_crawl.resolves_to
+    recipe_data["src"] = earliest_crawl.url
+    recipe_data["dst"] = latest_crawl.resolves_to
     recipe = Recipe.from_doc(recipe_data)
 
-    domain = (
-        db.session.get(Domain, recipe.domain) or Domain(domain=recipe.domain)
-    )
+    domain = db.session.get(Domain, recipe.domain) or Domain(domain=recipe.domain)
 
     db.session.query(Recipe).filter_by(id=recipe.id).delete()
     db.session.add(recipe)
@@ -148,7 +146,7 @@ def crawl_recipe(url):
         db.session.close()
 
 
-@celery.task(queue='crawl_url')
+@celery.task(queue="crawl_url")
 def crawl_url(url):
     crawl_url = db.session.get(CrawlURL, url) or CrawlURL(url=url)
 
@@ -157,10 +155,10 @@ def crawl_url(url):
         response.raise_for_status()
         url = crawl_url.resolves_to
     except RecipeURL.BackoffException:
-        print(f'Backoff: {crawl_url.error_message} for url={crawl_url.url}')
+        print(f"Backoff: {crawl_url.error_message} for url={crawl_url.url}")
         return
     except Exception:
-        print(f'{crawl_url.error_message} for url={crawl_url.url}')
+        print(f"{crawl_url.error_message} for url={crawl_url.url}")
         return
     finally:
         db.session.add(crawl_url)
@@ -171,8 +169,8 @@ def crawl_url(url):
     # Prevent cross-domain URL references from recrawling existing content
     if existing_url and existing_url.domain != crawl_url.domain:
         print(
-            'Skipping cross-domain crawl: '
-            f'{existing_url.domain} != {crawl_url.domain}'
+            "Skipping cross-domain crawl: "
+            f"{existing_url.domain} != {crawl_url.domain}"
         )
         db.session.close()
         return

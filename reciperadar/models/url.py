@@ -21,21 +21,17 @@ class BaseURL(Storable):
         pass
 
     ERROR_MESSAGES = {
-        404: 'Missing or incomplete recipe',
-        429: 'Crawler rate-limit exceeded',
-        500: 'Scraper failure occurred',
-        501: 'Website not supported',
-        598: 'Network read timeout error',
+        404: "Missing or incomplete recipe",
+        429: "Crawler rate-limit exceeded",
+        500: "Scraper failure occurred",
+        501: "Website not supported",
+        598: "Network read timeout error",
     }
 
     def __init__(self, *args, **kwargs):
-        if 'url' in kwargs:
-            url_info = get_tld(
-                kwargs['url'],
-                as_object=True,
-                search_private=False
-            )
-            kwargs['domain'] = url_info.fld
+        if "url" in kwargs:
+            url_info = get_tld(kwargs["url"], as_object=True, search_private=False)
+            kwargs["domain"] = url_info.fld
         super().__init__(*args, **kwargs)
 
     url = db.Column(db.String, primary_key=True)
@@ -50,7 +46,7 @@ class BaseURL(Storable):
 
     @property
     def error_message(self):
-        return self.ERROR_MESSAGES.get(self.crawl_status, 'Unknown error')
+        return self.ERROR_MESSAGES.get(self.crawl_status, "Unknown error")
 
     def crawl(self):
         backoff = self.BACKOFFS.get(self.crawl_status)
@@ -64,8 +60,8 @@ class BaseURL(Storable):
             response = httpx.Response(status_code=598)
 
         if response.is_success:
-            metadata = response.json().get('metadata', {})
-            self.crawler_version = metadata.get('service_version')
+            metadata = response.json().get("metadata", {})
+            self.crawler_version = metadata.get("service_version")
 
         self.crawl_status = response.status_code
         self.crawled_at = now
@@ -73,22 +69,21 @@ class BaseURL(Storable):
 
 
 class CrawlURL(BaseURL):
-    __tablename__ = 'crawl_urls'
+    __tablename__ = "crawl_urls"
 
     resolves_to = db.Column(db.String, index=True)
 
     def _make_request(self):
         response = httpx.post(
-            url='http://crawler-service/resolve',
-            data={'url': self.url}
+            url="http://crawler-service/resolve", data={"url": self.url}
         )
         if response.is_success:
-            self.resolves_to = response.json()['url']['resolves_to']
+            self.resolves_to = response.json()["url"]["resolves_to"]
         return response
 
 
 class RecipeURL(BaseURL):
-    __tablename__ = 'recipe_urls'
+    __tablename__ = "recipe_urls"
 
     recipe_scrapers_version = db.Column(db.String, index=True)
 
@@ -101,8 +96,7 @@ class RecipeURL(BaseURL):
 
         previous_step = db.aliased(earliest_crawl)
         earliest_crawl = earliest_crawl.union(
-            db.session.query(CrawlURL)
-            .filter_by(resolves_to=previous_step.c.url)
+            db.session.query(CrawlURL).filter_by(resolves_to=previous_step.c.url)
         )
 
         return (
@@ -120,8 +114,7 @@ class RecipeURL(BaseURL):
 
         previous_step = db.aliased(latest_crawl)
         latest_crawl = latest_crawl.union(
-            db.session.query(CrawlURL)
-            .filter_by(url=previous_step.c.resolves_to)
+            db.session.query(CrawlURL).filter_by(url=previous_step.c.resolves_to)
         )
 
         return (
@@ -132,10 +125,9 @@ class RecipeURL(BaseURL):
 
     def _make_request(self):
         response = httpx.post(
-            url='http://crawler-service/crawl',
-            data={'url': self.url}
+            url="http://crawler-service/crawl", data={"url": self.url}
         )
         if response.is_success:
-            metadata = response.json().get('metadata', {})
-            self.recipe_scrapers_version = metadata['recipe_scrapers_version']
+            metadata = response.json().get("metadata", {})
+            self.recipe_scrapers_version = metadata["recipe_scrapers_version"]
         return response

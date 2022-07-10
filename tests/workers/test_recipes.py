@@ -6,16 +6,14 @@ from reciperadar.workers.recipes import crawl_url
 
 
 def set_resolution(respx_mock, url):
-    respx_mock.post('/resolve').respond(json={
-        'url': {'resolves_to': url}
-    })
+    respx_mock.post("/resolve").respond(json={"url": {"resolves_to": url}})
 
 
-@patch('reciperadar.workers.recipes.crawl_recipe.delay')
+@patch("reciperadar.workers.recipes.crawl_recipe.delay")
 @pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True)
 def test_crawl_url_samedomain(crawl_recipe, respx_mock, db_session):
-    origin_url = '//example.com/A'
-    current_url = '//example.com/B'
+    origin_url = "//example.com/A"
+    current_url = "//example.com/B"
 
     set_resolution(respx_mock, current_url)
     crawl_url(origin_url)
@@ -23,11 +21,11 @@ def test_crawl_url_samedomain(crawl_recipe, respx_mock, db_session):
     assert call(current_url) in crawl_recipe.call_args_list
 
 
-@patch('reciperadar.workers.recipes.crawl_recipe.delay')
+@patch("reciperadar.workers.recipes.crawl_recipe.delay")
 @pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True)
 def test_crawl_unseen_crossdomain(crawl_recipe, respx_mock, db_session):
-    origin_url = '//example.org/A'
-    current_url = '//example.com/B'
+    origin_url = "//example.org/A"
+    current_url = "//example.com/B"
 
     set_resolution(respx_mock, current_url)
     crawl_url(origin_url)
@@ -35,11 +33,11 @@ def test_crawl_unseen_crossdomain(crawl_recipe, respx_mock, db_session):
     assert call(current_url) in crawl_recipe.call_args_list
 
 
-@patch('reciperadar.workers.recipes.crawl_recipe.delay')
+@patch("reciperadar.workers.recipes.crawl_recipe.delay")
 @pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True)
 def test_crawl_seen_crossdomain(crawl_recipe, respx_mock, db_session):
-    origin_url = '//example.org/A'
-    current_url = '//example.com/B'
+    origin_url = "//example.org/A"
+    current_url = "//example.com/B"
 
     existing_recipe = RecipeURL(url=current_url)
     db_session.add(existing_recipe)

@@ -44,26 +44,33 @@ def db_session(connection):
 @pytest.fixture
 def products(db_session):
     from reciperadar import db
-    db.session.add(Product(
-        id='ancestor_of_one',
-        singular='ancestor-of-one',
-        plural='ancestor-of-ones',
-    ))
-    db.session.add(Product(
-        id='one',
-        singular='one',
-        plural='ones',
-        parent_id='ancestor_of_one',
-        is_vegan=True,
-        is_vegetarian=True,
-    ))
-    db.session.add(Product(
-        id='two',
-        singular='two',
-        plural='twos',
-        is_gluten_free=False,
-        is_vegetarian=True,
-    ))
+
+    db.session.add(
+        Product(
+            id="ancestor_of_one",
+            singular="ancestor-of-one",
+            plural="ancestor-of-ones",
+        )
+    )
+    db.session.add(
+        Product(
+            id="one",
+            singular="one",
+            plural="ones",
+            parent_id="ancestor_of_one",
+            is_vegan=True,
+            is_vegetarian=True,
+        )
+    )
+    db.session.add(
+        Product(
+            id="two",
+            singular="two",
+            plural="twos",
+            is_gluten_free=False,
+            is_vegetarian=True,
+        )
+    )
     db.session.commit()
 
 
@@ -101,7 +108,7 @@ def raw_recipe_hit(products):
                             "category": "appliance",
                             "name": "oven",
                         },
-                    ]
+                    ],
                 }
             ],
             "ingredients": [
@@ -123,9 +130,9 @@ def raw_recipe_hit(products):
                         "fibre": 0.65,
                         "fibre_units": "g",
                         "protein": 0.05,
-                        "protein_units": "g"
+                        "protein_units": "g",
                     },
-                    "relative_density": 0.5
+                    "relative_density": 0.5,
                 },
                 {
                     "index": 1,
@@ -134,8 +141,8 @@ def raw_recipe_hit(products):
                         "product_id": "two",
                     },
                     "magnitude": 2,
-                    "units": "g"
-                }
+                    "units": "g",
+                },
             ],
             "author": "example",
             "image_src": "http://www.example.com/path/image.png?v=123",
@@ -144,7 +151,7 @@ def raw_recipe_hit(products):
             "dst": "https://www.example.com/recipes/test",
             "domain": "example.com",
             "servings": 2,
-            "rating": 4.5
+            "rating": 4.5,
         },
-        "inner_hits": {"ingredients": {"hits": {"hits": []}}}
+        "inner_hits": {"ingredients": {"hits": {"hits": []}}},
     }

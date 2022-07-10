@@ -5,8 +5,8 @@ from reciperadar.workers.broker import celery
 
 
 event_table_classes = {
-    'redirects': RedirectEvent,
-    'searches': SearchEvent,
+    "redirects": RedirectEvent,
+    "searches": SearchEvent,
 }
 
 

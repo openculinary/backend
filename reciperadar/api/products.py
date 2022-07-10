@@ -12,7 +12,7 @@ from reciperadar.models.recipes.product import Product
 def stream(items):
     for item in items:
         line = json.dumps(item, ensure_ascii=False)
-        yield f'{line}\n'
+        yield f"{line}\n"
 
 
 def _product_map(products):
@@ -37,18 +37,18 @@ def _product_stream(product_map):
         depth = _calculate_depth(product_map, product)
         is_plural = product.plural_count > product.count - product.plural_count
         result = {
-            'product': product.plural if is_plural else product.singular,
-            'recipe_count': product.count,
-            'id': product.id,
-            'parent_id': product.parent_id,
-            'depth': depth,
+            "product": product.plural if is_plural else product.singular,
+            "recipe_count": product.count,
+            "id": product.id,
+            "parent_id": product.parent_id,
+            "depth": depth,
         }
         if product.nutrition:
-            result['nutrition'] = product.nutrition.to_doc()
+            result["nutrition"] = product.nutrition.to_doc()
         yield result
 
 
-@app.route('/products/hierarchy')
+@app.route("/products/hierarchy")
 def hierarchy():
     products = (
         db.session.query(
@@ -67,4 +67,4 @@ def hierarchy():
 
     product_map = _product_map(products)
     products = _product_stream(product_map)
-    return Response(stream(products), content_type='application/x-ndjson')
+    return Response(stream(products), content_type="application/x-ndjson")
