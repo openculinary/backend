@@ -1,5 +1,5 @@
+import httpx
 import pytest
-import requests
 from unittest.mock import patch
 
 from datetime import datetime
@@ -17,9 +17,9 @@ def content_url(origin_url):
     return origin_url.replace('subdomain', 'migrated')
 
 
-@patch('requests.post')
+@patch('httpx.post')
 def test_crawl_timeout(post, origin_url):
-    post.side_effect = [requests.exceptions.Timeout]
+    post.side_effect = [httpx.TimeoutException(message='timeout')]
 
     url = CrawlURL(url=origin_url)
     url.crawl()

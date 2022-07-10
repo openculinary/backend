@@ -1,22 +1,19 @@
 import pytest
-import responses
-
 from reciperadar.workers.searches import recrawl_search
 
-SERVICE_URL = 'http://recrawler-service'
+
+@pytest.fixture
+@pytest.mark.respx(base_url="http://recrawler-service")
+def error_response(respx_mock):
+    respx_mock.post('/').respond(status_code=400)
 
 
 @pytest.fixture
-def error_response():
-    responses.add(responses.POST, SERVICE_URL, status=400)
+@pytest.mark.respx(base_url="http://recrawler-service")
+def valid_response(respx_mock):
+    respx_mock.post('/').respond(json=['http://www.example.com'])
 
 
-@pytest.fixture
-def valid_response():
-    responses.add(responses.POST, SERVICE_URL, json=['http://www.example.com'])
-
-
-@responses.activate
 def test_recrawler_error_handled(error_response):
     result = recrawl_search(
         include=['tofu'],
@@ -28,7 +25,6 @@ def test_recrawler_error_handled(error_response):
     assert result == []
 
 
-@responses.activate
 def test_recrawler_success(valid_response):
     result = recrawl_search(
         include=['tofu'],

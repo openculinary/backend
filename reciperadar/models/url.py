@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
-import requests
+import httpx
 from tld import get_tld
 
 from reciperadar import db
@@ -60,11 +60,10 @@ class BaseURL(Storable):
 
         try:
             response = self._make_request()
-        except requests.exceptions.Timeout:
-            response = requests.Response()
-            response.status_code = 598
+        except httpx.TimeoutException:
+            response = httpx.Response(status_code=598)
 
-        if response.ok:
+        if response.is_success:
             metadata = response.json().get('metadata', {})
             self.crawler_version = metadata.get('service_version')
 
@@ -79,11 +78,11 @@ class CrawlURL(BaseURL):
     resolves_to = db.Column(db.String, index=True)
 
     def _make_request(self):
-        response = requests.post(
+        response = httpx.post(
             url='http://crawler-service/resolve',
             data={'url': self.url}
         )
-        if response.ok:
+        if response.is_success:
             self.resolves_to = response.json()['url']['resolves_to']
         return response
 
@@ -132,11 +131,11 @@ class RecipeURL(BaseURL):
         )
 
     def _make_request(self):
-        response = requests.post(
+        response = httpx.post(
             url='http://crawler-service/crawl',
             data={'url': self.url}
         )
-        if response.ok:
+        if response.is_success:
             metadata = response.json().get('metadata', {})
             self.recipe_scrapers_version = metadata['recipe_scrapers_version']
         return response
