@@ -25,6 +25,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], onupdate='cascade', ondelete='cascade', deferrable=True),
     sa.PrimaryKeyConstraint('product_id', 'singular')
     )
+    op.execute('''
+        insert into product_names (product_id, singular, plural)
+        select
+            p.id,
+            p.singular,
+            p.plural
+        from products as p
+    ''')
     op.create_index(op.f('ix_product_names_singular'), 'product_names', ['singular'], unique=False)
     # ### end Alembic commands ###
 
