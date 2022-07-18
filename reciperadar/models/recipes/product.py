@@ -28,6 +28,7 @@ class Product(Storable):
     is_vegan = db.Column(db.Boolean)
     is_vegetarian = db.Column(db.Boolean)
 
+    names = db.relationship("ProductName", uselist=True, passive_deletes="all")
     nutrition = db.relationship(
         "ProductNutrition", uselist=False, passive_deletes="all"
     )
@@ -111,3 +112,19 @@ class Product(Storable):
         data = super().to_doc()
         data["contents"] = self.contents
         return data
+
+
+class ProductName(Storable):
+    __tablename__ = "product_names"
+    __table_args__ = (db.PrimaryKeyConstraint("product_id", "singular"),)
+
+    product_fk = db.ForeignKey(
+        "products.id",
+        deferrable=True,
+        ondelete="cascade",
+        onupdate="cascade",
+    )
+
+    product_id = db.Column(db.String, product_fk)
+    singular = db.Column(db.String, index=True)
+    plural = db.Column(db.String)
