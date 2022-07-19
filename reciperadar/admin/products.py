@@ -22,6 +22,8 @@ class ProductAdmin(ModelView):
 
     column_list = [
         "parent_id",
+        "singular_names",
+        "plural_names",
         "category",
         "is_kitchen_staple",
         "is_dairy_free",
@@ -33,14 +35,16 @@ class ProductAdmin(ModelView):
     form_columns = [
         "parent",
         "id",
-        "singular",
-        "plural",
         "category",
         "is_kitchen_staple",
         "is_dairy_free",
         "is_gluten_free",
         "is_vegan",
         "is_vegetarian",
+    ]
+
+    inline_models = [
+        (ProductName, {"form_columns": ["product_id", "singular", "plural"]}),
     ]
 
     page_size = 0
@@ -73,7 +77,7 @@ class ProductAdmin(ModelView):
 
     def on_model_change(self, form, model, is_created):
         if is_created:
-            model.id = model.singular.replace(" ", "_").replace("-", "_")
+            model.id = model.singular_names[0].replace(" ", "_").replace("-", "_")
 
 
 admin_app.add_view(ProductAdmin())
