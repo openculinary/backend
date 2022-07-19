@@ -1,4 +1,5 @@
 from functools import cached_property
+from sqlalchemy.ext.associationproxy import association_proxy
 
 from reciperadar import db
 from reciperadar.models.base import Storable
@@ -35,6 +36,9 @@ class Product(Storable):
     parent = db.relationship(
         "Product", uselist=False, remote_side=[id], backref="children"
     )
+
+    singular_names = association_proxy("names", "singular")
+    plural_names = association_proxy("names", "plural")
 
     def __str__(self):
         return self.id

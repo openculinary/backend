@@ -4,7 +4,7 @@ from flask_admin.contrib.sqla import ModelView
 from sqlalchemy.orm import joinedload
 
 from reciperadar import admin_app, db
-from reciperadar.models.recipes.product import Product
+from reciperadar.models.recipes.product import Product, ProductName
 
 
 class ProductAdmin(ModelView):
@@ -22,8 +22,6 @@ class ProductAdmin(ModelView):
 
     column_list = [
         "parent_id",
-        "singular",
-        "plural",
         "category",
         "is_kitchen_staple",
         "is_dairy_free",
