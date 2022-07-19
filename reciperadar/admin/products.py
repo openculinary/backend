@@ -59,9 +59,10 @@ class ProductAdmin(ModelView):
         page_size=None,
     ):
         results = []
-        products = Product.query.options(joinedload(Product.children)).order_by(
-            Product.id
-        )
+        products = Product.query.options(
+            joinedload(Product.children),
+            joinedload(Product.names),
+        ).order_by(Product.id)
         sources = deque(filter(lambda x: x.parent is None, products))
         while sources:
             product = sources.popleft()
