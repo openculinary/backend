@@ -131,6 +131,7 @@ class ProductName(Storable):
         onupdate="cascade",
     )
 
+    id = db.Column(db.String)
     product_id = db.Column(db.String, product_fk)
     singular = db.Column(db.String, index=True)
     plural = db.Column(db.String)
