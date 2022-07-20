@@ -3,11 +3,12 @@ import json
 from elasticsearch import Elasticsearch
 from sqlalchemy.orm import joinedload
 
-from reciperadar.models.recipes.product import Product
 from reciperadar.workers.broker import celery
 
 
 def get_product_synonyms():
+    from reciperadar.models.recipes.product import Product
+
     synonyms = {}
     products = Product.query.options(joinedload(Product.names))
     for product in products:
