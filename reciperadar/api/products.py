@@ -5,7 +5,7 @@ from flask import Response
 from reciperadar import app, db
 from reciperadar.models.recipes.ingredient import RecipeIngredient
 from reciperadar.models.recipes.nutrition import ProductNutrition
-from reciperadar.models.recipes.product import Product
+from reciperadar.models.recipes.product import Product, ProductName
 
 
 # Custom streaming method
@@ -17,7 +17,8 @@ def stream(items):
 
 def _product_map(products):
     product_map = {}
-    for product, nutrition, count, plural_count in products.all():
+    for product, name, nutrition, count, plural_count in products.all():
+        product.name = name
         product.nutrition = nutrition
         product.count = count or 0
         product.plural_count = plural_count or 0
@@ -37,7 +38,7 @@ def _product_stream(product_map):
         depth = _calculate_depth(product_map, product)
         is_plural = product.plural_count > product.count - product.plural_count
         result = {
-            "product": product.plural if is_plural else product.singular,
+            "product": product.name.plural if is_plural else product.name.singular,
             "recipe_count": product.count,
             "id": product.id,
             "parent_id": product.parent_id,
@@ -53,14 +54,17 @@ def hierarchy():
     products = (
         db.session.query(
             Product,
+            ProductName,
             ProductNutrition,
             db.func.count(),
             db.func.sum(RecipeIngredient.product_is_plural.cast(db.Integer)),
         )
+        .join(ProductName)
         .join(ProductNutrition, isouter=True)
         .join(RecipeIngredient, isouter=True)
         .group_by(
             Product,
+            ProductName,
             ProductNutrition,
         )
     )
