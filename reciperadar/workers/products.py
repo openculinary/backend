@@ -12,6 +12,8 @@ def get_product_synonyms():
     synonyms = {}
     products = Product.query.options(joinedload(Product.names))
     for product in products:
+        if len(product.names) == 1:
+            continue
         for synonym in product.singular_names:
             synonyms[synonym] = list(product.singular_names)
     return synonyms
