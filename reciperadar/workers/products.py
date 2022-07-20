@@ -43,5 +43,8 @@ def populate_product_synonym_index(index, synonyms):
 @celery.task(queue="update_product_synonyms")
 def update_product_synonyms():
     synonyms = get_product_synonyms()
+    print(f"* Found {len(synonyms)} synonym entries to be persisted")
     recreate_product_synonym_index("product_synonyms")
+    print("* Recreated product synonym index")
     populate_product_synonym_index("product_synonyms", synonyms)
+    print("* Populated product synonym index")
