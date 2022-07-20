@@ -26,23 +26,14 @@ def _product_map(products):
     return product_map
 
 
-def _calculate_depth(product_map, product):
-    if product.parent_id is None:
-        return 0
-    parent = product_map[product.parent_id]
-    return _calculate_depth(product_map, parent) + 1
-
-
 def _product_stream(product_map):
     for product in product_map.values():
-        depth = _calculate_depth(product_map, product)
         is_plural = product.plural_count > product.count - product.plural_count
         result = {
             "product": product.name.plural if is_plural else product.name.singular,
             "recipe_count": product.count,
             "id": product.id,
             "parent_id": product.parent_id,
-            "depth": depth,
         }
         if product.nutrition:
             result["nutrition"] = product.nutrition.to_doc()
