@@ -23,7 +23,7 @@ def upgrade():
     sa.Column('singular', sa.String(), nullable=False),
     sa.Column('plural', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], onupdate='cascade', ondelete='cascade', deferrable=True),
-    sa.PrimaryKeyConstraint('product_id', 'singular')
+    sa.PrimaryKeyConstraint('product_id', 'singular', name='product_names_pkey')
     )
     op.execute('''
         insert into product_names (product_id, singular, plural)

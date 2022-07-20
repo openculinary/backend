@@ -122,7 +122,6 @@ class Product(Storable):
 
 class ProductName(Storable):
     __tablename__ = "product_names"
-    __table_args__ = (db.PrimaryKeyConstraint("product_id", "singular"),)
 
     product_fk = db.ForeignKey(
         "products.id",
@@ -131,7 +130,7 @@ class ProductName(Storable):
         onupdate="cascade",
     )
 
-    id = db.Column(db.String)
-    product_id = db.Column(db.String, product_fk)
+    id = db.Column(db.String, primary_key=True)
+    product_id = db.Column(db.String, product_fk, index=True)
     singular = db.Column(db.String, index=True)
     plural = db.Column(db.String)
