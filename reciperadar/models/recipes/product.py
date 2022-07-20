@@ -1,8 +1,10 @@
 from functools import cached_property
+from sqlalchemy import event
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from reciperadar import db
 from reciperadar.models.base import Storable
+from reciperadar.workers.products import update_product_synonyms
 
 
 class Product(Storable):
@@ -134,3 +136,18 @@ class ProductName(Storable):
     product_id = db.Column(db.String, product_fk, index=True)
     singular = db.Column(db.String, index=True)
     plural = db.Column(db.String)
+
+
+@event.listens_for(ProductName, "after_insert")
+def after_product_name_insert(mapper, connection, target):
+    update_product_synonyms.delay()
+
+
+@event.listens_for(ProductName, "after_update")
+def after_product_name_update(mapper, connection, target):
+    update_product_synonyms.delay()
+
+
+@event.listens_for(ProductName, "after_delete")
+def after_product_name_delete(mapper, connection, target):
+    update_product_synonyms.delay()
