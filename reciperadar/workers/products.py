@@ -39,6 +39,8 @@ def populate_product_synonym_index(index, synonyms):
         if len(actions) % 100 == 0:
             es.bulk("\n".join(actions))
             actions.clear()
+    if actions:
+        es.bulk("\n".join(actions))
     es.indices.refresh(index=index)
 
 
