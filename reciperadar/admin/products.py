@@ -44,7 +44,7 @@ class ProductAdmin(ModelView):
     ]
 
     inline_models = [
-        (ProductName, {"form_columns": ["product_id", "singular", "plural"]}),
+        (ProductName, {"form_columns": ["singular", "plural"]}),
     ]
 
     page_size = 0
