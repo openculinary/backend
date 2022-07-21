@@ -1,10 +1,10 @@
 from collections import deque
 
-from flask_admin.contrib.sqla import ModelView
+from flask_admin.contrib.sqla import ModelView, validators
 from sqlalchemy.orm import joinedload
 
 from reciperadar import admin_app, db
-from reciperadar.models.recipes.product import Product
+from reciperadar.models.recipes.product import Product, ProductName
 
 
 class ProductAdmin(ModelView):
@@ -22,8 +22,8 @@ class ProductAdmin(ModelView):
 
     column_list = [
         "parent_id",
-        "singular",
-        "plural",
+        "singular_names",
+        "plural_names",
         "category",
         "is_kitchen_staple",
         "is_dairy_free",
@@ -35,8 +35,6 @@ class ProductAdmin(ModelView):
     form_columns = [
         "parent",
         "id",
-        "singular",
-        "plural",
         "category",
         "is_kitchen_staple",
         "is_dairy_free",
@@ -44,6 +42,16 @@ class ProductAdmin(ModelView):
         "is_vegan",
         "is_vegetarian",
     ]
+
+    inline_models = [
+        (ProductName, {"form_columns": ["id", "singular", "plural"]}),
+    ]
+
+    form_args = {
+        "names": {
+            "validators": [validators.ItemsRequired()],
+        }
+    }
 
     page_size = 0
 
@@ -61,9 +69,10 @@ class ProductAdmin(ModelView):
         page_size=None,
     ):
         results = []
-        products = Product.query.options(joinedload(Product.children)).order_by(
-            Product.id
-        )
+        products = Product.query.options(
+            joinedload(Product.children),
+            joinedload(Product.names),
+        ).order_by(Product.id)
         sources = deque(filter(lambda x: x.parent is None, products))
         while sources:
             product = sources.popleft()
@@ -73,8 +82,11 @@ class ProductAdmin(ModelView):
         return len(results), results
 
     def on_model_change(self, form, model, is_created):
+        for name in model.names:
+            if name.id is None:
+                name.id = ProductName.generate_id()
         if is_created:
-            model.id = model.singular.replace(" ", "_").replace("-", "_")
+            model.id = Product.generate_id()
 
 
 admin_app.add_view(ProductAdmin())
