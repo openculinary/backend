@@ -1,6 +1,6 @@
 from collections import deque
 
-from flask_admin.contrib.sqla import ModelView
+from flask_admin.contrib.sqla import ModelView, validators
 from sqlalchemy.orm import joinedload
 
 from reciperadar import admin_app, db
@@ -46,6 +46,12 @@ class ProductAdmin(ModelView):
     inline_models = [
         (ProductName, {"form_columns": ["id", "singular", "plural"]}),
     ]
+
+    form_args = {
+        "names": {
+            "validators": [validators.ItemsRequired()],
+        }
+    }
 
     page_size = 0
 
