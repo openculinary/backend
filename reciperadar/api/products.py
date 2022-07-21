@@ -23,7 +23,6 @@ def _product_stream(products):
             "product": name.plural if is_plural else name.singular,
             "recipe_count": count,
             "id": product.id,
-            "parent_id": product.parent_id,
         }
         if nutrition:
             result["nutrition"] = nutrition.to_doc()
