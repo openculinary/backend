@@ -86,7 +86,7 @@ class ProductAdmin(ModelView):
             if name.id is None:
                 name.id = ProductName.generate_id()
         if is_created:
-            model.id = model.singular_names[0].replace(" ", "_").replace("-", "_")
+            model.id = Product.generate_id()
 
 
 admin_app.add_view(ProductAdmin())
