@@ -14,12 +14,20 @@ class RecipeIngredient(Storable, Searchable):
     )
     product_id = db.Column(db.String, product_fk, index=True)
 
+    product_name_fk = db.ForeignKey(
+        column="product_names.id",
+        deferrable=True,
+        ondelete="set null",
+    )
+    product_name_id = db.Column(db.String, product_name_fk, index=True)
+
     id = db.Column(db.String, primary_key=True)
     index = db.Column(db.Integer)
     description = db.Column(db.String)
     markup = db.Column(db.String)
 
     product = db.relationship("Product", uselist=False)
+    product_name = db.relationship("ProductName", uselist=False)
     nutrition = db.relationship(
         "IngredientNutrition", uselist=False, passive_deletes="all"
     )
@@ -39,13 +47,6 @@ class RecipeIngredient(Storable, Searchable):
             return self.magnitude
         if self.units == "ml":
             return self.magnitude / self.relative_density
-
-    @property
-    def product_name(self):
-        if self.product_is_plural:
-            return self.product.plural
-        else:
-            return self.product.singular
 
     @staticmethod
     def from_doc(doc):
@@ -71,6 +72,10 @@ class RecipeIngredient(Storable, Searchable):
     def to_doc(self):
         data = super().to_doc()
         data["product"] = self.product.to_doc() if self.product else None
-        data["product_name"] = self.product_name if self.product else None
+        data["product_name"] = (
+            self.product_name.render_name(plural=self.product_is_plural)
+            if self.product_name
+            else None
+        )
         data["nutrition"] = self.nutrition.to_doc() if self.nutrition else None
         return data
