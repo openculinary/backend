@@ -42,7 +42,7 @@ class Storable(db.Model):
         }
 
 
-class Searchable(object):
+class Indexable(object):
     __metaclass__ = ABC
 
     es = Elasticsearch("elasticsearch")

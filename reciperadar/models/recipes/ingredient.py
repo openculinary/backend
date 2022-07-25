@@ -1,9 +1,9 @@
 from reciperadar import db
-from reciperadar.models.base import Searchable, Storable
+from reciperadar.models.base import Indexable, Storable
 from reciperadar.models.recipes.nutrition import IngredientNutrition
 
 
-class RecipeIngredient(Storable, Searchable):
+class RecipeIngredient(Storable, Indexable):
     __tablename__ = "recipe_ingredients"
 
     recipe_fk = db.ForeignKey(column="recipes.id", ondelete="cascade")
