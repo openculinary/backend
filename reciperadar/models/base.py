@@ -29,6 +29,10 @@ class Storable(db.Model):
             )
         )
 
+    @abstractmethod
+    def from_doc(doc):
+        pass
+
     def to_doc(self):
         # Index all database fields by default
         return {
@@ -42,10 +46,6 @@ class Searchable(object):
     __metaclass__ = ABC
 
     es = Elasticsearch("elasticsearch")
-
-    @abstractmethod
-    def from_doc(doc):
-        pass
 
     @abstractproperty
     def noun(self):
