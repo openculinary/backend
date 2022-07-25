@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod, abstractproperty
 from basest.core import encode
 from datetime import datetime
 from elasticsearch import Elasticsearch
-from elasticsearch.exceptions import NotFoundError
 from uuid import uuid4
 
 from reciperadar import db
@@ -51,13 +50,6 @@ class Searchable(object):
     @abstractproperty
     def noun(self):
         pass
-
-    def get_by_id(self, id):
-        try:
-            doc = self.es.get(index=self.noun, id=id)
-        except NotFoundError:
-            return None
-        return self.from_doc(doc["_source"])
 
     def index(self):
         if hasattr(self, "indexed_at"):
