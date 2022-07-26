@@ -3,7 +3,14 @@ import pytest
 from sqlalchemy import event
 
 from reciperadar import app, db
-from reciperadar.models.recipes.product import Product
+from reciperadar.models.recipes.product import Product, ProductName
+
+
+@pytest.fixture(autouse=True)
+def celery_broker():
+    from reciperadar.workers.broker import celery
+
+    celery.conf.update({"broker_url": "memory://"})
 
 
 @pytest.fixture
@@ -53,6 +60,14 @@ def products(db_session):
         )
     )
     db.session.add(
+        ProductName(
+            id="ancestor_of_one",
+            product_id="ancestor_of_one",
+            singular="ancestor-of-one",
+            plural="ancestor-of-ones",
+        )
+    )
+    db.session.add(
         Product(
             id="one",
             singular="one",
@@ -63,12 +78,28 @@ def products(db_session):
         )
     )
     db.session.add(
+        ProductName(
+            id="one",
+            product_id="one",
+            singular="one",
+            plural="ones",
+        )
+    )
+    db.session.add(
         Product(
             id="two",
             singular="two",
             plural="twos",
             is_gluten_free=False,
             is_vegetarian=True,
+        )
+    )
+    db.session.add(
+        ProductName(
+            id="two",
+            product_id="two",
+            singular="two",
+            plural="twos",
         )
     )
     db.session.commit()
