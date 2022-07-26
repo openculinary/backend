@@ -26,7 +26,6 @@ class RecipeIngredient(Storable, Indexable):
     description = db.Column(db.String)
     markup = db.Column(db.String)
 
-    product = db.relationship("Product", uselist=False)
     product_name = db.relationship("ProductName", uselist=False)
     nutrition = db.relationship(
         "IngredientNutrition", uselist=False, passive_deletes="all"
@@ -40,6 +39,16 @@ class RecipeIngredient(Storable, Indexable):
     product_parser = db.Column(db.String)
     relative_density = db.Column(db.Float)
     verb = db.Column(db.String)
+
+    @property
+    def product(self):
+        if self.product_name:
+            return self.product_name.product
+
+    @product.setter
+    def product(self, value):
+        if self.product_name:
+            self.product_name.product = value
 
     @property
     def mass(self):
@@ -57,7 +66,7 @@ class RecipeIngredient(Storable, Indexable):
             index=doc["index"],
             description=doc["description"].strip(),
             markup=doc.get("markup"),
-            product_id=doc["product"].get("product_id"),
+            product_name_id=doc["product"].get("product_id"),
             product_is_plural=doc["product"].get("is_plural"),
             product_parser=doc["product"].get("product_parser"),
             nutrition=IngredientNutrition.from_doc(nutrition) if nutrition else None,
