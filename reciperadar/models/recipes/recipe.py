@@ -1,7 +1,7 @@
 from pymmh3 import hash_bytes
 
 from reciperadar import db
-from reciperadar.models.base import Searchable, Storable
+from reciperadar.models.base import Indexable, Storable
 from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
 from reciperadar.models.recipes.nutrition import (
@@ -11,7 +11,7 @@ from reciperadar.models.recipes.nutrition import (
 from reciperadar.models.url import RecipeURL
 
 
-class Recipe(Storable, Searchable):
+class Recipe(Storable, Indexable):
     __tablename__ = "recipes"
 
     id = db.Column(db.String, primary_key=True)
