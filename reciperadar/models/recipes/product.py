@@ -45,6 +45,18 @@ class Product(Storable):
     def __str__(self):
         return self.id
 
+    @cached_property
+    def contents(self):
+        contents = set()
+        for name in self.names:
+            contents |= set(name.contents or [])
+        return list(contents)
+
+    def to_doc(self):
+        data = super().to_doc()
+        data["contents"] = self.contents
+        return data
+
 
 class ProductName(Storable):
     __tablename__ = "product_names"
