@@ -137,9 +137,6 @@ class ProductName(Storable):
     singular = db.Column(db.String, index=True)
     plural = db.Column(db.String)
 
-    def render_name(self, plural):
-        return self.plural if plural else self.singular
-
 
 @event.listens_for(ProductName, "after_insert")
 def after_product_name_insert(mapper, connection, target):

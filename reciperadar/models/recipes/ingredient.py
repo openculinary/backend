@@ -82,7 +82,11 @@ class RecipeIngredient(Storable, Indexable):
         data = super().to_doc()
         data["product"] = self.product.to_doc() if self.product else None
         data["product_name"] = (
-            self.product_name.render_name(plural=self.product_is_plural)
+            (
+                self.product_name.plural
+                if self.product_is_plural
+                else self.product_name.singular
+            )
             if self.product_name
             else None
         )
