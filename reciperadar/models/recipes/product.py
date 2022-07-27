@@ -47,13 +47,32 @@ class Product(Storable):
     def __str__(self):
         return self.id
 
+
+class ProductName(Storable):
+    __tablename__ = "product_names"
+
+    product_fk = db.ForeignKey(
+        "products.id",
+        deferrable=True,
+        ondelete="cascade",
+        onupdate="cascade",
+    )
+
+    id = db.Column(db.String, primary_key=True)
+    product_id = db.Column(db.String, product_fk, index=True)
+    singular = db.Column(db.String, index=True)
+    plural = db.Column(db.String)
+
     @cached_property
     def ancestors(self):
         results = set()
-        product = self
-        while product:
-            results.add(product.singular)
-            product = product.parent
+        product_name = self
+        while True:
+            results.add(product_name.singular)
+            if product_name.product and product_name.product.parent:
+                product_name = product_name.product.parent.names[0]
+            else:
+                break
         return results
 
     @cached_property
@@ -115,27 +134,6 @@ class Product(Storable):
                 for field in fields:
                     contents.add(field)
         return list(contents)
-
-    def to_doc(self):
-        data = super().to_doc()
-        data["contents"] = self.contents
-        return data
-
-
-class ProductName(Storable):
-    __tablename__ = "product_names"
-
-    product_fk = db.ForeignKey(
-        "products.id",
-        deferrable=True,
-        ondelete="cascade",
-        onupdate="cascade",
-    )
-
-    id = db.Column(db.String, primary_key=True)
-    product_id = db.Column(db.String, product_fk, index=True)
-    singular = db.Column(db.String, index=True)
-    plural = db.Column(db.String)
 
 
 @event.listens_for(ProductName, "after_insert")

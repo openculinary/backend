@@ -40,11 +40,11 @@ class Recipe(Storable, Indexable):
         return f"/#action=view&id={self.id}"
 
     @property
-    def products(self):
+    def product_names(self):
         unique_products = {
-            ingredient.product.singular: ingredient.product
+            ingredient.product_name.singular: ingredient.product_name
             for ingredient in self.ingredients
-            if ingredient.product
+            if ingredient.product_name
         }
         return list(unique_products.values())
 
@@ -94,8 +94,8 @@ class Recipe(Storable, Indexable):
     @property
     def contents(self):
         contents = set()
-        for product in self.products:
-            contents |= set(product.contents or [])
+        for product_name in self.product_names:
+            contents |= set(product_name.contents or [])
         return list(contents)
 
     @property
@@ -179,7 +179,7 @@ class Recipe(Storable, Indexable):
         data["directions"] = [direction.to_doc() for direction in self.directions]
         data["ingredients"] = [ingredient.to_doc() for ingredient in self.ingredients]
         data["contents"] = self.contents
-        data["product_count"] = len(self.products)
+        data["product_count"] = len(self.product_names)
         data["hidden"] = self.hidden
         data["nutrition"] = (
             self.nutrition.to_doc()
