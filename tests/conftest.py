@@ -55,8 +55,6 @@ def products(db_session):
     db.session.add(
         Product(
             id="ancestor_of_one",
-            singular="ancestor-of-one",
-            plural="ancestor-of-ones",
         )
     )
     db.session.add(
@@ -70,8 +68,6 @@ def products(db_session):
     db.session.add(
         Product(
             id="one",
-            singular="one",
-            plural="ones",
             parent_id="ancestor_of_one",
             is_vegan=True,
             is_vegetarian=True,
@@ -88,8 +84,6 @@ def products(db_session):
     db.session.add(
         Product(
             id="two",
-            singular="two",
-            plural="twos",
             is_gluten_free=False,
             is_vegetarian=True,
         )

@@ -15,7 +15,7 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
     assert recipe.directions[0].equipment[0].name == "skewer"
     assert recipe.directions[0].equipment[1].name == "oven"
 
-    assert recipe.ingredients[0].product.singular == "one"
+    assert recipe.ingredients[0].product_name.singular == "one"
     expected_contents = ["one", "ancestor-of-one"]
     actual_contents = recipe.ingredients[0].product_name.contents
 
