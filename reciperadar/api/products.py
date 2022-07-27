@@ -38,10 +38,13 @@ def hierarchy():
             db.func.count(),
             db.func.sum(RecipeIngredient.product_is_plural.cast(db.Integer)),
         )
-        .join(ProductName)
         .join(
             ProductNutrition,
             ProductNutrition.product_id == ProductName.product_id,
+            isouter=True,
+        )
+        .join(
+            RecipeIngredient,
             isouter=True,
         )
         .group_by(
