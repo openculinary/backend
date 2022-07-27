@@ -9,11 +9,6 @@ class RecipeIngredient(Storable, Indexable):
     recipe_fk = db.ForeignKey(column="recipes.id", ondelete="cascade")
     recipe_id = db.Column(db.String, recipe_fk, index=True)
 
-    product_fk = db.ForeignKey(
-        column="products.id", deferrable=True, ondelete="set null", onupdate="cascade"
-    )
-    product_id = db.Column(db.String, product_fk, index=True)
-
     product_name_fk = db.ForeignKey(
         column="product_names.id",
         deferrable=True,
