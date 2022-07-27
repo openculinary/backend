@@ -77,6 +77,7 @@ class ProductName(Storable):
 
     @cached_property
     def contents(self):
+        # TODO: Move this back to the Product model by introducing content tags
         # NB: Use singular noun forms to retain query-time compatibility
         content_graph = {
             "baguette": "bread",
