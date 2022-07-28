@@ -1,36 +1,26 @@
-from reciperadar.models.recipes.product import ProductName
+from reciperadar.models.recipes.product import Product, ProductName
 
 
 def test_chicken_contents():
-    product = ProductName(singular="chicken")
+    chicken = Product(names=[ProductName(singular="chicken")])
 
-    assert "chicken" in product.contents
-    assert "meat" in product.contents
+    assert "chicken breast" not in chicken.contents
+    assert "chicken" in chicken.contents
 
 
 def test_chicken_breast_contents():
-    product = ProductName(singular="chicken breast")
+    chicken = Product(names=[ProductName(singular="chicken")])
+    chicken_breast = Product(
+        names=[ProductName(singular="chicken breast")],
+        parent=chicken,
+    )
 
-    assert "chicken breast" in product.contents
-    assert "chicken" in product.contents
-    assert "meat" in product.contents
-
-
-def test_chicken_exclusion_contents():
-    exclusions = ["broth", "bouillon", "soup"]
-
-    for exclusion in exclusions:
-        product = ProductName(singular=f"chicken {exclusion}")
-
-        assert f"chicken {exclusion}" in product.contents
-        assert "chicken" not in product.contents
-
-        # TODO: identify meat-derived products
-        # assert 'meat' in contents
+    assert "chicken breast" in chicken_breast.contents
+    assert "chicken" in chicken_breast.contents
 
 
 def test_contents_singularization():
-    product = ProductName(singular="mushroom")
+    mushroom = ProductName(singular="mushroom")
 
-    assert "mushroom" in product.contents
-    assert "mushrooms" not in product.contents
+    assert "mushroom" in mushroom.contents
+    assert "mushrooms" not in mushroom.contents
