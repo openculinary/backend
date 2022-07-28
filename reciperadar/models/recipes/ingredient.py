@@ -61,7 +61,7 @@ class RecipeIngredient(Storable, Indexable):
             index=doc["index"],
             description=doc["description"].strip(),
             markup=doc.get("markup"),
-            product_name_id=doc["product"].get("product_id"),
+            product_name_id=doc["product"].get("id"),
             product_is_plural=doc["product"].get("is_plural"),
             product_parser=doc["product"].get("product_parser"),
             nutrition=IngredientNutrition.from_doc(nutrition) if nutrition else None,

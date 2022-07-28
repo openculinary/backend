@@ -141,7 +141,7 @@ def raw_recipe_hit(products):
                     "index": 0,
                     "description": "1 unit of test ingredient one",
                     "product": {
-                        "product_id": "one",
+                        "id": "one",
                     },
                     "magnitude": 50,
                     "units": "ml",
@@ -163,7 +163,7 @@ def raw_recipe_hit(products):
                     "index": 1,
                     "description": "two units of test ingredient two",
                     "product": {
-                        "product_id": "two",
+                        "id": "two",
                     },
                     "magnitude": 2,
                     "units": "g",
