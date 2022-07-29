@@ -73,7 +73,7 @@ def test_crawl_url_timeline(db_session):
 @pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True)
 def test_crawl_url_relocation_stability(utcnow_mock, db_session, respx_mock):
     path = [
-        (datetime(2020, 1, 1), "A", "A"),
+        (datetime(2020, 1, 1), "A", "B"),
         (datetime(2020, 2, 1), "B", "B"),
         (datetime(2020, 3, 1), "A", "B"),
         (datetime(2020, 4, 1), "A", "B"),
