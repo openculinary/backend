@@ -36,7 +36,6 @@ class BaseURL(Storable):
 
     url = db.Column(db.String, primary_key=True)
     domain = db.Column(db.String)
-    crawled_at = db.Column(db.DateTime)
     earliest_crawled_at = db.Column(db.DateTime)
     latest_crawled_at = db.Column(db.DateTime)
     crawl_status = db.Column(db.Integer)
@@ -66,7 +65,6 @@ class BaseURL(Storable):
             self.crawler_version = metadata.get("service_version")
 
         self.crawl_status = response.status_code
-        self.crawled_at = now
         self.earliest_crawled_at = self.earliest_crawled_at or now
         self.latest_crawled_at = now
         return response
