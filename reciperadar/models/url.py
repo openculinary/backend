@@ -67,6 +67,8 @@ class BaseURL(Storable):
 
         self.crawl_status = response.status_code
         self.crawled_at = now
+        self.earliest_crawled_at = self.earliest_crawled_at or now
+        self.latest_crawled_at = now
         return response
 
 
