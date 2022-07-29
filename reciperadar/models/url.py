@@ -37,6 +37,8 @@ class BaseURL(Storable):
     url = db.Column(db.String, primary_key=True)
     domain = db.Column(db.String)
     crawled_at = db.Column(db.DateTime)
+    earliest_crawled_at = db.Column(db.DateTime)
+    latest_crawled_at = db.Column(db.DateTime)
     crawl_status = db.Column(db.Integer)
     crawler_version = db.Column(db.String)
 
