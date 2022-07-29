@@ -53,7 +53,7 @@ class BaseURL(Storable):
     def crawl(self):
         backoff = self.BACKOFFS.get(self.crawl_status)
         now = datetime.utcnow()
-        if self.crawled_at and backoff and self.crawled_at + backoff > now:
+        if backoff and self.latest_crawled_at + backoff > now:
             raise RecipeURL.BackoffException()
 
         try:
