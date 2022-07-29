@@ -53,7 +53,8 @@ def test_crawl_url_timeline(db_session):
         CrawlURL(
             url=f"//example.org/{from_node}",
             resolves_to=f"//example.org/{to_node}",
-            crawled_at=time,
+            earliest_crawled_at=time,
+            latest_crawled_at=time,
         )
         for (time, from_node, to_node) in path
     ]
