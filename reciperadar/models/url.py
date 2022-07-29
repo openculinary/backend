@@ -85,7 +85,7 @@ class CrawlURL(BaseURL):
 class RecipeURL(BaseURL):
     __tablename__ = "recipe_urls"
 
-    recipe_scrapers_version = db.Column(db.String, index=True)
+    recipe_scrapers_version = db.Column(db.String)
 
     def find_earliest_crawl(self):
         earliest_crawl = (
