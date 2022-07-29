@@ -36,7 +36,8 @@ class BaseURL(Storable):
 
     url = db.Column(db.String, primary_key=True)
     domain = db.Column(db.String)
-    crawled_at = db.Column(db.DateTime)
+    earliest_crawled_at = db.Column(db.DateTime)
+    latest_crawled_at = db.Column(db.DateTime)
     crawl_status = db.Column(db.Integer)
     crawler_version = db.Column(db.String)
 
@@ -51,7 +52,7 @@ class BaseURL(Storable):
     def crawl(self):
         backoff = self.BACKOFFS.get(self.crawl_status)
         now = datetime.utcnow()
-        if self.crawled_at and backoff and self.crawled_at + backoff > now:
+        if backoff and self.latest_crawled_at + backoff > now:
             raise RecipeURL.BackoffException()
 
         try:
@@ -64,7 +65,8 @@ class BaseURL(Storable):
             self.crawler_version = metadata.get("service_version")
 
         self.crawl_status = response.status_code
-        self.crawled_at = now
+        self.earliest_crawled_at = self.earliest_crawled_at or now
+        self.latest_crawled_at = now
         return response
 
 
@@ -101,7 +103,7 @@ class RecipeURL(BaseURL):
 
         return (
             db.session.query(earliest_crawl)
-            .order_by(earliest_crawl.c.crawled_at.asc())
+            .order_by(earliest_crawl.c.earliest_crawled_at.asc())
             .first()
         )
 
@@ -119,7 +121,7 @@ class RecipeURL(BaseURL):
 
         return (
             db.session.query(latest_crawl)
-            .order_by(latest_crawl.c.crawled_at.desc())
+            .order_by(latest_crawl.c.latest_crawled_at.desc())
             .first()
         )
 

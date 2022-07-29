@@ -28,14 +28,14 @@ def recipe_diagnostics(recipe_id):
             "indexed_at": recipe.indexed_at,
             "latest_crawl": {
                 "url": recipe_url.url,
-                "crawled_at": recipe_url.crawled_at,
+                "crawled_at": recipe_url.latest_crawled_at,
                 "crawl_status": recipe_url.crawl_status,
                 "crawler_version": recipe_url.crawler_version,
                 "recipe_scrapers_version": recipe_url.recipe_scrapers_version,
             },
             "earliest_crawl": {
                 "url": earliest_crawl.url,
-                "crawled_at": earliest_crawl.crawled_at,
+                "crawled_at": earliest_crawl.earliest_crawled_at,
                 "crawl_status": earliest_crawl.crawl_status,
                 "crawler_version": earliest_crawl.crawler_version,
             },
