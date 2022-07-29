@@ -74,15 +74,18 @@ class ProductName(Storable):
     plural = db.Column(db.String)
 
     @cached_property
+    def ancestors(self):
+        product = self.product
+        while product:
+            yield product
+            product = product.parent
+
+    @cached_property
     def contents(self):
         results = set()
-        product_name = self
-        while True:
-            results.add(product_name.singular)
-            if product_name.product and product_name.product.parent:
-                product_name = product_name.product.parent.names[0]
-            else:
-                break
+        for product in self.ancestors:
+            for product_name in product.names:
+                results.add(product_name.singular)
         return results
 
 
