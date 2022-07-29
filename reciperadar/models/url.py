@@ -105,7 +105,7 @@ class RecipeURL(BaseURL):
 
         return (
             db.session.query(earliest_crawl)
-            .order_by(earliest_crawl.c.crawled_at.asc())
+            .order_by(earliest_crawl.c.earliest_crawled_at.asc())
             .first()
         )
 
@@ -123,7 +123,7 @@ class RecipeURL(BaseURL):
 
         return (
             db.session.query(latest_crawl)
-            .order_by(latest_crawl.c.crawled_at.desc())
+            .order_by(latest_crawl.c.latest_crawled_at.desc())
             .first()
         )
 
