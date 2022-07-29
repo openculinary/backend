@@ -94,9 +94,5 @@ def test_crawl_url_relocation_stability(utcnow_mock, db_session, respx_mock):
         recipe_url = RecipeURL(url=to_url)
         origin = recipe_url.find_earliest_crawl()
         origin_urls.add(origin.url)
-        print(f"recipe: {recipe_url.url}")
-        print(f"origin: {origin.url}")
-        print(f"origins: {origin_urls}")
-        print("----")
 
     assert len(origin_urls) == 1
