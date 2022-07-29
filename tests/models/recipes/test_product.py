@@ -20,7 +20,7 @@ def test_chicken_breast_contents():
 
 
 def test_contents_singularization():
-    mushroom = ProductName(singular="mushroom")
+    mushroom = Product(names=[ProductName(singular="mushroom")])
 
     assert "mushroom" in mushroom.contents
     assert "mushrooms" not in mushroom.contents
