@@ -90,7 +90,6 @@ def test_crawl_url_relocation_stability(utcnow_mock, db_session, respx_mock):
         url = db_session.get(CrawlURL, from_url) or CrawlURL(url=from_url)
         url.crawl()
         db_session.add(url)
-        db_session.commit()
 
         recipe_url = RecipeURL(url=to_url)
         origin = recipe_url.find_earliest_crawl()
