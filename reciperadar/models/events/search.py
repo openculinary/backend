@@ -11,6 +11,7 @@ class SearchEvent(BaseEvent):
     include = db.Column(postgresql.ARRAY(db.String))
     exclude = db.Column(postgresql.ARRAY(db.String))
     equipment = db.Column(postgresql.ARRAY(db.String))
+    dietary_properties = db.Column(postgresql.ARRAY(db.String))
     offset = db.Column(db.Integer)
     limit = db.Column(db.Integer)
     sort = db.Column(db.String)

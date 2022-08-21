@@ -15,12 +15,24 @@ def valid_response(respx_mock):
 
 
 def test_recrawler_error_handled(error_response):
-    result = recrawl_search(include=["tofu"], exclude=[], equipment=[], offset=0)
+    result = recrawl_search(
+        include=["tofu"],
+        exclude=[],
+        equipment=[],
+        dietary_properties=[],
+        offset=0,
+    )
 
     assert result == []
 
 
 def test_recrawler_success(valid_response):
-    result = recrawl_search(include=["tofu"], exclude=[], equipment=[], offset=0)
+    result = recrawl_search(
+        include=["tofu"],
+        exclude=[],
+        equipment=[],
+        dietary_properties=[],
+        offset=0,
+    )
 
     assert result == ["http://www.example.com"]
