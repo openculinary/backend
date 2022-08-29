@@ -22,6 +22,7 @@ class Product(Storable):
     parent_id = db.Column(db.String, parent_fk, index=True)
 
     id = db.Column(db.String, primary_key=True)
+    wdqid = db.Column(db.String)
     category = db.Column(db.String)
     is_kitchen_staple = db.Column(db.Boolean)
     is_dairy_free = db.Column(db.Boolean)
