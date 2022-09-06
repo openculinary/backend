@@ -9,9 +9,6 @@ from reciperadar.workers.products import update_product_synonyms
 
 class Product(Storable):
     __tablename__ = "products"
-    __table_args__ = (
-        db.CheckConstraint("id ~ '^[a-z_]+$'", name="ck_products_id_keyword"),
-    )
 
     parent_fk = db.ForeignKey(
         "products.id",
