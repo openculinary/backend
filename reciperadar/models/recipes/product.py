@@ -1,5 +1,6 @@
 from functools import cached_property
 from sqlalchemy import event
+from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.associationproxy import association_proxy
 
 from reciperadar import db
@@ -26,6 +27,7 @@ class Product(Storable):
     is_gluten_free = db.Column(db.Boolean)
     is_vegan = db.Column(db.Boolean)
     is_vegetarian = db.Column(db.Boolean)
+    allergens = db.Column(postgresql.ARRAY(db.String))
 
     names = db.relationship(
         "ProductName", uselist=True, passive_deletes="all", backref="product"
