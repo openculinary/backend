@@ -21,6 +21,7 @@ class Recipe(Storable, Indexable):
     domain = db.Column(db.String)
     author = db.Column(db.String)
     author_url = db.Column(db.String)
+    image_enabled = db.Column(db.Boolean)
     image_src = db.Column(db.String)
     time = db.Column(db.Integer)
     servings = db.Column(db.Integer)
