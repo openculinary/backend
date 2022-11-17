@@ -8,3 +8,4 @@ class Domain(Storable):
     domain = db.Column(db.String, primary_key=True)
     image_enabled = db.Column(db.Boolean)
     image_src = db.Column(db.String)
+    contact = db.Column(db.String)
