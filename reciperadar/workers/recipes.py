@@ -16,7 +16,7 @@ def index_recipe(recipe_id):
     # Check whether web crawling is allowed for the domain
     domain = db.session.get(Domain, recipe.domain) or Domain(domain=recipe.domain)
     if domain.crawl_enabled is False:
-        print(f"Skipping domain crawl: not enabled for {recipe.domain}")
+        print(f"Skipping recipe indexing: not enabled for {recipe.domain}")
         db.session.close()
         return
 
@@ -49,7 +49,7 @@ def crawl_recipe(url):
 
     # Check whether web crawling is allowed for the domain
     if domain.crawl_enabled is False:
-        print(f"Skipping domain crawl: not enabled for {recipe_url.domain}")
+        print(f"Skipping recipe crawl: not enabled for {recipe_url.domain}")
         db.session.close()
         return
 
@@ -169,7 +169,7 @@ def crawl_url(url):
 
     # Check whether web crawling is allowed for the domain
     if domain.crawl_enabled is False:
-        print(f"Skipping domain crawl: not enabled for {crawl_url.domain}")
+        print(f"Skipping URL crawl: not enabled for {crawl_url.domain}")
         db.session.close()
         return
 
