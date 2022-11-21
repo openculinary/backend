@@ -36,6 +36,9 @@ def process_recipe(recipe_id):
 @celery.task(queue="crawl_recipe")
 def crawl_recipe(url):
     recipe_url = db.session.get(RecipeURL, url) or RecipeURL(url=url)
+    domain = db.session.get(Domain, recipe_url.domain) or Domain(
+        domain=recipe_url.domain
+    )
 
     # Check whether web crawling is allowed for the domain
     if domain.crawl_enabled is False:
