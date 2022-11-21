@@ -37,6 +37,12 @@ def process_recipe(recipe_id):
 def crawl_recipe(url):
     recipe_url = db.session.get(RecipeURL, url) or RecipeURL(url=url)
 
+    # Check whether web crawling is allowed for the domain
+    if domain.crawl_enabled is False:
+        print(f"Skipping domain crawl: not enabled for {recipe_url.domain}")
+        db.session.close()
+        return
+
     try:
         response = recipe_url.crawl()
         response.raise_for_status()
