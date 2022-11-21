@@ -149,6 +149,13 @@ def crawl_recipe(url):
 @celery.task(queue="crawl_url")
 def crawl_url(url):
     crawl_url = db.session.get(CrawlURL, url) or CrawlURL(url=url)
+    domain = db.session.get(Domain, crawl_url.domain) or Domain(domain=crawl_url.domain)
+
+    # Check whether web crawling is allowed for the domain
+    if domain.crawl_enabled is False:
+        print(f"Skipping domain crawl: not enabled for {crawl_url.domain}")
+        db.session.close()
+        return
 
     try:
         response = crawl_url.crawl()
