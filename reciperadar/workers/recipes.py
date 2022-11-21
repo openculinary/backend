@@ -13,6 +13,13 @@ def index_recipe(recipe_id):
         db.session.close()
         return
 
+    # Check whether web crawling is allowed for the domain
+    domain = db.session.get(Domain, recipe.domain) or Domain(domain=recipe.domain)
+    if domain.crawl_enabled is False:
+        print(f"Skipping domain crawl: not enabled for {recipe.domain}")
+        db.session.close()
+        return
+
     if recipe.index():
         print(f"Indexed {recipe.id} for url={recipe.src}")
         db.session.commit()
