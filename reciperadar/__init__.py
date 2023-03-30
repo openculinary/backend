@@ -7,13 +7,15 @@ from flask_sqlalchemy import SQLAlchemy
 
 def create_app(db_uri="postgresql+pg8000://api@postgresql/api"):
     app = Flask(__name__)
-    app.config.update(SQLALCHEMY_DATABASE_URI=db_uri)
+    app.config.update(
+        SQLALCHEMY_DATABASE_URI=db_uri,
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    )
     return app
 
 
 def create_db(app):
-    with app.app_context():
-        return SQLAlchemy(app, session_options={"autoflush": False})
+    return SQLAlchemy(app, session_options={"autoflush": False})
 
 
 class EphemeralSession(dict, SessionMixin):
