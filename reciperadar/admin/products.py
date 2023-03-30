@@ -8,6 +8,7 @@ from reciperadar.models.recipes.product import Product, ProductName
 
 
 class ProductAdmin(ModelView):
+
     list_template = "admin/products.html"
 
     column_editable_list = [
