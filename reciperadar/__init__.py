@@ -4,18 +4,13 @@ from flask_admin import Admin
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy(session_options={"autoflush": False})
+
 
 def create_app(db_uri="postgresql+pg8000://api@postgresql/api"):
     app = Flask(__name__)
-    app.config.update(
-        SQLALCHEMY_DATABASE_URI=db_uri,
-        SQLALCHEMY_TRACK_MODIFICATIONS=False,
-    )
+    app.config.update(SQLALCHEMY_DATABASE_URI=db_uri)
     return app
-
-
-def create_db(app):
-    return SQLAlchemy(app, session_options={"autoflush": False})
 
 
 class EphemeralSession(dict, SessionMixin):
@@ -28,9 +23,9 @@ class EphemeralSession(dict, SessionMixin):
 
 app = create_app()
 app.session_interface = EphemeralSession()
-db = create_db(app)
 migrate = Migrate(app, db)
 admin_app = Admin(app)
+db.init_app(app)
 
 
 import reciperadar.admin.products
