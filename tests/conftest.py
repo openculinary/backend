@@ -1,7 +1,6 @@
 import pytest
 
 from sqlalchemy import event
-from sqlalchemy.orm import scoped_session, sessionmaker
 
 from reciperadar import app, db
 from reciperadar.models.recipes.product import Product, ProductName
@@ -21,15 +20,28 @@ def client():
 
 @pytest.fixture
 def connection():
-    with app.app_context():
-        yield db.engine.connect()
+    return db.engine.connect()
 
 
 @pytest.fixture
 def db_session(connection):
-    session_factory = sessionmaker(connection, join_transaction_mode="create_savepoint")
-    db.session = scoped_session(session_factory)
+    """
+    Sourced from https://github.com/jeancochrane/pytest-flask-sqlalchemy/issues/46#issuecomment-829694672  # noqa
+    """
+    db_session_options = {"bind": connection, "binds": {}}
+
     transaction = connection.begin()
+    db.session = db.create_scoped_session(options=db_session_options)
+    db.session.begin_nested()
+
+    # for handling tests that actually call "session.rollback()"
+    # https://docs.sqlalchemy.org/en/13/orm/session_transaction.html#joining-a-session-into-an-external-transaction-such-as-for-test-suites
+    @event.listens_for(db.session, "after_transaction_end")
+    def restart_savepoint(session, transaction_in):
+        if transaction_in.nested and not transaction_in._parent.nested:
+            session.expire_all()
+            session.begin_nested()
+
     yield db.session
 
     db.session.close()
