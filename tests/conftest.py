@@ -1,6 +1,5 @@
 import pytest
 
-from sqlalchemy import event
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 from reciperadar import app, db
