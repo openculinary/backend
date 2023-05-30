@@ -240,9 +240,9 @@ markupsafe==2.1.2 \
     #   mako
     #   werkzeug
     #   wtforms
-pg8000==1.29.5 \
-    --hash=sha256:8e3e0c3b98f08c0d0111a276b0d4e65e56e59700452c568101348d6f6fba4375 \
-    --hash=sha256:919c4ffbbb87f37ae19ae885c356b15828f336bd277fd21fae581a4453a61784
+pg8000==1.29.6 \
+    --hash=sha256:3c7f74843adca879a309c46a880dac797b959db41122eebf59e3e31701dbb8b0 \
+    --hash=sha256:ba39c1196408ebe19b23710823871ba3b694df030c4f7a7e2c49f1512091d142
     # via -r requirements.in
 prompt-toolkit==3.0.38 \
     --hash=sha256:23ac5d50538a9a38c8bde05fecb47d0b403ecd0662857a86f886f798563d5b9b \
