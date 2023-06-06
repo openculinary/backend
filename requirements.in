@@ -1,5 +1,5 @@
 basest==0.7.3
-celery==5.2.7
+celery==5.3.0
 elasticsearch<7.14.0
 flask==2.3.2
 flask-admin==1.6.1
