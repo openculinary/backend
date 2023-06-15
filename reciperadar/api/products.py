@@ -16,6 +16,7 @@ def stream(items):
 
 
 def _product_stream(products):
+    results = []
     for product_name, nutrition, count, plural_count in products.all():
         plural_count = plural_count or 0
         is_plural = plural_count > count - plural_count
@@ -26,7 +27,8 @@ def _product_stream(products):
         }
         if nutrition:
             result["nutrition"] = nutrition.to_doc()
-        yield result
+        results.append(result)
+    return results
 
 
 @app.route("/products/hierarchy")
