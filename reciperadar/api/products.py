@@ -1,6 +1,6 @@
 import json
 
-from flask import Response
+from flask import Response, stream_with_context
 
 from reciperadar import app, db
 from reciperadar.models.recipes.ingredient import RecipeIngredient
@@ -54,4 +54,4 @@ def hierarchy():
     )
 
     products = _product_stream(products)
-    return Response(stream(products), content_type="application/x-ndjson")
+    return Response(stream_with_context(stream(products)), content_type="application/x-ndjson")
