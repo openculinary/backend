@@ -16,20 +16,6 @@ def stream(items):
         yield f"{line}\n"
 
 
-def _product_stream(products):
-    for product_name, nutrition, count, plural_count in products.all():
-        plural_count = plural_count or 0
-        is_plural = plural_count > count - plural_count
-        result = {
-            "product": product_name.plural if is_plural else product_name.singular,
-            "recipe_count": count,
-            "id": product_name.id,
-        }
-        if nutrition:
-            result["nutrition"] = nutrition.to_doc()
-        yield result
-
-
 @app.route("/products/hierarchy")
 def hierarchy():
     products = (
@@ -54,5 +40,17 @@ def hierarchy():
         )
     )
 
-    products = _product_stream(products)
-    return Response(stream(products), content_type="application/x-ndjson")
+    def _product_stream():
+        for product_name, nutrition, count, plural_count in products.all():
+            plural_count = plural_count or 0
+            is_plural = plural_count > count - plural_count
+            result = {
+                "product": product_name.plural if is_plural else product_name.singular,
+                "recipe_count": count,
+                "id": product_name.id,
+            }
+            if nutrition:
+                result["nutrition"] = nutrition.to_doc()
+            yield result
+
+    return Response(stream(_product_stream()), content_type="application/x-ndjson")
