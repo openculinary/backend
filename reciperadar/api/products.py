@@ -9,6 +9,7 @@ from reciperadar.models.recipes.product import ProductName
 
 
 # Custom streaming method
+@stream_with_context
 def stream(items):
     for item in items:
         line = json.dumps(item, ensure_ascii=False)
@@ -52,4 +53,4 @@ def hierarchy():
                 result["nutrition"] = nutrition.to_doc()
             yield result
 
-    return Response(stream_with_context(stream(_product_stream())), content_type="application/x-ndjson")
+    return Response(stream(_product_stream()), content_type="application/x-ndjson")
