@@ -1,6 +1,6 @@
 import json
 
-from flask import Response, stream_with_context
+from flask import Response
 
 from reciperadar import app, db
 from reciperadar.models.recipes.ingredient import RecipeIngredient
@@ -9,7 +9,6 @@ from reciperadar.models.recipes.product import ProductName
 
 
 # Custom streaming method
-@stream_with_context
 def stream(items):
     for item in items:
         line = json.dumps(item, ensure_ascii=False)
