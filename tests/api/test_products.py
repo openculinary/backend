@@ -7,9 +7,8 @@ from reciperadar.models.recipes.product import ProductName
 
 def mock_query():
     """
-    Generator method that lazily performs a flask application context lookup, to
-    replicate bug https://github.com/openculinary/backend/issues/65 and then yields
-    mock data.
+    Mock data generator that is lazily evaluated and includes a flask application
+    context lookup, to replicate bug https://github.com/openculinary/backend/issues/65
     """
     current_app._get_current_object()
     yield from [
