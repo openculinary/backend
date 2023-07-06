@@ -7,7 +7,7 @@ flask-migrate==4.0.4
 flask-sqlalchemy==3.0.5
 gunicorn==20.1.0
 httpx==0.24.1
-pg8000==1.29.6
+pg8000==1.29.8
 pymmh3==0.0.5
-sqlalchemy==2.0.16
+sqlalchemy==2.0.17
 tld==0.13
