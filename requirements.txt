@@ -244,9 +244,9 @@ packaging==23.1 \
     --hash=sha256:994793af429502c4ea2ebf6bf664629d07c1a9fe974af92966e4b8d2df7edc61 \
     --hash=sha256:a392980d2b6cffa644431898be54b0045151319d1e7ec34f0cfed48767dd334f
     # via gunicorn
-pg8000==1.29.8 \
-    --hash=sha256:609cfbccea783e15f111cc0cb2f6d4e6b4c349a695c59505a29baba6fc79ffa9 \
-    --hash=sha256:962e9d6687f76057bd6d9c9c0f67f503a503216bf60b3a4d71e4cb8c97f8326d
+pg8000==1.30.1 \
+    --hash=sha256:4700e34a01d16c41c923982ff78930e85bbd819aea875f9bc17044eb756125a9 \
+    --hash=sha256:c04280e66a1ccfb5166db5c164164c2e1b8f62afaedffd211451a5329ae84a29
     # via -r requirements.in
 prompt-toolkit==3.0.39 \
     --hash=sha256:04505ade687dc26dc4284b1ad19a83be2f2afe83e7a828ace0c72f3a1df72aac \
