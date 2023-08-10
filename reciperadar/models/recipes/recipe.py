@@ -14,6 +14,13 @@ from reciperadar.models.url import RecipeURL
 class Recipe(Storable, Indexable):
     __tablename__ = "recipes"
 
+    redirected_fk = db.ForeignKey(
+        "recipes.id",
+        deferrable=True,
+        ondelete="cascade",
+        onupdate="cascade",
+    )
+
     id = db.Column(db.String, primary_key=True)
     title = db.Column(db.String)
     src = db.Column(db.String)
@@ -31,6 +38,9 @@ class Recipe(Storable, Indexable):
     nutrition = db.relationship("RecipeNutrition", uselist=False, passive_deletes="all")
 
     indexed_at = db.Column(db.DateTime)
+
+    redirected_id = db.Column(db.String, redirected_fk)
+    redirected_at = db.Column(db.DateTime)
 
     @property
     def noun(self):
