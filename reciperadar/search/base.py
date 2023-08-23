@@ -6,4 +6,4 @@ from elasticsearch import Elasticsearch
 class QueryRepository(object):
     __metaclass__ = ABC
 
-    es = Elasticsearch("elasticsearch")
+    es = Elasticsearch("opensearch")

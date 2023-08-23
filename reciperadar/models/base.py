@@ -45,7 +45,7 @@ class Storable(db.Model):
 class Indexable(object):
     __metaclass__ = ABC
 
-    es = Elasticsearch("elasticsearch")
+    es = Elasticsearch("opensearch")
 
     @abstractproperty
     def noun(self):
