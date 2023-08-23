@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod, abstractproperty
 from basest.core import encode
 from datetime import datetime
-from elasticsearch import Elasticsearch
+from opensearchpy import OpenSearch
 from uuid import uuid4
 
 from reciperadar import db
@@ -45,7 +45,7 @@ class Storable(db.Model):
 class Indexable(object):
     __metaclass__ = ABC
 
-    es = Elasticsearch("opensearch")
+    es = OpenSearch("opensearch")
 
     @abstractproperty
     def noun(self):

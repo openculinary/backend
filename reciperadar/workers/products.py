@@ -1,6 +1,6 @@
 import json
 
-from elasticsearch import Elasticsearch
+from opensearchpy import OpenSearch
 from sqlalchemy.orm import joinedload
 
 from reciperadar.workers.broker import celery
@@ -23,7 +23,7 @@ def recreate_product_synonym_index(index):
     settings = {"index": {"number_of_replicas": 0}}
     mapping = {"properties": {"synonyms": {"type": "keyword"}}}
 
-    es = Elasticsearch("opensearch")
+    es = OpenSearch("opensearch")
     es.indices.delete(index=index, ignore_unavailable=True)
     es.indices.create(index=index)
     es.indices.put_settings(index=index, body=settings)
@@ -31,7 +31,7 @@ def recreate_product_synonym_index(index):
 
 
 def populate_product_synonym_index(index, synonyms):
-    es = Elasticsearch("opensearch")
+    es = OpenSearch("opensearch")
     actions = []
     for product_name, product_synonyms in synonyms.items():
         actions.append(json.dumps({"index": {"_index": index, "_id": product_name}}))

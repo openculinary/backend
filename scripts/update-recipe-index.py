@@ -1,5 +1,5 @@
 import argparse
-from elasticsearch import Elasticsearch
+from opensearchpy import OpenSearch
 import sys
 
 settings = {
@@ -79,7 +79,7 @@ parser.add_argument('--hostname', required=True)
 parser.add_argument('--index')
 args = parser.parse_args()
 
-es = Elasticsearch(args.hostname)
+es = OpenSearch(args.hostname)
 try:
     es.indices.close(index=args.index)
     es.indices.put_settings(index=args.index, body=settings)
