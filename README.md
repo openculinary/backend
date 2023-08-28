@@ -37,10 +37,10 @@ $ make deploy
 
 ### Recipe index configuration
 
-For the search engine to correctly index recipe data, an Elasticsearch mapping needs to be configured for the `recipe` index.  This can be done using the `update-recipe-index.py` script:
+For the search engine to correctly index recipe data, an OpenSearch mapping needs to be configured for the `recipe` index.  This can be done using the `update-recipe-index.py` script:
 
 ```sh
-# For an Elasticsearch instance running on 'localhost' on the default port
+# For an OpenSearch instance running on 'localhost' on the default port
 $ venv/bin/python scripts/update-recipe-index.py --hostname localhost --index recipes
 ```
 
