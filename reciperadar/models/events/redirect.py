@@ -7,4 +7,4 @@ class RedirectEvent(BaseEvent):
 
     recipe_id = db.Column(db.String)
     domain = db.Column(db.String)
-    src = db.Column(db.String)
+    dst = db.Column(db.String)
