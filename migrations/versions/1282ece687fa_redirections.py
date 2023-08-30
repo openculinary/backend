@@ -1,7 +1,7 @@
 """redirections
 
 Revision ID: 1282ece687fa
-Revises: 49bad27ec620
+Revises: 23bd350b0052
 Create Date: 2023-08-10 10:52:51.877155
 
 """
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = '1282ece687fa'
-down_revision = '49bad27ec620'
+down_revision = '23bd350b0052'
 branch_labels = None
 depends_on = None
 
