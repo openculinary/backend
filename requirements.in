@@ -1,5 +1,5 @@
 basest==0.7.3
-celery==5.3.3
+celery==5.3.4
 flask==2.3.3
 flask-admin==1.6.1
 flask-migrate==4.0.4
