@@ -7,17 +7,13 @@ from reciperadar.workers.recipes import crawl_url, index_recipe
 
 @app.route("/recipes/<recipe_id>")
 def recipe_get(recipe_id):
-    recipe = db.session.get(Recipe, recipe_id)
-    if not recipe:
-        return abort(404)
+    recipe = db.session.get_or_404(Recipe, recipe_id)
     return jsonify(recipe.to_doc())
 
 
 @app.route("/recipes/<recipe_id>/history")
 def recipe_diagnostics(recipe_id):
-    recipe = db.session.get(Recipe, recipe_id)
-    if not recipe:
-        return abort(404)
+    recipe = db.session.get_or_404(Recipe, recipe_id)
 
     recipe_url = recipe.recipe_url
     earliest_crawl = recipe_url.find_earliest_crawl()
@@ -45,9 +41,7 @@ def recipe_diagnostics(recipe_id):
 
 @app.route("/recipes/<recipe_id>/crawl")
 def recipe_crawl_retrieve(recipe_id):
-    recipe = Recipe.query.get(recipe_id)
-    if not recipe:
-        return abort(404)
+    recipe = Recipe.query.get_or_404(recipe_id)
 
     recipe_data = recipe.recipe_url.crawl().json()["recipe"]
     recipe_data["src"] = recipe.src
