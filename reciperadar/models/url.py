@@ -127,7 +127,9 @@ class RecipeURL(BaseURL):
 
     def _make_request(self):
         response = httpx.post(
-            url="http://crawler-service/crawl", data={"url": self.url}
+            url="http://crawler-service/crawl",
+            data={"url": self.url},
+            timeout=10.0,
         )
         if response.is_success:
             metadata = response.json().get("metadata", {})
