@@ -36,15 +36,6 @@ settings = {
 }
 mapping = {
     'properties': {
-        'directions': {
-            'properties': {
-                'equipment': {
-                    'properties': {
-                        'name': {'type': 'keyword'}
-                    }
-                }
-            }
-        },
         'ingredients': {
             'type': 'nested',
             'properties': {
