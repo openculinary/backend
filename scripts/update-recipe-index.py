@@ -70,6 +70,7 @@ mapping = {
             }
         },
         'contents': {'type': 'keyword'},
+        'equipment_names': {'type': 'keyword'},
         'domain': {'type': 'keyword'}
     }
 }
