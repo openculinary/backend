@@ -1,3 +1,5 @@
+from functools import cached_property
+
 from reciperadar import db
 from reciperadar.models.base import Storable
 from reciperadar.models.recipes.equipment import DirectionEquipment
@@ -16,13 +18,33 @@ class RecipeDirection(Storable):
     equipment = db.relationship("DirectionEquipment", passive_deletes="all")
 
     @staticmethod
+    def _filter_markup(markup):
+        include = 0
+        for char in markup:
+            if char == "<" and include == 0:
+                include = 2
+            elif char == ">":
+                include -= 1
+                if include == 0:
+                    yield char
+            if include > 0:
+                yield char
+
+    @cached_property
+    def equipment_names(self):
+        equipment_names = set()
+        for item in self.equipment:
+            equipment_names.add(item.name)
+        return list(equipment_names)
+
+    @staticmethod
     def from_doc(doc, matches=None):
         direction_id = doc.get("id") or RecipeDirection.generate_id()
         return RecipeDirection(
             id=direction_id,
             index=doc["index"],
-            description=doc["description"],
-            markup=doc["markup"],
+            description=None,  # doc["description"],
+            markup=str().join(RecipeDirection._filter_markup(doc["markup"])),
             equipment=[
                 DirectionEquipment.from_doc(entity)
                 for entity in doc["entities"]
