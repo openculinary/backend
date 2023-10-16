@@ -19,6 +19,8 @@ class RecipeDirection(Storable):
 
     @staticmethod
     def _filter_markup(markup):
+        if not markup:
+            return
         include = 0
         for char in markup:
             if char == "<" and include == 0:
