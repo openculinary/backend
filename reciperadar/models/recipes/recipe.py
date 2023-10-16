@@ -110,6 +110,13 @@ class Recipe(Storable, Indexable):
         return list(contents)
 
     @property
+    def equipment_names(self):
+        equipment_names = set()
+        for direction in self.directions:
+            equipment_names |= set(direction.equipment_names or [])
+        return list(equipment_names)
+
+    @property
     def aggregate_ingredient_nutrition(self):
         all_ingredients_mass = sum([i.mass or 0 for i in self.ingredients])
         ingredients_with_nutrition_mass = sum(
@@ -187,9 +194,10 @@ class Recipe(Storable, Indexable):
 
     def to_doc(self):
         data = super().to_doc()
-        data["directions"] = [direction.to_doc() for direction in self.directions]
+        # data["directions"] = [direction.to_doc() for direction in self.directions]
         data["ingredients"] = [ingredient.to_doc() for ingredient in self.ingredients]
         data["contents"] = self.contents
+        data["equipment_names"] = self.equipment_names
         data["product_count"] = len(self.product_names)
         data["hidden"] = self.hidden
         data["nutrition"] = (

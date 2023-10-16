@@ -13,12 +13,27 @@ def test_recipe_from_doc(db_session, raw_recipe_hit):
 
     assert recipe.directions[0].equipment[0].name == "skewer"
     assert recipe.directions[0].equipment[1].name == "oven"
+    assert recipe.directions[0].markup == (
+        "<mark class='verb action'>place</mark>"
+        "<mark class='equipment utensil'>skewer</mark>"
+        "<mark class='equipment appliance'>oven</mark>"
+    )
 
     assert recipe.ingredients[0].product_name.singular == "one"
     expected_contents = ["one", "ancestor-of-one"]
     actual_contents = recipe.ingredients[0].product_name.contents
 
     assert all([content in actual_contents for content in expected_contents])
+
+    expected_equipment_names = ["oven", "skewer"]
+    actual_equipment_names = recipe.equipment_names
+
+    assert all(
+        [
+            equipment_name in actual_equipment_names
+            for equipment_name in expected_equipment_names
+        ]
+    )
 
     assert recipe.ingredients[0].nutrition.carbohydrates == 0
     assert recipe.ingredients[0].nutrition.fibre == 0.65
