@@ -24,6 +24,7 @@ class Domain(Storable):
     with the website owner(s) to request consent, something that is not
     assumed to be given by default.
     """
+
     __tablename__ = "domains"
 
     domain = db.Column(db.String, primary_key=True)
