@@ -10,9 +10,9 @@ amqp==5.2.0 \
     # via
     #   -r requirements.txt
     #   kombu
-anyio==4.0.0 \
-    --hash=sha256:cfdb2b588b9fc25ede96d8db56ed50848b0b649dca3dd1df0b11f683bb9e0b5f \
-    --hash=sha256:f7ed51751b2c2add651e5747c891b47e26d2a21be5d32d9311dfe9692f3e5d7a
+anyio==4.1.0 \
+    --hash=sha256:56a415fbc462291813a94528a779597226619c8e78af7de0507333f700011e5f \
+    --hash=sha256:5a0bec7085176715be77df87fc66d6c9d70626bd752fcc85f57cdbee5b3760da
     # via
     #   -r requirements.txt
     #   httpx
@@ -58,13 +58,13 @@ blinker==1.7.0 \
     # via
     #   -r requirements.txt
     #   flask
-celery==5.3.5 \
-    --hash=sha256:30b75ac60fb081c2d9f8881382c148ed7c9052031a75a1e8743ff4b4b071f184 \
-    --hash=sha256:6b65d8dd5db499dd6190c45aa6398e171b99592f2af62c312f7391587feb5458
+celery==5.3.6 \
+    --hash=sha256:870cc71d737c0200c397290d730344cc991d13a057534353d124c9380267aab9 \
+    --hash=sha256:9da4ea0118d232ce97dff5ed4974587fb1c0ff5c10042eb15278487cdd27d1af
     # via -r requirements.txt
-certifi==2023.7.22 \
-    --hash=sha256:539cc1d13202e33ca466e88b2807e29f4c13049d6d87031a3c110744495cb082 \
-    --hash=sha256:92d6037539857d8206b8f6ae472e8b77db8058fec5937a1ef3f54304089edbb9
+certifi==2023.11.17 \
+    --hash=sha256:9b469f3a900bf28dc19b8cfbf8019bf47f7fdd1a65a1d4ffb98fc14166beb4d1 \
+    --hash=sha256:e036ab49d5b79556f99cfc2d9320b34cfbe5be05c5871b51de9329f0603b0474
     # via
     #   -r requirements.txt
     #   httpcore
@@ -297,15 +297,15 @@ httpcore==1.0.2 \
     # via
     #   -r requirements.txt
     #   httpx
-httpx==0.25.1 \
-    --hash=sha256:fec7d6cc5c27c578a391f7e87b9aa7d3d8fbcd034f6399f9f79b45bcc12a866a \
-    --hash=sha256:ffd96d5cf901e63863d9f1b4b6807861dbea4d301613415d9e6e57ead15fc5d0
+httpx==0.25.2 \
+    --hash=sha256:8b8fcaa0c8ea7b05edd69a094e63a2094c4efcb48129fb757361bc423c0ad9e8 \
+    --hash=sha256:a05d3d052d9b2dfce0e3896636467f8a5342fb2b902c819428e1ac65413ca118
     # via
     #   -r requirements.txt
     #   respx
-idna==3.4 \
-    --hash=sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4 \
-    --hash=sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
+idna==3.6 \
+    --hash=sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca \
+    --hash=sha256:c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f
     # via
     #   -r requirements.txt
     #   anyio
@@ -327,9 +327,9 @@ jinja2==3.1.2 \
     # via
     #   -r requirements.txt
     #   flask
-kombu==5.3.3 \
-    --hash=sha256:1491df826cfc5178c80f3e89dd6dfba68e484ef334db81070eb5cb8094b31167 \
-    --hash=sha256:6cd5c5d5ef77538434b8f81f3e265c414269418645dbb47dbf130a8a05c3e357
+kombu==5.3.4 \
+    --hash=sha256:0bb2e278644d11dea6272c17974a3dbb9688a949f3bb60aeb5b791329c44fadc \
+    --hash=sha256:63bb093fc9bb80cfb3a0972336a5cec1fa7ac5f9ef7e8237c6bf8dda9469313e
     # via
     #   -r requirements.txt
     #   celery
@@ -442,9 +442,9 @@ pluggy==1.3.0 \
     --hash=sha256:cf61ae8f126ac6f7c451172cf30e3e43d3ca77615509771b3a984a0730651e12 \
     --hash=sha256:d89c696a773f8bd377d18e5ecda92b7a3793cbe66c87060a6fb58c7b6e1061f7
     # via pytest
-prompt-toolkit==3.0.40 \
-    --hash=sha256:99ba3dfb23d5b5af89712f89e60a5f3d9b8b67a9482ca377c5771d0e9047a34b \
-    --hash=sha256:a371c06bb1d66cd499fecd708e50c0b6ae00acba9822ba33c586e2f16d1b739e
+prompt-toolkit==3.0.41 \
+    --hash=sha256:941367d97fc815548822aa26c2a269fdc4eb21e9ec05fc5d447cf09bad5d75f0 \
+    --hash=sha256:f36fe301fafb7470e86aaf90f036eef600a3210be4decf461a5b1ca8403d3cb2
     # via
     #   -r requirements.txt
     #   click-repl
@@ -572,9 +572,9 @@ tzdata==2023.3 \
     # via
     #   -r requirements.txt
     #   celery
-urllib3==2.0.7 \
-    --hash=sha256:c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84 \
-    --hash=sha256:fdb6d215c776278489906c2f8916e6e7d4f5a9b602ccbcfdf7f016fc8da0596e
+urllib3==2.1.0 \
+    --hash=sha256:55901e917a5896a349ff771be919f8bd99aff50b79fe58fec595eb37bbc56bb3 \
+    --hash=sha256:df7aa8afb0148fa78488e7899b2c59b5f4ffcfa82e6c54ccb9dd37c1d7b52d54
     # via
     #   -r requirements.txt
     #   opensearch-py
@@ -587,9 +587,9 @@ vine==5.1.0 \
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.2.9 \
-    --hash=sha256:9a929bd8380f6cd9571a968a9c8f4353ca58d7cd812a4822bba831f8d685b223 \
-    --hash=sha256:a675d1a4a2d24ef67096a04b85b02deeecd8e226f57b5e3a72dbb9ed99d27da8
+wcwidth==0.2.12 \
+    --hash=sha256:f01c104efdf57971bcb756f054dd58ddec5204dd15fa31d6503ea57947d97c02 \
+    --hash=sha256:f26ec43d96c8cbfed76a5075dac87680124fa84e0855195a6184da9c187f133c
     # via
     #   -r requirements.txt
     #   prompt-toolkit
