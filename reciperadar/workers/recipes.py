@@ -22,12 +22,14 @@ def index_recipe(recipe_id):
         db.session.close()
         return
 
-    # Hide and redirect the recipe if an earlier origin for it is known
+    # Display only the oldest-known recipe of record; redirect all others to it
     earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
-    if earliest_crawl and earliest_crawl.url != recipe.src:
-        print(f"Redirecting {recipe.src} to {earliest_crawl.url}")
+    if earliest_crawl:
         src_hash = hash_bytes(earliest_crawl.url).encode("utf-8")
-        recipe.redirected_id = Recipe.generate_id(src_hash)
+        earliest_id = Recipe.generate_id(src_hash)
+        if recipe.id != earliest_id:
+            recipe.redirected_id = earliest_id
+            print(f"Redirected {recipe.id} to {earliest_id} url={earliest_crawl.url}")
 
     if recipe.index():
         print(f"Indexed {recipe.id} for url={recipe.src}")
