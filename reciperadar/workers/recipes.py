@@ -137,8 +137,12 @@ def crawl_recipe(url):
         print(f"Failed to find latest crawl for url={url}")
         return
 
+    latest_recipe_url = db.session.get(RecipeURL, latest_crawl.url) or RecipeURL(
+        url=latest_crawl.url
+    )
+
     # Find the first-known crawl for the latest URL, and consider it the origin
-    earliest_crawl = latest_crawl.find_earliest_crawl()
+    earliest_crawl = latest_recipe_url.find_earliest_crawl()
     if not earliest_crawl:
         print(f"Failed to find earliest crawl for url={url}")
         return
