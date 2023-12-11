@@ -83,16 +83,11 @@ class CrawlURL(BaseURL):
             self.resolves_to = response.json()["url"]["resolves_to"]
         return response
 
-
-class RecipeURL(BaseURL):
-    __tablename__ = "recipe_urls"
-
-    recipe_scrapers_version = db.Column(db.String)
-
-    def find_earliest_crawl(self):
+    @staticmethod
+    def find_earliest_crawl(url):
         earliest_crawl = (
             db.session.query(CrawlURL)
-            .filter_by(resolves_to=self.url)
+            .filter_by(resolves_to=url)
             .cte(recursive=True)
         )
 
@@ -107,10 +102,11 @@ class RecipeURL(BaseURL):
             .first()
         )
 
-    def find_latest_crawl(self):
+    @staticmethod
+    def find_latest_crawl(url):
         latest_crawl = (
             db.session.query(CrawlURL)
-            .filter_by(resolves_to=self.url)
+            .filter_by(resolves_to=url)
             .cte(recursive=True)
         )
 
@@ -124,6 +120,12 @@ class RecipeURL(BaseURL):
             .order_by(latest_crawl.c.latest_crawled_at.desc())
             .first()
         )
+
+
+class RecipeURL(BaseURL):
+    __tablename__ = "recipe_urls"
+
+    recipe_scrapers_version = db.Column(db.String)
 
     def _make_request(self):
         response = httpx.post(
