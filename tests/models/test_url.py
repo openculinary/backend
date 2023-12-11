@@ -61,9 +61,9 @@ def test_crawl_url_timeline(db_session):
     for step in path:
         db_session.add(step)
 
-    recipe = RecipeURL(url="//example.org/C")
-    earliest_crawl = recipe.find_earliest_crawl()
-    latest_crawl = recipe.find_latest_crawl()
+    url = "//example.org/C"
+    earliest_crawl = CrawlURL.find_earliest_crawl(url)
+    latest_crawl = CrawlURL.find_latest_crawl(url)
 
     assert earliest_crawl.url == "//example.org/A"
     assert latest_crawl.url == "//example.org/D"
@@ -91,8 +91,7 @@ def test_crawl_url_relocation_stability(utcnow_mock, db_session, respx_mock):
         url.crawl()
         db_session.add(url)
 
-        recipe_url = RecipeURL(url=to_url)
-        origin = recipe_url.find_earliest_crawl()
+        origin = CrawlURL.find_earliest_crawl(to_url)
         origin_urls.add(origin.url)
 
     assert len(origin_urls) == 1

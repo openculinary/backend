@@ -132,17 +132,13 @@ def crawl_recipe(url):
     """
 
     # Find any more-recent crawls of this URL, allowing detection of duplicates
-    latest_crawl = recipe_url.find_latest_crawl()
+    latest_crawl = CrawlURL.find_latest_crawl(recipe_url.url)
     if not latest_crawl:
         print(f"Failed to find latest crawl for url={url}")
         return
 
-    latest_recipe_url = db.session.get(RecipeURL, latest_crawl.url) or RecipeURL(
-        url=latest_crawl.url
-    )
-
     # Find the first-known crawl for the latest URL, and consider it the origin
-    earliest_crawl = latest_recipe_url.find_earliest_crawl()
+    earliest_crawl = CrawlURL.find_earliest_crawl(latest_crawl.url)
     if not earliest_crawl:
         print(f"Failed to find earliest crawl for url={url}")
         return
