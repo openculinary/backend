@@ -61,7 +61,11 @@ class Recipe(Storable, Indexable):
 
     @property
     def hidden(self):
-        return not all([ingredient.product for ingredient in self.ingredients])
+        if self.redirected_id:
+            return True
+        if not all([ingredient.product for ingredient in self.ingredients]):
+            return True
+        return False
 
     @property
     def recipe_url(self):

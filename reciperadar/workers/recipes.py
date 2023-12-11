@@ -1,3 +1,5 @@
+from pymmh3 import hash_bytes
+
 from reciperadar import db
 from reciperadar.models.recipes import Recipe
 from reciperadar.models.domain import Domain
@@ -19,6 +21,13 @@ def index_recipe(recipe_id):
         print(f"Skipping recipe indexing: not enabled for {recipe.domain}")
         db.session.close()
         return
+
+    # Hide and redirect the recipe if an earlier origin for it is known
+    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
+    if earliest_crawl and earliest_crawl.url != recipe.src:
+        print(f"Redirecting {recipe.src} to {earliest_crawl.url}")
+        src_hash = hash_bytes(earliest_crawl.url).encode("utf-8")
+        recipe.redirected_id = Recipe.generate_id(src_hash)
 
     if recipe.index():
         print(f"Indexed {recipe.id} for url={recipe.src}")
