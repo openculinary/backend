@@ -86,9 +86,7 @@ class CrawlURL(BaseURL):
     @staticmethod
     def find_earliest_crawl(url):
         earliest_crawl = (
-            db.session.query(CrawlURL)
-            .filter_by(resolves_to=url)
-            .cte(recursive=True)
+            db.session.query(CrawlURL).filter_by(resolves_to=url).cte(recursive=True)
         )
 
         previous_step = db.aliased(earliest_crawl)
@@ -105,9 +103,7 @@ class CrawlURL(BaseURL):
     @staticmethod
     def find_latest_crawl(url):
         latest_crawl = (
-            db.session.query(CrawlURL)
-            .filter_by(resolves_to=url)
-            .cte(recursive=True)
+            db.session.query(CrawlURL).filter_by(resolves_to=url).cte(recursive=True)
         )
 
         previous_step = db.aliased(latest_crawl)
