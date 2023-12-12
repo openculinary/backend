@@ -20,6 +20,12 @@ def index_recipe(recipe_id):
         db.session.close()
         return
 
+    # Display only the oldest-known recipe of record; redirect all others to it
+    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
+    if earliest_crawl and recipe.id != earliest_crawl.id:
+        recipe.redirected_id = earliest_crawl.id
+        print(f"Redirected {recipe.id} to {earliest_crawl.id} url={earliest_crawl.url}")
+
     if recipe.index():
         print(f"Indexed {recipe.id} for url={recipe.src}")
         db.session.commit()

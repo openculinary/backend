@@ -61,7 +61,11 @@ class Recipe(Storable, Indexable):
 
     @property
     def hidden(self):
-        return not all([ingredient.product for ingredient in self.ingredients])
+        if self.redirected_id:
+            return True
+        if not all([ingredient.product for ingredient in self.ingredients]):
+            return True
+        return False
 
     @property
     def recipe_url(self):
@@ -96,6 +100,9 @@ class Recipe(Storable, Indexable):
             servings=doc["servings"],
             time=doc["time"],
             rating=doc["rating"],
+            indexed_at=doc["indexed_at"],
+            redirected_id=doc.get("redirected_id"),
+            redirected_at=doc.get("redirected_at"),
         )
 
     @property
@@ -206,6 +213,7 @@ class Recipe(Storable, Indexable):
             else self.aggregate_ingredient_nutrition
         )
         data["nutrition_source"] = "crawler" if self.nutrition else "aggregation"
+        data["redirected_id"] = self.redirected_id  # explicit foreign key serialization
         data["is_dairy_free"] = self.is_dairy_free
         data["is_gluten_free"] = self.is_gluten_free
         data["is_vegan"] = self.is_vegan

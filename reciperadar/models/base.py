@@ -38,7 +38,7 @@ class Storable(db.Model):
         return {
             c.name: getattr(self, c.name)
             for c in self.__table__.columns
-            if not c.foreign_keys
+            if not c.foreign_keys and getattr(self, c.name) is not None
         }
 
 

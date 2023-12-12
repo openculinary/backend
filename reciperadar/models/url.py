@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 import httpx
+from pymmh3 import hash_bytes
 from tld import get_tld
 
 from reciperadar import db
@@ -30,10 +31,13 @@ class BaseURL(Storable):
 
     def __init__(self, *args, **kwargs):
         if "url" in kwargs:
+            url_hash = hash_bytes(kwargs["url"]).encode("utf-8")
+            kwargs["id"] = BaseURL.generate_id(url_hash)
             url_info = get_tld(kwargs["url"], as_object=True, search_private=False)
             kwargs["domain"] = url_info.fld
         super().__init__(*args, **kwargs)
 
+    id = db.Column(db.String, nullable=False, index=True)
     url = db.Column(db.String, primary_key=True)
     domain = db.Column(db.String)
     earliest_crawled_at = db.Column(db.DateTime)
