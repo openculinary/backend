@@ -6,7 +6,12 @@ from reciperadar.models.recipes.nutrition import IngredientNutrition
 class RecipeIngredient(Storable):
     __tablename__ = "recipe_ingredients"
 
-    recipe_fk = db.ForeignKey(column="recipes.id", ondelete="cascade")
+    recipe_fk = db.ForeignKey(
+        "recipes.id",
+        deferrable=True,
+        ondelete="cascade",
+        onupdate="cascade",
+    )
     recipe_id = db.Column(db.String, recipe_fk, index=True)
 
     product_name_fk = db.ForeignKey(

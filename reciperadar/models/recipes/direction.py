@@ -8,7 +8,12 @@ from reciperadar.models.recipes.equipment import DirectionEquipment
 class RecipeDirection(Storable):
     __tablename__ = "recipe_directions"
 
-    fk = db.ForeignKey("recipes.id", ondelete="cascade")
+    fk = db.ForeignKey(
+        "recipes.id",
+        deferrable=True,
+        ondelete="cascade",
+        onupdate="cascade",
+    )
     recipe_id = db.Column(db.String, fk, index=True)
 
     id = db.Column(db.String, primary_key=True)

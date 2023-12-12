@@ -58,7 +58,12 @@ class IngredientNutrition(Nutrition):
 class RecipeNutrition(Nutrition):
     __tablename__ = "recipe_nutrition"
 
-    fk = db.ForeignKey("recipes.id", ondelete="cascade")
+    fk = db.ForeignKey(
+        "recipes.id",
+        deferrable=True,
+        ondelete="cascade",
+        onupdate="cascade",
+    )
     recipe_id = db.Column(db.String, fk, index=True)
 
     id = db.Column(db.String, primary_key=True)
