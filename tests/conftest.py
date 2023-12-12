@@ -164,6 +164,7 @@ def raw_recipe_hit(products):
             "domain": "example.com",
             "servings": 2,
             "rating": 4.5,
+            "indexed_at": "1970-01-01T01:02:03.456789",
         },
         "inner_hits": {"ingredients": {"hits": {"hits": []}}},
     }
