@@ -20,4 +20,4 @@ spec:
         imagePullPolicy: IfNotPresent
         name: backend
         command: ['/srv/.local/bin/celery']
-        args: ['-A', 'reciperadar.workers', 'worker', '-Q', 'celery,crawl_url,crawl_recipe,process_recipe,index_recipe,recrawl_search,update_product_synonyms']
+        args: ['-A', 'reciperadar.workers', 'worker', '-Q', 'celery,crawl_url,crawl_recipe,index_recipe,recrawl_search,update_product_synonyms']

@@ -27,19 +27,6 @@ def index_recipe(recipe_id):
     db.session.close()
 
 
-@celery.task(queue="process_recipe")
-def process_recipe(recipe_id):
-    recipe = db.session.get(Recipe, recipe_id)
-    if not recipe:
-        print("Could not find recipe to process")
-        db.session.close()
-        return
-
-    index_recipe.delay(recipe.id)
-
-    db.session.close()
-
-
 @celery.task(queue="crawl_recipe")
 def crawl_recipe(url):
     recipe_url = db.session.get(RecipeURL, url) or RecipeURL(url=url)
@@ -155,7 +142,7 @@ def crawl_recipe(url):
 
     try:
         db.session.commit()
-        process_recipe.delay(recipe.id)
+        index_recipe.delay(recipe.id)
     except Exception:
         db.session.rollback()
     finally:
