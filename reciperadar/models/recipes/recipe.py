@@ -100,7 +100,7 @@ class Recipe(Storable, Indexable):
             servings=doc["servings"],
             time=doc["time"],
             rating=doc["rating"],
-            indexed_at=doc["indexed_at"],
+            indexed_at=doc.get("indexed_at"),
             redirected_id=doc.get("redirected_id"),
             redirected_at=doc.get("redirected_at"),
         )
