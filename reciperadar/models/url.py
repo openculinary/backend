@@ -37,7 +37,7 @@ class BaseURL(Storable):
             kwargs["domain"] = url_info.fld
         super().__init__(*args, **kwargs)
 
-    id = db.Column(db.String)
+    id = db.Column(db.String, nullable=False, index=True)
     url = db.Column(db.String, primary_key=True)
     domain = db.Column(db.String)
     earliest_crawled_at = db.Column(db.DateTime)
