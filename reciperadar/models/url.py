@@ -102,9 +102,7 @@ class CrawlURL(BaseURL):
 
     @staticmethod
     def find_latest_crawl(url):
-        latest_crawl = (
-            db.session.query(CrawlURL).filter_by(url=url).cte(recursive=True)
-        )
+        latest_crawl = db.session.query(CrawlURL).filter_by(url=url).cte(recursive=True)
 
         previous_step = db.aliased(latest_crawl)
         latest_crawl = latest_crawl.union(
