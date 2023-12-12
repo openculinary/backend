@@ -138,7 +138,7 @@ def crawl_recipe(url):
         return
 
     # Find the first-known crawl for the latest URL, and consider it the origin
-    earliest_crawl = CrawlURL.find_earliest_crawl(latest_crawl.url)
+    earliest_crawl = CrawlURL.find_earliest_crawl(latest_crawl.resolves_to)
     if not earliest_crawl:
         print(f"Failed to find earliest crawl for url={url}")
         return
