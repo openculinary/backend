@@ -1,5 +1,3 @@
-from pymmh3 import hash_bytes
-
 from reciperadar import db
 from reciperadar.models.recipes import Recipe
 from reciperadar.models.domain import Domain
@@ -24,12 +22,9 @@ def index_recipe(recipe_id):
 
     # Display only the oldest-known recipe of record; redirect all others to it
     earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
-    if earliest_crawl:
-        src_hash = hash_bytes(earliest_crawl.url).encode("utf-8")
-        earliest_id = Recipe.generate_id(src_hash)
-        if recipe.id != earliest_id:
-            recipe.redirected_id = earliest_id
-            print(f"Redirected {recipe.id} to {earliest_id} url={earliest_crawl.url}")
+    if earliest_crawl and recipe.id != earliest_crawl.id:
+        recipe.redirected_id = earliest_crawl.id
+        print(f"Redirected {recipe.id} to {earliest_crawl.id} url={earliest_crawl.url}")
 
     if recipe.index():
         print(f"Indexed {recipe.id} for url={recipe.src}")
