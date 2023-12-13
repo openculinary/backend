@@ -2,6 +2,7 @@ from flask import abort, jsonify, request
 
 from reciperadar import app, db
 from reciperadar.models.recipes import Recipe
+from reciperadar.models.url import CrawlURL
 from reciperadar.workers.recipes import crawl_url, index_recipe
 
 
@@ -20,7 +21,7 @@ def recipe_diagnostics(recipe_id):
         return abort(404)
 
     recipe_url = recipe.recipe_url
-    earliest_crawl = recipe_url.find_earliest_crawl()
+    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
 
     return jsonify(
         {
