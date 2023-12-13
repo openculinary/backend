@@ -24,10 +24,10 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
         volumeMounts:
-          - mountPath: /var/tmp
-            name: var-tmp
+        - mountPath: /var/tmp
+          name: var-tmp
       volumes:
-        - name: var-tmp
-          emptyDir:
-            medium: "Memory"
-            sizeLimit: "128Mi"
+      - name: var-tmp
+        emptyDir:
+          medium: "Memory"
+          sizeLimit: "128Mi"
