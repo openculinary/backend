@@ -21,3 +21,13 @@ spec:
         name: backend
         command: ['/srv/.local/bin/celery']
         args: ['-A', 'reciperadar.workers', 'worker', '-Q', 'celery,crawl_url,crawl_recipe,index_recipe,recrawl_search,update_product_synonyms']
+        securityContext:
+          readOnlyRootFilesystem: true
+        volumeMounts:
+          - mountPath: /var/tmp
+            name: var-tmp
+      volumes:
+        - name: var-tmp
+          emptyDir:
+            medium: "Memory"
+            sizeLimit: "128Mi"
