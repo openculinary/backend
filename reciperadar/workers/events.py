@@ -32,5 +32,6 @@ def store_event(event_table, event_data):
             raise
     except Exception as e:
         print(f"Failed to write {event.__class__.__name__}: {str(e)}")
+        raise
     finally:
         db.session.close()
