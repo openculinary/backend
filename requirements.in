@@ -5,9 +5,9 @@ flask-admin==1.6.1
 flask-migrate==4.0.5
 flask-sqlalchemy==3.1.1
 gunicorn==21.2.0
-httpx==0.25.2
+httpx==0.26.0
 opensearch-py==2.4.2
-pg8000==1.30.3
+pg8000==1.30.4
 pymmh3==0.0.5
-sqlalchemy==2.0.23
+sqlalchemy==2.0.25
 tld==0.13
