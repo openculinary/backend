@@ -125,9 +125,9 @@ class Recipe(Storable, Indexable):
 
     @property
     def aggregate_ingredient_nutrition(self):
-        all_ingredients_mass = sum([i.mass or 0 for i in self.ingredients])
+        all_ingredients_mass = sum(i.mass or 0 for i in self.ingredients)
         ingredients_with_nutrition_mass = sum(
-            [i.mass or 0 for i in self.ingredients if i.nutrition]
+            i.mass or 0 for i in self.ingredients if i.nutrition
         )
 
         # Only render nutritional content when it is known for 90%+ of the
