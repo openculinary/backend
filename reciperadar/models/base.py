@@ -42,7 +42,7 @@ class Storable(db.Model):
         }
 
 
-class Indexable(object):
+class Indexable:
     __metaclass__ = ABC
 
     es = OpenSearch("opensearch")
