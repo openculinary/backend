@@ -94,9 +94,11 @@ class Recipe(Storable, Indexable):
                 for direction in doc.get("directions") or []
                 if direction["description"].strip()
             ],
-            nutrition=RecipeNutrition.from_doc(doc["nutrition"])
-            if doc.get("nutrition")
-            else None,
+            nutrition=(
+                RecipeNutrition.from_doc(doc["nutrition"])
+                if doc.get("nutrition")
+                else None
+            ),
             servings=doc["servings"],
             time=doc["time"],
             rating=doc["rating"],
