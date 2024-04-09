@@ -10,9 +10,7 @@ from reciperadar import db
 class Storable(db.Model):
     __abstract__ = True
 
-    ID_SYMBOL_TABLE = [
-        s for s in "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-    ]
+    ID_SYMBOL_TABLE = list("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
 
     @staticmethod
     def generate_id(input_bytes=None):
@@ -20,7 +18,7 @@ class Storable(db.Model):
             encode(
                 input_data=input_bytes or uuid4().bytes,
                 input_base=256,
-                input_symbol_table=[b for b in range(256)],
+                input_symbol_table=list(range(256)),
                 output_base=58,
                 output_symbol_table=Storable.ID_SYMBOL_TABLE,
                 output_padding="",
