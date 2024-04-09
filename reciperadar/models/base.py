@@ -46,6 +46,9 @@ class Indexable:
 
     es = OpenSearch("opensearch")
 
+    def __init__(self):
+        self.indexed_at = None
+
     @property
     @abstractmethod
     def noun(self):
