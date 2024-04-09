@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
-from basest.core import encode
 from datetime import datetime
-from opensearchpy import OpenSearch
 from uuid import uuid4
+
+from basest.core import encode
+from opensearchpy import OpenSearch
 
 from reciperadar import db
 
