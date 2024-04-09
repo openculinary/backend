@@ -30,6 +30,7 @@ class Storable(db.Model):
         )
 
     @abstractmethod
+    @staticmethod
     def from_doc(doc):
         pass
 
