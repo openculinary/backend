@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractmethod
 from basest.core import encode
 from datetime import datetime
 from opensearchpy import OpenSearch
@@ -46,7 +46,8 @@ class Indexable:
 
     es = OpenSearch("opensearch")
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def noun(self):
         pass
 
