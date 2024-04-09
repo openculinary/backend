@@ -63,7 +63,7 @@ class Recipe(Storable, Indexable):
     def hidden(self):
         if self.redirected_id:
             return True
-        if not all([ingredient.product for ingredient in self.ingredients]):
+        if not all(ingredient.product for ingredient in self.ingredients):
             return True
         return False
 
@@ -164,41 +164,33 @@ class Recipe(Storable, Indexable):
     @property
     def is_dairy_free(self):
         return all(
-            [
-                ingredient.product.is_dairy_free
-                for ingredient in self.ingredients
-                if ingredient.product
-            ]
+            ingredient.product.is_dairy_free
+            for ingredient in self.ingredients
+            if ingredient.product
         )
 
     @property
     def is_gluten_free(self):
         return all(
-            [
-                ingredient.product.is_gluten_free
-                for ingredient in self.ingredients
-                if ingredient.product
-            ]
+            ingredient.product.is_gluten_free
+            for ingredient in self.ingredients
+            if ingredient.product
         )
 
     @property
     def is_vegan(self):
         return all(
-            [
-                ingredient.product.is_vegan
-                for ingredient in self.ingredients
-                if ingredient.product
-            ]
+            ingredient.product.is_vegan
+            for ingredient in self.ingredients
+            if ingredient.product
         )
 
     @property
     def is_vegetarian(self):
         return all(
-            [
-                ingredient.product.is_vegetarian
-                for ingredient in self.ingredients
-                if ingredient.product
-            ]
+            ingredient.product.is_vegetarian
+            for ingredient in self.ingredients
+            if ingredient.product
         )
 
     def to_doc(self):
