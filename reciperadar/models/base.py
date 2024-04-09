@@ -27,8 +27,8 @@ class Storable(db.Model):
             )
         )
 
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def from_doc(doc):
         pass
 
