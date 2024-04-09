@@ -45,7 +45,7 @@ class RecipeDirection(Storable):
         return list(equipment_names)
 
     @staticmethod
-    def from_doc(doc, matches=None):
+    def from_doc(doc):
         direction_id = doc.get("id") or RecipeDirection.generate_id()
         return RecipeDirection(
             id=direction_id,
