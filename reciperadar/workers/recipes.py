@@ -5,8 +5,8 @@ from reciperadar.models.url import CrawlURL, RecipeURL
 from reciperadar.workers.broker import celery
 
 
-@celery.task(queue="url_not_found")
-def url_not_found(recipe_url):
+@celery.task(queue="recipe_not_found")
+def recipe_not_found(recipe_url):
     phantom = Recipe.from_doc(
         dict(
             title=None,
@@ -74,7 +74,7 @@ def crawl_recipe(url):
     try:
         response = recipe_url.crawl()
         if response.status_code == 404:
-            url_not_found.delay(url)
+            recipe_not_found.delay(url)
         response.raise_for_status()
     except RecipeURL.BackoffException:
         print(f"Backoff: {recipe_url.error_message} for url={url}")
