@@ -39,6 +39,7 @@ class Recipe(Storable, Indexable):
 
     indexed_at = db.Column(db.DateTime)
 
+    not_found = db.Column(db.Boolean, default=False)
     redirected_id = db.Column(db.String, redirected_fk)
     redirected_at = db.Column(db.DateTime)
 
@@ -61,6 +62,8 @@ class Recipe(Storable, Indexable):
 
     @property
     def hidden(self):
+        if self.not_found:
+            return True
         if self.redirected_id:
             return True
         if not all(ingredient.product for ingredient in self.ingredients):
