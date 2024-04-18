@@ -1,3 +1,5 @@
+import pytest
+
 from reciperadar.models.recipes import Recipe
 
 
@@ -92,3 +94,27 @@ def test_nutritional_filtering(db_session, raw_recipe_hit):
     recipe.ingredients[1].magnitude = 500
 
     assert recipe.aggregate_ingredient_nutrition is None
+
+
+@pytest.mark.parametrize(
+    ("not_found", "should_write", "value"),
+    [
+        (True, True, True),
+        (False, False, None),
+    ],
+)
+def test_recipe_found_state(db_session, raw_recipe_hit, not_found, should_write, value):
+    recipe = Recipe().from_doc(raw_recipe_hit["_source"])
+
+    # Commit recipe to the session; performs db object relationship resolution
+    db_session.add(recipe)
+    db_session.commit()
+
+    recipe.not_found = not_found
+
+    doc = recipe.to_doc()
+    was_written = "not_found" in doc
+    actual_value = doc.get("not_found")
+
+    assert was_written == should_write
+    assert actual_value == value
