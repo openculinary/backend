@@ -19,6 +19,7 @@ def recipe_not_found(recipe_url):
         )
     )
 
+    print(f"Setting recipe-not-found state for {phantom.id}")
     db.session.query(Recipe).filter_by(id=phantom.id).update({Recipe.not_found: True})
 
     try:
