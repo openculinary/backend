@@ -1,5 +1,5 @@
 basest==0.7.3
-celery==5.3.6
+celery==5.4.0
 flask==3.0.3
 flask-admin==1.6.1
 flask-migrate==4.0.7
@@ -7,7 +7,7 @@ flask-sqlalchemy==3.1.1
 gunicorn==22.0.0
 httpx==0.27.0
 opensearch-py==2.4.2
-pg8000==1.31.1
+pg8000==1.31.2
 pymmh3==0.0.5
 sqlalchemy==2.0.29
 tld==0.13
