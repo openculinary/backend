@@ -5,6 +5,32 @@ from reciperadar.models.url import CrawlURL, RecipeURL
 from reciperadar.workers.broker import celery
 
 
+@celery.task(queue="recipe_not_found")
+def recipe_not_found(recipe_url):
+    phantom = Recipe.from_doc(
+        dict(
+            title=None,
+            src=recipe_url,
+            dst=recipe_url,
+            domain=None,
+            servings=None,
+            time=None,
+            rating=None,
+        )
+    )
+
+    print(f"Setting recipe-not-found state for {phantom.id}")
+    db.session.query(Recipe).filter_by(id=phantom.id).update({Recipe.not_found: True})
+
+    try:
+        db.session.commit()
+        index_recipe.delay(phantom.id)
+    except Exception:
+        db.session.rollback()
+    finally:
+        db.session.close()
+
+
 @celery.task(queue="index_recipe")
 def index_recipe(recipe_id):
     recipe = db.session.get(Recipe, recipe_id)
@@ -168,6 +194,8 @@ def crawl_url(url):
 
     try:
         response = crawl_url.crawl()
+        if response.status_code == 404:
+            recipe_not_found.delay(url)
         response.raise_for_status()
         url = crawl_url.resolves_to
     except RecipeURL.BackoffException:

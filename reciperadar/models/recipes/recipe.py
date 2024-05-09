@@ -39,6 +39,7 @@ class Recipe(Storable, Indexable):
 
     indexed_at = db.Column(db.DateTime)
 
+    not_found = db.Column(db.Boolean, default=False)
     redirected_id = db.Column(db.String, redirected_fk)
     redirected_at = db.Column(db.DateTime)
 
@@ -61,6 +62,8 @@ class Recipe(Storable, Indexable):
 
     @property
     def hidden(self):
+        if self.not_found:
+            return True
         if self.redirected_id:
             return True
         if not all(ingredient.product for ingredient in self.ingredients):
@@ -103,6 +106,7 @@ class Recipe(Storable, Indexable):
             time=doc["time"],
             rating=doc["rating"],
             indexed_at=doc.get("indexed_at"),
+            not_found=doc.get("not_found"),
             redirected_id=doc.get("redirected_id"),
             redirected_at=doc.get("redirected_at"),
         )
@@ -207,6 +211,8 @@ class Recipe(Storable, Indexable):
             else self.aggregate_ingredient_nutrition
         )
         data["nutrition_source"] = "crawler" if self.nutrition else "aggregation"
+        if "not_found" in data and not data["not_found"]:
+            del data["not_found"]
         data["redirected_id"] = self.redirected_id  # explicit foreign key serialization
         data["is_dairy_free"] = self.is_dairy_free
         data["is_gluten_free"] = self.is_gluten_free

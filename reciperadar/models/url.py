@@ -13,7 +13,7 @@ class BaseURL(Storable):
     __metaclass__ = ABC
 
     BACKOFFS = {
-        404: timedelta(hours=1),
+        404: timedelta(days=10),
         429: timedelta(hours=1),
         500: timedelta(hours=1),
     }
