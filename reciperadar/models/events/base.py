@@ -12,7 +12,5 @@ class BaseEvent(Storable):
     __table_args__ = {"schema": "events"}
 
     event_id = db.Column(db.String, default=uuid4, primary_key=True)
-    logged_at = db.Column(
-        db.DateTime, default_factory=lambda: datetime.now(tz=UTC), nullable=False
-    )
+    logged_at = db.Column(db.DateTime, default_factory=lambda: datetime.now(tz=UTC), nullable=False)
     suspected_bot = db.Column(db.Boolean, default=False)
