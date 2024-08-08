@@ -72,7 +72,7 @@ def test_crawl_url_timeline(db_session):
 
 @patch("reciperadar.models.url.datetime")
 @pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True)
-def test_crawl_url_relocation_stability(utcnow_mock, db_session, respx_mock):
+def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
     path = [
         (datetime(2020, 1, 1), "A", "B"),
         (datetime(2020, 2, 1), "B", "B"),
@@ -84,7 +84,7 @@ def test_crawl_url_relocation_stability(utcnow_mock, db_session, respx_mock):
         from_url = f"http://example.org/{from_node}"
         to_url = f"http://example.org/{to_node}"
 
-        utcnow_mock.utcnow.return_value = time
+        dtnow_mock.now.return_value = time
         respx_mock.post("/resolve").respond(json={"url": {"resolves_to": to_url}})
 
         url = db_session.get(CrawlURL, from_url) or CrawlURL(url=from_url)

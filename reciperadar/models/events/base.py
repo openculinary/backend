@@ -1,5 +1,5 @@
 from abc import ABC
-from datetime import datetime
+from datetime import UTC, datetime
 from uuid import uuid4
 
 from reciperadar import db
@@ -12,5 +12,5 @@ class BaseEvent(Storable):
     __table_args__ = {"schema": "events"}
 
     event_id = db.Column(db.String, default=uuid4, primary_key=True)
-    logged_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    logged_at = db.Column(db.DateTime, default=lambda: datetime.now(tz=UTC), nullable=False)
     suspected_bot = db.Column(db.Boolean, default=False)
