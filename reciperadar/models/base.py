@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from datetime import UTC, datetime
+from datetime import datetime
 from uuid import uuid4
 
 from basest.core import encode
@@ -57,7 +57,7 @@ class Indexable:
 
     def index(self):
         if hasattr(self, "indexed_at"):
-            self.indexed_at = datetime.now(tz=UTC)
+            self.indexed_at = datetime.utcnow()
         self.es.index(
             index=self.noun,
             id=self.id,

@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta
 import httpx
 from pymmh3 import hash_bytes
 from tld import get_tld
@@ -55,7 +55,7 @@ class BaseURL(Storable):
 
     def crawl(self):
         backoff = self.BACKOFFS.get(self.crawl_status)
-        now = datetime.now(tz=UTC)
+        now = datetime.utcnow()
         if backoff and self.latest_crawled_at + backoff > now:
             raise RecipeURL.BackoffException()
 
