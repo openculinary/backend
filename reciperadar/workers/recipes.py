@@ -154,16 +154,20 @@ def crawl_recipe(url):
     latest_crawl = CrawlURL.find_latest_crawl(recipe_url.url)
     if not latest_crawl:
         print(f"Failed to find latest crawl for url={url}")
-        return
 
     # Find the first-known crawl for the latest URL, and consider it the origin
-    earliest_crawl = CrawlURL.find_earliest_crawl(latest_crawl.resolves_to)
+    latest_url = latest_crawl.url if latest_crawl else recipe_url.url
+    earliest_crawl = CrawlURL.find_earliest_crawl(latest_url)
     if not earliest_crawl:
         print(f"Failed to find earliest crawl for url={url}")
-        return
 
-    recipe_data["src"] = earliest_crawl.url
-    recipe_data["dst"] = latest_crawl.resolves_to
+    # Never-before-indexed recipe handling
+    if not latest_crawl or not earliest_crawl:
+        assert not latest_crawl and not earliest_crawl
+        print(f"Found no previous crawl records for url={url}")
+
+    recipe_data["src"] = earliest_crawl.url if earliest_crawl else recipe_url.url
+    recipe_data["dst"] = latest_crawl.resolves_to if earliest_crawl else recipe_url.url
     recipe = Recipe.from_doc(recipe_data)
 
     domain = db.session.get(Domain, recipe.domain) or Domain(domain=recipe.domain)
