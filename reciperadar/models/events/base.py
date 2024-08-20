@@ -13,6 +13,8 @@ class BaseEvent(Storable):
 
     event_id = db.Column(db.String, default=uuid4, primary_key=True)
     logged_at = db.Column(
-        db.DateTime, default=lambda: datetime.now(tz=UTC), nullable=False
+        db.TIMESTAMP(timezone=True),
+        default=lambda: datetime.now(tz=UTC),
+        nullable=False,
     )
     suspected_bot = db.Column(db.Boolean, default=False)

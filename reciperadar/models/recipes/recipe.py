@@ -37,7 +37,7 @@ class Recipe(Storable, Indexable):
     directions = db.relationship("RecipeDirection", passive_deletes="all")
     nutrition = db.relationship("RecipeNutrition", uselist=False, passive_deletes="all")
 
-    indexed_at = db.Column(db.DateTime)
+    indexed_at = db.Column(db.TIMESTAMP(timezone=True))
 
     not_found = db.Column(db.Boolean, default=False)
     redirected_id = db.Column(db.String, redirected_fk)

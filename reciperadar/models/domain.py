@@ -33,4 +33,4 @@ class Domain(Storable):
     image_src = db.Column(db.String)
     contact = db.Column(db.String)
     approval = db.Column(db.String)
-    approved_at = db.Column(db.DateTime)
+    approved_at = db.Column(db.TIMESTAMP(timezone=True))
