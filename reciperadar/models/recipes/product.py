@@ -48,7 +48,7 @@ class Product(Storable):
         contents = set()
         for name in self.names:
             contents |= set(name.contents or [])
-        return list(contents)
+        return sorted(contents)
 
     def to_doc(self):
         data = super().to_doc()

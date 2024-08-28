@@ -15,7 +15,7 @@ def get_product_synonyms():
         if len(product.names) == 1:
             continue
         for synonym in product.singular_names:
-            synonyms[synonym] = list(product.singular_names)
+            synonyms[synonym] = sorted(product.singular_names)
     return synonyms
 
 

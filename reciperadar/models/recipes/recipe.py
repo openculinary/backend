@@ -58,7 +58,7 @@ class Recipe(Storable, Indexable):
             for ingredient in self.ingredients
             if ingredient.product_name
         }
-        return list(unique_products.values())
+        return unique_products.values()
 
     @property
     def hidden(self):
@@ -120,14 +120,14 @@ class Recipe(Storable, Indexable):
         contents = set()
         for product_name in self.product_names:
             contents |= set(product_name.contents or [])
-        return list(contents)
+        return sorted(contents)
 
     @property
     def equipment_names(self):
         equipment_names = set()
         for direction in self.directions:
             equipment_names |= set(direction.equipment_names or [])
-        return list(equipment_names)
+        return sorted(equipment_names)
 
     @property
     def aggregate_ingredient_nutrition(self):

@@ -42,7 +42,7 @@ class RecipeDirection(Storable):
         equipment_names = set()
         for item in self.equipment:
             equipment_names.add(item.name)
-        return list(equipment_names)
+        return sorted(equipment_names)
 
     @staticmethod
     def from_doc(doc):
