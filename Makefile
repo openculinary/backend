@@ -27,7 +27,7 @@ image:
 	buildah run $(container) -- find /srv/ -type d -exec chmod a+rx {} \;
 	# End: HACK
 	buildah config --env PYTHONDONTWRITEBYTECODE=1 $(container)
-	buildah config --cmd '/srv/.local/bin/gunicorn reciperadar:app --bind :8000' --port 8000 --user gunicorn $(container)
+	buildah config --cmd '/srv/.local/bin/gunicorn reciperadar:app --bind :8000' --port 8000 --reuse-port --user gunicorn $(container)
 	buildah commit --quiet --rm --squash $(container) ${IMAGE_NAME}:${IMAGE_TAG}
 
 # Virtualenv Makefile pattern derived from https://github.com/bottlepy/bottle/
