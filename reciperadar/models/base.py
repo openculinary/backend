@@ -11,6 +11,7 @@ from reciperadar import db
 class Storable(db.Model):
     __abstract__ = True
 
+    # Ref: the base58 reduced-ambiguity alphabet, sourced from the 'basest' test code
     ID_SYMBOL_TABLE = list("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
 
     @staticmethod
