@@ -28,7 +28,7 @@ image:
 	# End: HACK
 	buildah config --env PYTHONDONTWRITEBYTECODE=1 $(container)
 	buildah config --cmd '/srv/.local/bin/gunicorn reciperadar:app --bind :8000 --reuse-port' --port 8000 --user gunicorn $(container)
-	buildah commit --quiet --rm --squash $(container) ${IMAGE_NAME}:${IMAGE_TAG}
+	buildah commit --omit-timestamp --quiet --rm --squash $(container) ${IMAGE_NAME}:${IMAGE_TAG}
 
 # Virtualenv Makefile pattern derived from https://github.com/bottlepy/bottle/
 venv: venv/.installed requirements.txt requirements-dev.txt
