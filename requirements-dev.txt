@@ -1,37 +1,27 @@
 alembic==1.13.3 \
     --hash=sha256:203503117415561e203aa14541740643a611f641517f0209fcae63e9fa09f1a2 \
     --hash=sha256:908e905976d15235fae59c9ac42c4c5b75cfcefe3d27c0fbf7ae15a37715d80e
-    # via
-    #   -r requirements.txt
-    #   flask-migrate
+    # via flask-migrate
 amqp==5.2.0 \
     --hash=sha256:827cb12fb0baa892aad844fd95258143bce4027fdac4fccddbc43330fd281637 \
     --hash=sha256:a1ecff425ad063ad42a486c902807d1482311481c8ad95a72694b2975e75f7fd
-    # via
-    #   -r requirements.txt
-    #   kombu
+    # via kombu
 anyio==4.6.2.post1 \
     --hash=sha256:4c8bc31ccdb51c7f7bd251f51c609e038d63e34219b44aa86e47576389880b4c \
     --hash=sha256:6d170c36fba3bdd840c73d3868c1e777e33676a69c3a72cf0a0d5d6d8009b61d
-    # via
-    #   -r requirements.txt
-    #   httpx
+    # via httpx
 asn1crypto==1.5.1 \
     --hash=sha256:13ae38502be632115abf8a24cbe5f4da52e3b5231990aff31123c805306ccb9c \
     --hash=sha256:db4e40728b728508912cbb3d44f19ce188f218e9eba635821bb4b68564f8fd67
-    # via
-    #   -r requirements.txt
-    #   scramp
+    # via scramp
 basest==0.7.3 \
     --hash=sha256:57468bcff59306dde1943fb3e3839aafd8f9e11ad29909e4768b93e8bdf213a9 \
     --hash=sha256:77449eaa031182a205c69811d341830a16a9d9e258e10fd5504b89b23ad8066f
-    # via -r requirements.txt
+    # via -r requirements.in
 billiard==4.2.1 \
     --hash=sha256:12b641b0c539073fc8d3f5b8b7be998956665c4233c7c1fcd66a7e677c4fb36f \
     --hash=sha256:40b59a4ac8806ba2c2369ea98d876bc6108b051c227baffd928c644d15d8f3cb
-    # via
-    #   -r requirements.txt
-    #   celery
+    # via celery
 black==24.10.0 \
     --hash=sha256:14b3502784f09ce2443830e3133dacf2c0110d45191ed470ecb04d0f5f6fcb0f \
     --hash=sha256:17374989640fbca88b6a448129cd1745c5eb8d9547b464f281b251dd00155ccd \
@@ -59,18 +49,15 @@ black==24.10.0 \
 blinker==1.8.2 \
     --hash=sha256:1779309f71bf239144b9399d06ae925637cf6634cf6bd131104184531bf67c01 \
     --hash=sha256:8f77b09d3bf7c795e969e9486f39c2c5e9c39d4ee07424be2bc594ece9642d83
-    # via
-    #   -r requirements.txt
-    #   flask
+    # via flask
 celery==5.4.0 \
     --hash=sha256:369631eb580cf8c51a82721ec538684994f8277637edde2dfc0dacd73ed97f64 \
     --hash=sha256:504a19140e8d3029d5acad88330c541d4c3f64c789d85f94756762d8bca7e706
-    # via -r requirements.txt
+    # via -r requirements.in
 certifi==2024.8.30 \
     --hash=sha256:922820b53db7a7257ffbda3f597266d435245903d80737e34f8a45ff3e3230d8 \
     --hash=sha256:bec941d2aa8195e248a60b31ff9f0558284cf01a52591ceda73ea9afffd69fd9
     # via
-    #   -r requirements.txt
     #   httpcore
     #   httpx
     #   opensearch-py
@@ -181,14 +168,11 @@ charset-normalizer==3.4.0 \
     --hash=sha256:f606a1881d2663630ea5b8ce2efe2111740df4b687bd78b34a8131baa007f79b \
     --hash=sha256:fe9f97feb71aa9896b81973a7bbada8c49501dc73e58a10fcef6663af95e5079 \
     --hash=sha256:ffc519621dce0c767e96b9c53f09c5d215578e10b02c285809f76509a3931482
-    # via
-    #   -r requirements.txt
-    #   requests
+    # via requests
 click==8.1.7 \
     --hash=sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28 \
     --hash=sha256:ca9853ad459e787e2192211578cc907e7594e294c7ccc834310722b41b9ca6de
     # via
-    #   -r requirements.txt
     #   black
     #   celery
     #   click-didyoumean
@@ -198,26 +182,18 @@ click==8.1.7 \
 click-didyoumean==0.3.1 \
     --hash=sha256:4f82fdff0dbe64ef8ab2279bd6aa3f6a99c3b28c05aa09cbfc07c9d7fbb5a463 \
     --hash=sha256:5c4bb6007cfea5f2fd6583a2fb6701a22a41eb98957e63d0fac41c10e7c3117c
-    # via
-    #   -r requirements.txt
-    #   celery
+    # via celery
 click-plugins==1.1.1 \
     --hash=sha256:46ab999744a9d831159c3411bb0c79346d94a444df9a3a3742e9ed63645f264b \
     --hash=sha256:5d262006d3222f5057fd81e1623d4443e41dcda5dc815c06b442aa3c02889fc8
-    # via
-    #   -r requirements.txt
-    #   celery
+    # via celery
 click-repl==0.3.0 \
     --hash=sha256:17849c23dba3d667247dc4defe1757fff98694e90fe37474f3feebb69ced26a9 \
     --hash=sha256:fb7e06deb8da8de86180a33a9da97ac316751c094c6899382da7feeeeb51b812
-    # via
-    #   -r requirements.txt
-    #   celery
+    # via celery
 events==0.5 \
     --hash=sha256:a7286af378ba3e46640ac9825156c93bdba7502174dd696090fdfcd4d80a1abd
-    # via
-    #   -r requirements.txt
-    #   opensearch-py
+    # via opensearch-py
 flake8==7.1.1 \
     --hash=sha256:049d058491e228e03e67b390f311bbf88fce2dbaa8fa673e7aea87b7198b8d38 \
     --hash=sha256:597477df7860daa5aa0fdd84bf5208a043ab96b8e96ab708770ae0364dd03213
@@ -226,23 +202,23 @@ flask==3.0.3 \
     --hash=sha256:34e815dfaa43340d1d15a5c3a02b8476004037eb4840b34910c6e21679d288f3 \
     --hash=sha256:ceb27b0af3823ea2737928a4d99d125a06175b8512c445cbd9a9ce200ef76842
     # via
-    #   -r requirements.txt
+    #   -r requirements.in
     #   flask-admin
     #   flask-migrate
     #   flask-sqlalchemy
 flask-admin==1.6.1 \
     --hash=sha256:24cae2af832b6a611a01d7dc35f42d266c1d6c75a426b869d8cb241b78233369 \
     --hash=sha256:fd8190f1ec3355913a22739c46ed3623f1d82b8112cde324c60a6fc9b21c9406
-    # via -r requirements.txt
+    # via -r requirements.in
 flask-migrate==4.0.7 \
     --hash=sha256:5c532be17e7b43a223b7500d620edae33795df27c75811ddf32560f7d48ec617 \
     --hash=sha256:dff7dd25113c210b069af280ea713b883f3840c1e3455274745d7355778c8622
-    # via -r requirements.txt
+    # via -r requirements.in
 flask-sqlalchemy==3.1.1 \
     --hash=sha256:4ba4be7f419dc72f4efd8802d69974803c37259dd42f3913b0dcf75c9447e0a0 \
     --hash=sha256:e4b68bb881802dda1a7d878b2fc84c06d1ee57fb40b874d3dc97dabfa36b8312
     # via
-    #   -r requirements.txt
+    #   -r requirements.in
     #   flask-migrate
 greenlet==3.1.1 \
     --hash=sha256:0153404a4bb921f0ff1abeb5ce8a5131da56b953eda6e14b88dc6bbc04d2049e \
@@ -318,36 +294,29 @@ greenlet==3.1.1 \
     --hash=sha256:f1d4aeb8891338e60d1ab6127af1fe45def5259def8094b9c7e34690c8858803 \
     --hash=sha256:f406b22b7c9a9b4f8aa9d2ab13d6ae0ac3e85c9a809bd590ad53fed2bf70dc79 \
     --hash=sha256:f6ff3b14f2df4c41660a7dec01045a045653998784bf8cfcb5a525bdffffbc8f
-    # via
-    #   -r requirements.txt
-    #   sqlalchemy
+    # via sqlalchemy
 gunicorn==23.0.0 \
     --hash=sha256:ec400d38950de4dfd418cff8328b2c8faed0edb0d517d3394e457c317908ca4d \
     --hash=sha256:f014447a0101dc57e294f6c18ca6b40227a4c90e9bdb586042628030cba004ec
-    # via -r requirements.txt
+    # via -r requirements.in
 h11==0.14.0 \
     --hash=sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d \
     --hash=sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761
-    # via
-    #   -r requirements.txt
-    #   httpcore
+    # via httpcore
 httpcore==1.0.6 \
     --hash=sha256:27b59625743b85577a8c0e10e55b50b5368a4f2cfe8cc7bcfa9cf00829c2682f \
     --hash=sha256:73f6dbd6eb8c21bbf7ef8efad555481853f5f6acdeaff1edb0694289269ee17f
-    # via
-    #   -r requirements.txt
-    #   httpx
+    # via httpx
 httpx==0.27.2 \
     --hash=sha256:7bb2708e112d8fdd7829cd4243970f0c223274051cb35ee80c03301ee29a3df0 \
     --hash=sha256:f7c2be1d2f3c3c3160d441802406b206c2b76f5947b11115e6df10c6c65e66c2
     # via
-    #   -r requirements.txt
+    #   -r requirements.in
     #   respx
 idna==3.10 \
     --hash=sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9 \
     --hash=sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3
     # via
-    #   -r requirements.txt
     #   anyio
     #   httpx
     #   requests
@@ -358,27 +327,19 @@ iniconfig==2.0.0 \
 itsdangerous==2.2.0 \
     --hash=sha256:c6242fc49e35958c8b15141343aa660db5fc54d4f13a1db01a3f5891b98700ef \
     --hash=sha256:e0050c0b7da1eea53ffaf149c0cfbb5c6e2e2b69c4bef22c81fa6eb73e5f6173
-    # via
-    #   -r requirements.txt
-    #   flask
+    # via flask
 jinja2==3.1.4 \
     --hash=sha256:4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369 \
     --hash=sha256:bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d
-    # via
-    #   -r requirements.txt
-    #   flask
+    # via flask
 kombu==5.4.2 \
     --hash=sha256:14212f5ccf022fc0a70453bb025a1dcc32782a588c49ea866884047d66e14763 \
     --hash=sha256:eef572dd2fd9fc614b37580e3caeafdd5af46c1eff31e7fba89138cdb406f2cf
-    # via
-    #   -r requirements.txt
-    #   celery
+    # via celery
 mako==1.3.6 \
     --hash=sha256:9ec3a1583713479fae654f83ed9fa8c9a4c16b7bb0daba0e6bbebff50c0d983d \
     --hash=sha256:a91198468092a2f1a0de86ca92690fb0cfc43ca90ee17e15d93662b4c04b241a
-    # via
-    #   -r requirements.txt
-    #   alembic
+    # via alembic
 markupsafe==3.0.2 \
     --hash=sha256:0bff5e0ae4ef2e1ae4fdf2dfd5b76c75e5c2fa4132d05fc1b0dabcd20c7e28c4 \
     --hash=sha256:0f4ca02bea9a23221c0182836703cbf8930c5e9454bacce27e767509fa286a30 \
@@ -442,7 +403,6 @@ markupsafe==3.0.2 \
     --hash=sha256:f8b3d067f2e40fe93e1ccdd6b2e1d16c43140e76f02fb1319a05cf2b79d99430 \
     --hash=sha256:fcabf5ff6eea076f859677f5f0b6b5c1a51e70a376b0579e0eadef8db48c6b50
     # via
-    #   -r requirements.txt
     #   jinja2
     #   mako
     #   werkzeug
@@ -458,12 +418,11 @@ mypy-extensions==1.0.0 \
 opensearch-py==2.7.1 \
     --hash=sha256:5417650eba98a1c7648e502207cebf3a12beab623ffe0ebbf55f9b1b4b6e44e9 \
     --hash=sha256:67ab76e9373669bc71da417096df59827c08369ac3795d5438c9a8be21cbd759
-    # via -r requirements.txt
+    # via -r requirements.in
 packaging==24.1 \
     --hash=sha256:026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002 \
     --hash=sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124
     # via
-    #   -r requirements.txt
     #   black
     #   gunicorn
     #   pytest
@@ -474,7 +433,7 @@ pathspec==0.12.1 \
 pg8000==1.31.2 \
     --hash=sha256:1ea46cf09d8eca07fe7eaadefd7951e37bee7fabe675df164f1a572ffb300876 \
     --hash=sha256:436c771ede71af4d4c22ba867a30add0bc5c942d7ab27fadbb6934a487ecc8f6
-    # via -r requirements.txt
+    # via -r requirements.in
 platformdirs==4.3.6 \
     --hash=sha256:357fb2acbc885b0419afd3ce3ed34564c13c9b95c89360cd9563f73aa5e2b907 \
     --hash=sha256:73e575e1408ab8103900836b97580d5307456908a03e92031bab39e4554cc3fb
@@ -486,9 +445,7 @@ pluggy==1.5.0 \
 prompt-toolkit==3.0.48 \
     --hash=sha256:d6623ab0477a80df74e646bdbc93621143f5caf104206aa29294d53de1a03d90 \
     --hash=sha256:f49a827f90062e411f1ce1f854f2aedb3c23353244f8108b89283587397ac10e
-    # via
-    #   -r requirements.txt
-    #   click-repl
+    # via click-repl
 pycodestyle==2.12.1 \
     --hash=sha256:46f0fb92069a7c28ab7bb558f05bfc0110dac69a0cd23c61ea0040283a9d78b3 \
     --hash=sha256:6838eae08bbce4f6accd5d5572075c63626a15ee3e6f842df996bf62f6d73521
@@ -499,7 +456,7 @@ pyflakes==3.2.0 \
     # via flake8
 pymmh3==0.0.5 \
     --hash=sha256:c47e9e735518501a3c9b719dbd795aa5d5a1dba48d9c85bae1777ab9ae6c7c45
-    # via -r requirements.txt
+    # via -r requirements.in
 pytest==8.3.3 \
     --hash=sha256:70b98107bd648308a7952b06e6ca9a50bc660be218d53c257cc1fc94fda10181 \
     --hash=sha256:a6853c7375b2663155079443d2e45de913a911a11d669df02a50814944db57b2
@@ -508,16 +465,13 @@ python-dateutil==2.9.0.post0 \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
     # via
-    #   -r requirements.txt
     #   celery
     #   opensearch-py
     #   pg8000
 requests==2.32.3 \
     --hash=sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760 \
     --hash=sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6
-    # via
-    #   -r requirements.txt
-    #   opensearch-py
+    # via opensearch-py
 respx==0.21.1 \
     --hash=sha256:05f45de23f0c785862a2c92a3e173916e8ca88e4caad715dd5f68584d6053c20 \
     --hash=sha256:0bd7fe21bfaa52106caa1223ce61224cf30786985f17c63c5d71eff0307ee8af
@@ -525,20 +479,15 @@ respx==0.21.1 \
 scramp==1.4.5 \
     --hash=sha256:50e37c464fc67f37994e35bee4151e3d8f9320e9c204fca83a5d313c121bbbe7 \
     --hash=sha256:be3fbe774ca577a7a658117dca014e5d254d158cecae3dd60332dfe33ce6d78e
-    # via
-    #   -r requirements.txt
-    #   pg8000
+    # via pg8000
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
-    # via
-    #   -r requirements.txt
-    #   python-dateutil
+    # via python-dateutil
 sniffio==1.3.1 \
     --hash=sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2 \
     --hash=sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc
     # via
-    #   -r requirements.txt
     #   anyio
     #   httpx
 sqlalchemy==2.0.36 \
@@ -600,57 +549,47 @@ sqlalchemy==2.0.36 \
     --hash=sha256:fddbe92b4760c6f5d48162aef14824add991aeda8ddadb3c31d56eb15ca69f8e \
     --hash=sha256:fdf3386a801ea5aba17c6410dd1dc8d39cf454ca2565541b5ac42a84e1e28f53
     # via
-    #   -r requirements.txt
+    #   -r requirements.in
     #   alembic
     #   flask-sqlalchemy
 tld==0.13 \
     --hash=sha256:93dde5e1c04bdf1844976eae440706379d21f4ab235b73c05d7483e074fb5629 \
     --hash=sha256:f75b2be080f767ed17c2338a339eaa4fab5792586319ca819119da252f9f3749
-    # via -r requirements.txt
+    # via -r requirements.in
 typing-extensions==4.12.2 \
     --hash=sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d \
     --hash=sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8
     # via
-    #   -r requirements.txt
     #   alembic
     #   sqlalchemy
 tzdata==2024.2 \
     --hash=sha256:7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc \
     --hash=sha256:a48093786cdcde33cad18c2555e8532f34422074448fbc874186f0abd79565cd
     # via
-    #   -r requirements.txt
     #   celery
     #   kombu
 urllib3==2.2.3 \
     --hash=sha256:ca899ca043dcb1bafa3e262d73aa25c465bfb49e0bd9dd5d59f1d0acba2f8fac \
     --hash=sha256:e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9
     # via
-    #   -r requirements.txt
     #   opensearch-py
     #   requests
 vine==5.1.0 \
     --hash=sha256:40fdf3c48b2cfe1c38a49e9ae2da6fda88e4794c810050a728bd7413811fb1dc \
     --hash=sha256:8b62e981d35c41049211cf62a0a1242d8c1ee9bd15bb196ce38aefd6799e61e0
     # via
-    #   -r requirements.txt
     #   amqp
     #   celery
     #   kombu
 wcwidth==0.2.13 \
     --hash=sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859 \
     --hash=sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5
-    # via
-    #   -r requirements.txt
-    #   prompt-toolkit
+    # via prompt-toolkit
 werkzeug==3.0.5 \
     --hash=sha256:033bc3783777078517f32ae3ba9e86e9bc38bdbf139b1a5a3af9679a64ed1293 \
     --hash=sha256:6e589e0b303561b8b1a61d363ee05b1d7de6ca12f27a3a25269ae6ee93e363fd
-    # via
-    #   -r requirements.txt
-    #   flask
+    # via flask
 wtforms==3.2.1 \
     --hash=sha256:583bad77ba1dd7286463f21e11aa3043ca4869d03575921d1a1698d0715e0fd4 \
     --hash=sha256:df3e6b70f3192e92623128123ec8dca3067df9cfadd43d59681e210cfb8d4682
-    # via
-    #   -r requirements.txt
-    #   flask-admin
+    # via flask-admin
