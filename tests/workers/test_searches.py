@@ -12,7 +12,7 @@ def valid_response(respx_mock):
     respx_mock.post("/").respond(json=["http://www.example.test"])
 
 
-@pytest.mark.respx(base_url="http://recrawler-service")
+@pytest.mark.respx(base_url="http://recrawler-service", using="httpx")
 def test_recrawler_error_handled(error_response):
     result = recrawl_search(
         include=["tofu"],
@@ -25,7 +25,7 @@ def test_recrawler_error_handled(error_response):
     assert result == []
 
 
-@pytest.mark.respx(base_url="http://recrawler-service")
+@pytest.mark.respx(base_url="http://recrawler-service", using="httpx")
 def test_recrawler_success(valid_response):
     result = recrawl_search(
         include=["tofu"],
