@@ -9,7 +9,7 @@ from reciperadar.models.url import CrawlURL, RecipeURL
 
 @pytest.fixture
 def origin_url():
-    return "https://recipe.subdomain.example.com/recipe/123"
+    return "https://recipe.subdomain.example.test/recipe/123"
 
 
 @pytest.fixture
@@ -31,13 +31,13 @@ def test_crawl_timeout(post, origin_url):
 def test_origin_url_domain(origin_url):
     url = CrawlURL(url=origin_url)
 
-    assert url.domain == "example.com"
+    assert url.domain == "example.test"
 
 
 def test_content_url_domain(content_url):
     url = RecipeURL(url=content_url)
 
-    assert url.domain == "example.com"
+    assert url.domain == "example.test"
 
 
 def test_crawl_url_timeline(db_session):
@@ -51,8 +51,8 @@ def test_crawl_url_timeline(db_session):
     ]
     path = [
         CrawlURL(
-            url=f"//example.org/{from_node}",
-            resolves_to=f"//example.org/{to_node}",
+            url=f"//example.test/{from_node}",
+            resolves_to=f"//example.test/{to_node}",
             earliest_crawled_at=time,
             latest_crawled_at=time,
         )
@@ -61,13 +61,13 @@ def test_crawl_url_timeline(db_session):
     for step in path:
         db_session.add(step)
 
-    url = "//example.org/C"
+    url = "//example.test/C"
     earliest_crawl = CrawlURL.find_earliest_crawl(url)
     latest_crawl = CrawlURL.find_latest_crawl(url)
 
-    assert earliest_crawl.url == "//example.org/A"
-    assert latest_crawl.url == "//example.org/D"
-    assert latest_crawl.resolves_to == "//example.org/D"
+    assert earliest_crawl.url == "//example.test/A"
+    assert latest_crawl.url == "//example.test/D"
+    assert latest_crawl.resolves_to == "//example.test/D"
 
 
 @patch("reciperadar.models.url.datetime")
@@ -81,8 +81,8 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
     ]
     origin_urls = set()
     for time, from_node, to_node in path:
-        from_url = f"http://example.org/{from_node}"
-        to_url = f"http://example.org/{to_node}"
+        from_url = f"http://example.test/{from_node}"
+        to_url = f"http://example.test/{to_node}"
 
         dtnow_mock.now.return_value = time
         respx_mock.post("/resolve").respond(json={"url": {"resolves_to": to_url}})
