@@ -1,9 +1,30 @@
+from unittest.mock import patch
+
 import pytest
 
 from sqlalchemy.orm import scoped_session, sessionmaker
+from tld import get_tld, get_tld_names, update_tld_names
 
 from reciperadar import app, db
 from reciperadar.models.recipes.product import Product, ProductName
+
+
+@pytest.fixture(autouse=True)
+def patch_get_tld():
+    with patch("reciperadar.models.url.get_tld") as mock_get_tld:
+        # Add private/reserved .test TLD
+        for local_path, domain_trie in get_tld_names().items():
+            domain_trie.add("test", private=True)
+            update_tld_names(local_path, domain_trie)
+
+        # Passthrough get_tld queries with private-TLD search enabled
+        def get_tld_private_enabled(*args, **kwargs):
+            kwargs["search_private"] = True
+            return get_tld(*args, **kwargs)
+
+        # Return the passthrough get_tld
+        mock_get_tld.side_effect = get_tld_private_enabled
+        yield mock_get_tld
 
 
 @pytest.fixture(autouse=True)
@@ -157,11 +178,11 @@ def raw_recipe_hit(products):
                 },
             ],
             "author": "example",
-            "image_src": "http://www.example.com/path/image.png?v=123",
+            "image_src": "http://www.example.test/path/image.png?v=123",
             "time": 30,
-            "src": "http://www.example.com/recipes/test",
-            "dst": "https://www.example.com/recipes/test",
-            "domain": "example.com",
+            "src": "http://www.example.test/recipes/test",
+            "dst": "https://www.example.test/recipes/test",
+            "domain": "example.test",
             "servings": 2,
             "rating": 4.5,
             "indexed_at": "1970-01-01T01:02:03.456789",

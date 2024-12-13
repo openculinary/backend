@@ -9,7 +9,7 @@ def error_response(respx_mock):
 
 @pytest.fixture
 def valid_response(respx_mock):
-    respx_mock.post("/").respond(json=["http://www.example.com"])
+    respx_mock.post("/").respond(json=["http://www.example.test"])
 
 
 @pytest.mark.respx(base_url="http://recrawler-service")
@@ -35,4 +35,4 @@ def test_recrawler_success(valid_response):
         offset=0,
     )
 
-    assert result == ["http://www.example.com"]
+    assert result == ["http://www.example.test"]
