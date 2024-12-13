@@ -71,7 +71,9 @@ def test_crawl_url_timeline(db_session):
 
 
 @patch("reciperadar.models.url.datetime")
-@pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True, using="httpx")
+@pytest.mark.respx(
+    base_url="http://crawler-service", assert_all_called=True, using="httpx"
+)
 def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
     path = [
         (datetime(2020, 1, 1), "A", "B"),

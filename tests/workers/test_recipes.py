@@ -10,7 +10,9 @@ def set_resolution(respx_mock, url):
 
 
 @patch("reciperadar.workers.recipes.crawl_recipe.delay")
-@pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True, using="httpx")
+@pytest.mark.respx(
+    base_url="http://crawler-service", assert_all_called=True, using="httpx"
+)
 def test_crawl_url_samedomain(crawl_recipe, respx_mock, db_session):
     origin_url = "//example.test/A"
     current_url = "//example.test/B"
@@ -22,7 +24,9 @@ def test_crawl_url_samedomain(crawl_recipe, respx_mock, db_session):
 
 
 @patch("reciperadar.workers.recipes.crawl_recipe.delay")
-@pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True, using="httpx")
+@pytest.mark.respx(
+    base_url="http://crawler-service", assert_all_called=True, using="httpx"
+)
 def test_crawl_unseen_crossdomain(crawl_recipe, respx_mock, db_session):
     origin_url = "//example.test/A"
     current_url = "//example.test/B"
@@ -34,7 +38,9 @@ def test_crawl_unseen_crossdomain(crawl_recipe, respx_mock, db_session):
 
 
 @patch("reciperadar.workers.recipes.crawl_recipe.delay")
-@pytest.mark.respx(base_url="http://crawler-service", assert_all_called=True, using="httpx")
+@pytest.mark.respx(
+    base_url="http://crawler-service", assert_all_called=True, using="httpx"
+)
 def test_crawl_seen_crossdomain(crawl_recipe, respx_mock, db_session):
     origin_url = "//example.original.test/A"
     current_url = "//example.updated.test/B"
