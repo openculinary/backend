@@ -6,9 +6,9 @@ amqp==5.3.1 \
     --hash=sha256:43b3319e1b4e7d1251833a93d672b4af1e40f3d632d479b98661a95f117880a2 \
     --hash=sha256:cddc00c725449522023bad949f70fff7b48f0b1ade74d170a6f10ab044739432
     # via kombu
-anyio==4.6.2.post1 \
-    --hash=sha256:4c8bc31ccdb51c7f7bd251f51c609e038d63e34219b44aa86e47576389880b4c \
-    --hash=sha256:6d170c36fba3bdd840c73d3868c1e777e33676a69c3a72cf0a0d5d6d8009b61d
+anyio==4.7.0 \
+    --hash=sha256:2f834749c602966b7d456a7567cafcb309f96482b5081d14ac93ccd457f9dd48 \
+    --hash=sha256:ea60c3723ab42ba6fff7e8ccb0488c898ec538ff4df1f1d5e642c3601d07e352
     # via httpx
 asn1crypto==1.5.1 \
     --hash=sha256:13ae38502be632115abf8a24cbe5f4da52e3b5231990aff31123c805306ccb9c \
@@ -307,9 +307,9 @@ httpcore==1.0.7 \
     --hash=sha256:8551cb62a169ec7162ac7be8d4817d561f60e08eaa485234898414bb5a8a0b4c \
     --hash=sha256:a3fff8f43dc260d5bd363d9f9cf1830fa3a458b332856f34282de498ed420edd
     # via httpx
-httpx==0.27.2 \
-    --hash=sha256:7bb2708e112d8fdd7829cd4243970f0c223274051cb35ee80c03301ee29a3df0 \
-    --hash=sha256:f7c2be1d2f3c3c3160d441802406b206c2b76f5947b11115e6df10c6c65e66c2
+httpx==0.28.1 \
+    --hash=sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc \
+    --hash=sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad
     # via
     #   -r requirements.in
     #   respx
@@ -336,9 +336,9 @@ kombu==5.4.2 \
     --hash=sha256:14212f5ccf022fc0a70453bb025a1dcc32782a588c49ea866884047d66e14763 \
     --hash=sha256:eef572dd2fd9fc614b37580e3caeafdd5af46c1eff31e7fba89138cdb406f2cf
     # via celery
-mako==1.3.6 \
-    --hash=sha256:9ec3a1583713479fae654f83ed9fa8c9a4c16b7bb0daba0e6bbebff50c0d983d \
-    --hash=sha256:a91198468092a2f1a0de86ca92690fb0cfc43ca90ee17e15d93662b4c04b241a
+mako==1.3.8 \
+    --hash=sha256:42f48953c7eb91332040ff567eb7eea69b22e7a4affbc5ba8e845e8f730f6627 \
+    --hash=sha256:577b97e414580d3e088d47c2dbbe9594aa7a5146ed2875d4dfa9075af2dd3cc8
     # via alembic
 markupsafe==3.0.2 \
     --hash=sha256:0bff5e0ae4ef2e1ae4fdf2dfd5b76c75e5c2fa4132d05fc1b0dabcd20c7e28c4 \
@@ -415,9 +415,9 @@ mypy-extensions==1.0.0 \
     --hash=sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d \
     --hash=sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782
     # via black
-opensearch-py==2.7.1 \
-    --hash=sha256:5417650eba98a1c7648e502207cebf3a12beab623ffe0ebbf55f9b1b4b6e44e9 \
-    --hash=sha256:67ab76e9373669bc71da417096df59827c08369ac3795d5438c9a8be21cbd759
+opensearch-py==2.8.0 \
+    --hash=sha256:52c60fdb5d4dcf6cce3ee746c13b194529b0161e0f41268b98ab8f1624abe2fa \
+    --hash=sha256:6598df0bc7a003294edd0ba88a331e0793acbb8c910c43edf398791e3b2eccda
     # via -r requirements.in
 packaging==24.2 \
     --hash=sha256:09abb1bccd265c01f4a3aa3f7a7db064b36514d2cba19a2f694fe6150451a759 \
@@ -457,9 +457,9 @@ pyflakes==3.2.0 \
 pymmh3==0.0.5 \
     --hash=sha256:c47e9e735518501a3c9b719dbd795aa5d5a1dba48d9c85bae1777ab9ae6c7c45
     # via -r requirements.in
-pytest==8.3.3 \
-    --hash=sha256:70b98107bd648308a7952b06e6ca9a50bc660be218d53c257cc1fc94fda10181 \
-    --hash=sha256:a6853c7375b2663155079443d2e45de913a911a11d669df02a50814944db57b2
+pytest==8.3.4 \
+    --hash=sha256:50e16d954148559c9a74109af1eaf0c945ba2d8f30f0a3d3335edde19788b6f6 \
+    --hash=sha256:965370d062bce11e73868e0335abac31b4d3de0e82f4007408d242b4f8610761
     # via -r requirements-dev.in
 python-dateutil==2.9.0.post0 \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
@@ -480,16 +480,14 @@ scramp==1.4.5 \
     --hash=sha256:50e37c464fc67f37994e35bee4151e3d8f9320e9c204fca83a5d313c121bbbe7 \
     --hash=sha256:be3fbe774ca577a7a658117dca014e5d254d158cecae3dd60332dfe33ce6d78e
     # via pg8000
-six==1.16.0 \
-    --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
-    --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
+six==1.17.0 \
+    --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
+    --hash=sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81
     # via python-dateutil
 sniffio==1.3.1 \
     --hash=sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2 \
     --hash=sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc
-    # via
-    #   anyio
-    #   httpx
+    # via anyio
 sqlalchemy==2.0.36 \
     --hash=sha256:03e08af7a5f9386a43919eda9de33ffda16b44eb11f3b313e6822243770e9763 \
     --hash=sha256:0572f4bd6f94752167adfd7c1bed84f4b240ee6203a95e05d1e208d488d0d436 \
@@ -561,6 +559,7 @@ typing-extensions==4.12.2 \
     --hash=sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8
     # via
     #   alembic
+    #   anyio
     #   sqlalchemy
 tzdata==2024.2 \
     --hash=sha256:7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc \
