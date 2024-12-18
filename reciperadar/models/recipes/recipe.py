@@ -2,7 +2,6 @@ from pymmh3 import hash_bytes
 
 from reciperadar import db
 from reciperadar.models.base import Indexable, Storable
-from reciperadar.models.recipes.direction import RecipeDirection
 from reciperadar.models.recipes.ingredient import RecipeIngredient
 from reciperadar.models.recipes.nutrition import (
     IngredientNutrition,
@@ -32,7 +31,6 @@ class Recipe(Storable, Indexable):
     servings = db.Column(db.Integer)
     rating = db.Column(db.Float)
     ingredients = db.relationship("RecipeIngredient", passive_deletes="all")
-    directions = db.relationship("RecipeDirection", passive_deletes="all")
     nutrition = db.relationship("RecipeNutrition", uselist=False, passive_deletes="all")
 
     indexed_at = db.Column(db.TIMESTAMP(timezone=True))
@@ -89,11 +87,6 @@ class Recipe(Storable, Indexable):
                 for ingredient in doc["ingredients"]
                 if ingredient["description"].strip()
             ],
-            directions=[
-                RecipeDirection.from_doc(direction)
-                for direction in doc.get("directions") or []
-                if direction["description"].strip()
-            ],
             nutrition=(
                 RecipeNutrition.from_doc(doc["nutrition"])
                 if doc.get("nutrition")
@@ -118,13 +111,6 @@ class Recipe(Storable, Indexable):
         for product_name in self.product_names:
             contents |= set(product_name.contents or [])
         return sorted(contents)
-
-    @property
-    def equipment_names(self):
-        equipment_names = set()
-        for direction in self.directions:
-            equipment_names |= set(direction.equipment_names or [])
-        return sorted(equipment_names)
 
     @property
     def aggregate_ingredient_nutrition(self):
@@ -196,10 +182,8 @@ class Recipe(Storable, Indexable):
 
     def to_doc(self):
         data = super().to_doc()
-        # data["directions"] = [direction.to_doc() for direction in self.directions]
         data["ingredients"] = [ingredient.to_doc() for ingredient in self.ingredients]
         data["contents"] = self.contents
-        data["equipment_names"] = self.equipment_names
         data["product_count"] = len(self.product_names)
         data["hidden"] = self.hidden
         data["nutrition"] = (

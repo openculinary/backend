@@ -116,34 +116,6 @@ def raw_recipe_hit(products):
         "_score": 10.04635,
         "_source": {
             "title": "Test Recipe",
-            "directions": [
-                {
-                    "index": 0,
-                    "description": "place each skewer in the oven",
-                    "markup": (
-                        "<mark class='verb action'>place</mark> each "
-                        "<mark class='equipment utensil'>skewer</mark> in the "
-                        "<mark class='equipment appliance'>oven</mark>"
-                    ),
-                    "entities": [
-                        {
-                            "type": "verb",
-                            "category": "action",
-                            "name": "place",
-                        },
-                        {
-                            "type": "equipment",
-                            "category": "utensil",
-                            "name": "skewer",
-                        },
-                        {
-                            "type": "equipment",
-                            "category": "appliance",
-                            "name": "oven",
-                        },
-                    ],
-                }
-            ],
             "ingredients": [
                 {
                     "index": 0,
