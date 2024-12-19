@@ -29,6 +29,7 @@ class Domain(Storable):
 
     domain = db.Column(db.String, primary_key=True)
     crawl_enabled = db.Column(db.Boolean)
+    cache_enabled = db.Column(db.Boolean)
     contact = db.Column(db.String)
     approval = db.Column(db.String)
     approved_at = db.Column(db.TIMESTAMP(timezone=True))
