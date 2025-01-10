@@ -45,6 +45,12 @@ def upgrade():
             SELECT *
             FROM remappings AS m
             WHERE m.domain = d.domain
+        )
+        AND NOT EXISTS
+        (
+            SELECT *
+            FROM recipes AS r
+            WHERE r.domain = d.domain
         );
     ''')
 
