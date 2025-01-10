@@ -26,6 +26,11 @@ def upgrade():
           (string_to_array(dst, '/'))[3] as domain  -- http: ||| www.domain.test | path | to | index.html
         FROM recipes;
 
+        -- Remap TLD to FQDN on recipe records
+        UPDATE recipes
+        SET domain = (string_to_array(dst, '/'))[3]
+        WHERE domain <> (string_to_array(dst, '/'))[3];
+
         -- Create FQDNs where they differ from existing TLD configuration records
         INSERT INTO domains (domain, contact, approval, approved_at, crawl_enabled, cache_enabled)
         SELECT m.domain, d.contact, d.approval, d.approved_at, d.crawl_enabled, d.cache_enabled
