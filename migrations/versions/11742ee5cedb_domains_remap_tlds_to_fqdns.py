@@ -25,8 +25,8 @@ def upgrade():
         CREATE TEMPORARY TABLE remappings (tld, domain) AS
         SELECT DISTINCT
           domain AS tld,
-          (string_to_array(dst, '/'))[3] as domain  -- http: ||| www.domain.test | path | to | index.html
-        FROM recipes;
+          (string_to_array(url, '/'))[3] as domain  -- http: ||| www.domain.test | path | to | index.html
+        FROM recipe_urls;
 
         -- Remap TLDs to FQDNs in existing tables
         UPDATE recipe_urls
@@ -63,7 +63,7 @@ def upgrade():
         AND NOT EXISTS
         (
             SELECT *
-            FROM recipes AS r
+            FROM recipe_urls AS r
             WHERE r.domain = d.domain
         );
 
