@@ -35,11 +35,11 @@ def upgrade():
         SET domain = (string_to_array(url, '/'))[3]
         WHERE domain <> (string_to_array(url, '/'))[3];
 
-        UPDATE events.redirects
+        UPDATE recipes
         SET domain = (string_to_array(dst, '/'))[3]
         WHERE domain <> (string_to_array(dst, '/'))[3];
 
-        UPDATE recipes
+        UPDATE events.redirects
         SET domain = (string_to_array(dst, '/'))[3]
         WHERE domain <> (string_to_array(dst, '/'))[3];
 
