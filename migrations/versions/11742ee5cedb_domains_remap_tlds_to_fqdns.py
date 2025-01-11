@@ -26,7 +26,19 @@ def upgrade():
           (string_to_array(dst, '/'))[3] as domain  -- http: ||| www.domain.test | path | to | index.html
         FROM recipes;
 
-        -- Remap TLD to FQDN on recipe records
+        -- Remap TLDs to FQDNs in existing tables
+        UPDATE recipe_urls
+        SET domain = (string_to_array(url, '/'))[3]
+        WHERE domain <> (string_to_array(url, '/'))[3];
+
+        UPDATE crawl_urls
+        SET domain = (string_to_array(url, '/'))[3]
+        WHERE domain <> (string_to_array(url, '/'))[3];
+
+        UPDATE events.redirects
+        SET domain = (string_to_array(dst, '/'))[3]
+        WHERE domain <> (string_to_array(dst, '/'))[3];
+
         UPDATE recipes
         SET domain = (string_to_array(dst, '/'))[3]
         WHERE domain <> (string_to_array(dst, '/'))[3];
