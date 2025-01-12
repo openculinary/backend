@@ -69,7 +69,6 @@ def upgrade():
 
         COMMIT TRANSACTION;
     ''')
-
     # ### end Alembic commands ###
 
 
