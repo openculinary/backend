@@ -31,13 +31,13 @@ def test_crawl_timeout(post, origin_url):
 def test_origin_url_domain(origin_url):
     url = CrawlURL(url=origin_url)
 
-    assert url.domain == "example.test"
+    assert url.domain == "recipe.subdomain.example.test"
 
 
 def test_content_url_domain(content_url):
     url = RecipeURL(url=content_url)
 
-    assert url.domain == "example.test"
+    assert url.domain == "recipe.migrated.example.test"
 
 
 def test_crawl_url_timeline(db_session):

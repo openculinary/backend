@@ -10,4 +10,3 @@ opensearch-py==2.8.0
 pg8000==1.31.2
 pymmh3==0.0.5
 sqlalchemy==2.0.37
-tld==0.13

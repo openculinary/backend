@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 from datetime import UTC, datetime, timedelta
+from urllib.parse import urlparse
+
 import httpx
 from pymmh3 import hash_bytes
-from tld import get_tld
 
 from reciperadar import db
 from reciperadar.models.base import Storable
@@ -33,8 +34,7 @@ class BaseURL(Storable):
         if "url" in kwargs:
             url_hash = hash_bytes(kwargs["url"]).encode("utf-8")
             kwargs["id"] = BaseURL.generate_id(url_hash)
-            url_info = get_tld(kwargs["url"], as_object=True, search_private=False)
-            kwargs["domain"] = url_info.fld
+            kwargs["domain"] = urlparse(kwargs["url"]).netloc
         super().__init__(*args, **kwargs)
 
     id = db.Column(db.String, nullable=False, index=True)
