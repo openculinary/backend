@@ -78,6 +78,8 @@ class CrawlURL(BaseURL):
     __tablename__ = "crawl_urls"
 
     resolves_to = db.Column(db.String, index=True)
+    resolved_id = db.Column(db.String, index=True)
+    resolved_domain = db.Column(db.String)
 
     def _make_request(self):
         response = httpx.post(
@@ -85,6 +87,8 @@ class CrawlURL(BaseURL):
         )
         if response.is_success:
             self.resolves_to = response.json()["url"]["resolves_to"]
+            self.resolved_id = hash_bytes(self.resolves_to).encode("utf-8")
+            self.resolved_domain = urlparse(self.resolves_to).netloc
         return response
 
     @staticmethod
