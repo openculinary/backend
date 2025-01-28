@@ -47,7 +47,7 @@ def index_recipe(recipe_id):
         return
 
     # Display only the oldest-known recipe of record; redirect all others to it
-    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
+    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.id)
     if earliest_crawl and recipe.id != earliest_crawl.id:
         recipe.redirected_id = earliest_crawl.id
         print(f"Redirected {recipe.id} to {earliest_crawl.id} url={earliest_crawl.url}")
@@ -151,13 +151,13 @@ def crawl_recipe(url):
     """
 
     # Find any more-recent crawls of this URL, allowing detection of duplicates
-    latest_crawl = CrawlURL.find_latest_crawl(recipe_url.url)
+    latest_crawl = CrawlURL.find_latest_crawl(recipe_url.id)
     if not latest_crawl:
         print(f"Failed to find latest crawl for url={url}")
 
     # Find the first-known crawl for the latest URL, and consider it the origin
-    latest_url = latest_crawl.url if latest_crawl else recipe_url.url
-    earliest_crawl = CrawlURL.find_earliest_crawl(latest_url)
+    latest_id = latest_crawl.id if latest_crawl else recipe_url.id
+    earliest_crawl = CrawlURL.find_earliest_crawl(latest_id)
     if not earliest_crawl:
         print(f"Failed to find earliest crawl for url={url}")
 

@@ -1,10 +1,11 @@
 import httpx
 import pytest
+from pymmh3 import hash_bytes
 from unittest.mock import patch
 
 from datetime import datetime
 
-from reciperadar.models.url import CrawlURL, RecipeURL
+from reciperadar.models.url import BaseURL, CrawlURL, RecipeURL
 
 
 @pytest.fixture
@@ -41,6 +42,10 @@ def test_content_url_domain(content_url):
 
 
 def test_crawl_url_timeline(db_session):
+    def url_to_id(url):
+        url_hash = hash_bytes(url).encode("utf-8")
+        return BaseURL.generate_id(url_hash)
+
     path = [
         (datetime(2020, 1, 1), "A", "B"),
         (datetime(2020, 2, 1), "X", "Y"),
@@ -51,8 +56,10 @@ def test_crawl_url_timeline(db_session):
     ]
     path = [
         CrawlURL(
+            id=url_to_id(f"//example.test/{from_node}"),
             url=f"//example.test/{from_node}",
             resolves_to=f"//example.test/{to_node}",
+            resolved_id=url_to_id(f"//example.test/{to_node}"),
             earliest_crawled_at=time,
             latest_crawled_at=time,
         )
@@ -62,8 +69,11 @@ def test_crawl_url_timeline(db_session):
         db_session.add(step)
 
     url = "//example.test/C"
-    earliest_crawl = CrawlURL.find_earliest_crawl(url)
-    latest_crawl = CrawlURL.find_latest_crawl(url)
+    url_hash = hash_bytes(url).encode("utf-8")
+    url_id = BaseURL.generate_id(url_hash)
+
+    earliest_crawl = CrawlURL.find_earliest_crawl(url_id)
+    latest_crawl = CrawlURL.find_latest_crawl(url_id)
 
     assert earliest_crawl.url == "//example.test/A"
     assert latest_crawl.url == "//example.test/D"
@@ -85,6 +95,8 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
     for time, from_node, to_node in path:
         from_url = f"http://example.test/{from_node}"
         to_url = f"http://example.test/{to_node}"
+        to_url_hash = hash_bytes(to_url).encode("utf-8")
+        to_url_id = BaseURL.generate_id(to_url_hash)
 
         dtnow_mock.now.return_value = time
         respx_mock.post("/resolve").respond(json={"url": {"resolves_to": to_url}})
@@ -93,7 +105,7 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
         url.crawl()
         db_session.add(url)
 
-        origin = CrawlURL.find_earliest_crawl(to_url)
+        origin = CrawlURL.find_earliest_crawl(to_url_id)
         origin_urls.add(origin.url)
 
     assert len(origin_urls) == 1
