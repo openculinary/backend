@@ -87,7 +87,8 @@ class CrawlURL(BaseURL):
         )
         if response.is_success:
             self.resolves_to = response.json()["url"]["resolves_to"]
-            self.resolved_id = hash_bytes(self.resolves_to).encode("utf-8")
+            resolved_url_hash = hash_bytes(self.resolves_to).encode("utf-8")
+            self.resolved_id = BaseURL.generate_id(resolved_url_hash)
             self.resolved_domain = urlparse(self.resolves_to).netloc
         return response
 
