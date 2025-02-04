@@ -21,7 +21,7 @@ def recipe_diagnostics(recipe_id):
         return abort(404)
 
     recipe_url = recipe.recipe_url
-    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
+    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.id)
 
     return jsonify(
         {

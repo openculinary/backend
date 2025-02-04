@@ -47,6 +47,7 @@ def test_crawl_seen_crossdomain(crawl_recipe, respx_mock, db_session):
 
     existing_recipe = RecipeURL(url=current_url)
     db_session.add(existing_recipe)
+    del existing_recipe
 
     set_resolution(respx_mock, current_url)
     crawl_url(origin_url)

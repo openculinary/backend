@@ -30,15 +30,20 @@ class BaseURL(Storable):
         598: "Network read timeout error",
     }
 
+    @staticmethod
+    def url_to_id(url: str) -> str:
+        url_hash = hash_bytes(url).encode("utf-8")
+        return BaseURL.generate_id(url_hash)
+
     def __init__(self, *args, **kwargs):
         if "url" in kwargs:
-            url_hash = hash_bytes(kwargs["url"]).encode("utf-8")
-            kwargs["id"] = BaseURL.generate_id(url_hash)
+            kwargs["id"] = BaseURL.url_to_id(kwargs["url"])
             kwargs["domain"] = urlparse(kwargs["url"]).netloc
+            del kwargs["url"]  # don't store the URL itself
         super().__init__(*args, **kwargs)
 
-    id = db.Column(db.String, nullable=False, index=True)
-    url = db.Column(db.String, primary_key=True)
+    id = db.Column(db.String, primary_key=True)
+    url = db.Column(db.String, nullable=True, index=True, unique=True)
     domain = db.Column(db.String)
     earliest_crawled_at = db.Column(db.TIMESTAMP(timezone=True))
     latest_crawled_at = db.Column(db.TIMESTAMP(timezone=True))
@@ -46,21 +51,21 @@ class BaseURL(Storable):
     crawler_version = db.Column(db.String)
 
     @abstractmethod
-    def _make_request(self):
+    def _make_request(self, url):
         pass
 
     @property
     def error_message(self):
         return self.ERROR_MESSAGES.get(self.crawl_status, "Unknown error")
 
-    def crawl(self):
+    def crawl(self, url):
         backoff = self.BACKOFFS.get(self.crawl_status)
         now = datetime.now(tz=UTC)
         if backoff and self.latest_crawled_at + backoff > now:
             raise RecipeURL.BackoffException()
 
         try:
-            response = self._make_request()
+            response = self._make_request(url)
         except httpx.TimeoutException:
             response = httpx.Response(status_code=598)
 
@@ -78,24 +83,35 @@ class CrawlURL(BaseURL):
     __tablename__ = "crawl_urls"
 
     resolves_to = db.Column(db.String, index=True)
+    resolved_id = db.Column(db.String, index=True)
+    resolved_domain = db.Column(db.String)
 
-    def _make_request(self):
-        response = httpx.post(
-            url="http://crawler-service/resolve", data={"url": self.url}
-        )
+    def __init__(self, *args, **kwargs):
+        if "resolves_to" in kwargs:
+            kwargs["resolved_id"] = BaseURL.url_to_id(kwargs["resolves_to"])
+            kwargs["resolved_domain"] = urlparse(kwargs["resolves_to"]).netloc
+            del kwargs["resolves_to"]  # don't store the resolved URL itself
+        super().__init__(*args, **kwargs)
+
+    def _make_request(self, url):
+        assert BaseURL.url_to_id(url) == self.id
+
+        response = httpx.post(url="http://crawler-service/resolve", data={"url": url})
         if response.is_success:
             self.resolves_to = response.json()["url"]["resolves_to"]
+            self.resolved_id = BaseURL.url_to_id(self.resolves_to)
+            self.resolved_domain = urlparse(self.resolves_to).netloc
         return response
 
     @staticmethod
-    def find_earliest_crawl(url):
+    def find_earliest_crawl(url_id):
         earliest_crawl = (
-            db.session.query(CrawlURL).filter_by(resolves_to=url).cte(recursive=True)
+            db.session.query(CrawlURL).filter_by(resolved_id=url_id).cte(recursive=True)
         )
 
         previous_step = db.aliased(earliest_crawl)
         earliest_crawl = earliest_crawl.union(
-            db.session.query(CrawlURL).filter_by(resolves_to=previous_step.c.url)
+            db.session.query(CrawlURL).filter_by(resolved_id=previous_step.c.id)
         )
 
         return (
@@ -105,12 +121,14 @@ class CrawlURL(BaseURL):
         )
 
     @staticmethod
-    def find_latest_crawl(url):
-        latest_crawl = db.session.query(CrawlURL).filter_by(url=url).cte(recursive=True)
+    def find_latest_crawl(url_id):
+        latest_crawl = (
+            db.session.query(CrawlURL).filter_by(id=url_id).cte(recursive=True)
+        )
 
         previous_step = db.aliased(latest_crawl)
         latest_crawl = latest_crawl.union(
-            db.session.query(CrawlURL).filter_by(url=previous_step.c.resolves_to)
+            db.session.query(CrawlURL).filter_by(id=previous_step.c.resolved_id)
         )
 
         return (
@@ -125,10 +143,12 @@ class RecipeURL(BaseURL):
 
     recipe_scrapers_version = db.Column(db.String)
 
-    def _make_request(self):
+    def _make_request(self, url):
+        assert BaseURL.url_to_id(url) == self.id
+
         response = httpx.post(
             url="http://crawler-service/crawl",
-            data={"url": self.url},
+            data={"url": url},
             timeout=10.0,
         )
         if response.is_success:

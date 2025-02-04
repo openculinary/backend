@@ -1,7 +1,7 @@
 from reciperadar import db
 from reciperadar.models.recipes import Recipe
 from reciperadar.models.domain import Domain
-from reciperadar.models.url import CrawlURL, RecipeURL
+from reciperadar.models.url import BaseURL, CrawlURL, RecipeURL
 from reciperadar.workers.broker import celery
 
 
@@ -47,7 +47,7 @@ def index_recipe(recipe_id):
         return
 
     # Display only the oldest-known recipe of record; redirect all others to it
-    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.dst)
+    earliest_crawl = CrawlURL.find_earliest_crawl(recipe.id)
     if earliest_crawl and recipe.id != earliest_crawl.id:
         recipe.redirected_id = earliest_crawl.id
         print(f"Redirected {recipe.id} to {earliest_crawl.id} url={earliest_crawl.url}")
@@ -61,7 +61,8 @@ def index_recipe(recipe_id):
 
 @celery.task(queue="crawl_recipe")
 def crawl_recipe(url):
-    recipe_url = db.session.get(RecipeURL, url) or RecipeURL(url=url)
+    url_id = BaseURL.url_to_id(url)
+    recipe_url = db.session.get(RecipeURL, url_id) or RecipeURL(url=url)
     domain = db.session.get(Domain, recipe_url.domain) or Domain(
         domain=recipe_url.domain
     )
@@ -73,7 +74,7 @@ def crawl_recipe(url):
         return
 
     try:
-        response = recipe_url.crawl()
+        response = recipe_url.crawl(url)
         response.raise_for_status()
     except RecipeURL.BackoffException:
         print(f"Backoff: {recipe_url.error_message} for url={url}")
@@ -148,16 +149,19 @@ def crawl_recipe(url):
     to find the earliest graph node that can reach the target.  We use this as
     our source URL, and this is implemented by the `find_earliest_crawl`
     method.
+
+    Note: we use a hash-based ID system to store URLs and references between
+    them.
     """
 
     # Find any more-recent crawls of this URL, allowing detection of duplicates
-    latest_crawl = CrawlURL.find_latest_crawl(recipe_url.url)
+    latest_crawl = CrawlURL.find_latest_crawl(recipe_url.id)
     if not latest_crawl:
         print(f"Failed to find latest crawl for url={url}")
 
     # Find the first-known crawl for the latest URL, and consider it the origin
-    latest_url = latest_crawl.url if latest_crawl else recipe_url.url
-    earliest_crawl = CrawlURL.find_earliest_crawl(latest_url)
+    latest_id = latest_crawl.id if latest_crawl else recipe_url.id
+    earliest_crawl = CrawlURL.find_earliest_crawl(latest_id)
     if not earliest_crawl:
         print(f"Failed to find earliest crawl for url={url}")
 
@@ -187,7 +191,8 @@ def crawl_recipe(url):
 
 @celery.task(queue="crawl_url")
 def crawl_url(url):
-    crawl_url = db.session.get(CrawlURL, url) or CrawlURL(url=url)
+    url_id = BaseURL.url_to_id(url)
+    crawl_url = db.session.get(CrawlURL, url_id) or CrawlURL(url=url)
     domain = db.session.get(Domain, crawl_url.domain) or Domain(domain=crawl_url.domain)
 
     # Check whether web crawling is allowed for the domain
@@ -197,11 +202,12 @@ def crawl_url(url):
         return
 
     try:
-        response = crawl_url.crawl()
+        response = crawl_url.crawl(url)
         if response.status_code == 404:
             recipe_not_found.delay(url)
         response.raise_for_status()
         url = crawl_url.resolves_to
+        url_id = BaseURL.url_to_id(crawl_url.resolves_to)
     except RecipeURL.BackoffException:
         print(f"Backoff: {crawl_url.error_message} for url={crawl_url.url}")
         return
@@ -212,7 +218,7 @@ def crawl_url(url):
         db.session.add(crawl_url)
         db.session.commit()
 
-    existing_url = db.session.get(RecipeURL, url)
+    existing_url = db.session.get(RecipeURL, url_id)
 
     # Prevent cross-domain URL references from recrawling existing content
     if existing_url and existing_url.domain != crawl_url.domain:

@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from datetime import datetime
 
-from reciperadar.models.url import CrawlURL, RecipeURL
+from reciperadar.models.url import BaseURL, CrawlURL, RecipeURL
 
 
 @pytest.fixture
@@ -22,7 +22,7 @@ def test_crawl_timeout(post, origin_url):
     post.side_effect = [httpx.TimeoutException(message="timeout")]
 
     url = CrawlURL(url=origin_url)
-    url.crawl()
+    url.crawl(origin_url)
 
     assert url.crawl_status == 598
     assert "timeout" in url.error_message
@@ -62,12 +62,20 @@ def test_crawl_url_timeline(db_session):
         db_session.add(step)
 
     url = "//example.test/C"
-    earliest_crawl = CrawlURL.find_earliest_crawl(url)
-    latest_crawl = CrawlURL.find_latest_crawl(url)
+    url_id = BaseURL.url_to_id(url)
 
-    assert earliest_crawl.url == "//example.test/A"
-    assert latest_crawl.url == "//example.test/D"
-    assert latest_crawl.resolves_to == "//example.test/D"
+    earliest_crawl = CrawlURL.find_earliest_crawl(url_id)
+    latest_crawl = CrawlURL.find_latest_crawl(url_id)
+
+    assert earliest_crawl.url is None
+    assert earliest_crawl.id == BaseURL.url_to_id("//example.test/A")
+    assert earliest_crawl.domain == "example.test"
+    assert latest_crawl.url is None
+    assert latest_crawl.id == BaseURL.url_to_id("//example.test/D")
+    assert latest_crawl.domain == "example.test"
+    assert latest_crawl.resolves_to is None
+    assert latest_crawl.resolved_id == BaseURL.url_to_id("//example.test/D")
+    assert latest_crawl.resolved_domain == "example.test"
 
 
 @patch("reciperadar.models.url.datetime")
@@ -84,16 +92,18 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
     origin_urls = set()
     for time, from_node, to_node in path:
         from_url = f"http://example.test/{from_node}"
+        from_url_id = BaseURL.url_to_id(from_url)
         to_url = f"http://example.test/{to_node}"
+        to_url_id = BaseURL.url_to_id(to_url)
 
         dtnow_mock.now.return_value = time
         respx_mock.post("/resolve").respond(json={"url": {"resolves_to": to_url}})
 
-        url = db_session.get(CrawlURL, from_url) or CrawlURL(url=from_url)
-        url.crawl()
+        url = db_session.get(CrawlURL, from_url_id) or CrawlURL(id=from_url_id)
+        url.crawl(from_url)
         db_session.add(url)
 
-        origin = CrawlURL.find_earliest_crawl(to_url)
+        origin = CrawlURL.find_earliest_crawl(to_url_id)
         origin_urls.add(origin.url)
 
     assert len(origin_urls) == 1

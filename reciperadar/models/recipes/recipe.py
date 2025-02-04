@@ -1,5 +1,3 @@
-from pymmh3 import hash_bytes
-
 from reciperadar import db
 from reciperadar.models.base import Indexable, Storable
 from reciperadar.models.recipes.ingredient import RecipeIngredient
@@ -7,7 +5,7 @@ from reciperadar.models.recipes.nutrition import (
     IngredientNutrition,
     RecipeNutrition,
 )
-from reciperadar.models.url import RecipeURL
+from reciperadar.models.url import BaseURL, RecipeURL
 
 
 class Recipe(Storable, Indexable):
@@ -68,12 +66,11 @@ class Recipe(Storable, Indexable):
 
     @property
     def recipe_url(self):
-        return db.session.get(RecipeURL, self.dst)
+        return db.session.get(RecipeURL, self.id)
 
     @staticmethod
     def from_doc(doc):
-        src_hash = hash_bytes(doc["src"]).encode("utf-8")
-        recipe_id = doc.get("id") or Recipe.generate_id(src_hash)
+        recipe_id = doc.get("id") or BaseURL.url_to_id(doc["src"])
         return Recipe(
             id=recipe_id,
             title=doc["title"],
