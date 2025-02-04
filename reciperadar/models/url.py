@@ -37,8 +37,8 @@ class BaseURL(Storable):
             kwargs["domain"] = urlparse(kwargs["url"]).netloc
         super().__init__(*args, **kwargs)
 
-    id = db.Column(db.String, nullable=False, index=True)
-    url = db.Column(db.String, primary_key=True)
+    id = db.Column(db.String, primary_key=True)
+    url = db.Column(db.String, nullable=False, index=True, unique=True)
     domain = db.Column(db.String)
     earliest_crawled_at = db.Column(db.TIMESTAMP(timezone=True))
     latest_crawled_at = db.Column(db.TIMESTAMP(timezone=True))
