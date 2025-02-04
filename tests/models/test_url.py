@@ -51,10 +51,8 @@ def test_crawl_url_timeline(db_session):
     ]
     path = [
         CrawlURL(
-            id=BaseURL.url_to_id(f"//example.test/{from_node}"),
             url=f"//example.test/{from_node}",
             resolves_to=f"//example.test/{to_node}",
-            resolved_id=BaseURL.url_to_id(f"//example.test/{to_node}"),
             earliest_crawled_at=time,
             latest_crawled_at=time,
         )
@@ -73,7 +71,8 @@ def test_crawl_url_timeline(db_session):
     assert earliest_crawl.domain == "example.test"
     assert latest_crawl.id == BaseURL.url_to_id("//example.test/D")
     assert latest_crawl.domain == "example.test"
-    assert latest_crawl.resolves_to == "//example.test/D"
+    assert latest_crawl.resolved_id == BaseURL.url_to_id("//example.test/D")
+    assert latest_crawl.resolved_domain == "example.test"
 
 
 @patch("reciperadar.models.url.datetime")

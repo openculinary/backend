@@ -86,6 +86,13 @@ class CrawlURL(BaseURL):
     resolved_id = db.Column(db.String, index=True)
     resolved_domain = db.Column(db.String)
 
+    def __init__(self, *args, **kwargs):
+        if "resolves_to" in kwargs:
+            kwargs["resolved_id"] = BaseURL.url_to_id(kwargs["resolves_to"])
+            kwargs["resolved_domain"] = urlparse(kwargs["resolves_to"]).netloc
+            del kwargs["resolves_to"]  # don't store the resolved URL itself
+        super().__init__(*args, **kwargs)
+
     def _make_request(self, url):
         assert BaseURL.url_to_id(url) == self.id
 
