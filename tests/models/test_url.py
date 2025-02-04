@@ -21,7 +21,7 @@ def content_url(origin_url):
 def test_crawl_timeout(post, origin_url):
     post.side_effect = [httpx.TimeoutException(message="timeout")]
 
-    url = CrawlURL(id="test_url", url=origin_url)
+    url = CrawlURL(url=origin_url)
     url.crawl(origin_url)
 
     assert url.crawl_status == 598
@@ -29,13 +29,13 @@ def test_crawl_timeout(post, origin_url):
 
 
 def test_origin_url_domain(origin_url):
-    url = CrawlURL(id="test_url", url=origin_url)
+    url = CrawlURL(url=origin_url)
 
     assert url.domain == "recipe.subdomain.example.test"
 
 
 def test_content_url_domain(content_url):
-    url = RecipeURL(id="test_url", url=content_url)
+    url = RecipeURL(url=content_url)
 
     assert url.domain == "recipe.migrated.example.test"
 

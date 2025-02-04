@@ -62,7 +62,7 @@ def index_recipe(recipe_id):
 @celery.task(queue="crawl_recipe")
 def crawl_recipe(url):
     url_id = BaseURL.url_to_id(url)
-    recipe_url = db.session.get(RecipeURL, url_id) or RecipeURL(id=url_id, url=url)
+    recipe_url = db.session.get(RecipeURL, url_id) or RecipeURL(url=url)
     domain = db.session.get(Domain, recipe_url.domain) or Domain(
         domain=recipe_url.domain
     )
@@ -189,7 +189,7 @@ def crawl_recipe(url):
 @celery.task(queue="crawl_url")
 def crawl_url(url):
     url_id = BaseURL.url_to_id(url)
-    crawl_url = db.session.get(CrawlURL, url_id) or CrawlURL(id=url_id, url=url)
+    crawl_url = db.session.get(CrawlURL, url_id) or CrawlURL(url=url)
     domain = db.session.get(Domain, crawl_url.domain) or Domain(domain=crawl_url.domain)
 
     # Check whether web crawling is allowed for the domain
@@ -226,7 +226,7 @@ def crawl_url(url):
         db.session.close()
         return
 
-    recipe_url = existing_url or RecipeURL(id=url_id, url=url)
+    recipe_url = existing_url or RecipeURL(url=url)
     db.session.add(recipe_url)
 
     try:

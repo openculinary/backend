@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import call, patch
 
-from reciperadar.models.url import BaseURL, RecipeURL
+from reciperadar.models.url import RecipeURL
 from reciperadar.workers.recipes import crawl_url
 
 
@@ -44,9 +44,8 @@ def test_crawl_unseen_crossdomain(crawl_recipe, respx_mock, db_session):
 def test_crawl_seen_crossdomain(crawl_recipe, respx_mock, db_session):
     origin_url = "//example.original.test/A"
     current_url = "//example.updated.test/B"
-    current_url_id = BaseURL.url_to_id(current_url)
 
-    existing_recipe = RecipeURL(id=current_url_id, url=current_url)
+    existing_recipe = RecipeURL(url=current_url)
     db_session.add(existing_recipe)
     del existing_recipe
 
