@@ -1,7 +1,7 @@
 from reciperadar import db
 from reciperadar.models.recipes import Recipe
 from reciperadar.models.domain import Domain
-from reciperadar.models.url import CrawlURL, RecipeURL
+from reciperadar.models.url import BaseURL, CrawlURL, RecipeURL
 from reciperadar.workers.broker import celery
 
 
@@ -61,7 +61,7 @@ def index_recipe(recipe_id):
 
 @celery.task(queue="crawl_recipe")
 def crawl_recipe(url):
-    url_id = RecipeURL.url_to_id(url)
+    url_id = BaseURL.url_to_id(url)
     recipe_url = db.session.get(RecipeURL, url_id) or RecipeURL(id=url_id, url=url)
     domain = db.session.get(Domain, recipe_url.domain) or Domain(
         domain=recipe_url.domain
@@ -188,7 +188,7 @@ def crawl_recipe(url):
 
 @celery.task(queue="crawl_url")
 def crawl_url(url):
-    url_id = RecipeURL.url_to_id(url)
+    url_id = BaseURL.url_to_id(url)
     crawl_url = db.session.get(CrawlURL, url_id) or CrawlURL(id=url_id, url=url)
     domain = db.session.get(Domain, crawl_url.domain) or Domain(domain=crawl_url.domain)
 
@@ -204,7 +204,7 @@ def crawl_url(url):
             recipe_not_found.delay(url)
         response.raise_for_status()
         url = crawl_url.resolves_to
-        url_id = RecipeURL.url_to_id(crawl_url.resolves_to)
+        url_id = BaseURL.url_to_id(crawl_url.resolves_to)
     except RecipeURL.BackoffException:
         print(f"Backoff: {crawl_url.error_message} for url={crawl_url.url}")
         return
