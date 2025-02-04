@@ -67,10 +67,13 @@ def test_crawl_url_timeline(db_session):
     earliest_crawl = CrawlURL.find_earliest_crawl(url_id)
     latest_crawl = CrawlURL.find_latest_crawl(url_id)
 
+    assert earliest_crawl.url is None
     assert earliest_crawl.id == BaseURL.url_to_id("//example.test/A")
     assert earliest_crawl.domain == "example.test"
+    assert latest_crawl.url is None
     assert latest_crawl.id == BaseURL.url_to_id("//example.test/D")
     assert latest_crawl.domain == "example.test"
+    assert latest_crawl.resolves_to is None
     assert latest_crawl.resolved_id == BaseURL.url_to_id("//example.test/D")
     assert latest_crawl.resolved_domain == "example.test"
 
