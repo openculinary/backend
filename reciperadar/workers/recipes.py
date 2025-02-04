@@ -149,6 +149,9 @@ def crawl_recipe(url):
     to find the earliest graph node that can reach the target.  We use this as
     our source URL, and this is implemented by the `find_earliest_crawl`
     method.
+
+    Note: we use a hash-based ID system to store URLs and references between
+    them.
     """
 
     # Find any more-recent crawls of this URL, allowing detection of duplicates
