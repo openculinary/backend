@@ -94,6 +94,8 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
     origin_urls = set()
     for time, from_node, to_node in path:
         from_url = f"http://example.test/{from_node}"
+        from_url_hash = hash_bytes(from_url).encode("utf-8")
+        from_url_id = BaseURL.generate_id(from_url_hash)
         to_url = f"http://example.test/{to_node}"
         to_url_hash = hash_bytes(to_url).encode("utf-8")
         to_url_id = BaseURL.generate_id(to_url_hash)
@@ -101,7 +103,7 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
         dtnow_mock.now.return_value = time
         respx_mock.post("/resolve").respond(json={"url": {"resolves_to": to_url}})
 
-        url = db_session.get(CrawlURL, from_url) or CrawlURL(url=from_url)
+        url = db_session.get(CrawlURL, from_url_id) or CrawlURL(id=from_url_id)
         url.crawl()
         db_session.add(url)
 
