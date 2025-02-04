@@ -204,6 +204,7 @@ def crawl_url(url):
             recipe_not_found.delay(url)
         response.raise_for_status()
         url = crawl_url.resolves_to
+        url_id = RecipeURL.url_to_id(crawl_url.resolves_to)
     except RecipeURL.BackoffException:
         print(f"Backoff: {crawl_url.error_message} for url={crawl_url.url}")
         return
