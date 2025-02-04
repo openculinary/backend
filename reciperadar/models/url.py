@@ -39,6 +39,7 @@ class BaseURL(Storable):
         if "url" in kwargs:
             kwargs["id"] = BaseURL.url_to_id(kwargs["url"])
             kwargs["domain"] = urlparse(kwargs["url"]).netloc
+            del kwargs["url"]  # don't store the URL itself
         super().__init__(*args, **kwargs)
 
     id = db.Column(db.String, primary_key=True)
@@ -50,21 +51,21 @@ class BaseURL(Storable):
     crawler_version = db.Column(db.String)
 
     @abstractmethod
-    def _make_request(self):
+    def _make_request(self, url):
         pass
 
     @property
     def error_message(self):
         return self.ERROR_MESSAGES.get(self.crawl_status, "Unknown error")
 
-    def crawl(self):
+    def crawl(self, url):
         backoff = self.BACKOFFS.get(self.crawl_status)
         now = datetime.now(tz=UTC)
         if backoff and self.latest_crawled_at + backoff > now:
             raise RecipeURL.BackoffException()
 
         try:
-            response = self._make_request()
+            response = self._make_request(url)
         except httpx.TimeoutException:
             response = httpx.Response(status_code=598)
 
@@ -85,10 +86,10 @@ class CrawlURL(BaseURL):
     resolved_id = db.Column(db.String, index=True)
     resolved_domain = db.Column(db.String)
 
-    def _make_request(self):
-        response = httpx.post(
-            url="http://crawler-service/resolve", data={"url": self.url}
-        )
+    def _make_request(self, url):
+        assert BaseURL.url_to_id(url) == self.id
+
+        response = httpx.post(url="http://crawler-service/resolve", data={"url": url})
         if response.is_success:
             self.resolves_to = response.json()["url"]["resolves_to"]
             self.resolved_id = BaseURL.url_to_id(self.resolves_to)
@@ -135,10 +136,12 @@ class RecipeURL(BaseURL):
 
     recipe_scrapers_version = db.Column(db.String)
 
-    def _make_request(self):
+    def _make_request(self, url):
+        assert BaseURL.url_to_id(url) == self.id
+
         response = httpx.post(
             url="http://crawler-service/crawl",
-            data={"url": self.url},
+            data={"url": url},
             timeout=10.0,
         )
         if response.is_success:

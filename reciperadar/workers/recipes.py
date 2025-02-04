@@ -74,7 +74,7 @@ def crawl_recipe(url):
         return
 
     try:
-        response = recipe_url.crawl()
+        response = recipe_url.crawl(url)
         response.raise_for_status()
     except RecipeURL.BackoffException:
         print(f"Backoff: {recipe_url.error_message} for url={url}")
@@ -199,7 +199,7 @@ def crawl_url(url):
         return
 
     try:
-        response = crawl_url.crawl()
+        response = crawl_url.crawl(url)
         if response.status_code == 404:
             recipe_not_found.delay(url)
         response.raise_for_status()

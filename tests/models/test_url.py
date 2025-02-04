@@ -22,7 +22,7 @@ def test_crawl_timeout(post, origin_url):
     post.side_effect = [httpx.TimeoutException(message="timeout")]
 
     url = CrawlURL(id="test_url", url=origin_url)
-    url.crawl()
+    url.crawl(origin_url)
 
     assert url.crawl_status == 598
     assert "timeout" in url.error_message
@@ -69,8 +69,10 @@ def test_crawl_url_timeline(db_session):
     earliest_crawl = CrawlURL.find_earliest_crawl(url_id)
     latest_crawl = CrawlURL.find_latest_crawl(url_id)
 
-    assert earliest_crawl.url == "//example.test/A"
-    assert latest_crawl.url == "//example.test/D"
+    assert earliest_crawl.id == BaseURL.url_to_id("//example.test/A")
+    assert earliest_crawl.domain == "example.test"
+    assert latest_crawl.id == BaseURL.url_to_id("//example.test/D")
+    assert latest_crawl.domain == "example.test"
     assert latest_crawl.resolves_to == "//example.test/D"
 
 
@@ -96,7 +98,7 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
         respx_mock.post("/resolve").respond(json={"url": {"resolves_to": to_url}})
 
         url = db_session.get(CrawlURL, from_url_id) or CrawlURL(id=from_url_id)
-        url.crawl()
+        url.crawl(from_url)
         db_session.add(url)
 
         origin = CrawlURL.find_earliest_crawl(to_url_id)
