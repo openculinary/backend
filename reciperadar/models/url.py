@@ -30,10 +30,14 @@ class BaseURL(Storable):
         598: "Network read timeout error",
     }
 
+    @staticmethod
+    def url_to_id(url: str) -> str:
+        url_hash = hash_bytes(url).encode("utf-8")
+        return BaseURL.generate_id(url_hash)
+
     def __init__(self, *args, **kwargs):
         if "url" in kwargs:
-            url_hash = hash_bytes(kwargs["url"]).encode("utf-8")
-            kwargs["id"] = BaseURL.generate_id(url_hash)
+            kwargs["id"] = BaseURL.url_to_id(kwargs["url"])
             kwargs["domain"] = urlparse(kwargs["url"]).netloc
         super().__init__(*args, **kwargs)
 
@@ -87,8 +91,7 @@ class CrawlURL(BaseURL):
         )
         if response.is_success:
             self.resolves_to = response.json()["url"]["resolves_to"]
-            resolved_url_hash = hash_bytes(self.resolves_to).encode("utf-8")
-            self.resolved_id = BaseURL.generate_id(resolved_url_hash)
+            self.resolved_id = BaseURL.url_to_id(self.resolves_to)
             self.resolved_domain = urlparse(self.resolves_to).netloc
         return response
 

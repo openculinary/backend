@@ -1,6 +1,5 @@
 import httpx
 import pytest
-from pymmh3 import hash_bytes
 from unittest.mock import patch
 
 from datetime import datetime
@@ -42,10 +41,6 @@ def test_content_url_domain(content_url):
 
 
 def test_crawl_url_timeline(db_session):
-    def url_to_id(url):
-        url_hash = hash_bytes(url).encode("utf-8")
-        return BaseURL.generate_id(url_hash)
-
     path = [
         (datetime(2020, 1, 1), "A", "B"),
         (datetime(2020, 2, 1), "X", "Y"),
@@ -56,10 +51,10 @@ def test_crawl_url_timeline(db_session):
     ]
     path = [
         CrawlURL(
-            id=url_to_id(f"//example.test/{from_node}"),
+            id=BaseURL.url_to_id(f"//example.test/{from_node}"),
             url=f"//example.test/{from_node}",
             resolves_to=f"//example.test/{to_node}",
-            resolved_id=url_to_id(f"//example.test/{to_node}"),
+            resolved_id=BaseURL.url_to_id(f"//example.test/{to_node}"),
             earliest_crawled_at=time,
             latest_crawled_at=time,
         )
@@ -69,8 +64,7 @@ def test_crawl_url_timeline(db_session):
         db_session.add(step)
 
     url = "//example.test/C"
-    url_hash = hash_bytes(url).encode("utf-8")
-    url_id = BaseURL.generate_id(url_hash)
+    url_id = BaseURL.url_to_id(url)
 
     earliest_crawl = CrawlURL.find_earliest_crawl(url_id)
     latest_crawl = CrawlURL.find_latest_crawl(url_id)
@@ -94,11 +88,9 @@ def test_crawl_url_relocation_stability(dtnow_mock, db_session, respx_mock):
     origin_urls = set()
     for time, from_node, to_node in path:
         from_url = f"http://example.test/{from_node}"
-        from_url_hash = hash_bytes(from_url).encode("utf-8")
-        from_url_id = BaseURL.generate_id(from_url_hash)
+        from_url_id = BaseURL.url_to_id(from_url)
         to_url = f"http://example.test/{to_node}"
-        to_url_hash = hash_bytes(to_url).encode("utf-8")
-        to_url_id = BaseURL.generate_id(to_url_hash)
+        to_url_id = BaseURL.url_to_id(to_url)
 
         dtnow_mock.now.return_value = time
         respx_mock.post("/resolve").respond(json={"url": {"resolves_to": to_url}})
