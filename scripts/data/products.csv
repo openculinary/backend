@@ -14,7 +14,7 @@ parent_id,id,singular,plural,category,is_kitchen_staple,is_dairy_free,is_gluten_
 ,arugula,arugula,arugulas,,f,t,t,t,t
 ,asafoetida,asafoetida,asafoetidas,,f,t,t,t,t
 ketchup,catsup,catsup,catsups,,f,t,t,t,t
-,bacon,bacon,bacons,meat_and_deli,f,t,t,f,f
+pork,bacon,bacon,bacons,meat_and_deli,f,t,t,f,f
 ,bamboo_shoot,bamboo shoot,bamboo shoots,,f,t,t,t,t
 ,banana,banana,bananas,fruit_and_veg,f,t,t,t,t
 ,banana_chip,banana chip,banana chips,fruit_and_veg,f,t,t,t,t
