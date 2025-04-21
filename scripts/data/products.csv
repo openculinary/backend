@@ -221,7 +221,7 @@ jalapeno_pepper,jalapeno,jalapeño,jalapeñoes,,f,t,t,t,t
 ,hazelnut,hazelnut,hazelnuts,,f,t,t,t,t
 ,herb,herb,herbs,,f,t,t,t,t
 ,hickory_smoked_sea_salt,hickory smoked sea salt,hickory smoked sea salts,,f,t,t,t,t
-,honey,honey,honeys,,f,t,t,t,t
+,honey,honey,honeys,,f,t,t,f,t
 ,horseradish,horseradish,horseradishes,,f,t,t,t,t
 ,ice,ice,ices,,f,t,t,t,t
 ,jam,jam,jams,,f,t,t,t,t
@@ -598,7 +598,7 @@ dripping,reserved_bacon_fat,reserved bacon fat,reserved bacon fats,meat_and_deli
 balsamic_vinegar,white_balsamic_vinegar,white balsamic vinegar,white balsamic vinegars,oil_and_vinegar_and_condiments,f,t,t,t,t
 banana,overripe_banana,overripe banana,overripe bananas,fruit_and_veg,f,t,t,t,t
 banana,very_ripe_banana,very ripe banana,very ripe bananas,fruit_and_veg,f,t,t,t,t
-barbecue_sauce,honey_barbecue_sauce,honey barbecue sauce,honey barbecue sauces,,f,t,t,t,t
+barbecue_sauce,honey_barbecue_sauce,honey barbecue sauce,honey barbecue sauces,,f,t,t,f,t
 barley,pearl_barley,pearl barley,pearl barleys,,f,t,t,t,t
 meat,meatball,meatball,meatballs,,f,t,t,f,f
 turkey,turkey_bacon,turkey bacon,turkey bacons,meat_and_deli,f,t,t,f,f
@@ -609,7 +609,7 @@ basil,thai_basil,thai basil,thai basils,,f,t,t,t,t
 ,apricot_nectar,apricot nectar,apricot nectars,,f,t,t,t,t
 cereal,wheat_and_barley_nugget_cereal,wheat and barley nugget cereal,wheat and barley nugget cereals,,f,t,f,t,t
 juice,apple_juice,apple juice,apple juices,,f,t,t,t,t
-bbq_sauce,honey_bbq_sauce,honey bbq sauce,honey bbq sauces,,f,t,t,t,t
+bbq_sauce,honey_bbq_sauce,honey bbq sauce,honey bbq sauces,,f,t,t,f,t
 bean,baked_bean,baked bean,baked beans,,f,t,t,t,t
 bean,black_bean,black bean,black beans,,f,t,t,t,t
 bean,broad_bean,broad bean,broad beans,,f,t,t,t,t
@@ -1088,7 +1088,7 @@ curry_powder,yellow_curry_powder,yellow curry powder,yellow curry powders,,f,t,t
 date,medjool_date,medjool date,medjool dates,,f,t,t,t,t
 dijon_mustard,coarse_grained_dijon_mustard,coarse-grained dijon mustard,coarse-grained dijon mustards,,f,t,t,t,t
 dijon_mustard,grainy_dijon_mustard,grainy dijon mustard,grainy dijon mustards,,f,t,t,t,t
-dijon_mustard,honey_dijon_mustard,honey dijon mustard,honey dijon mustards,,f,t,t,t,t
+dijon_mustard,honey_dijon_mustard,honey dijon mustard,honey dijon mustards,,f,t,t,f,t
 dijon_style_mustard,prepared_dijon_style_mustard,prepared dijon-style mustard,prepared dijon-style mustards,,f,t,t,t,t
 dill,dill_weed,dill weed,dill weeds,,f,t,t,t,t
 dill_pickle,dill_pickle_juice,dill pickle juice,dill pickle juices,,f,t,t,t,t
@@ -1262,14 +1262,14 @@ hazelnut,hazelnut_meal,hazelnut meal,hazelnut meals,,f,t,t,t,t
 hazelnut,hazelnut_spread,hazelnut spread,hazelnut spreads,,f,t,t,t,t
 herb,herbe_de_provence,herbe de provence,herbes de provence,,f,t,t,t,t
 herb,italian_herb,italian herb,italian herbs,,f,t,t,t,t
-honey,clear_honey,clear honey,clear honeys,,f,t,t,t,t
-honey,clover_honey,clover honey,clover honeys,,f,t,t,t,t
+honey,clear_honey,clear honey,clear honeys,,f,t,t,f,t
+honey,clover_honey,clover honey,clover honeys,,f,t,t,f,t
 ricotta,ricotta_salata,ricotta salata,ricotta salatas,dairy,f,f,t,f,t
-honey,liquid_honey,liquid honey,liquid honeys,,f,t,t,t,t
-honey,local_honey,local honey,local honeys,,f,t,t,t,t
-honey,orange_blossom_honey,orange blossom honey,orange blossom honeys,,f,t,t,t,t
-honey,organic_honey,organic honey,organic honeys,,f,t,t,t,t
-honey,runny_honey,runny honey,runny honeys,,f,t,t,t,t
+honey,liquid_honey,liquid honey,liquid honeys,,f,t,t,f,t
+honey,local_honey,local honey,local honeys,,f,t,t,f,t
+honey,orange_blossom_honey,orange blossom honey,orange blossom honeys,,f,t,t,f,t
+honey,organic_honey,organic honey,organic honeys,,f,t,t,f,t
+honey,runny_honey,runny honey,runny honeys,,f,t,t,f,t
 horseradish,prepared_horseradish,prepared horseradish,prepared horseradishes,,f,t,t,t,t
 hot_wing_sauce,buffalo_wing_sauce,buffalo wing sauce,buffalo wing sauces,,f,t,t,t,t
 hungarian_paprika,sweet_hungarian_paprika,sweet hungarian paprika,sweet hungarian paprikas,,f,t,t,t,t
@@ -1293,7 +1293,7 @@ ice_cream,strawberry_ice_cream,strawberry ice cream,strawberry ice creams,,f,f,t
 half_and_half,fat_free_half_and_half,fat-free half-and-half,fat-free half-and-halves,dairy,f,f,t,f,t
 ice_cream,vanilla_ice_cream,vanilla ice cream,vanilla ice creams,,f,f,t,f,t
 vanilla_ice_cream,vanilla_bean_ice_cream,vanilla bean ice cream,vanilla bean ice creams,,f,f,t,f,t
-mustard,honey_mustard,honey mustard,honey mustards,,f,t,t,t,t
+mustard,honey_mustard,honey mustard,honey mustards,,f,t,t,f,t
 italian_sausage,sweet_italian_sausage,sweet italian sausage,sweet italian sausages,meat_and_deli,f,t,t,f,f
 italian_seasoning,italian_seasoned_breadcrumb,italian seasoned breadcrumb,italian seasoned breadcrumbs,,f,t,f,t,t
 jack_cheese,cheddar_jack_cheese,cheddar jack cheese,cheddar jack cheeses,dairy,f,f,t,f,t
@@ -1406,7 +1406,7 @@ milk,skim_milk,skim milk,skim milks,dairy,f,f,t,f,t
 milk,sour_milk,sour milk,sour milks,dairy,f,f,t,f,t
 milk,soymilk,soymilk,soymilks,,f,t,t,t,t
 milk,sweetened_condensed_milk,sweetened condensed milk,sweetened condensed milks,dairy,f,f,t,f,t
-graham_cracker,honey_maid_graham_crumb,honey maid graham crumb,honey maid graham crumbs,,f,t,t,t,t
+graham_cracker,honey_maid_graham_crumb,honey maid graham crumb,honey maid graham crumbs,,f,t,t,f,t
 milk,whole_milk_ricotta,whole milk ricotta,whole milk ricottas,dairy,f,f,t,f,t
 milk_chocolate,milk_chocolate_morsel,milk chocolate morsel,milk chocolate morsels,dairy,f,f,t,f,t
 milk_powder,malted_milk_powder,malted milk powder,malted milk powders,dairy,f,f,t,f,t
@@ -1797,7 +1797,7 @@ ricotta_cheese,whole_milk_ricotta_cheese,whole milk ricotta cheese,whole milk ri
 seed,coriander_seed,coriander seed,coriander seeds,,f,t,t,t,t
 roasted_garlic,bulb_roasted_garlic,bulb roasted garlic,bulb roasted garlics,fruit_and_veg,f,t,t,t,t
 roasted_garlic,cloves_roasted_garlic,cloves roasted garlic,cloves roasted garlics,fruit_and_veg,f,t,t,t,t
-roasted_peanut,honey_roasted_peanut,honey roasted peanut,honey roasted peanuts,,f,t,t,t,t
+roasted_peanut,honey_roasted_peanut,honey roasted peanut,honey roasted peanuts,,f,t,t,f,t
 romaine_lettuce,torn_romaine_lettuce,torn romaine lettuce,torn romaine lettuces,,f,t,t,t,t
 romano_cheese,pecorino_romano_cheese,pecorino romano cheese,pecorino romano cheeses,dairy,f,f,t,f,t
 root_beer,root_beer_extract,root beer extract,root beer extracts,,f,t,f,t,t
