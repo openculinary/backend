@@ -1,6 +1,5 @@
 from reciperadar import db
 from reciperadar.models.base import Storable
-from reciperadar.models.recipes.nutrition import IngredientNutrition
 
 
 class RecipeIngredient(Storable):
@@ -27,9 +26,6 @@ class RecipeIngredient(Storable):
     markup = db.Column(db.String)
 
     product_name = db.relationship("ProductName", uselist=False)
-    nutrition = db.relationship(
-        "IngredientNutrition", uselist=False, passive_deletes="all"
-    )
 
     magnitude = db.Column(db.Float)
     magnitude_parser = db.Column(db.String)
@@ -60,7 +56,6 @@ class RecipeIngredient(Storable):
     @staticmethod
     def from_doc(doc):
         ingredient_id = doc.get("id") or RecipeIngredient.generate_id()
-        nutrition = doc.get("nutrition")
         return RecipeIngredient(
             id=ingredient_id,
             index=doc["index"],
@@ -69,7 +64,6 @@ class RecipeIngredient(Storable):
             product_name_id=doc["product"].get("id"),
             product_is_plural=doc["product"].get("is_plural"),
             product_parser=doc["product"].get("product_parser"),
-            nutrition=IngredientNutrition.from_doc(nutrition) if nutrition else None,
             relative_density=doc.get("relative_density"),
             magnitude=doc.get("magnitude"),
             magnitude_parser=doc.get("magnitude_parser"),
@@ -97,5 +91,4 @@ class RecipeIngredient(Storable):
             if self.product_name
             else None
         )
-        data["nutrition"] = self.nutrition.to_doc() if self.nutrition else None
         return data
