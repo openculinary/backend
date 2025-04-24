@@ -1,10 +1,7 @@
 from reciperadar import db
 from reciperadar.models.base import Indexable, Storable
 from reciperadar.models.recipes.ingredient import RecipeIngredient
-from reciperadar.models.recipes.nutrition import (
-    IngredientNutrition,
-    RecipeNutrition,
-)
+from reciperadar.models.recipes.nutrition import RecipeNutrition
 from reciperadar.models.url import BaseURL, RecipeURL
 
 
@@ -110,42 +107,6 @@ class Recipe(Storable, Indexable):
         return sorted(contents)
 
     @property
-    def aggregate_ingredient_nutrition(self):
-        all_ingredients_mass = sum(i.mass or 0 for i in self.ingredients)
-        ingredients_with_nutrition_mass = sum(
-            i.mass or 0 for i in self.ingredients if i.nutrition
-        )
-
-        # Only render nutritional content when it is known for 90%+ of the
-        # recipe ingredients, by mass
-        if ingredients_with_nutrition_mass < all_ingredients_mass * 0.9:
-            return None
-
-        units = {}
-        totals = {
-            c.name: 0
-            for c in IngredientNutrition.__table__.columns
-            if f"{c.name}_units" in IngredientNutrition.__table__.columns
-        }
-        for ingredient in self.ingredients:
-            if not ingredient.nutrition:
-                continue
-            for nutrient in totals.keys():
-                magnitude = getattr(ingredient.nutrition, nutrient) or 0
-                unit = getattr(ingredient.nutrition, f"{nutrient}_units")
-                # TODO: Handle mixed nutritional units within recipes (pint?)
-                if nutrient in units and units[nutrient] != unit:
-                    return None
-                totals[nutrient] += magnitude
-                units[nutrient] = unit
-        for nutrient in totals.keys():
-            totals[nutrient] = round(totals[nutrient] / self.servings, 2)
-        return {
-            **{f"{nutrient}": total for nutrient, total in totals.items()},
-            **{f"{nutrient}_units": unit for nutrient, unit in units.items()},
-        }
-
-    @property
     def is_dairy_free(self):
         return all(
             ingredient.product.is_dairy_free
@@ -183,12 +144,8 @@ class Recipe(Storable, Indexable):
         data["contents"] = self.contents
         data["product_count"] = len(self.product_names)
         data["hidden"] = self.hidden
-        data["nutrition"] = (
-            self.nutrition.to_doc()
-            if self.nutrition
-            else self.aggregate_ingredient_nutrition
-        )
-        data["nutrition_source"] = "crawler" if self.nutrition else "aggregation"
+        data["nutrition"] = self.nutrition.to_doc() if self.nutrition else None
+        data["nutrition_source"] = "crawler" if self.nutrition else None
         if "not_found" in data and not data["not_found"]:
             del data["not_found"]
         data["redirected_id"] = self.redirected_id  # explicit foreign key serialization
