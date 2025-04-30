@@ -211,10 +211,10 @@ def crawl_url(url):
         url = crawl_url.resolves_to
         url_id = BaseURL.url_to_id(crawl_url.resolves_to)
     except RecipeURL.BackoffException:
-        print(f"Backoff: {crawl_url.error_message} for url={crawl_url.url}")
+        print(f"Backoff: {crawl_url.error_message} for url={url}")
         return
     except Exception:
-        print(f"{crawl_url.error_message} for url={crawl_url.url}")
+        print(f"{crawl_url.error_message} for url={url}")
         return
     finally:
         db.session.add(crawl_url)
