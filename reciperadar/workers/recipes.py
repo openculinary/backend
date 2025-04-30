@@ -170,8 +170,8 @@ def crawl_recipe(url):
         assert not latest_crawl and not earliest_crawl
         print(f"Found no previous crawl records for url={url}")
 
-    recipe_data["src"] = earliest_crawl.url if earliest_crawl else recipe_url.url
-    recipe_data["dst"] = latest_crawl.resolves_to if earliest_crawl else recipe_url.url
+    recipe_data["src"] = earliest_crawl.url if earliest_crawl else url
+    recipe_data["dst"] = latest_crawl.resolves_to if earliest_crawl else url
     recipe = Recipe.from_doc(recipe_data)
 
     domain = db.session.get(Domain, recipe.domain) or Domain(domain=recipe.domain)
