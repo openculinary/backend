@@ -540,7 +540,7 @@ pasta,tortellini,tortellini,tortellinis,,f,f,f,f,t
 meat,veal,veal,veals,,f,t,t,f,f
 meat,venison,venison,venisons,meat_and_deli,f,t,t,f,f
 dressing,vinaigrette,vinaigrette,vinaigrettes,,f,t,t,t,t
-pasta,weight_gnocchi,weight gnocchi,weight gnocchis,,f,f,f,f,t
+pasta,gnocchi,gnocchi,gnocchi,,f,f,f,f,t
 whisky,whiskey,whiskey,whiskeys,,f,t,t,t,t
 cereal,wheat_chex,wheat chex,wheat chexes,,f,t,f,t,t
 extract,almond_extract,almond extract,almond extracts,,f,t,t,t,t
@@ -851,8 +851,8 @@ cheese,sticks_string_cheese,sticks string cheese,sticks string cheeses,dairy,f,f
 cheese,stilton_cheese,stilton cheese,stilton cheeses,dairy,f,f,t,f,t
 cheese,swiss_cheese,swiss cheese,swiss cheeses,dairy,f,f,t,f,t
 cheese,velveeta_cheese,velveeta cheese,velveeta cheeses,dairy,f,f,t,f,t
-cheese,weight_chevre_style_goat_cheese,weight chevre-style goat cheese,weight chevre-style goat cheeses,dairy,f,f,t,f,t
-cheese,weight_neufchatel_cheese_softened,weight neufchatel cheese softened,weight neufchatel cheese softeneds,dairy,f,f,t,f,t
+cheese,chevre_style_goat_cheese,chevre-style goat cheese,chevre-style goat cheeses,dairy,f,f,t,f,t
+cheese,neufchatel_cheese,neufchatel cheese,neufchatel cheese,dairy,f,f,t,f,t
 cherry,cherry_pie_filling,cherry pie filling,cherry pie fillings,,f,t,t,t,t
 cherry,glace_cherry,glacé cherry,glacé cherries,,f,t,t,t,t
 cherry,maraschino_cherry,maraschino cherry,maraschino cherries,,f,t,t,t,t
@@ -931,14 +931,13 @@ chocolate,chocolate_extract,chocolate extract,chocolate extracts,,f,f,t,f,t
 chocolate,chocolate_shaving,chocolate shaving,chocolate shavings,,f,f,t,f,t
 chocolate,chocolate_sprinkle,chocolate sprinkle,chocolate sprinkles,,f,f,t,f,t
 chocolate,chocolate_syrup,chocolate syrup,chocolate syrups,,f,f,t,f,t
+chocolate,chocolate_candy_coating,chocolate candy coating,chocolate candy coatings,,f,f,t,f,t
 chocolate,semi_sweet_chocolate,semi-sweet chocolate,semi-sweet chocolates,,f,f,t,f,t
-chocolate,semisweet_chocolate,semisweet chocolate,semisweet chocolates,,f,f,t,f,t
-chocolate,weight_chocolate_candy_coating,weight chocolate candy coating,weight chocolate candy coatings,,f,f,t,f,t
-chocolate,weight_semi_sweet_baking_chocolate,weight semi-sweet baking chocolate,weight semi-sweet baking chocolates,,f,f,t,f,t
-chocolate,weight_semi_sweet_chocolate_melted,weight semi sweet chocolate melted,weight semi sweet chocolate melteds,,f,f,t,f,t
-chocolate,weight_unsweetened_baking_chocolate,weight unsweetened baking chocolate,weight unsweetened baking chocolates,,f,f,t,f,t
-chocolate,weight_unsweetened_chocolate,weight unsweetened chocolate,weight unsweetened chocolates,,f,f,t,f,t
-chocolate,weight_white_baking_chocolate,weight white baking chocolate,weight white baking chocolates,,f,f,t,f,t
+semi_sweet_chocolate,semisweet_chocolate,semisweet chocolate,semisweet chocolates,,f,f,t,f,t
+semi_sweet_chocolate,semi_sweet_baking_chocolate,semi-sweet baking chocolate,semi-sweet baking chocolates,,f,f,t,f,t
+chocolate,unsweetened_chocolate,unsweetened chocolate,unsweetened chocolates,,f,f,t,f,t
+unsweetened_chocolate,square_unsweetened_chocolate,square unsweetened chocolate,square unsweetened chocolates,,f,f,t,f,t
+unsweetened_chocolate,unsweetened_baking_chocolate,unsweetened baking chocolate,unsweetened baking chocolates,,f,f,t,f,t
 chipotle,chipotle_in_adobo,chipotle in adobo,chipotles in adobo,,f,t,t,t,t
 chicken_stock,chicken_base,chicken base,chicken bases,,f,t,t,f,f
 chicken_broth,carton_chicken_broth,carton chicken broth,carton chicken broths,,f,t,t,f,f
@@ -1006,6 +1005,7 @@ chocolate_chip,semi_sweet_chocolate_chip,semi-sweet chocolate chip,semi-sweet ch
 chocolate_chip,semisweet_chocolate_chip,semisweet chocolate chip,semisweet chocolate chips,,f,f,t,f,t
 cornmeal,self_rising_cornmeal,self-rising cornmeal,self-rising cornmeals,,f,t,f,t,t
 chocolate,white_chocolate,white chocolate,white chocolates,,f,f,t,f,t
+white_chocolate,white_baking_chocolate,white baking chocolate,white baking chocolates,,f,f,t,f,t
 white_chocolate,white_chocolate_chip,white chocolate chip,white chocolate chips,,f,f,t,f,t
 cornmeal,white_cornmeal,white cornmeal,white cornmeals,,f,t,f,t,t
 cornmeal,yellow_cornmeal,yellow cornmeal,yellow cornmeals,,f,t,f,t,t
@@ -1043,8 +1043,8 @@ cream_cheese,block_cream_cheese,block cream cheese,block cream cheeses,dairy,f,f
 cream_cheese,fat_free_cream_cheese,fat-free cream cheese,fat-free cream cheeses,dairy,f,f,t,f,t
 cream_cheese,full_fat_cream_cheese,full-fat cream cheese,full-fat cream cheeses,dairy,f,f,t,f,t
 cream_cheese,low_fat_cream_cheese,low-fat cream cheese,low-fat cream cheeses,dairy,f,f,t,f,t
-cream_cheese,weight_reduced_fat_cream_cheese_softened,weight reduced-fat cream cheese softened,weight reduced-fat cream cheese softeneds,dairy,f,f,t,f,t
-cream_cheese,weight_soft_cream_cheese,weight soft cream cheese,weight soft cream cheeses,dairy,f,f,t,f,t
+cream_cheese,reduced_fat_cream_cheese,reduced-fat cream cheese,reduced-fat cream cheese,dairy,f,f,t,f,t
+cream_cheese,soft_cream_cheese,soft cream cheese,soft cream cheeses,dairy,f,f,t,f,t
 cream_cheese,whipped_cream_cheese,whipped cream cheese,whipped cream cheeses,dairy,f,f,t,f,t
 creme_de_cacao,white_creme_de_cacao,white creme de cacao,white cremes de cacao,,f,t,t,t,t
 cucumber,english_cucumber,english cucumber,english cucumbers,,f,t,t,t,t
@@ -1479,7 +1479,7 @@ mustard_seed,brown_mustard_seed,brown mustard seed,brown mustard seeds,,f,t,t,t,
 mustard_seed,yellow_mustard_seed,yellow mustard seed,yellow mustard seeds,,f,t,t,t,t
 non_dairy_creamer,powdered_non_dairy_creamer,powdered non-dairy creamer,powdered non-dairy creamers,,f,t,t,t,t
 noodle,soba_noodle,soba noodle,soba noodles,,f,t,f,t,t
-noodle,weight_udon_noodle,weight udon noodle,weight udon noodles,,f,t,f,t,t
+noodle,udon_noodle,udon noodle,udon noodles,,f,t,f,t,t
 nut,brazil_nut,brazil nut,brazil nuts,,f,t,t,t,t
 nut,cashew_nut,cashew nut,cashew nuts,,f,t,t,t,t
 nut,grape_nuts_cereal,grape nuts cereal,grape nuts cereals,,f,t,t,t,t
@@ -2106,7 +2106,7 @@ jelly,strawberry_jelly,strawberry jelly,strawberry jellies,,f,t,t,t,t
 berry_jam,strawberry_jam,strawberry jam,strawberry jams,,f,t,t,t,t
 strawberry_jam,strawberry_preserve,strawberry preserve,strawberry preserves,,f,t,t,t,t
 extract,strawberry_extract,strawberry extract,strawberry extracts,,f,t,t,t,t
-yogurt,weight_strawberry_yogurt,weight strawberry yogurt,weight strawberry yogurts,dairy,f,f,t,f,t
+yogurt,strawberry_yogurt,strawberry yogurt,strawberry yogurts,dairy,f,f,t,f,t
 pumpkin,sugar_pumpkin,sugar pumpkin,sugar pumpkins,,f,t,t,t,t
 tamari,gluten_free_tamari,gluten free tamari,gluten free tamaris,,f,t,t,t,t
 tamarind_paste,tamarind_pulp,tamarind pulp,tamarind pulps,,f,t,t,t,t
@@ -2261,7 +2261,6 @@ yellow_onion,sweet_yellow_onion,sweet yellow onion,sweet yellow onions,fruit_and
 hoagie_bun,italian_style_hoagie_bun,italian-style hoagie bun,italian-style hoagie buns,,f,t,f,t,t
 tangerine,tangerine_zest,tangerine zest,tangerine zests,,f,t,t,t,t
 weight_unsweetened_baking_chocolate,squares_unsweetened_baking_chocolate,squares unsweetened baking chocolate,squares unsweetened baking chocolates,,f,f,t,f,t
-weight_unsweetened_chocolate,square_unsweetened_chocolate,square unsweetened chocolate,square unsweetened chocolates,,f,f,t,f,t
 white_chocolate,white_chocolate_morsel,white chocolate morsel,white chocolate morsels,,f,f,t,f,t
 white_rice,long_grain_white_rice,long-grain white rice,long-grain white rice,,f,t,t,t,t
 white_rice,uncooked_short_grain_white_rice,uncooked short-grain white rice,uncooked short-grain white rice,,f,t,t,t,t
