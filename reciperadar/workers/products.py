@@ -37,10 +37,10 @@ def populate_product_synonym_index(index, synonyms):
         actions.append(json.dumps({"index": {"_index": index, "_id": product_name}}))
         actions.append(json.dumps({"synonyms": product_synonyms}))
         if len(actions) % 100 == 0:
-            es.bulk("\n".join(actions))
+            es.bulk(body="\n".join(actions))
             actions.clear()
     if actions:
-        es.bulk("\n".join(actions))
+        es.bulk(body="\n".join(actions))
     es.indices.refresh(index=index)
 
 
